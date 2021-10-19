@@ -1,5 +1,5 @@
 import NavBar from "./NavBar";
-import Title from "./Title";
+import PageTitle from "./PageTitle";
 
 const Header = () => {
 
@@ -8,7 +8,7 @@ const Header = () => {
     return (
        <header>
            <NavBar/>
-           <Title/>           
+           <PageTitle/>           
        </header>
     );
 }
