@@ -1,11 +1,16 @@
+import NavBar from "./NavBar";
+import Title from "./Title";
+
 const Header = () => {
 
 
 
     return (
-        <div className="header">
-            This is the Header
-        </div>
+       <header>
+           <NavBar/>
+           <Title/>
+           
+       </header>
     );
 }
 
