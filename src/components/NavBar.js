@@ -1,11 +1,14 @@
+import { useState } from "react";
+
 const NavBar = () => {
+    const [display, setDisplay] = useState(false);
 
-
+    const toggleDisplay = () => setDisplay(!display);
 
     return (
       <nav className="top-nav-bar">
-        <div className="menu-title">Menu</div>
-        <section className="main-menu">
+        <div className="menu-title" onClick={toggleDisplay}>Menu</div>
+        <section className={`main-menu ${display? "show" : "hidden"}`}>
             <ul>
                 <li>Home</li>
                 <li>Posts</li>
@@ -13,15 +16,16 @@ const NavBar = () => {
                 <li>Contact Me</li>
             </ul>           
         </section>
-        <section className="social-media-menu">
+        <section className={`social-media-menu ${display? "show" : "hidden"}`}>
             <ul>
-                <li>F</li>
-                <li>T</li>
-                <li>G</li>
-                <li>I</li>
+                <li><a href="#" class="fa fa-facebook"/></li>
+                <li><a href="#" class="fa fa-twitter"/></li>
+                <li><a href="#" class="fa fa-google"/></li>
+                <li><a href="#" class="fa fa-instagram"/></li>
+                <li><a href="#" class="fa fa-youtube"/></li>
             </ul>
         </section>
-        <section className="search-bar">
+        <section className={`search-bar ${display? "show" : "hidden"}`}>
             <input type="text" placeholder="Search.."/>
         </section>
       </nav>
