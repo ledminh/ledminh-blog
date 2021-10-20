@@ -6,10 +6,10 @@ const Header = () => {
 
 
     return (
-       <header>
+       <>
            <NavBar/>
            <PageTitle/>           
-       </header>
+       </>
     );
 }
 
