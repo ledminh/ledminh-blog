@@ -4,6 +4,7 @@ const NavBar = () => {
 
     return (
       <nav className="top-nav-bar">
+        <div className="menu-title">Menu</div>
         <ul>
             <li>Home</li>
             <li>Posts</li>

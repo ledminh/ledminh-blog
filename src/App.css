@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-.App {
+
+
+
+/******************
+* Page-title
+*/
+.page-title {
     width: 95%;
     margin: auto;
-}
-
-.page-title {
-
 }
 
 .page-title .title {
@@ -18,4 +20,33 @@
     color: #EE6C4D;
     font-weight: 900;
     font-style: italic;
+}
+
+/******************
+* NavBar
+*/
+
+.top-nav-bar {
+    background-color: rgb(250, 250, 250);
+    border-bottom: 1px solid rgb(109, 109, 109);
+    padding: 10px;
+}
+.top-nav-bar ul {
+    list-style-type: none;
+}
+
+.top-nav-bar .menu-title {
+    border: 4px solid rgb(179, 179, 179);
+    border-radius: 20px;
+    padding: 12px;
+
+    color:rgb(109, 109, 109);
+    cursor: pointer;
+
+}
+
+
+.top-nav-bar .menu-title:hover {
+    background-color: rgb(245, 245, 245);
+
 }
