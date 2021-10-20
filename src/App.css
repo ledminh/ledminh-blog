@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.App {
+    width: 95%;
+    margin: auto;
+}
+
+.page-title {
+
+}
+
+.page-title .title {
+    font-family: 'Lobster', cursive;
+    font-size: 47px;
+}
+
+.page-title .subtitle {
+    color: #EE6C4D;
+    font-weight: 900;
+    font-style: italic;
+}
