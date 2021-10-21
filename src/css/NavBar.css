@@ -1,75 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+/* 
+Need to import Awesome font here or some css file elsewhere of the project
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-
-
-.hidden {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-}
-
-.show {
-    opacity: 1;
-    max-height: 1000px;
-}
-
-
-/******************
-* Page-title
 */
-.page-title {
-    width: 95%;
-    max-width: 1025px;
-    margin: 85px 10px 10px;
 
-}
-
-.page-title a {
-    text-decoration: none;
-}
-
-.page-title .title,
-.page-title .title * {
-    font-family: 'Lobster', cursive;
-    font-size: 47px;
-    color: black;
-}
-
-.page-title:hover .title,
-.page-title:hover .title * {
-    text-shadow: 0px 0px 3px rgb(184, 153, 153);
-    color:rgb(48, 48, 48); 
-}
-
-.page-title .hidden-characters {
-   display: inline-block;
-   margin-right: 0px;
-   max-width: 0px;
-   max-height: 0px;
-   overflow: hidden;
-   
-   transition: margin .5s, width .5s;
-}
-
-.page-title:hover .hidden-characters {
-    margin-right: 10px;
-    max-width: 20000px;
-    max-height: 20000px;
-    overflow: visible;
-}
-
-.page-title .subtitle {
-    color: #EE6C4D;
-    font-weight: 900;
-    font-style: italic;
-    
-    transition: transform .5s;
-}
-
-
-.page-title:hover .subtitle {
-    transform: translateX(17px);
-}
 
 /******************
 * NavBar
@@ -185,9 +118,6 @@
 
 }
 
-
-
-
 @media screen and (min-width: 596px) {
     .hidden {
         opacity: 1;
@@ -220,11 +150,6 @@
 
     .top-nav-bar .social-media-menu {
         margin-top: 10px;
-    }
-
-    .page-title {
-        margin: 154px 10px 10px;
-    
     }
 }
 
@@ -259,12 +184,6 @@
         border-radius: 20px;
         padding: 6px;
     }
-
-    .page-title {
-        margin: 104px 10px 10px;
-    
-    }
-    
 }
 
 @media screen and (min-width: 1110px) {
@@ -314,9 +233,5 @@
     .top-nav-bar .search-bar {
         grid-column: 4/5;
         grid-row: 1/2;
-    }
-
-    .page-title {
-        margin: 62px auto 10px;
     }
 }

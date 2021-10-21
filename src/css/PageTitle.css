@@ -1,0 +1,94 @@
+/* 
+Need to import Lobster font here or some css file elsewhere of the project
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); 
+*/
+
+.hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.show {
+    opacity: 1;
+    max-height: 1000px;
+}
+
+/******************
+* Page-title
+*/
+.page-title {
+    width: 95%;
+    max-width: 1025px;
+    margin: 85px 10px 10px;
+
+}
+
+.page-title a {
+    text-decoration: none;
+}
+
+.page-title .title,
+.page-title .title * {
+    font-family: 'Lobster', cursive;
+    font-size: 47px;
+    color: black;
+ 
+}
+
+.page-title:hover .title,
+.page-title:hover .title * {
+    text-shadow: 0px 0px 3px rgb(184, 153, 153);
+    color:rgb(48, 48, 48); 
+}
+
+.page-title .hidden-characters {
+   display: inline-block;
+   margin-right: 0px;
+   max-width: 0px;
+   max-height: 0px;
+   overflow: hidden;
+   
+   transition: margin .5s, width .5s;
+}
+
+.page-title:hover .hidden-characters {
+    margin-right: 10px;
+    max-width: 20000px;
+    max-height: 20000px;
+    overflow: visible;
+}
+
+.page-title .subtitle {
+    color: #EE6C4D;
+    font-weight: 900;
+    font-style: italic;
+    
+    transition: transform .5s;
+}
+
+
+.page-title:hover .subtitle {
+    transform: translateX(17px);
+}
+
+
+@media screen and (min-width: 596px) {
+    .page-title {
+        margin: 154px 10px 10px;
+    
+    }
+}
+
+@media screen and (min-width: 933px) {
+    .page-title {
+        margin: 104px 10px 10px;
+    
+    }
+}
+
+@media screen and (min-width: 1110px) {
+    .page-title {
+        margin: 62px auto 10px;
+    }
+}

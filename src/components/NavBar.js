@@ -1,3 +1,5 @@
+import '../css/NavBar.css';
+
 import { useState } from "react";
 
 const NavBar = () => {
