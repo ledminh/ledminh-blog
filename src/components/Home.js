@@ -4,6 +4,10 @@ const Home = () => {
     return (
         <>
             <PostIntro />
+            <PostIntro />
+            <PostIntro />
+            <PostIntro />
+            <PostIntro />
         </>
     );
 }

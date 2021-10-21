@@ -1,0 +1,186 @@
+.post-intro {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px black;
+
+    margin-bottom: 20px;
+}
+
+
+.post-intro .feature-image {
+    width: 100%;
+    margin: auto;
+
+    border-radius: 20px;
+    box-shadow: 0px 0px 3px black;
+}
+
+.post-intro .title {
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+
+    font-size: 22px;
+    font-weight:700;
+}
+
+.post-intro .meta-data {
+    width: 95%;
+    margin: auto;
+    margin-top: 3px;
+    padding-left: 5px;
+    background-color: rgb(219, 219, 219);
+
+    font-size: 14px;
+    
+}
+
+.post-intro .meta-data span {
+    margin-right: 10px;
+    padding-right: 5px;
+    border-right: .5px solid black;
+    font-style: italic;
+}
+
+.post-intro .meta-data span:last-child {
+    border-right: 0;
+}
+
+.post-intro .meta-data .categories::before,
+.post-intro .meta-data .tags::before,
+.post-intro .meta-data .date-created::before,
+.post-intro .meta-data .author::before {
+    color: #3D5A80;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.post-intro .meta-data .categories::before {
+    content: "Categories: "
+}
+
+.post-intro .meta-data .tags::before {
+    content: "Tags: ";
+}
+
+.post-intro .meta-data .date-created::before {
+    content: "Date: ";
+}
+
+.post-intro .meta-data .author::before {
+    content: "Author: ";
+}
+
+.post-intro .excerpt {
+    width: 95%;
+    margin: auto;
+    margin-top: 7px;
+    font-size: 15px;
+}
+
+.post-intro footer {
+    display: flex;
+    width: 95%;
+    margin: auto;
+    margin-top: 7px;
+}
+
+.post-intro .continue-reading {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #EE6C4D;
+    padding: 6px;
+    border-radius: 40px;
+    margin-right: 10px;
+
+    color: rgb(75, 75, 75);
+
+}
+
+.post-intro .continue-reading:hover {
+    background-color: #EE6C4D;
+    color: black;
+}
+
+.post-intro .share {
+    background-color: rgb(185, 185, 185);
+    border-radius: 50px;
+    width: 35px;
+    overflow: hidden;
+
+    cursor: pointer;
+    transition: width .4s ease-out;
+}
+
+.post-intro .share ul {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.post-intro .share .share-title {
+    background-color: white;
+    border: 1.5px solid black;
+}
+
+.post-intro .share .share-title:hover {    
+    border: 0;
+}
+
+.post-intro .share li  {
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+
+.post-intro .share:hover {
+    width: 230px;
+}
+
+.post-intro .share .fa {
+    text-decoration: none;
+    color: black;
+
+}
+
+.post-intro .share a,
+.post-intro .share i {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.post-intro .share a.fa-facebook:hover {
+    background-color: #3B5998;
+    color: white;
+}
+
+.post-intro .share a.fa-twitter:hover {
+    background-color: #55ACEE;
+    color: white;
+}
+
+.post-intro .share a.fa-google:hover {
+    background-color: #dd4b39;
+    color: white;
+}
+
+.post-intro .share a.fa-instagram:hover {
+    background-color: #125688;
+    color: white;
+}
+
+
+.post-intro .share a.fa-youtube:hover {
+    background-color: #bb0000;
+    color: white;
+}
