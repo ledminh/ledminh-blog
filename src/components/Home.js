@@ -1,9 +1,13 @@
+import PostIntro from "./PostIntro";
+
 const Home = () => {
     return (
         <>
-            This is our home
+            <PostIntro />
         </>
     );
 }
 
 export default Home;
+
+

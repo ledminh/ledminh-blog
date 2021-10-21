@@ -13,7 +13,6 @@ Need to import Awesome font here or some css file elsewhere of the project
     opacity: 1;
     max-height: 1000px;
 }
-
 /******************
 * NavBar
 */
@@ -140,6 +139,7 @@ Need to import Awesome font here or some css file elsewhere of the project
     }
 
     .top-nav-bar .main-menu {
+        padding: 0px;
         border-bottom: .5px solid rgb(182, 182, 182);
 
     }
