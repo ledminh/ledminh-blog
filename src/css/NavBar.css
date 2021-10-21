@@ -3,6 +3,16 @@ Need to import Awesome font here or some css file elsewhere of the project
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 */
 
+.hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.show {
+    opacity: 1;
+    max-height: 1000px;
+}
 
 /******************
 * NavBar

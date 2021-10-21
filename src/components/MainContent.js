@@ -1,6 +1,8 @@
+import '../css/main-content.css';
+
 import Home from "./Home";
 
-const Content = () => {
+const MainContent = () => {
     return (
         <main className="main-content">
             <Home />
@@ -8,4 +10,4 @@ const Content = () => {
     );
 }
 
-export default Content;
+export default MainContent;
