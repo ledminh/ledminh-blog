@@ -1,2 +1,14 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.App {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    transition: transform .5s;
+}
+
+.App.side-bar-out {
+    transform: translateX(-400px);
+}

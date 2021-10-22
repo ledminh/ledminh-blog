@@ -2,13 +2,13 @@ import '../css/NavBar.css';
 
 import { useState } from "react";
 
-const NavBar = () => {
+const NavBar = ({sideBarOut}) => {
     const [display, setDisplay] = useState(false);
 
     const toggleDisplay = () => setDisplay(!display);
 
     return (
-      <nav className="top-nav-bar">
+      <nav className={"top-nav-bar" + (sideBarOut? " side-bar-out": "")}>
         <div className="menu-title" onClick={toggleDisplay}>Menu</div>
         <section className={`main-menu ${display? "show" : "hidden"}`}>
             <ul>
