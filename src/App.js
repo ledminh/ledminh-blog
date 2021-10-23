@@ -22,7 +22,7 @@ function App() {
         <MainContent />
         <Footer />
       </MainArea>
-      <SideBar />  
+      <SideBar setSideBarOut={setSideBarOut}/>  
     </div>
   );
 }

@@ -6,6 +6,26 @@
 
 }
 
+.sidebar .close-button {
+    height: 40px;
+}
+
+
+.sidebar .close-button i {
+    font-size: 25px;
+    color: rgb(122, 122, 122);
+
+    cursor: pointer;
+
+    float: right;
+
+    margin-top: 5px;
+}
+
+.sidebar .close-button i:hover {
+    color: black;
+}
+
 
 @media screen and (min-width: 596px) {
     .sidebar {

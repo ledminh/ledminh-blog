@@ -14,7 +14,63 @@ Need to import Lobster font here or some css file elsewhere of the project
     margin: auto;
     margin-top: 85px;
 
+ 
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.page-title .sidebar-button {
+    pointer-events: none;
+    text-align: center;
+    padding: 5px;
+
+    transition: box-shadow .3s;
+}
+
+.page-title .sidebar-button .fa {
+    pointer-events: auto;
+    font-size: 30px;
+    cursor: pointer;
+
+    transition: color .3s;
+ 
+}
+
+
+
+.page-title .sidebar-button .sidebar-desc {
+    pointer-events: none;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    color:#86321d;
+
+    opacity: 0;
+
+    transition: opacity .3s;
+}
+
+.page-title .sidebar-button:hover {
+    
+    box-shadow: 0px 0px 2px black;
+}
+
+
+.page-title .fa:hover {
+    color:#EE6C4D;    
+}
+
+
+.page-title .sidebar-button:hover .sidebar-desc {
+
+    opacity: 1;
+}
+
+
+
 
 .page-title a {
     text-decoration: none;
@@ -28,8 +84,8 @@ Need to import Lobster font here or some css file elsewhere of the project
  
 }
 
-.page-title:hover .title,
-.page-title:hover .title * {
+.page-title a:hover .title,
+.page-title a:hover .title * {
     text-shadow: 0px 0px 3px rgb(184, 153, 153);
     color:rgb(48, 48, 48); 
 }
@@ -44,7 +100,7 @@ Need to import Lobster font here or some css file elsewhere of the project
    transition: margin .5s, width .5s;
 }
 
-.page-title:hover .hidden-characters {
+.page-title a:hover .hidden-characters {
     margin-right: 10px;
     max-width: 20000px;
     max-height: 20000px;
@@ -60,7 +116,7 @@ Need to import Lobster font here or some css file elsewhere of the project
 }
 
 
-.page-title:hover .subtitle {
+.page-title a:hover .subtitle {
     transform: translateX(17px);
 }
 
