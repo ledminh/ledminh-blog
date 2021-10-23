@@ -1,9 +1,9 @@
-import '../css/PostIntros.css';
+import '../css/PostWithIntros.css';
 import {posts as fetchedPosts} from '../data';
 
 import { useEffect, useState } from 'react';
 
-const PostIntros = () => {
+const PostWithIntros = () => {
     const [posts, setPosts] = useState([]);
 
 
@@ -20,28 +20,24 @@ const PostIntros = () => {
 
 
     return (
-        <>
-            {
-                posts.map( p => <PostIntro
-                                    key={p}
-                                    title={p.title}
-                                    feature_image_url={p.feature_image_url}
-                                    categories={p.categories}
-                                    tags= {p.tags}
-                                    date_created= {p.date_created}
-                                    comments={p.comments}
-                                    author={p.author}
-                                    excerpt={p.excerpt}                                
-                                />)
-            }
-        </>
+        <MainPost
+            title={posts[0].title}
+            feature_image_url={posts[0].feature_image_url}
+            categories={posts[0].categories}
+            tags= {posts[0].tags}
+            date_created= {posts[0].date_created}
+            comments={posts[0].comments}
+            author={posts[0].author}
+            excerpt={posts[0].excerpt}
+            content={posts[0].content}                                
+        />
     );
 
 };
 
 
-const PostIntro = ({title, feature_image_url, categories, tags, date_created, comments, author, excerpt}) => (
-    <article className="post-intro">
+const MainPost = ({title, feature_image_url, categories, tags, date_created, comments, author, excerpt, content}) => (
+    <article className="post-with-intro">
         <img src={feature_image_url} className="feature-image" />
         <div className="title">{title}</div>
         <section className="meta-data">
@@ -51,9 +47,7 @@ const PostIntro = ({title, feature_image_url, categories, tags, date_created, co
             <span className="comment-link">{comments} Comments</span>
             <span className="author">{author}</span>
         </section>
-        <section className="excerpt">
-            {excerpt}
-        </section>
+        <div className="content" dangerouslySetInnerHTML={{__html: content}} />        
         <footer>
             <a className="continue-reading" href="">Continue Reading</a>
             <div className="share">
@@ -71,4 +65,10 @@ const PostIntro = ({title, feature_image_url, categories, tags, date_created, co
     </article>
 );
 
-export default PostIntros;
+/*
+<section className="excerpt">
+            {excerpt}
+        </section>
+*/
+
+export default PostWithIntros;
