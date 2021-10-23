@@ -1,14 +1,8 @@
-import PostIntro from "./PostIntro";
+import PostIntros from "./PostIntros";
 
 const Home = () => {
     return (
-        <>
-            <PostIntro />
-            <PostIntro />
-            <PostIntro />
-            <PostIntro />
-            <PostIntro />
-        </>
+        <PostIntros/>
     );
 }
 
