@@ -3,11 +3,13 @@ import {posts as fetchedPosts} from '../data';
 
 import { useEffect, useState } from 'react';
 
+const postIndexes = [0,1,2,3,4];
+
 
 const PostWithIntros = () => {
+    
     const [posts, setPosts] = useState([]);
-
-   
+    const [mainPostIndex, setMainPostIndex] = useState(null);
         
                             
 
@@ -15,33 +17,43 @@ const PostWithIntros = () => {
 
         setPosts(fetchedPosts);        
 
+        setMainPostIndex(0);
+
         return () => {
             setPosts([]);
         };
     }, []);
 
 
-
+    
     return (
         posts[0] ?
         (<div className="post-with-intro">
             <MainPost
-            title={posts[0].title}
-            feature_image_url={posts[0].feature_image_url}
-            categories={posts[0].categories}
-            tags= {posts[0].tags}
-            date_created= {posts[0].date_created}
-            comments={posts[0].comments}
-            author={posts[0].author}
-            excerpt={posts[0].excerpt}
-            content={posts[0].content}                                
+            title={posts[mainPostIndex].title}
+            feature_image_url={posts[mainPostIndex].feature_image_url}
+            categories={posts[mainPostIndex].categories}
+            tags= {posts[mainPostIndex].tags}
+            date_created= {posts[mainPostIndex].date_created}
+            comments={posts[mainPostIndex].comments}
+            author={posts[mainPostIndex].author}
+            excerpt={posts[mainPostIndex].excerpt}
+            content={posts[mainPostIndex].content}                                
             />
             <div className="separator" />
             <div className="other-posts">
-                <OtherPost feature_image_url={posts[0].feature_image_url} />
-                <OtherPost feature_image_url={posts[0].feature_image_url}/>
-                <OtherPost feature_image_url={posts[0].feature_image_url}/>
-                <OtherPost feature_image_url={posts[0].feature_image_url}/>
+                {
+                    postIndexes.filter((pI => pI !== mainPostIndex)).map(oI => (
+                        <OtherPost key={posts[oI]}
+                            postIndex={oI}
+                            setMainPostIndex={setMainPostIndex}  
+                            feature_image_url={posts[oI].feature_image_url} 
+                            title={posts[oI].title}
+                            date_created={posts[oI].date_created}
+                            author={posts[oI].author}/>
+                    ))
+                }
+                
             </div>
        
         </div>) :
@@ -101,18 +113,18 @@ const MainPost = ({title, feature_image_url, categories, tags, date_created, com
 
 }
 
-const OtherPost = ({feature_image_url}) => {
+const OtherPost = ({feature_image_url, title, date_created, author, setMainPostIndex, postIndex}) => {
 
 
     return (
         
-        <div className="other-post">
+        <div className="other-post" onClick={() => setMainPostIndex(postIndex)}>
             <img src={feature_image_url} className="feature-image"/>
             <div className="information">
-                <div className="title">This is the title</div>
+                <div className="title">{title}</div>
                 <div className="meta-data">
-                    <span className="date-created">May 24, 2020</span>
-                    <span className="author">Minh Le</span>
+                    <span className="date-created">{date_created}</span>
+                    <span className="author">{author}</span>
                 </div>
             </div>
         </div>        

@@ -28,6 +28,8 @@ Need to import Awesome font here or some css file elsewhere of the project
     padding: 10px;
 
     transition: width .5s;
+
+    z-index: 99999;
 }
 
 .top-nav-bar.side-bar-out {
