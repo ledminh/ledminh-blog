@@ -1,4 +1,4 @@
-import '../css/copyright.css';
+import './css/copyright.css';
 
 const Copyright = () => (
     <span className="copyright">&copy; Minh Le {new Date().getFullYear()}</span>

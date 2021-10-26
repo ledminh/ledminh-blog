@@ -1,4 +1,4 @@
-import '../css/AboutMeBlock.css';
+import './css/AboutMeBlock.css';
 
 const AboutMeBlock = () => {
 

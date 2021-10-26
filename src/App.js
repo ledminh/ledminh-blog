@@ -3,19 +3,17 @@ import { useState } from 'react';
 
 import './css/App.css';
 
-import MainArea from './components/MainArea';
+import Structure from './structure-components';
+
 
 import NavBar from './components/NavBar';
 
 import PageTitle from './components/PageTitle';
 
-import SideBar from  './components/SideBar';
 import AboutMeBlock from './components/AboutMeBlock';
 
-import MainContent from './components/MainContent';
 import Home from './components/Home';
 
-import Footer from './components/Footer';
 import Copyright from './components/Copyright';
 
 
@@ -25,18 +23,18 @@ function App() {
   return (
     <div className={"App" + (sideBarOut? " side-bar-out": "")}>
       <NavBar sideBarOut={sideBarOut}  />
-      <MainArea>
+      <Structure.MainArea>
         <PageTitle sideBarOut={sideBarOut} setSideBarOut={setSideBarOut}/> 
-        <MainContent>
+        <Structure.MainContent>
           <Home />
-        </MainContent>
-        <Footer>
+        </Structure.MainContent>
+        <Structure.Footer>
           <Copyright />
-        </Footer>
-      </MainArea>
-      <SideBar setSideBarOut={setSideBarOut}>
+        </Structure.Footer>
+      </Structure.MainArea>
+      <Structure.SideBar setSideBarOut={setSideBarOut}>
         <AboutMeBlock />  
-      </SideBar>  
+      </Structure.SideBar>  
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import '../css/PageTitle.css';
+import './css/PageTitle.css';
 
 const PageTitle = ({sideBarOut, setSideBarOut}) => {
 

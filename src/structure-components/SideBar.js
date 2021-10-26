@@ -1,5 +1,5 @@
 import { Children } from 'react';
-import '../css/SideBar.css';
+import './css/SideBar.css';
 
 
 const SideBar = ({setSideBarOut, children}) => {

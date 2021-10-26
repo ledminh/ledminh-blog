@@ -1,4 +1,4 @@
-import '../css/MainArea.css';
+import './css/MainArea.css';
 
 const MainArea = ({children, sideBarOut}) => (
     <div className="main-area">

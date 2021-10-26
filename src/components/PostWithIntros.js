@@ -1,4 +1,4 @@
-import '../css/PostWithIntros.css';
+import './css/PostWithIntros.css';
 import {posts as fetchedPosts} from '../data';
 
 import { useEffect, useState } from 'react';

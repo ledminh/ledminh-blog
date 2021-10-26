@@ -1,4 +1,4 @@
-import '../css/NavBar.css';
+import './css/NavBar.css';
 
 import { useState } from "react";
 
