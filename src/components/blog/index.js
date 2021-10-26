@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import Comments  from './Comments';
 import MainPost  from './MainPost';
-import OtherPosts from './OtherPost';
+import OtherPosts from './OtherPosts';
 
 const postIndexes = [0,1,2,3,4];
 

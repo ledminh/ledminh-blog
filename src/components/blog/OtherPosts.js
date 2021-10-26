@@ -1,3 +1,5 @@
+import './css/OtherPosts.css';
+
 const OtherPosts = ({postIndexes, mainPostIndex, posts, setMainPostIndex}) => {
 
     return (

@@ -1,3 +1,5 @@
+import './css/MainPost.css';
+
 import { useState } from 'react';
 
 const MainPost = ({ title, feature_image_url, categories, tags, date_created, comments, author, excerpt, content, setShowComments, showComments

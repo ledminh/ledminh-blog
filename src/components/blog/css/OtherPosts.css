@@ -1,0 +1,100 @@
+/***************************
+*   MAIN FRAME  
+*/
+.blog .other-posts {
+    
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;    
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+
+/***************************
+*  SINGLE OTHER POST FRAME
+*/
+
+.blog .other-posts .other-post {
+    position: relative;
+    table-layout: fixed;
+    height: 250px;
+
+    width: 45%;
+
+    margin-bottom: 20px;
+    overflow: hidden;       
+
+    cursor: pointer;  
+}
+
+
+/***************************
+*  FEATURE IMAGE
+*/
+.blog .other-posts .other-post .feature-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: blur(1.5px);
+
+    transition: filter .3s, transform .3s;
+}
+
+.blog .other-posts .other-post:hover .feature-image {
+    transform: scale(1.1);
+
+    filter: blur(0px);
+}
+
+/***************************
+*  INFORMATION
+*/
+.blog .other-posts .other-post .information {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    background-color: rgb(80, 80, 80);
+    
+    opacity: .6;
+    color: white;
+
+    padding-left: 5px;
+
+    transition: opacity .3s;
+  
+}
+
+
+.blog .other-posts .other-post:hover .information {
+    opacity: .9;
+}
+
+
+/***************************
+*  INFORMATION CHILDREN
+*/
+.blog .other-posts .other-post .information .title {
+    font-size: 25px;
+}
+
+
+/* meta data */
+.blog .other-posts .other-post .information .meta-data {
+    font-size: 12px;
+    font-weight: bold;
+
+}
+
+.blog .other-posts .other-post .information .meta-data .date-created {
+    
+    margin-right: 5px;
+}
+
+.blog .other-posts .other-post .information .meta-data .date-created::after {
+    content: ", ";
+}
