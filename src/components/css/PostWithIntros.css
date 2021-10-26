@@ -49,24 +49,6 @@
     margin-right: 5px;
 }
 
-.post-with-intro .main-post .meta-data .comment-link {
-    cursor: pointer;
-    
-}
-
-.post-with-intro .main-post .meta-data .comment-link:hover {
-    text-decoration: underline;
-    color: #b85840;
-}
-
-.post-with-intro .main-post .meta-data .item::after {
-    content: ",";
-}
-
-.post-with-intro .main-post .meta-data .item:last-child:after {
-    content: "";
-}
-
 
 .post-with-intro .main-post .meta-data .categories,
 .post-with-intro .main-post .meta-data .tags,

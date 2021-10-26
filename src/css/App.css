@@ -25,3 +25,13 @@ button {
 button:hover {
     background-color: #EE6C4D;
 }
+
+.link-on-title {
+    cursor: pointer;
+    
+}
+
+.link-on-title:hover {
+    text-decoration: underline;
+    color: #b85840;
+}
