@@ -1,8 +1,8 @@
-import PostWithIntros from "./PostWithIntros";
+import Blog from "./blog";
 
 const Home = () => {
     return (
-        <PostWithIntros/>
+        <Blog/>
     );
 }
 

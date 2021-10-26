@@ -1,23 +1,23 @@
-.post-with-intro .main-post .excerpt {
+.blog .main-post .excerpt {
     transition: max-height .5s;
 }
 
-.post-with-intro .main-post .content {
+.blog .main-post .content {
     transition: max-height 1s;
 }
 
-.post-with-intro .main-post .excerpt.show {
+.blog .main-post .excerpt.show {
     max-height: 300px;
 }
 
-.post-with-intro .main-post .content.show {
+.blog .main-post .content.show {
     max-height: 2000px;
 }
-.post-with-intro .main-post .hidden {
+.blog .main-post .hidden {
     max-height: 0px;
 }
 
-.post-with-intro .main-post .feature-image {
+.blog .main-post .feature-image {
     width: 100%;
     margin: auto;
 
@@ -25,7 +25,7 @@
     box-shadow: 0px 0px 3px black;
 }
 
-.post-with-intro .main-post .title {
+.blog .main-post .title {
     width: 95%;
     margin: auto;
     margin-top: 10px;
@@ -34,7 +34,7 @@
     font-weight:700;
 }
 
-.post-with-intro .main-post .meta-data {
+.blog .main-post .meta-data {
     width: 95%;
     margin: auto;
     margin-top: 3px;
@@ -45,65 +45,65 @@
     
 }
 
-.post-with-intro .main-post .meta-data .item {
+.blog .main-post .meta-data .item {
     margin-right: 5px;
 }
 
 
-.post-with-intro .main-post .meta-data .categories,
-.post-with-intro .main-post .meta-data .tags,
-.post-with-intro .main-post .meta-data .date-created,
-.post-with-intro .main-post .meta-data .comment-link,
-.post-with-intro .main-post .meta-data .author {
+.blog .main-post .meta-data .categories,
+.blog .main-post .meta-data .tags,
+.blog .main-post .meta-data .date-created,
+.blog .main-post .meta-data .comment-link,
+.blog .main-post .meta-data .author {
     margin-right: 10px;
     padding-right: 5px;
     border-right: .5px solid black;
     font-style: italic;
 }
 
-.post-with-intro .main-post .meta-data .author {
+.blog .main-post .meta-data .author {
     border-right: 0;
 }
 
-.post-with-intro .main-post .meta-data .categories::before,
-.post-with-intro .main-post .meta-data .tags::before,
-.post-with-intro .main-post .meta-data .date-created::before,
-.post-with-intro .main-post .meta-data .author::before {
+.blog .main-post .meta-data .categories::before,
+.blog .main-post .meta-data .tags::before,
+.blog .main-post .meta-data .date-created::before,
+.blog .main-post .meta-data .author::before {
     color: #3D5A80;
     font-weight: bold;
     font-style: normal;
 }
 
-.post-with-intro .main-post .meta-data .categories::before {
+.blog .main-post .meta-data .categories::before {
     content: "Categories: "
 }
 
-.post-with-intro .main-post .meta-data .tags::before {
+.blog .main-post .meta-data .tags::before {
     content: "Tags: ";
 }
 
-.post-with-intro .main-post .meta-data .date-created::before {
+.blog .main-post .meta-data .date-created::before {
     content: "Date: ";
 }
 
-.post-with-intro .main-post .meta-data .author::before {
+.blog .main-post .meta-data .author::before {
     content: "Author: ";
 }
 
-.post-with-intro .main-post .excerpt {
+.blog .main-post .excerpt {
     width: 95%;
     margin: auto;
     margin-top: 7px;
     font-size: 15px;
 }
 
-.post-with-intro .main-post .content {
+.blog .main-post .content {
     width: 95%;
     margin: auto;
     margin-top: 10px;
 }
 
-.post-with-intro .main-post footer {
+.blog .main-post footer {
     display: flex;
     width: 95%;
     margin: auto;
@@ -112,7 +112,7 @@
 
 
 
-.post-with-intro .main-post .continue-reading {
+.blog .main-post .continue-reading {
     
     margin-right: 10px;
 
@@ -120,7 +120,7 @@
 }
 
 
-.post-with-intro .main-post .share {
+.blog .main-post .share {
     background-color: rgb(185, 185, 185);
     border-radius: 50px;
     width: 35px;
@@ -133,7 +133,7 @@
 
 }
 
-.post-with-intro .main-post .share ul {
+.blog .main-post .share ul {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -141,16 +141,16 @@
     list-style: none;
 }
 
-.post-with-intro .main-post .share .share-title {
+.blog .main-post .share .share-title {
     background-color: white;
     border: 1.5px solid black;
 }
 
-.post-with-intro .main-post .share .share-title:hover {    
+.blog .main-post .share .share-title:hover {    
     border: 0;
 }
 
-.post-with-intro .main-post .share li  {
+.blog .main-post .share li  {
     min-width: 35px;
     min-height: 35px;
     border-radius: 50%;
@@ -159,18 +159,18 @@
 }
 
 
-.post-with-intro .main-post .share:hover {
+.blog .main-post .share:hover {
     width: 230px;
 }
 
-.post-with-intro .main-post .share .fa {
+.blog .main-post .share .fa {
     text-decoration: none;
     color: black;
 
 }
 
-.post-with-intro .main-post .share a,
-.post-with-intro .main-post .share i {
+.blog .main-post .share a,
+.blog .main-post .share i {
     display: grid;
     align-items: center;
     justify-items: center;
@@ -179,28 +179,28 @@
 }
 
 
-.post-with-intro .main-post .share a.fa-facebook:hover {
+.blog .main-post .share a.fa-facebook:hover {
     background-color: #3B5998;
     color: white;
 }
 
-.post-with-intro .main-post .share a.fa-twitter:hover {
+.blog .main-post .share a.fa-twitter:hover {
     background-color: #55ACEE;
     color: white;
 }
 
-.post-with-intro .main-post .share a.fa-google:hover {
+.blog .main-post .share a.fa-google:hover {
     background-color: #dd4b39;
     color: white;
 }
 
-.post-with-intro .main-post .share a.fa-instagram:hover {
+.blog .main-post .share a.fa-instagram:hover {
     background-color: #125688;
     color: white;
 }
 
 
-.post-with-intro .main-post .share a.fa-youtube:hover {
+.blog .main-post .share a.fa-youtube:hover {
     background-color: #bb0000;
     color: white;
 }
@@ -208,14 +208,14 @@
 
 
 
-.post-with-intro .separator {
+.blog .separator {
     background-color: black;
     height: 2px;
     width: 50%;
     margin: auto;
 }
 
-.post-with-intro .separator {
+.blog .separator {
     background-color: black;
     height: 1px;
     width: 80%;
@@ -223,7 +223,7 @@
     margin-top: 10px;
 }
 
-.post-with-intro .other-posts {
+.blog .other-posts {
     
     width: 95%;
     margin: auto;
@@ -235,7 +235,7 @@
 }
 
 
-.post-with-intro .other-posts .other-post {
+.blog .other-posts .other-post {
     position: relative;
     table-layout: fixed;
     height: 250px;
@@ -252,7 +252,7 @@
 
 }
 
-.post-with-intro .other-posts .other-post .feature-image {
+.blog .other-posts .other-post .feature-image {
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -261,7 +261,7 @@
     transition: filter .3s, transform .3s;
 }
 
-.post-with-intro .other-posts .other-post .information {
+.blog .other-posts .other-post .information {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -278,36 +278,36 @@
   
 }
 
-.post-with-intro .other-posts .other-post:hover .feature-image {
+.blog .other-posts .other-post:hover .feature-image {
     transform: scale(1.1);
 
     filter: blur(0px);
 }
 
 
-.post-with-intro .other-posts .other-post:hover .information {
+.blog .other-posts .other-post:hover .information {
     opacity: .9;
 }
-.post-with-intro .other-posts .other-post .information .title {
+.blog .other-posts .other-post .information .title {
     font-size: 25px;
 }
 
-.post-with-intro .other-posts .other-post .information .meta-data {
+.blog .other-posts .other-post .information .meta-data {
     font-size: 12px;
     font-weight: bold;
 
 }
 
-.post-with-intro .other-posts .other-post .information .meta-data .date-created {
+.blog .other-posts .other-post .information .meta-data .date-created {
     
     margin-right: 5px;
 }
 
-.post-with-intro .other-posts .other-post .information .meta-data .date-created::after {
+.blog .other-posts .other-post .information .meta-data .date-created::after {
     content: ", ";
 }
 
-.post-with-intro .comments {
+.blog .comments {
     background-color: rgb(235, 235, 235);
     width: 95%;
     margin: auto;
@@ -320,18 +320,18 @@
 }
 
 
-.post-with-intro .comments.show {
+.blog .comments.show {
     max-height: 1000px;
 }
 
-.post-with-intro .comments.hidden {
+.blog .comments.hidden {
     max-height: 0px;
     padding-top: 0;
     padding-bottom: 0;
    
 }
 
-.post-with-intro .comments .title {
+.blog .comments .title {
     display: flex;
     align-content: center;
     justify-content: space-between;
@@ -340,12 +340,12 @@
     padding-bottom: 3px;
 }
 
-.post-with-intro .comments .title .text {
+.blog .comments .title .text {
     font-size: 18px;
     font-weight: bold;
 }
 
-.post-with-intro .comments .title .fa-close {
+.blog .comments .title .fa-close {
     
     border-radius: 50%;
     padding: 4px;
@@ -354,11 +354,11 @@
 }
 
 
-.post-with-intro .comments .title .fa-close:hover {
+.blog .comments .title .fa-close:hover {
     box-shadow: 0 0 2px black;
 }
 
-.post-with-intro .comment {
+.blog .comment {
     font-size: 13px;
     margin-top: 10px;
     padding-bottom: 5px;
@@ -369,17 +369,17 @@
 }
 
 
-.post-with-intro .comment .author {
+.blog .comment .author {
     font-weight: 700;
 
 }
 
-.post-with-intro .comment .content {
+.blog .comment .content {
     margin-top: 3px;
     padding-left: 14px;
 }
 
-.post-with-intro .add-comment {
+.blog .add-comment {
     width: 80%;    
     margin: auto;
     margin-top: 10px;
@@ -392,27 +392,27 @@
 
 
 
-.post-with-intro .add-comment #lbl-author {
+.blog .add-comment #lbl-author {
     grid-column: 1/2;
     grid-row: 1/2;
 }
 
-.post-with-intro .add-comment #author {
+.blog .add-comment #author {
     grid-column: 2/3;
     grid-row: 1/2
 }
 
-.post-with-intro .add-comment #lbl-comment {
+.blog .add-comment #lbl-comment {
     grid-column: 1/2;
     grid-row: 2/3;
 }
 
-.post-with-intro .add-comment #comment {
+.blog .add-comment #comment {
     grid-column: 2/3;
     grid-row: 2/3;
 }
 
-.post-with-intro .add-comment .button-wrapper {
+.blog .add-comment .button-wrapper {
     grid-column: 1/3;
     grid-row: 3/4;
 
@@ -421,32 +421,32 @@
 
 
 @media screen and (max-width: 512px) {
-    .post-with-intro .add-comment {
+    .blog .add-comment {
         grid-template-columns: auto;
         grid-template-rows: 1fr 1fr 1fr 4fr;
     }
 
-    .post-with-intro .add-comment #lbl-author {
+    .blog .add-comment #lbl-author {
         grid-column: 1/2;
         grid-row: 1/2;
     }
     
-    .post-with-intro .add-comment #author {
+    .blog .add-comment #author {
         grid-column: 1/2;
         grid-row: 2/3;
     }
     
-    .post-with-intro .add-comment #lbl-comment {
+    .blog .add-comment #lbl-comment {
         grid-column: 1/2;
         grid-row: 3/4;
     }
     
-    .post-with-intro .add-comment #comment {
+    .blog .add-comment #comment {
         grid-column: 1/2;
         grid-row: 4/5;
     }
 
-    .post-with-intro .add-comment .button-wrapper {
+    .blog .add-comment .button-wrapper {
         grid-row: 5/6;
     }
 }
