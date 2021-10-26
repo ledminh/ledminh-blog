@@ -1,9 +1,11 @@
 import '../css/Footer.css';
 
-const Footer = () => {
+const Footer = ({children}) => {
     return (
         <section className="footer">
-            <span className="copyright">&copy; Minh Le {new Date().getFullYear()}</span>
+            <div className="footer-content">
+                {children}
+            </div>            
         </section>
     );
 }

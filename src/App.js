@@ -16,6 +16,7 @@ import MainContent from './components/MainContent';
 import Home from './components/Home';
 
 import Footer from './components/Footer';
+import Copyright from './components/Copyright';
 
 
 function App() {
@@ -29,7 +30,9 @@ function App() {
         <MainContent>
           <Home />
         </MainContent>
-        <Footer />
+        <Footer>
+          <Copyright />
+        </Footer>
       </MainArea>
       <SideBar setSideBarOut={setSideBarOut}>
         <AboutMeBlock />  
