@@ -10,7 +10,7 @@ const PostWithIntros = () => {
     
     const [posts, setPosts] = useState([]);
     const [mainPostIndex, setMainPostIndex] = useState(null);
-        
+    const [showComments, setShowComments] = useState(false);    
                             
 
     useEffect(() => {
@@ -36,9 +36,15 @@ const PostWithIntros = () => {
             tags= {posts[mainPostIndex].tags}
             date_created= {posts[mainPostIndex].date_created}
             comments={posts[mainPostIndex].comments}
+            setShowComments={setShowComments}
+            showComments={showComments}
             author={posts[mainPostIndex].author}
             excerpt={posts[mainPostIndex].excerpt}
             content={posts[mainPostIndex].content}                                
+            />
+            <Comments showComments={showComments} 
+                        setShowComments={setShowComments}
+                        comments={posts[mainPostIndex].comments}
             />
             <div className="separator" />
             <div className="other-posts">
@@ -72,7 +78,51 @@ const PostWithIntros = () => {
 
 export default PostWithIntros;
 
-const MainPost = ({title, feature_image_url, categories, tags, date_created, comments, author, excerpt, content}) => {
+const Comments = ({showComments, setShowComments, comments}) => {
+    
+    return (
+        <div className={"comments" + (showComments? " show" : " hidden")}            
+            onClick={() => setShowComments(false)}>
+                <div className="title">
+                    <span className="text">COMMENTS</span>
+                    <span className="fa fa-close" /> 
+                </div>
+                <form className="add-comment">
+                    <label for="author" id="lbl-author">Author</label>
+                    <input type="text" id="author"></input>
+                    <label for="comment" id="lbl-comment">Comment</label>
+                    <textarea id="comment"/>
+                </form>
+                {
+                    comments.map(c => 
+                        (<Comment 
+                            key={c}
+                            author={c.author} 
+                            content={c.content} 
+                            />)
+                    )
+                }               
+
+        </div>
+    );
+}
+
+const Comment = ({author, content}) => {
+    console.log(author, content);
+
+    return (
+        <div className="comment">
+            <div className="author">{author}</div>
+            <div className="content">{content}</div>
+        </div>
+    );
+}
+
+const MainPost = ({title, feature_image_url, 
+                    categories, tags, date_created, 
+                    comments, author, excerpt, content,
+                    setShowComments, showComments    
+                }) => {
 
 
     const [showFullPost, setShowFullPost] = useState(false);
@@ -86,7 +136,7 @@ const MainPost = ({title, feature_image_url, categories, tags, date_created, com
                 <span className="categories">{categories.map(c => <span className="item">{c}</span>)}</span>
                 <span className="tags">{tags.map(t => <span className="item">{t}</span>)}</span>
                 <span className="date-created">{date_created}</span>
-                <span className="comment-link">{comments} Comments</span>
+                <span className="comment-link" onClick={() => setShowComments(true)}>{comments.length} Comments</span>
                 <span className="author">{author}</span>
             </section>
             <section className={"excerpt" + (showFullPost? " hidden" : " show")}>
@@ -106,7 +156,10 @@ const MainPost = ({title, feature_image_url, categories, tags, date_created, com
                         <li><a href="#" className="fa fa-instagram"/></li>
                         <li><a href="#" className="fa fa-youtube"/></li>
                     </ul>
-                </div>                
+                </div>
+                <button className="comment-toggle" onClick={()=>setShowComments(!showComments)}>
+                    {(showComments? "CLOSE " : "READ ")  + "COMMENT(S)"}
+                </button>                
             </footer>
         </article>
     );

@@ -61,6 +61,15 @@
     margin-right: 5px;
 }
 
+.post-with-intro .main-post .meta-data .comment-link {
+    cursor: pointer;
+    
+}
+
+.post-with-intro .main-post .meta-data .comment-link:hover {
+    text-decoration: underline;
+    color: #b85840;
+}
 
 .post-with-intro .main-post .meta-data .item::after {
     content: ",";
@@ -118,12 +127,20 @@
     font-size: 15px;
 }
 
+.post-with-intro .main-post .content {
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+}
+
 .post-with-intro .main-post footer {
     display: flex;
     width: 95%;
     margin: auto;
     margin-top: 7px;
 }
+
+
 
 .post-with-intro .main-post .continue-reading {
     display: inline-block;
@@ -151,6 +168,8 @@
 
     cursor: pointer;
     transition: width .4s ease-out;
+    margin-right: 10px;
+
 }
 
 .post-with-intro .main-post .share ul {
@@ -225,13 +244,22 @@
     color: white;
 }
 
-.post-with-intro .main-post .content {
-    width: 95%;
-    margin: auto;
-    margin-top: 10px;
+.post-with-intro .main-post .comment-toggle {
+    padding: 6px;
+    border: 1px solid #EE6C4D;
+
+    cursor: pointer;
+    background-color: white;
+
+    border-radius: 50px;
 }
 
-.post-with-intro .main-post .separator {
+.post-with-intro .main-post .comment-toggle:hover {
+    background-color:  #EE6C4D;
+}
+
+
+.post-with-intro .separator {
     background-color: black;
     height: 2px;
     width: 50%;
@@ -330,3 +358,135 @@
     content: ", ";
 }
 
+.post-with-intro .comments {
+    background-color: rgb(235, 235, 235);
+    width: 95%;
+    margin: auto;
+    margin-top: 15px;
+
+    padding: 10px;
+    padding-left: 15px;
+
+    transition: max-height .5s, padding .2s, margin .2s;
+}
+
+
+.post-with-intro .comments.show {
+    max-height: 1000px;
+}
+
+.post-with-intro .comments.hidden {
+    max-height: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
+   
+}
+
+.post-with-intro .comments .title {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+
+    padding-bottom: 3px;
+}
+
+.post-with-intro .comments .title .text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post-with-intro .comments .title .fa-close {
+    
+    border-radius: 50%;
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+.post-with-intro .comments .title .fa-close:hover {
+    box-shadow: 0 0 2px black;
+}
+
+.post-with-intro .comment {
+    font-size: 13px;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: .5px solid gray;
+
+    
+
+}
+
+
+.post-with-intro .comment .author {
+    font-weight: 700;
+
+}
+
+.post-with-intro .comment .content {
+    margin-top: 3px;
+    padding-left: 14px;
+}
+
+.post-with-intro .add-comment {
+    width: 80%;    
+    margin: auto;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-template-rows: 1fr 6fr;
+    row-gap: 10px;
+
+}
+
+
+
+.post-with-intro .add-comment #lbl-author {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.post-with-intro .add-comment #author {
+    grid-column: 2/3;
+    grid-row: 1/2
+}
+
+.post-with-intro .add-comment #lbl-comment {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.post-with-intro .add-comment #comment {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+
+@media screen and (max-width: 512px) {
+    .post-with-intro .add-comment {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr 4fr;
+    }
+
+    .post-with-intro .add-comment #lbl-author {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+    
+    .post-with-intro .add-comment #author {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+    
+    .post-with-intro .add-comment #lbl-comment {
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+    
+    .post-with-intro .add-comment #comment {
+        grid-column: 1/2;
+        grid-row: 4/5;
+    }
+}
