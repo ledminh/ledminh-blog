@@ -1,9 +1,11 @@
 import '../css/MainArea.css';
 
 const MainArea = ({children, sideBarOut}) => (
-    <section className="main-area">
-        {children}
-    </section>
+    <div className="main-area">
+        <div className="main-area-content">
+            {children}
+        </div>
+    </div>
 );
 
 export default MainArea;

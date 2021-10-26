@@ -2,10 +2,12 @@ import '../css/main-content.css';
 
 import Home from "./Home";
 
-const MainContent = () => {
+const MainContent = ({children}) => {
     return (
         <main className="main-content">
-            <Home />
+            <div className="main-content-content">
+                {children}
+            </div>            
         </main>
     );
 }

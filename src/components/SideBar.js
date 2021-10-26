@@ -1,14 +1,17 @@
+import { Children } from 'react';
 import '../css/SideBar.css';
-import AboutMeBlock from './AboutMeBlock';
 
-const SideBar = ({setSideBarOut}) => {
+
+const SideBar = ({setSideBarOut, children}) => {
 
 
 
     return (
         <div className="sidebar">
             <CloseButton setSideBarOut={setSideBarOut} />
-            <AboutMeBlock />
+            <div className="sidebar-content">           
+                {children}
+            </div>
         </div>
     );
 }

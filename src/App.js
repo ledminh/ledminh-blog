@@ -4,10 +4,17 @@ import { useState } from 'react';
 import './css/App.css';
 
 import MainArea from './components/MainArea';
+
 import NavBar from './components/NavBar';
+
 import PageTitle from './components/PageTitle';
+
 import SideBar from  './components/SideBar';
+import AboutMeBlock from './components/AboutMeBlock';
+
 import MainContent from './components/MainContent';
+import Home from './components/Home';
+
 import Footer from './components/Footer';
 
 
@@ -19,10 +26,14 @@ function App() {
       <NavBar sideBarOut={sideBarOut}  />
       <MainArea>
         <PageTitle sideBarOut={sideBarOut} setSideBarOut={setSideBarOut}/> 
-        <MainContent />
+        <MainContent>
+          <Home />
+        </MainContent>
         <Footer />
       </MainArea>
-      <SideBar setSideBarOut={setSideBarOut}/>  
+      <SideBar setSideBarOut={setSideBarOut}>
+        <AboutMeBlock />  
+      </SideBar>  
     </div>
   );
 }

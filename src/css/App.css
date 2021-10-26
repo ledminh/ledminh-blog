@@ -18,6 +18,8 @@ button {
     border: 1px solid #EE6C4D;
     border-radius: 50px;
     background-color: inherit;
+
+    cursor: pointer;
 }
 
 button:hover {

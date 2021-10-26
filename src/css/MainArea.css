@@ -1,3 +1,34 @@
 .main-area {
-    min-width: 100%;
+    min-width: 100%;  /* should be min-width instead of width. Otherwise, the flex 
+                        will adjust it so that sidebar and main-area will fit the 
+                        whole screen*/
+    margin-top: 85px; 
+}
+
+.main-area-content {
+    width: 95%;
+    max-width: 1025px;
+    margin: auto;
+    
+
+}
+
+@media screen and (min-width: 596px) {
+    .main-area {
+        margin-top: 154px;
+    
+    }
+}
+
+@media screen and (min-width: 933px) {
+    .main-area {
+        margin-top: 104px;
+    
+    }
+}
+
+@media screen and (min-width: 1110px) {
+    .main-area {
+        margin-top: 62px;
+    }
 }

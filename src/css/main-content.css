@@ -1,6 +1,14 @@
 .main-content { 
-    width: 95%;
-    max-width: 1025px;
-    margin: auto;
     margin-top: 17px;
+}
+
+.main-content-content {
+    padding: 10px;
+    border-radius: 20px;
+
+    box-shadow: 0px 0px 5px black;
+    
+    margin-bottom: 20px;
+
+   
 }
