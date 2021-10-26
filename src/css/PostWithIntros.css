@@ -463,6 +463,23 @@
     grid-row: 2/3;
 }
 
+.post-with-intro .add-comment .button-wrapper {
+    grid-column: 1/3;
+    grid-row: 3/4;
+
+    text-align: center;
+}
+
+
+.post-with-intro .add-comment .button-wrapper button {
+    padding: 5px;
+    border: 1px solid #EE6C4D;
+}
+
+
+.post-with-intro .add-comment .button-wrapper button:hover {
+    background-color: #EE6C4D;
+}
 
 @media screen and (max-width: 512px) {
     .post-with-intro .add-comment {
@@ -488,5 +505,9 @@
     .post-with-intro .add-comment #comment {
         grid-column: 1/2;
         grid-row: 4/5;
+    }
+
+    .post-with-intro .add-comment .button-wrapper {
+        grid-row: 5/6;
     }
 }
