@@ -152,7 +152,7 @@ const MainPost = ({title, feature_image_url,
                     dangerouslySetInnerHTML={{__html: content}} />
             
             <footer>
-                <a className="continue-reading" onClick={() => setShowFullPost(!showFullPost)}>{showFullPost? "Minimize": "Continue Reading"}</a>
+                <button className="continue-reading" onClick={() => setShowFullPost(!showFullPost)}>{showFullPost? "Minimize": "Continue Reading"}</button>
                 <div className="share">
                     <ul>
                         <li className="share-title"><i class="fas fa-share"/></li>

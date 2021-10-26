@@ -12,3 +12,14 @@
 .App.side-bar-out {
     transform: translateX(-400px);
 }
+
+button {
+    padding: 10px;
+    border: 1px solid #EE6C4D;
+    border-radius: 50px;
+    background-color: inherit;
+}
+
+button:hover {
+    background-color: #EE6C4D;
+}

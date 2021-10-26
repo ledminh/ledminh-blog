@@ -143,27 +143,18 @@
 
 
 .post-with-intro .main-post .continue-reading {
-    display: inline-block;
-    text-decoration: none;
-    border: 1px solid #EE6C4D;
-    padding: 6px;
-    border-radius: 40px;
+    
     margin-right: 10px;
 
-    color: rgb(75, 75, 75);
-
-    cursor: pointer;
+    
 }
 
-.post-with-intro .main-post .continue-reading:hover {
-    background-color: #EE6C4D;
-    color: black;
-}
 
 .post-with-intro .main-post .share {
     background-color: rgb(185, 185, 185);
     border-radius: 50px;
     width: 35px;
+    height:35px;
     overflow: hidden;
 
     cursor: pointer;
@@ -244,19 +235,7 @@
     color: white;
 }
 
-.post-with-intro .main-post .comment-toggle {
-    padding: 6px;
-    border: 1px solid #EE6C4D;
 
-    cursor: pointer;
-    background-color: white;
-
-    border-radius: 50px;
-}
-
-.post-with-intro .main-post .comment-toggle:hover {
-    background-color:  #EE6C4D;
-}
 
 
 .post-with-intro .separator {
@@ -470,16 +449,6 @@
     text-align: center;
 }
 
-
-.post-with-intro .add-comment .button-wrapper button {
-    padding: 5px;
-    border: 1px solid #EE6C4D;
-}
-
-
-.post-with-intro .add-comment .button-wrapper button:hover {
-    background-color: #EE6C4D;
-}
 
 @media screen and (max-width: 512px) {
     .post-with-intro .add-comment {
