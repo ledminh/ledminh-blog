@@ -1,3 +1,17 @@
+.blog .main-content {
+    width: 95%;
+    margin: auto;
+}
+
+.blog .subtitle {
+    margin-top: 10px;
+    padding-left: 5px;
+    background-color: rgb(219, 219, 219);
+
+    font-size: 14px;
+    
+}
+
 .blog .separator {
     background-color: black;
     height: 1px;
@@ -6,15 +20,8 @@
     margin-top: 10px;
 }
 
-.blog .subtitle {
-    width: 95%;
-    margin: auto;
-    margin-top: 3px;
-    padding-left: 5px;
-    background-color: rgb(219, 219, 219);
 
-    font-size: 14px;
-    
-}
+
+
 
 

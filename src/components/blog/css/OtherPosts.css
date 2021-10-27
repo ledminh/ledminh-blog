@@ -2,9 +2,6 @@
 *   MAIN FRAME  
 */
 .blog .other-posts {
-    
-    width: 95%;
-    margin: auto;
     margin-top: 10px;    
     display: flex;
     flex-flow: row wrap;
@@ -66,12 +63,13 @@
     padding-left: 5px;
 
     transition: opacity .3s;
-  
+
 }
 
 
 .blog .other-posts .other-post:hover .information {
     opacity: .9;
+    
 }
 
 
@@ -79,7 +77,9 @@
 *  INFORMATION CHILDREN
 */
 .blog .other-posts .other-post .information .title {
-    font-size: 25px;
+    margin-top: 0;
+    font-size: 23px;
+    width: 100%;
 }
 
 
@@ -87,6 +87,7 @@
 .blog .other-posts .other-post .information .meta-data {
     font-size: 12px;
     font-weight: bold;
+    width: 100%;
 
 }
 

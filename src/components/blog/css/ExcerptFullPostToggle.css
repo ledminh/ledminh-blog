@@ -3,9 +3,7 @@
 */
 
 .blog .excerpt {
-    width: 95%;
-    margin: auto;
-    margin-top: 7px;
+    margin-top: 10px;
     font-size: 15px;
 
     transition: max-height .5s;
@@ -18,8 +16,6 @@
 *  CONTENT
 */
 .blog .content {
-    width: 95%;
-    margin: auto;
     margin-top: 10px;
 
     transition: max-height 1s;

@@ -40,44 +40,46 @@ const Blog = () => {
         posts[0] ?
             (
             <div className="blog">
-                <FeatureImage feature_image_url ={posts[mainPostIndex].feature_image_url} />                
-                <Title title={posts[mainPostIndex].title} />
-                <SubTitle>
-                    <MetaData 
-                        categories={posts[mainPostIndex].categories}
-                        tags= {posts[mainPostIndex].tags}
-                        date_created= {posts[mainPostIndex].date_created}
-                        comments={posts[mainPostIndex].comments}
+                <FeatureImage feature_image_url ={posts[mainPostIndex].feature_image_url} />
+                <MainContent>                    
+                    <Title title={posts[mainPostIndex].title} />
+                    <SubTitle>
+                        <MetaData 
+                            categories={posts[mainPostIndex].categories}
+                            tags= {posts[mainPostIndex].tags}
+                            date_created= {posts[mainPostIndex].date_created}
+                            comments={posts[mainPostIndex].comments}
+                            setShowComments={setShowComments}
+                            author={posts[mainPostIndex].author}
+                        />
+                    </SubTitle>
+                    <ExcerptFullPostToggle 
+                        showFullPost={showFullPost} 
+                        excerpt={posts[mainPostIndex].excerpt}
+                        content={posts[mainPostIndex].content}
+                        />
+                    <ButtonsPanel
+                        showFullPost={showFullPost}
+                        setShowFullPost={setShowFullPost}                    
                         setShowComments={setShowComments}
-                        author={posts[mainPostIndex].author}
-                    />
-                </SubTitle>
-                <ExcerptFullPostToggle 
-                    showFullPost={showFullPost} 
-                    excerpt={posts[mainPostIndex].excerpt}
-                    content={posts[mainPostIndex].content}
-                    />
-                <ButtonsPanel
-                    showFullPost={showFullPost}
-                    setShowFullPost={setShowFullPost}                    
-                    setShowComments={setShowComments}
-                    showComments={showComments}
-                                                    
-                    />                
-                <Comments 
-                    showComments={showComments} 
-                    setShowComments={setShowComments}
-                    comments={posts[mainPostIndex].comments}
-                    />
+                        showComments={showComments}
+                                                        
+                        />                
+                    <Comments 
+                        showComments={showComments} 
+                        setShowComments={setShowComments}
+                        comments={posts[mainPostIndex].comments}
+                        />
 
-                <div className="separator" />
+                    <div className="separator" />
 
-                <OtherPosts 
-                    postIndexes={postIndexes}
-                    mainPostIndex={mainPostIndex}
-                    posts={posts}
-                    setMainPostIndex={setMainPostIndex}                        
-                    />
+                    <OtherPosts 
+                        postIndexes={postIndexes}
+                        mainPostIndex={mainPostIndex}
+                        posts={posts}
+                        setMainPostIndex={setMainPostIndex}                        
+                        />
+                </MainContent>                
             </div>
             ) :
             (<span>Loading ... </span>)
@@ -94,4 +96,13 @@ const SubTitle  = ({children}) => {
             {children}
         </div>
     );
+}
+
+const MainContent = ({children}) => {
+
+    return (
+        <div className="main-content">
+            {children}
+        </div>
+    )
 }
