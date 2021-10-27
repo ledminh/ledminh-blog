@@ -35,10 +35,10 @@ const OtherPost = ({ feature_image_url, title, date_created, author, setMainPost
             <div className="information">
                 <div className="title"><h3>{title}</h3></div>
                 <div className="meta-data">
-                    <h5>
+                    <h6>
                         <span className="date-created">{date_created}</span>
                         <span className="author">{author}</span>
-                    </h5>
+                    </h6>
                 </div>
             </div>
         </div>

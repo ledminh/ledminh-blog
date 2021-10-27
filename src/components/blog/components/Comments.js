@@ -5,7 +5,7 @@ const Comments = ({ showComments, setShowComments, comments }) => {
     return (
         <div className={"comments" + (showComments ? " show" : " hidden")}>
             <div className="title">
-                <span className="text">COMMENTS</span>
+                <span className="text"><h4>COMMENTS</h4></span>
                 <span className="fa fa-close" onClick={() => setShowComments(false)} />
             </div>
             <form className="add-comment">
@@ -38,7 +38,7 @@ const Comment = ({ author, content }) => {
 
     return (
         <div className="comment">
-            <div className="author">{author}</div>
+            <div className="author"><h5>{author}</h5></div>
             <div className="content">{content}</div>
         </div>
     );
