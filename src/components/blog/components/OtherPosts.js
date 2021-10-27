@@ -14,8 +14,7 @@ const OtherPosts = ({postIndexes, mainPostIndex, posts, setMainPostIndex}) => {
                             date_created={posts[oI].date_created}
                             author={posts[oI].author}/>
                     ))
-                }
-                
+                }                
             </div>
     );
 }
@@ -28,8 +27,7 @@ export default OtherPosts;
 const OtherPost = ({ feature_image_url, title, date_created, author, setMainPostIndex, postIndex }) => {
 
 
-    return (
-        
+    return (        
         <div className="other-post" onClick={() => setMainPostIndex(postIndex)}>
             <img src={feature_image_url} className="feature-image" />
             <div className="information">

@@ -3,6 +3,7 @@ import {posts as fetchedPosts} from '../../data';
 
 import { useEffect, useState } from 'react';
 
+import BlogNavigationBar from './components/BlogNavigationBar';
 import FeatureImage from './components/FeatureImage';
 import Title from './components/Title';
 import MetaData from './components/MetaData';
@@ -43,6 +44,7 @@ const Blog = () => {
         posts[0] ?
             (
             <div className="blog">
+                <BlogNavigationBar />
                 <FeatureImage feature_image_url ={posts[mainPostIndex].feature_image_url} />
                 <MainContent>                    
                     <Title title={posts[mainPostIndex].title} />

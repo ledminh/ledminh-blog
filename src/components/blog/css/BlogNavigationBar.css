@@ -1,0 +1,25 @@
+.blog .blog-navigation-bar {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.blog .blog-navigation-bar ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.blog .blog-navigation-bar ul li a {
+    text-decoration: none;
+    margin-right: 10px;
+    color: gray;
+    cursor: pointer;
+
+    transition: color .4s;
+}
+
+.blog .blog-navigation-bar ul li a:hover {
+    color: black;
+}
