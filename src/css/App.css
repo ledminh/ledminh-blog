@@ -51,6 +51,10 @@ button:hover {
     background-color: #EE6C4D;
 }
 
+button.round {
+    border-radius: 50%
+}
+
 
 /**********************
 * LINK ON TITLE

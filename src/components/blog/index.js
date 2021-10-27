@@ -10,7 +10,10 @@ import ExcerptFullPostToggle from './components/ExcerptFullPostToggle';
 import ButtonsPanel from './components/ButtonPanel';
 
 import Comments  from './components/Comments';
+
 import OtherPosts from './components/OtherPosts';
+
+import Pagination from './components/Pagination';
 
 const postIndexes = [0,1,2,3,4];
 
@@ -79,7 +82,9 @@ const Blog = () => {
                         posts={posts}
                         setMainPostIndex={setMainPostIndex}                        
                         />
-                </MainContent>                
+                    <Pagination />                
+                </MainContent>
+                               
             </div>
             ) :
             (<span>Loading ... </span>)

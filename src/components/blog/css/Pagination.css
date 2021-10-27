@@ -1,0 +1,13 @@
+.blog .pagination,
+.blog .pagination .num-pages {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.blog .pagination .num-pages .page {
+    width: 40px;
+    height: 40px;
+
+    margin-right: 3px;
+}
