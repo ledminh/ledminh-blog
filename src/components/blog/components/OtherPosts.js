@@ -1,4 +1,4 @@
-import './css/OtherPosts.css';
+import '../css/OtherPosts.css';
 
 const OtherPosts = ({postIndexes, mainPostIndex, posts, setMainPostIndex}) => {
 

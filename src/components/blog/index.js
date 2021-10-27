@@ -1,11 +1,16 @@
-import './css/blog.css';
+import './css/index.css';
 import {posts as fetchedPosts} from '../../data';
 
 import { useEffect, useState } from 'react';
 
-import Comments  from './Comments';
-import MainPost  from './MainPost';
-import OtherPosts from './OtherPosts';
+import FeatureImage from './components/FeatureImage';
+import Title from './components/Title';
+import MetaData from './components/MetaData';
+import ExcerptFullPostToggle from './components/ExcerptFullPostToggle';
+import ButtonsPanel from './components/ButtonPanel';
+
+import Comments  from './components/Comments';
+import OtherPosts from './components/OtherPosts';
 
 const postIndexes = [0,1,2,3,4];
 
@@ -14,6 +19,7 @@ const Blog = () => {
     
     const [posts, setPosts] = useState([]);
     const [mainPostIndex, setMainPostIndex] = useState(null);
+    const [showFullPost, setShowFullPost] = useState(false);
     const [showComments, setShowComments] = useState(false);    
                             
 
@@ -32,42 +38,60 @@ const Blog = () => {
     
     return (
         posts[0] ?
-        (<div className="blog">
-            <MainPost
-            title={posts[mainPostIndex].title}
-            feature_image_url={posts[mainPostIndex].feature_image_url}
-            categories={posts[mainPostIndex].categories}
-            tags= {posts[mainPostIndex].tags}
-            date_created= {posts[mainPostIndex].date_created}
-            comments={posts[mainPostIndex].comments}
-            setShowComments={setShowComments}
-            showComments={showComments}
-            author={posts[mainPostIndex].author}
-            excerpt={posts[mainPostIndex].excerpt}
-            content={posts[mainPostIndex].content}                                
-            />
-            <Comments showComments={showComments} 
-                        setShowComments={setShowComments}
+            (
+            <div className="blog">
+                <FeatureImage feature_image_url ={posts[mainPostIndex].feature_image_url} />                
+                <Title title={posts[mainPostIndex].title} />
+                <SubTitle>
+                    <MetaData 
+                        categories={posts[mainPostIndex].categories}
+                        tags= {posts[mainPostIndex].tags}
+                        date_created= {posts[mainPostIndex].date_created}
                         comments={posts[mainPostIndex].comments}
-            />
-            <div className="separator" />
+                        setShowComments={setShowComments}
+                        author={posts[mainPostIndex].author}
+                    />
+                </SubTitle>
+                <ExcerptFullPostToggle 
+                    showFullPost={showFullPost} 
+                    excerpt={posts[mainPostIndex].excerpt}
+                    content={posts[mainPostIndex].content}
+                    />
+                <ButtonsPanel
+                    showFullPost={showFullPost}
+                    setShowFullPost={setShowFullPost}                    
+                    setShowComments={setShowComments}
+                    showComments={showComments}
+                                                    
+                    />                
+                <Comments 
+                    showComments={showComments} 
+                    setShowComments={setShowComments}
+                    comments={posts[mainPostIndex].comments}
+                    />
 
-            <OtherPosts postIndexes={postIndexes}
-                        mainPostIndex={mainPostIndex}
-                        posts={posts}
-                        setMainPostIndex={setMainPostIndex}                        
-                        />
-            
-       
-        </div>) :
-        (<span>Loading ... </span>)
+                <div className="separator" />
+
+                <OtherPosts 
+                    postIndexes={postIndexes}
+                    mainPostIndex={mainPostIndex}
+                    posts={posts}
+                    setMainPostIndex={setMainPostIndex}                        
+                    />
+            </div>
+            ) :
+            (<span>Loading ... </span>)
     );
-       
-    
-    
-
 };
 
 
 export default Blog;
 
+const SubTitle  = ({children}) => {
+
+    return (
+        <div className="subtitle">
+            {children}
+        </div>
+    );
+}

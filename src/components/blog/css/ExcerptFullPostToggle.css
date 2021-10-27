@@ -1,0 +1,50 @@
+/***************************
+*  EXCERPT
+*/
+
+.blog .excerpt {
+    width: 95%;
+    margin: auto;
+    margin-top: 7px;
+    font-size: 15px;
+
+    transition: max-height .5s;
+
+}
+
+
+
+/***************************
+*  CONTENT
+*/
+.blog .content {
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+
+    transition: max-height 1s;
+
+}
+
+
+/*******************************************
+*  SHOW/HIDDEN EXCERPT AND CONTENT
+*   They have different max-heights
+*   because content sometimes is much
+*   longer than excerpt. If the value
+*   is the same and the transition time is
+*   also the same, the speed will be weird
+*/
+.blog .excerpt.show {
+    max-height: 300px;
+}
+
+.blog .content.show {
+    max-height: 2000px;
+}
+
+
+
+.blog .hidden { 
+    max-height: 0px;
+}

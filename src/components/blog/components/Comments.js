@@ -1,4 +1,4 @@
-import './css/Comments.css';
+import '../css/Comments.css';
 
 const Comments = ({ showComments, setShowComments, comments }) => {
 

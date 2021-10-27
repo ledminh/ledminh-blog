@@ -1,0 +1,52 @@
+/***************************
+*  META DATA
+*/
+
+
+.blog .subtitle .categories,
+.blog .subtitle .tags,
+.blog .subtitle .date-created,
+.blog .subtitle .comment-link,
+.blog .subtitle .author {
+    margin-right: 10px;
+    padding-right: 5px;
+    border-right: .5px solid black;
+    font-style: italic;
+}
+
+.blog .subtitle .author {
+    border-right: 0;
+}
+
+
+.blog .subtitle .item {
+    margin-right: 5px;
+}
+
+
+
+/* Add prefix to metadata */
+.blog .subtitle .categories::before,
+.blog .subtitle .tags::before,
+.blog .subtitle .date-created::before,
+.blog .subtitle .author::before {
+    color: #3D5A80;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.blog .subtitle .categories::before {
+    content: "Categories: "
+}
+
+.blog .subtitle .tags::before {
+    content: "Tags: ";
+}
+
+.blog .subtitle .date-created::before {
+    content: "Date: ";
+}
+
+.blog .subtitle .author::before {
+    content: "Author: ";
+}
