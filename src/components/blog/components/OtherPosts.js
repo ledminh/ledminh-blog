@@ -33,10 +33,12 @@ const OtherPost = ({ feature_image_url, title, date_created, author, setMainPost
         <div className="other-post" onClick={() => setMainPostIndex(postIndex)}>
             <img src={feature_image_url} className="feature-image" />
             <div className="information">
-                <div className="title">{title}</div>
+                <div className="title"><h3>{title}</h3></div>
                 <div className="meta-data">
-                    <span className="date-created">{date_created}</span>
-                    <span className="author">{author}</span>
+                    <h5>
+                        <span className="date-created">{date_created}</span>
+                        <span className="author">{author}</span>
+                    </h5>
                 </div>
             </div>
         </div>

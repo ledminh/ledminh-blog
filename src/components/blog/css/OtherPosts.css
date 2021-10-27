@@ -78,15 +78,12 @@
 */
 .blog .other-posts .other-post .information .title {
     margin-top: 0;
-    font-size: 23px;
     width: 100%;
 }
 
 
 /* meta data */
 .blog .other-posts .other-post .information .meta-data {
-    font-size: 12px;
-    font-weight: bold;
     width: 100%;
 
 }
