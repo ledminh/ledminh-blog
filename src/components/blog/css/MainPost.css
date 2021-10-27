@@ -27,7 +27,7 @@
 /***************************
 *  META DATA
 */
-.blog .main-post .meta-data {
+.blog .main-post .subtitle {
     width: 95%;
     margin: auto;
     margin-top: 3px;
@@ -38,51 +38,51 @@
     
 }
 
-.blog .main-post .meta-data .categories,
-.blog .main-post .meta-data .tags,
-.blog .main-post .meta-data .date-created,
-.blog .main-post .meta-data .comment-link,
-.blog .main-post .meta-data .author {
+.blog .main-post .subtitle .categories,
+.blog .main-post .subtitle .tags,
+.blog .main-post .subtitle .date-created,
+.blog .main-post .subtitle .comment-link,
+.blog .main-post .subtitle .author {
     margin-right: 10px;
     padding-right: 5px;
     border-right: .5px solid black;
     font-style: italic;
 }
 
-.blog .main-post .meta-data .author {
+.blog .main-post .subtitle .author {
     border-right: 0;
 }
 
 
-.blog .main-post .meta-data .item {
+.blog .main-post .subtitle .item {
     margin-right: 5px;
 }
 
 
 
 /* Add prefix to metadata */
-.blog .main-post .meta-data .categories::before,
-.blog .main-post .meta-data .tags::before,
-.blog .main-post .meta-data .date-created::before,
-.blog .main-post .meta-data .author::before {
+.blog .main-post .subtitle .categories::before,
+.blog .main-post .subtitle .tags::before,
+.blog .main-post .subtitle .date-created::before,
+.blog .main-post .subtitle .author::before {
     color: #3D5A80;
     font-weight: bold;
     font-style: normal;
 }
 
-.blog .main-post .meta-data .categories::before {
+.blog .main-post .subtitle .categories::before {
     content: "Categories: "
 }
 
-.blog .main-post .meta-data .tags::before {
+.blog .main-post .subtitle .tags::before {
     content: "Tags: ";
 }
 
-.blog .main-post .meta-data .date-created::before {
+.blog .main-post .subtitle .date-created::before {
     content: "Date: ";
 }
 
-.blog .main-post .meta-data .author::before {
+.blog .main-post .subtitle .author::before {
     content: "Author: ";
 }
 
@@ -141,9 +141,9 @@
 
 
 /***************************
-*  FOOTER
+*  BUTTONS PANEL
 */
-.blog .main-post footer {
+.blog .main-post .buttons-panel {
     display: flex;
     width: 95%;
     margin: auto;
@@ -152,12 +152,12 @@
 
 
 /* Continue reading button */
-.blog .main-post footer .continue-reading {    
+.blog .main-post .buttons-panel .continue-reading {    
     margin-right: 10px;   
 }
 
 /* Share button */
-.blog .main-post footer .share {
+.blog .main-post .buttons-panel .share {
     background-color: rgb(185, 185, 185);
     border-radius: 50px;
     width: 35px;
@@ -170,7 +170,7 @@
 
 }
 
-.blog .main-post footer .share ul {
+.blog .main-post .buttons-panel .share ul {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -178,16 +178,16 @@
     list-style: none;
 }
 
-.blog .main-post footer .share .share-title {
+.blog .main-post .buttons-panel .share .share-title {
     background-color: white;
     border: 1.5px solid black;
 }
 
-.blog .main-post footer .share .share-title:hover {    
+.blog .main-post .buttons-panel .share .share-title:hover {    
     border: 0;
 }
 
-.blog .main-post footer .share li  {
+.blog .main-post .buttons-panel .share li  {
     min-width: 35px;
     min-height: 35px;
     border-radius: 50%;
@@ -196,18 +196,18 @@
 }
 
 
-.blog .main-post footer .share:hover {
+.blog .main-post .buttons-panel .share:hover {
     width: 230px;
 }
 
-.blog .main-post footer .share .fa {
+.blog .main-post .buttons-panel .share .fa {
     text-decoration: none;
     color: black;
 
 }
 
-.blog .main-post footer .share a,
-.blog .main-post footer .share i {
+.blog .main-post .buttons-panel .share a,
+.blog .main-post .buttons-panel .share i {
     display: grid;
     align-items: center;
     justify-items: center;
@@ -216,28 +216,28 @@
 }
 
 
-.blog .main-post footer .share a.fa-facebook:hover {
+.blog .main-post .buttons-panel .share a.fa-facebook:hover {
     background-color: #3B5998;
     color: white;
 }
 
-.blog .main-post footer .share a.fa-twitter:hover {
+.blog .main-post .buttons-panel .share a.fa-twitter:hover {
     background-color: #55ACEE;
     color: white;
 }
 
-.blog .main-post footer .share a.fa-google:hover {
+.blog .main-post .buttons-panel .share a.fa-google:hover {
     background-color: #dd4b39;
     color: white;
 }
 
-.blog .main-post footer .share a.fa-instagram:hover {
+.blog .main-post .buttons-panel .share a.fa-instagram:hover {
     background-color: #125688;
     color: white;
 }
 
 
-.blog .main-post footer .share a.fa-youtube:hover {
+.blog .main-post .buttons-panel .share a.fa-youtube:hover {
     background-color: #bb0000;
     color: white;
 }
