@@ -1,5 +1,6 @@
 export const posts = [
     {
+        id: "123456789",
         title: "This is post 1",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Healthcare', 'Science'],
@@ -30,6 +31,7 @@ export const posts = [
     },
 
     {
+        id: "123456780",
         title: "This is post 2",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Politic', 'Science'],
@@ -52,6 +54,7 @@ export const posts = [
     },
 
     {
+        id: "123456789001",
         title: "This is post 3",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Science'],
@@ -77,6 +80,7 @@ export const posts = [
     },
 
     {
+        id: "1234567891123",
         title: "This is post 4",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -99,6 +103,7 @@ export const posts = [
     },
 
     {
+        id: "123411245789",
         title: "This is post 5",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -129,6 +134,7 @@ export const posts = [
     },
 
     {
+        id: "12345678111239",
         title: "This is post 6",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -162,6 +168,7 @@ export const posts = [
     },
 
     {
+        id: "123456744442189",
         title: "This is post 7",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -204,6 +211,7 @@ export const posts = [
     },
 
     {
+        id: "12345678933246443",
         title: "This is post 8",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -237,6 +245,7 @@ export const posts = [
     },
 
     {
+        id: "1234567891212121",
         title: "This is post 9",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -254,6 +263,7 @@ export const posts = [
     },
 
     {
+        id: "12345678909987",
         title: "This is post 10",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
@@ -279,7 +289,8 @@ export const posts = [
     },
 
     {
-        title: "This is post 10",
+        id: "127891111235",
+        title: "This is post 11",
         feature_image_url: "https://picsum.photos/875/400",
         categories: ['Life Style', 'Birth', 'Nature'],
         tags: ['pie', 'blue', 'doctor'],

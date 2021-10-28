@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../css/BlogNavigationBar.css';
 
 const BlogNavigationBar = () => {
@@ -5,8 +6,8 @@ const BlogNavigationBar = () => {
     return (
         <div className="blog-navigation-bar">
             <ul>
-                <li><a href="">HOME</a></li>
-                <li><a href="">CATEGORIES</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/category">Categories</Link></li>
             </ul>
         </div>
     );

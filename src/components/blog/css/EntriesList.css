@@ -1,0 +1,91 @@
+/***************************
+*   MAIN FRAME  
+*/
+.blog .entries-list {
+    margin-top: 10px;    
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+
+/***************************
+*  SINGLE OTHER POST FRAME
+*/
+
+.blog .entries-list .entry {
+    position: relative;
+    table-layout: fixed;
+    height: 250px;
+
+    width: 45%;
+
+    margin-bottom: 20px;
+    overflow: hidden;       
+
+    cursor: pointer;  
+}
+
+
+/***************************
+*  FEATURE IMAGE
+*/
+.blog .entries-list .entry .feature-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: blur(1.5px);
+
+    transition: filter .3s, transform .3s;
+}
+
+.blog .entries-list .entry:hover .feature-image {
+    transform: scale(1.1);
+
+    filter: blur(0px);
+}
+
+/***************************
+*  INFORMATION
+*/
+.blog .entries-list .entry .information {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    background-color: rgb(80, 80, 80);
+    
+    opacity: .6;
+    color: white;
+
+    padding-left: 5px;
+
+    transition: opacity .3s;
+
+}
+
+
+.blog .entries-list .entry:hover .information {
+    opacity: .9;
+    
+}
+
+
+/***************************
+*  INFORMATION CHILDREN
+*/
+.blog .entries-list .entry .information .title {
+    margin-top: 0;
+    width: 100%;
+}
+
+
+/* meta data */
+.blog .entries-list .entry .information .meta-data {
+    width: 100%;
+
+}
+
+
