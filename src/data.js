@@ -35,7 +35,52 @@ export const categories = [
             cat_subtitle: "Technology changes the way we live"
         }
 
-    }
+    },
+
+    {
+        id: "cat-12341197",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Nuclear Energy",
+        meta_data:  {
+            cat_subtitle: "Everything about nuclear energy"
+        }
+    },
+
+    {
+        id: "cat-1239999",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Critical Thinking",
+        meta_data:  {
+            cat_subtitle: "Basic on critical thinking"
+        }
+    },
+
+    {
+        id: "cat-12391299",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Alan Turning",
+        meta_data:  {
+            cat_subtitle: "The life of Alan Turning"
+        }
+    },
+
+    {
+        id: "cat-1237499",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Vaccine",
+        meta_data:  {
+            cat_subtitle: "History of Vaccine"
+        }
+    },
+
+    {
+        id: "cat-121337499",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Geography",
+        meta_data:  {
+            cat_subtitle: "Learning Geography"
+        }
+    },
 ]
 
 
