@@ -25,9 +25,10 @@ export default EntriesList;
 
 const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) => {
 
+    const onClickHandle = onClickHandleMaker(id);
 
     return (        
-        <div className="entry" onClick={onClickHandleMaker(id)}>
+        <div className="entry" onClick={onClickHandle}>
             <img src={feature_image_url} className="feature-image" />
             <div className="information">
                 <div className="title"><h3>{title}</h3></div>

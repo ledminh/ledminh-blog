@@ -1,8 +1,49 @@
+export const categories = [
+    {
+        id: "cat-12345",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Nature",
+        meta_data:  {
+            cat_subtitle: "Something about nature"
+        }
+    },
+
+    {
+        id: "cat-12346",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Human",
+        meta_data:  {
+            cat_subtitle: "Something about human"
+        }
+
+    },
+
+    {
+        id: "cat-123332",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Food",
+        meta_data:  {
+            cat_subtitle: "Food is my life"
+        }
+    },
+
+    {
+        id: "cat-1234112",
+        feature_image_url: "https://loremflickr.com/800/600",
+        title: "Technology",
+        meta_data:  {
+            cat_subtitle: "Technology changes the way we live"
+        }
+
+    }
+]
+
+
 export const posts = [
     {
         id: "123456789",
         title: "This is post 1",
-        feature_image_url: "https://picsum.photos/875/400",
+        feature_image_url: "https://picsum.photos/875/600",
         categories: ['Life Style', 'Healthcare', 'Science'],
         tags: ['sky', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),

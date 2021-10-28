@@ -21,7 +21,7 @@ const Blog = () => {
                 <MainContent>                         
                     <Switch>
                         <Route path="/category">
-                            <Category />
+                            <Category setFeatureImageURL={setFeatureImageURL}/>
                         </Route>
                         <Route path="/">                   
                             <Home setFeatureImageURL={setFeatureImageURL}/>
