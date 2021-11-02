@@ -86,6 +86,10 @@ Need to import Awesome font here or some css file elsewhere of the project
     justify-content: space-evenly;    
 }
 
+.top-nav-bar .social-media-menu i {
+    cursor: pointer;
+}
+
 .top-nav-bar .social-media-menu .fa {
     font-size: 25px;
     text-decoration: none;

@@ -38,6 +38,7 @@
     filter: blur(1.5px);
 
     transition: filter .3s, transform .3s;
+    border-radius: 0;
 }
 
 .blog .entries-list .entry:hover .feature-image {

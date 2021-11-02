@@ -1,13 +1,14 @@
 import './css/index.css';
-import {posts as fetchedPosts} from '../../data';
+
+import { useState } from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 import BlogNavigationBar from './components/BlogNavigationBar';
 import FeatureImage from './components/FeatureImage';
 import Home from './components/Home';
 import Category from './components/Category';
-import { useState } from 'react';
 
 
 
@@ -28,7 +29,7 @@ const Blog = () => {
                         </Route>
                     </Switch>
                 </MainContent>                       
-            </div>
+            </div>           
         </Router>
     );
 };

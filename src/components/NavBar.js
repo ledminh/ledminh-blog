@@ -20,11 +20,11 @@ const NavBar = ({sideBarOut}) => {
         </section>
         <section className={`social-media-menu ${display? "show" : "hidden"}`}>
             <ul>
-                <li><a href="#" class="fa fa-facebook"/></li>
-                <li><a href="#" class="fa fa-twitter"/></li>
-                <li><a href="#" class="fa fa-google"/></li>
-                <li><a href="#" class="fa fa-instagram"/></li>
-                <li><a href="#" class="fa fa-youtube"/></li>
+                <li><i className="fa fa-facebook"/></li>
+                <li><i className="fa fa-twitter"/></li>
+                <li><i className="fa fa-google"/></li>
+                <li><i className="fa fa-instagram"/></li>
+                <li><i className="fa fa-youtube"/></li>
             </ul>
         </section>
         <section className={`search-bar ${display? "show" : "hidden"}`}>

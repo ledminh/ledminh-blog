@@ -1,6 +1,5 @@
 import './css/main-content.css';
 
-import Home from "../components/Home";
 
 const MainContent = ({children}) => {
     return (

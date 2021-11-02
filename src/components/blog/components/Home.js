@@ -11,21 +11,22 @@ import ButtonsPanel from './ButtonPanel';
 
 import Comments  from './Comments';
 
-//import OtherPosts from './OtherPosts';
 
 import EntriesList from './EntriesList';
 import Pagination from './Pagination';
 import { useEffect, useState } from 'react';
 
-const postIndexes = [0,1,2,3,4];
+
+
 
 
 const Home = ({setFeatureImageURL}) => {
-
     const [mainPost, setMainPost] = useState(null);
     const [otherPosts, setOtherPosts] = useState(null);
     const [showFullPost, setShowFullPost] = useState(false);
     const [showComments, setShowComments] = useState(false);  
+    
+
 
     useEffect(() => {
         const [mP, ...oPs] = fetchedPosts;
@@ -47,7 +48,7 @@ const Home = ({setFeatureImageURL}) => {
             setMainPost(null);
             setOtherPosts(null);
         }
-    }, []);
+    }, [setFeatureImageURL]);
 
 
     const onClickHandleMakerOtherPosts = (id) => {
@@ -85,24 +86,17 @@ const Home = ({setFeatureImageURL}) => {
                         tags= {mainPost.tags}
                         date_created= {mainPost.date_created}
                         comments={mainPost.comments}
-                        setShowComments={setShowComments}
                         author={mainPost.author}
                         />
                 </SubTitle>
+                
                 <ExcerptFullPostToggle 
-                    showFullPost={showFullPost} 
                     excerpt={mainPost.excerpt}
                     content={mainPost.content}
                     />
-                <ButtonsPanel
-                    showFullPost={showFullPost}
-                    setShowFullPost={setShowFullPost}                    
-                    setShowComments={setShowComments}
-                    showComments={showComments}                                                        
-                    />                
+                <ButtonsPanel />
+
                 <Comments 
-                    showComments={showComments} 
-                    setShowComments={setShowComments}
                     comments={mainPost.comments}
                     />
 
@@ -121,12 +115,3 @@ const Home = ({setFeatureImageURL}) => {
 }
 
 export default Home;
-
-/*
-<OtherPosts 
-                postIndexes={postIndexes}
-                mainPostIndex={mainPostIndex}
-                posts={posts}
-                setMainPostIndex={setMainPostIndex}                        
-                />
-*/

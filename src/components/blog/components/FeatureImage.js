@@ -1,7 +1,9 @@
 import '../css/FeatureImage.css';
 
-const FeatureImage = ({ feature_image_url }) => (
-    <img src={feature_image_url} className="feature-image" />
+const FeatureImage = ({ feature_image_url, altText }) => (
+    <img src={feature_image_url} 
+            className="feature-image" 
+            alt={altText} />
 );
 
 

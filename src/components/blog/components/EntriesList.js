@@ -1,5 +1,7 @@
 import '../css/EntriesList.css';
 
+import FeatureImage from './FeatureImage';
+
 const EntriesList = ({onClickHandleMaker, entries}) => {
     return (
         <div className="entries-list">
@@ -29,24 +31,28 @@ const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) =
 
     return (        
         <div className="entry" onClick={onClickHandle}>
-            <img src={feature_image_url} className="feature-image" />
+            <FeatureImage 
+                feature_image_url={feature_image_url} 
+                altText={title}
+                />
             <div className="information">
                 <div className="title"><h3>{title}</h3></div>
                 <div className="meta-data">
                     <h6>
                         {
                             Object.keys(meta_data).map(
-                                (key, i) => (
-                                    <>
-                                        <span key={key} className={key}>{meta_data[key]}</span>
-                                        {
-                                            (i == Object.keys(meta_data).length - 1) ?
-                                                <span></span>
-                                                :
-                                                <span> - </span>
-                                        }
-                                    </>
-                                    )
+                                (key, i) => 
+                                        (
+                                            <span key={key + meta_data[key]}>
+                                                <span className={key}>{meta_data[key]}</span>
+                                                {
+                                                    (i === Object.keys(meta_data).length - 1) ?
+                                                        <span></span>
+                                                        :
+                                                        <span> - </span>
+                                                }
+                                            </span>
+                                        )
                                 )
                         }
                     </h6>

@@ -3,9 +3,11 @@ import MainArea from "./MainArea";
 import MainContent from "./MainContent";
 import SideBar from "./SideBar";
 
-export default {
+const exportObj = {
     Footer,
     MainArea,
     MainContent,
     SideBar
 }
+
+export default exportObj;

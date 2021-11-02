@@ -6,7 +6,7 @@ const PageTitle = ({sideBarOut, setSideBarOut}) => {
 
     return (
       <div className="page-title">
-        <a href="#">
+        <a href="/">
           <div className="title">
             <h1>
               LE

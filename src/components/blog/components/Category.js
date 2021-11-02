@@ -22,7 +22,7 @@ const Category = ({setFeatureImageURL}) => {
         return () => {
             setCatList([]);
         }
-    }, []);
+    }, [setFeatureImageURL]);
 
 
     const onClickHandleMaker = () => {
