@@ -1,16 +1,13 @@
-import { useSelector } from 'react-redux';
 import '../css/ExcerptFullPostToggle.css';
 
-const ExcerptFullPostToggle = ({ excerpt, content}) => {
+const ExcerptFullPostToggle = ({ showFullPostStatus, excerpt, content}) => {
     
-    const status = useSelector(state => state.blog.func);
-
     return (
         <>
-            <section className={"excerpt" + (status.showFullPost ? " hidden" : " show")}>
+            <section className={"excerpt" + (showFullPostStatus ? " hidden" : " show")}>
                 {excerpt}
             </section>
-            <div className={"content" + (status.showFullPost ? " show" : " hidden")}
+            <div className={"content" + (showFullPostStatus ? " show" : " hidden")}
                 dangerouslySetInnerHTML={{ __html: content }} />
         </>
     );

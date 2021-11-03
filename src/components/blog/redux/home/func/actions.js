@@ -1,10 +1,5 @@
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, TOGGLE_FULLPOST } from "./actionTypes";
 
-
-/****************************
- * FUNCTION
- ****************************/
-
 //SHOW COMMENTS
 
 export const showComments = () => ({type: SHOW_COMMENTS});

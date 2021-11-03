@@ -1,22 +1,11 @@
-import { useActions } from '../../../redux/useActions';
-import { toggleFullPost } from '../redux/actions';
-import { toggleComments } from '../redux/actions';
-
-
-import { useSelector } from 'react-redux';
-
-
 import '../css/ButtonsPanel.css'
 
-const ButtonsPanel = () => {
-
-    const actions = useActions({toggleFullPost, toggleComments});
-    const status = useSelector(state => state.blog.func);
-
+const ButtonsPanel = ({showFullPostStatus, showCommentsStatus,
+                        toggleFullPost, toggleComments}) => {
 
     return (
         <div className="buttons-panel">
-            <button className="continue-reading" onClick={actions.toggleFullPost}>{status.showFullPost ? "Minimize" : "Continue Reading"}</button>
+            <button className="continue-reading" onClick={toggleFullPost}>{showFullPostStatus ? "Minimize" : "Continue Reading"}</button>
             <div className="share">
                 <ul>
                     <li className="share-title"><i className="fas fa-share" /></li>
@@ -27,8 +16,8 @@ const ButtonsPanel = () => {
                     <li><i className="fa fa-youtube" /></li>
                 </ul>
             </div>
-            <button className="comment-toggle" onClick={actions.toggleComments}>
-                {(status.showComments ? "CLOSE " : "READ ") + "COMMENT(S)"}
+            <button className="comment-toggle" onClick={toggleComments}>
+                {(showCommentsStatus ? "CLOSE " : "READ ") + "COMMENT(S)"}
             </button>
         </div>
     );

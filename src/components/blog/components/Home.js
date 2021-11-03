@@ -16,17 +16,20 @@ import EntriesList from './EntriesList';
 import Pagination from './Pagination';
 import { useEffect, useState } from 'react';
 
+import useHomeStatus from '../redux/home/useStatus';
+import useHomeActions from '../redux/home/useActions';
+
+
 
 
 
 
 const Home = ({setFeatureImageURL}) => {
     const [mainPost, setMainPost] = useState(null);
-    const [otherPosts, setOtherPosts] = useState(null);
-    const [showFullPost, setShowFullPost] = useState(false);
-    const [showComments, setShowComments] = useState(false);  
-    
+    const [otherPosts, setOtherPosts] = useState(null);  
 
+    const status = useHomeStatus();
+    const actions = useHomeActions();
 
     useEffect(() => {
         const [mP, ...oPs] = fetchedPosts;
@@ -81,7 +84,8 @@ const Home = ({setFeatureImageURL}) => {
             <>
                 <Title title={mainPost.title} />
                 <SubTitle>
-                    <MetaData 
+                    <MetaData
+                        showComments={actions.showComments}
                         categories={mainPost.categories}
                         tags= {mainPost.tags}
                         date_created= {mainPost.date_created}
@@ -90,13 +94,21 @@ const Home = ({setFeatureImageURL}) => {
                         />
                 </SubTitle>
                 
-                <ExcerptFullPostToggle 
+                <ExcerptFullPostToggle
+                    showFullPostStatus={status.showFullPost}
                     excerpt={mainPost.excerpt}
                     content={mainPost.content}
                     />
-                <ButtonsPanel />
+                <ButtonsPanel
+                    toggleComments={actions.toggleComments}
+                    toggleFullPost={actions.toggleFullPost}
+                    showFullPostStatus={status.showFullPost}
+                    showCommentsStatus={status.showComments}
+                    />
 
-                <Comments 
+                <Comments
+                    hideComments={actions.hideComments}
+                    showCommentsStatus={status.showComments} 
                     comments={mainPost.comments}
                     />
 

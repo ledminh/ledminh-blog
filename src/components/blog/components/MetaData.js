@@ -1,13 +1,7 @@
 import '../css/MetaData.css';
 
-import { useActions } from '../../../redux/useActions';
-import { showComments} from '../redux/actions';
 
-
-const MetaData = ({categories, tags, date_created, comments, author}) => {
-
-
-    const actions = useActions({showComments});
+const MetaData = ({showComments, categories, tags, date_created, comments, author}) => {
 
     return (
         <>
@@ -28,7 +22,7 @@ const MetaData = ({categories, tags, date_created, comments, author}) => {
                 }
             </span>
             <span className="date-created"><span className="link-on-title">{date_created}</span></span>
-            <span className="comment-link link-on-title" onClick={actions.showComments}>{comments.length} Comments</span>
+            <span className="comment-link link-on-title" onClick={showComments}>{comments.length} Comments</span>
             <span className="author"><span className="link-on-title">{author}</span></span>
         </>
     );

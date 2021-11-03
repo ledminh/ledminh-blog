@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import funcReducer from "./func/reducer";
+
+import homeReducer from "./home/reducer";
 
 
 const blogReducer = combineReducers({
-    func: funcReducer
+   home: homeReducer
 });
 
 

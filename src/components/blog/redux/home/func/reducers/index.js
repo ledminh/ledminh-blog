@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 
-import showCommentsReducer from "./showComments.reducer";
-import showFullPostReducer from "./showFullPost.reducer";
+
+import showCommentsReducer from "./showComments";
+import showFullPostReducer from "./showFullPost";
 
 const funcReducer = combineReducers({
     showComments: showCommentsReducer,
