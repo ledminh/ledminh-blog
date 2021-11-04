@@ -5,24 +5,25 @@ import Title from "./Title";
 import EntriesList from "./EntriesList";
 import Pagination from "./Pagination";
 import { useEffect, useState } from "react";
+import { CATEGORIES, useBlogLocation } from "../redux/location/reducer";
 
 
 
 
 
-const Category = ({setFeatureImageURL}) => {
+const Category = () => {
     
     const [catList, setCatList] = useState([]);
-
+    const location = useBlogLocation();
     useEffect(() => {
-        setFeatureImageURL("https://loremflickr.com/800/600");
-
+        location.setLocation(CATEGORIES);
+        
         setCatList(fetchedCategories);
 
         return () => {
             setCatList([]);
         }
-    }, [setFeatureImageURL]);
+    }, []);
 
 
     const onClickHandleMaker = () => {

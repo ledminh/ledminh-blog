@@ -1,6 +1,5 @@
 import './css/index.css';
 
-import { useState } from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -9,11 +8,25 @@ import BlogNavigationBar from './components/BlogNavigationBar';
 import FeatureImage from './components/FeatureImage';
 import Home from './components/Home';
 import Category from './components/Category';
+import useHomeData from './redux/home/useHomeData';
+import { CATEGORIES, HOME } from './redux/location/reducer';
+import useBlogLocationData from './redux/location/useBlogLocationData';
 
 
 
 const Blog = () => {
-    const [featureImageURL, setFeatureImageURL] = useState("")
+    const data = useHomeData();
+    const location = useBlogLocationData();
+
+    let featureImageURL = "";
+
+    if(location === HOME){
+        featureImageURL = data.posts[data.mainPostArrID].feature_image_url;
+    }
+    else if(location === CATEGORIES) {
+        featureImageURL = "https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png";
+    }
+
     return (
         <Router>
             <div className="blog">                
@@ -22,10 +35,10 @@ const Blog = () => {
                 <MainContent>                         
                     <Switch>
                         <Route path="/category">
-                            <Category setFeatureImageURL={setFeatureImageURL}/>
+                            <Category />
                         </Route>
                         <Route path="/">                   
-                            <Home setFeatureImageURL={setFeatureImageURL}/>
+                            <Home />
                         </Route>
                     </Switch>
                 </MainContent>                       

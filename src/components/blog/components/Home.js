@@ -14,70 +14,47 @@ import Comments  from './Comments';
 
 import EntriesList from './EntriesList';
 import Pagination from './Pagination';
-import { useEffect, useState } from 'react';
 
-import useHomeStatus from '../redux/home/useStatus';
-import useHomeActions from '../redux/home/useActions';
+import useHomeStatus from '../redux/home/useHomeStatus';
+import useHomeActions from '../redux/home/useHomeActions';
+import useHomeData from '../redux/home/useHomeData';
+
+import { useEffect } from 'react';
+import { HOME, useBlogLocation } from '../redux/location/reducer';
 
 
 
 
 
-
-const Home = ({setFeatureImageURL}) => {
-    const [mainPost, setMainPost] = useState(null);
-    const [otherPosts, setOtherPosts] = useState(null);  
-
+const Home = () => {
+  
     const status = useHomeStatus();
     const actions = useHomeActions();
+    const data = useHomeData();
+    const location = useBlogLocation();
 
-    useEffect(() => {
-        const [mP, ...oPs] = fetchedPosts;
-        
-        setMainPost(mP);
-        setFeatureImageURL(mP.feature_image_url);
-        
-        setOtherPosts(oPs.map(oP => ({
-            id: oP.id,
-            feature_image_url: oP.feature_image_url,
-            title: oP.title,
-            meta_data: {
-                date_created: oP.date_created,
-                author: oP.author
-            }
-        })));
-
-        return () => {
-            setMainPost(null);
-            setOtherPosts(null);
-        }
-    }, [setFeatureImageURL]);
-
+    useEffect(() => location.setLocation(HOME), []);
 
     const onClickHandleMakerOtherPosts = (id) => {
-        
-
-        return () => {
-            
-            setMainPost(find(fetchedPosts, {id: id}));
-            setFeatureImageURL(mainPost.feature_image_url);
-
-            let oPs = [...fetchedPosts];
-            remove(oPs, {id:id});
-
-            setOtherPosts(oPs.map(oP => ({
-                id: oP.id,
-                feature_image_url: oP.feature_image_url,
-                title: oP.title,
-                meta_data: {
-                    date_created: oP.date_created,
-                    author: oP.author
-                }
-            })));
-        }
+        return () => {    
+            actions.setMainPostArrID(id);
+        }   
     }
-  
+    
+    const mainPost = data.posts[data.mainPostArrID];
+    const otherPosts = data.posts.slice(data.beginArrID, data.endArrID + 1)
+                                    .filter((d) => d.id !== mainPost.id)
+                                    .map(oP => ({
+                                                id: oP.arrID,
+                                                feature_image_url: oP.feature_image_url,
+                                                title: oP.title,
+                                                meta_data: {
+                                                    date_created: oP.date_created,
+                                                    author: oP.author
+                                                }
+                                            }));
 
+ 
     return (
         otherPosts ?
             (
@@ -119,7 +96,10 @@ const Home = ({setFeatureImageURL}) => {
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
                     />
                 
-                <Pagination />
+                <Pagination 
+                    nextOnClick={actions.getNextBatch}
+                    prevOnClick={actions.getPrevBatch}
+                    />
             </>
             ):
             (<span>Loading ... </span>)

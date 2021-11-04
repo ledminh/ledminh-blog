@@ -3,6 +3,8 @@ import '../css/EntriesList.css';
 import FeatureImage from './FeatureImage';
 
 const EntriesList = ({onClickHandleMaker, entries}) => {
+
+
     return (
         <div className="entries-list">
                 {
@@ -26,7 +28,7 @@ const EntriesList = ({onClickHandleMaker, entries}) => {
 export default EntriesList;
 
 const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) => {
-
+    
     const onClickHandle = onClickHandleMaker(id);
 
     return (        
