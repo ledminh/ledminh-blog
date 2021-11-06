@@ -15,15 +15,16 @@ const Category = () => {
     
     const [catList, setCatList] = useState([]);
     const location = useBlogLocation();
+    
     useEffect(() => {
         location.setLocation(CATEGORIES);
-        
+
         setCatList(fetchedCategories);
 
         return () => {
             setCatList([]);
         }
-    }, []);
+    }, [location]);
 
 
     const onClickHandleMaker = () => {

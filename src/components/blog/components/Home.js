@@ -1,8 +1,3 @@
-import {find, remove} from 'lodash';
-
-import {posts as fetchedPosts} from '../../../data';
-
-
 import Title from './Title';
 import SubTitle from './SubTitle';
 import MetaData from './MetaData';
@@ -33,7 +28,7 @@ const Home = () => {
     const data = useHomeData();
     const location = useBlogLocation();
 
-    useEffect(() => location.setLocation(HOME), []);
+    useEffect(() => location.setLocation(HOME), [location]);
 
     const onClickHandleMakerOtherPosts = (id) => {
         return () => {    
@@ -42,7 +37,7 @@ const Home = () => {
     }
     
     const mainPost = data.posts[data.mainPostArrID];
-    const otherPosts = data.posts.slice(data.beginArrID, data.endArrID + 1)
+    const otherPosts = data.posts.slice(data.otherPostIDs[data.beginOtherPostID], data.otherPostIDs[data.endOtherPostID] + 1)
                                     .filter((d) => d.id !== mainPost.id)
                                     .map(oP => ({
                                                 id: oP.arrID,
@@ -53,8 +48,7 @@ const Home = () => {
                                                     author: oP.author
                                                 }
                                             }));
-
- 
+    
     return (
         otherPosts ?
             (
