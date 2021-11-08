@@ -93,6 +93,10 @@ const Home = () => {
                 <Pagination 
                     nextOnClick={actions.getNextBatch}
                     prevOnClick={actions.getPrevBatch}
+                    paginationArr={data.pagination}
+                    setPageNumber={actions.setPageNumber}
+                    getNextPagi={actions.getNextPagi}
+                    getPrevPagi={actions.getPrevPagi}
                     />
             </>
             ):
