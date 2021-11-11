@@ -7,24 +7,17 @@ import Pagination from "./Pagination";
 import { useEffect, useState } from "react";
 import { CATEGORIES, useBlogLocation } from "../redux/location/reducer";
 
+import useCategoryData from "../redux/category/useCategoryData";
 
 
 
 
 const Category = () => {
     
-    const [catList, setCatList] = useState([]);
+    const data = useCategoryData();
     const location = useBlogLocation();
     
-    useEffect(() => {
-        location.setLocation(CATEGORIES);
-
-        setCatList(fetchedCategories);
-
-        return () => {
-            setCatList([]);
-        }
-    }, [location]);
+    useEffect(() => location.setLocation(CATEGORIES), [location]);
 
 
     const onClickHandleMaker = () => {
@@ -41,10 +34,10 @@ const Category = () => {
                 List of all categories
             </SubTitle>
             <EntriesList 
-                    entries={catList} 
+                    entries={data.catsList} 
                     onClickHandleMaker={onClickHandleMaker}
                     />
-            <Pagination />
+            {/*<Pagination />*/}
         </>
     );
 }

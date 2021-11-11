@@ -7,18 +7,18 @@ const EntriesList = ({onClickHandleMaker, entries}) => {
 
     return (
         <div className="entries-list">
-                {
-                    entries.map(e => (
-                        <Entry key={e.id}
-                            id={e.id}
-                            feature_image_url={e.feature_image_url} 
-                            title={e.title}
-                            meta_data={e.meta_data}
-                            onClickHandleMaker={onClickHandleMaker}
-                            />)                             
-                    )
-                }                
-            </div>
+            {
+                entries.map(e => (
+                    <Entry key={e.id}
+                        id={e.id}
+                        feature_image_url={e.feature_image_url} 
+                        title={e.title}
+                        meta_data={e.meta_data}
+                        onClickHandleMaker={onClickHandleMaker}
+                        />)                             
+                )
+            }                
+        </div>
     );
 }
 

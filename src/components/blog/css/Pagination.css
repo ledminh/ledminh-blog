@@ -11,3 +11,10 @@
 
     margin-right: 3px;
 }
+
+.blog .pagination .page.current-page {
+    box-shadow: 0 0 5px #EE6C4D;
+    color: #5c291c;
+    border: 4px;
+
+}
