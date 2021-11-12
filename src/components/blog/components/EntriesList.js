@@ -1,14 +1,18 @@
 import '../css/EntriesList.css';
 
+import { useState } from 'react';
+
 import FeatureImage from './FeatureImage';
+import Pagination from './Pagination';
 
-const EntriesList = ({onClickHandleMaker, entries}) => {
-
+const EntriesList = ({onClickHandleMaker, entries, numItemsPerPage, numPagiButtons}) => {
+    const [currentPage, setCurrentPage, displayedEntries, endPrev, endNext]  = usePage(entries);
 
     return (
+        <>
         <div className="entries-list">
             {
-                entries.map(e => (
+                displayedEntries.map(e => (
                     <Entry key={e.id}
                         id={e.id}
                         feature_image_url={e.feature_image_url} 
@@ -19,6 +23,19 @@ const EntriesList = ({onClickHandleMaker, entries}) => {
                 )
             }                
         </div>
+        <Pagination
+                    numItemsTotal={entries.length}
+                    numItemsPerPage={numItemsPerPage}
+                    numButtons={numPagiButtons}
+                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
+                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
+                    endPrev={endPrev}
+                    endNext={endNext}
+                    setPageNumber={setCurrentPage}
+                    currentPage={currentPage}
+                    
+                    />
+        </>
     );
 }
 
@@ -65,3 +82,21 @@ const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) =
 };
 
 
+const usePage = (entries) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const numItemsPerPage = 4;
+
+
+    const prevPage = currentPage - 1;
+            
+    let beginID = prevPage*numItemsPerPage,
+        endID = currentPage*numItemsPerPage;
+    
+
+    const endPrev = beginID === 0;
+    const endNext = endID > entries.length - 1;
+
+    const displayedEntries = entries.slice(beginID, endID);
+
+    return [currentPage, setCurrentPage, displayedEntries, endPrev, endNext];
+}

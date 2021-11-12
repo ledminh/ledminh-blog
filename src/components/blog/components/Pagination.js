@@ -19,14 +19,17 @@ const Pagination = ({nextOnClick, prevOnClick,
                 (numItemsTotal === 0) ? ""
                                     :
                                     (<div className="pagination">
-                                        <button className={endPrev? "inactive": ""} onClick={endPrev? null: 
-                                                                                                        () => {
-                                                                                                            if(currentPage <= pagiArr[0] || currentPage >= pagiArr[2]) { 
-                                                                                                                const nextPage = currentPage - 1;
-                                                                                                                setCurrentPagi(Math.ceil(nextPage/numButtons));
-                                                                                                            }
-                                                                                                            prevOnClick();
-                                                                                                        }}>PREV</button>
+                                        <button className={endPrev? "inactive": ""} 
+                                            onClick={endPrev? null: 
+                                                                () => {
+                                                                    if(currentPage <= pagiArr[0] || currentPage >= pagiArr[2]) { 
+                                                                        const nextPage = currentPage - 1;
+                                                                        setCurrentPagi(Math.ceil(nextPage/numButtons));
+                                                                    }
+                                                                    prevOnClick();
+                                                                }}>
+                                            PREV
+                                        </button>
                                         <div className="num-pages">
                                             {
                                                 atBegin? "" : <button className="round page" onClick={() => setCurrentPagi(currentPagi - 1)}>...</button>
@@ -42,15 +45,18 @@ const Pagination = ({nextOnClick, prevOnClick,
                                                 atLast? "" : <button className="round page" onClick={() => setCurrentPagi(currentPagi + 1)}>...</button>
                                             }                                
                                         </div>
-                                        <button className={endNext? "inactive": ""} onClick={endNext? null :
-                                                                                                        () => {
-                                                                                                            if(currentPage <= pagiArr[0] || currentPage >= pagiArr[2]) { 
-                                                                                                                const nextPage = currentPage + 1;
-                                                                                                                setCurrentPagi(Math.ceil(nextPage/numButtons));
-                                                                                                            }
-                                                                                                            nextOnClick();
-                                                                                                        }}>NEXT</button>                        
-                                        
+                                        <button className={endNext? "inactive": ""} 
+                                            onClick={endNext? null :
+                                                () => {
+                                                    if(currentPage <= pagiArr[0] || currentPage >= pagiArr[2]) { 
+                                                        const nextPage = currentPage + 1;
+                                                        setCurrentPagi(Math.ceil(nextPage/numButtons));
+                                                    }
+                                                    nextOnClick();
+                                                }}>
+                                            NEXT
+                                        </button>                        
+
                                     </div>)
             )
 

@@ -34,6 +34,8 @@ const Category = () => {
             <EntriesList 
                     entries={data.catsList} 
                     onClickHandleMaker={onClickHandleMaker}
+                    numItemsPerPage={4}
+                    numPagiButtons={3}
                     />
          
         </>

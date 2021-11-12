@@ -1,7 +1,6 @@
 import MainPost from "./MainPost";
 
 import EntriesList from './EntriesList';
-import Pagination from './Pagination';
 
 import useHomeActions from '../redux/home/useHomeActions';
 import useHomeData from '../redux/home/useHomeData';
@@ -25,7 +24,17 @@ const Home = () => {
         }   
     }   
 
-    const [currentPage, setCurrentPage, otherPosts, endPrev, endNext]  = useOtherPosts(data.posts, data.mainPostArrID);
+    const otherPosts = data.posts.filter((p, i) => i !== data.mainPostArrID)
+                                .map(oP => ({
+                                    id: oP.arrID,
+                                    feature_image_url: oP.feature_image_url,
+                                    title: oP.title,
+                                    meta_data: {
+                                        date_created: oP.date_created,
+                                        author: oP.author
+                                    }
+                                }));
+    
     
     return (
         otherPosts ?
@@ -38,20 +47,11 @@ const Home = () => {
                 <EntriesList 
                     entries={otherPosts} 
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
+                    numItemsPerPage={4}
+                    numPagiButtons={3}
                     />
                 
-                <Pagination
-                    numItemsTotal={data.posts.length -1}
-                    numItemsPerPage={4}
-                    numButtons={3}
-                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
-                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
-                    endPrev={endPrev}
-                    endNext={endNext}
-                    setPageNumber={setCurrentPage}
-                    currentPage={currentPage}
-                    
-                    />
+                
             </>
             ):
             (<span>Loading ... </span>)
@@ -61,31 +61,3 @@ const Home = () => {
 export default Home;
 
 
-const useOtherPosts = (posts, mainPostArrID) => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const numItemsPerPage = 4;
-
-
-    const prevPage = currentPage - 1;
-            
-    let beginID = prevPage*numItemsPerPage,
-        endID = currentPage*numItemsPerPage;
-    
-
-    const endPrev = beginID === 0;
-    const endNext = endID >= posts.length - 1;
-
-    const otherPosts = posts.filter((p, i) => i !== mainPostArrID)
-                                .slice(beginID, endID)
-                                .map(oP => ({
-                                            id: oP.arrID,
-                                            feature_image_url: oP.feature_image_url,
-                                            title: oP.title,
-                                            meta_data: {
-                                                date_created: oP.date_created,
-                                                author: oP.author
-                                            }
-                                        }));
-
-    return [currentPage, setCurrentPage, otherPosts, endPrev, endNext];
-}
