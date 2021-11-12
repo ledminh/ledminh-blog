@@ -21,8 +21,9 @@ const Pagination = ({nextOnClick, prevOnClick,
                                     (<div className="pagination">
                                         <button className={endPrev? "inactive": ""} onClick={endPrev? null: 
                                                                                                         () => {
-                                                                                                            if(currentPage === pagiArr[0]) { // we're on the first page of pagi but the user still clicks prev
-                                                                                                                setCurrentPagi(currentPagi - 1);
+                                                                                                            if(currentPage <= pagiArr[0] || currentPage >= pagiArr[2]) { 
+                                                                                                                const nextPage = currentPage - 1;
+                                                                                                                setCurrentPagi(Math.ceil(nextPage/numButtons));
                                                                                                             }
                                                                                                             prevOnClick();
                                                                                                         }}>PREV</button>
@@ -43,8 +44,9 @@ const Pagination = ({nextOnClick, prevOnClick,
                                         </div>
                                         <button className={endNext? "inactive": ""} onClick={endNext? null :
                                                                                                         () => {
-                                                                                                            if(currentPage === pagiArr[2]){ // we're on the last page of pagi but the user still clicks next
-                                                                                                                setCurrentPagi(currentPagi + 1);
+                                                                                                            if(currentPage <= pagiArr[0] || currentPage >= pagiArr[2]) { 
+                                                                                                                const nextPage = currentPage + 1;
+                                                                                                                setCurrentPagi(Math.ceil(nextPage/numButtons));
                                                                                                             }
                                                                                                             nextOnClick();
                                                                                                         }}>NEXT</button>                        
