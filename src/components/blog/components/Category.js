@@ -1,10 +1,8 @@
-import { categories as fetchedCategories } from "../../../data";
-
 import SubTitle from "./SubTitle";
 import Title from "./Title";
 import EntriesList from "./EntriesList";
-import Pagination from "./Pagination";
-import { useEffect, useState } from "react";
+
+import { useEffect } from "react";
 import { CATEGORIES, useBlogLocation } from "../redux/location/reducer";
 
 import useCategoryData from "../redux/category/useCategoryData";
@@ -37,7 +35,7 @@ const Category = () => {
                     entries={data.catsList} 
                     onClickHandleMaker={onClickHandleMaker}
                     />
-            {/*<Pagination />*/}
+         
         </>
     );
 }

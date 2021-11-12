@@ -1,6 +1,5 @@
-import { range } from "lodash";
 import { posts } from "../../../../../../data";
-import { SET_MAINPOST_ARR_ID, SET_CURRENT_PAGE } from "../actionTypes";
+import { SET_MAINPOST_ARR_ID} from "../actionTypes";
 
 const initialState = {
     mainPostArrID: 0,    
