@@ -41,10 +41,20 @@ const showFullPostReducer = (state = false, action) => {
     return state;
 }
 
+const numItemsPerPageReducer = (state = 4, action) => {
+    return state;
+}
+
+const numPagiButtonsReducer = (state = 3, action) => {
+    return state;
+}
+
 const homeReducer = combineReducers({
     mainPostArrID: mainPostArrIDReducer,
     showComments: showCommentsReducer,
-    showFullPost: showFullPostReducer
+    showFullPost: showFullPostReducer,
+    numItemsPerPage: numItemsPerPageReducer,
+    numPagiButtons: numPagiButtonsReducer
 });
 
 

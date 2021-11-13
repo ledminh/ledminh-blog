@@ -49,8 +49,8 @@ const Home = () => {
                 <EntriesList 
                     entries={otherPosts} 
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
-                    numItemsPerPage={5}
-                    numPagiButtons={3}
+                    numItemsPerPage={homeStatuses.numItemsPerPage}
+                    numPagiButtons={homeStatuses.numPagiButtons}
                     />
                 
                 

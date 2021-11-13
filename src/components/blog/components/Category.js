@@ -7,6 +7,7 @@ import { useBlogLocation } from "../redux/useActions";
 import { LocationConstants } from "../redux/statuses/reducers/locationReducer";
 
 import useData from "../redux/useData";
+import useStatuses from "../redux/useStatuses";
 
 
 
@@ -15,6 +16,7 @@ const Category = () => {
     
     const locationActions = useBlogLocation();
     const {categories} = useData();
+    const categoryStatues = useStatuses().category;
     
     useEffect(() => locationActions.setLocation(LocationConstants.CATEGORIES), [locationActions]);
 
@@ -35,8 +37,8 @@ const Category = () => {
             <EntriesList 
                     entries={categories} 
                     onClickHandleMaker={onClickHandleMaker}
-                    numItemsPerPage={4}
-                    numPagiButtons={3}
+                    numItemsPerPage={categoryStatues.numItemsPerPage}
+                    numPagiButtons={categoryStatues.numPagiButtons}
                     />
          
         </>
