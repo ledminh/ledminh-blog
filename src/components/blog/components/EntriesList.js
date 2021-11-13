@@ -1,12 +1,13 @@
 import '../css/EntriesList.css';
 
-import { useState } from 'react';
-
 import FeatureImage from './FeatureImage';
 import Pagination from './Pagination';
 
-const EntriesList = ({onClickHandleMaker, entries, numItemsPerPage, numPagiButtons}) => {
-    const [currentPage, setCurrentPage, displayedEntries, endPrev, endNext]  = usePage(entries, numItemsPerPage);
+const EntriesList = ({onClickHandleMaker, entries, 
+                        currentPage, setCurrentPage,
+                        currentPagi, setCurrentPagi,
+                        numItemsPerPage, numPagiButtons}) => {
+    const [displayedEntries, endPrev, endNext]  = getPage(entries, numItemsPerPage, currentPage);
 
     return (
         <>
@@ -33,6 +34,8 @@ const EntriesList = ({onClickHandleMaker, entries, numItemsPerPage, numPagiButto
                     endNext={endNext}
                     setPageNumber={setCurrentPage}
                     currentPage={currentPage}
+                    setCurrentPagi={setCurrentPagi}
+                    currentPagi={currentPagi}
                     
                     />
         </>
@@ -82,9 +85,7 @@ const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) =
 };
 
 
-const usePage = (entries, numItemsPerPage) => {
-    const [currentPage, setCurrentPage] = useState(1);
-
+const getPage = (entries, numItemsPerPage, currentPage) => {
     const prevPage = currentPage - 1;
             
     let beginID = prevPage*numItemsPerPage,
@@ -96,5 +97,5 @@ const usePage = (entries, numItemsPerPage) => {
 
     const displayedEntries = entries.slice(beginID, endID);
 
-    return [currentPage, setCurrentPage, displayedEntries, endPrev, endNext];
+    return [displayedEntries, endPrev, endNext];
 }

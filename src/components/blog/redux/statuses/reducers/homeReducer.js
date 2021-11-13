@@ -49,12 +49,30 @@ const numPagiButtonsReducer = (state = 3, action) => {
     return state;
 }
 
+const currentPageReducer = (state = 1, action) => {
+    if(action.type === Home.SET_CURRENT_PAGE){
+        return action.page;
+    }
+
+    return state;
+}
+
+const currentPagiReducer = (state = 1, action) => {
+    if(action.type === Home.SET_CURRENT_PAGI) {
+        return action.pagi;
+    }
+    
+    return state;
+}
+
 const homeReducer = combineReducers({
     mainPostArrID: mainPostArrIDReducer,
     showComments: showCommentsReducer,
     showFullPost: showFullPostReducer,
     numItemsPerPage: numItemsPerPageReducer,
-    numPagiButtons: numPagiButtonsReducer
+    numPagiButtons: numPagiButtonsReducer,
+    currentPage: currentPageReducer,
+    currentPagi: currentPagiReducer
 });
 
 

@@ -1,15 +1,14 @@
 import { range} from 'lodash';
-import { useState } from 'react';
 import '../css/Pagination.css';
 
 const Pagination = ({nextOnClick, prevOnClick,
                         endNext, endPrev,
                         setPageNumber, currentPage,
+                        setCurrentPagi, currentPagi,
                         numItemsTotal, numItemsPerPage,
                         numButtons}) => {
     
-    const [pagiArr, atLast, atBegin, currentPagi, setCurrentPagi
-            ] = usePagi(numItemsTotal, numItemsPerPage, numButtons, currentPage);
+    const [pagiArr, atLast, atBegin] = getPagi(numItemsTotal, numItemsPerPage, numButtons, currentPagi);
     
         
     return (
@@ -73,10 +72,9 @@ export default Pagination;
 
 
 
-const usePagi = (numItemsTotal, numItemsPerPage, numButtons, currentPage) => {
+const getPagi = (numItemsTotal, numItemsPerPage, numButtons, currentPagi) => {
     const lastPagiID = Math.ceil(numItemsTotal/numItemsPerPage); 
     
-    const [currentPagi, setCurrentPagi] = useState(1);
     const prevPagi = currentPagi - 1;
 
     let startID = prevPagi*numButtons + 1,
@@ -94,5 +92,5 @@ const usePagi = (numItemsTotal, numItemsPerPage, numButtons, currentPage) => {
 
 
 
-    return [pagiArr, atLast, atBegin, currentPagi, setCurrentPagi];
+    return [pagiArr, atLast, atBegin];
 }

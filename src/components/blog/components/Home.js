@@ -47,10 +47,15 @@ const Home = () => {
                 <div className="separator" />
 
                 <EntriesList 
-                    entries={otherPosts} 
+                    entries={otherPosts}
+                    currentPage={homeStatuses.currentPage}
+                    setCurrentPage={homeActions.setCurrentPage}
+                    currentPagi={homeStatuses.currentPagi}
+                    setCurrentPagi={homeActions.setCurrentPagi}
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
                     numItemsPerPage={homeStatuses.numItemsPerPage}
                     numPagiButtons={homeStatuses.numPagiButtons}
+                    
                     />
                 
                 
