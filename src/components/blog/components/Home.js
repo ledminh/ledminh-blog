@@ -2,29 +2,31 @@ import MainPost from "./MainPost";
 
 import EntriesList from './EntriesList';
 
-import useHomeActions from '../redux/home/useHomeActions';
-import useHomeData from '../redux/home/useHomeData';
+import { useHomeActions } from "../redux/useActions";
 
-import { useEffect, useState } from 'react';
-import { HOME, useBlogLocation } from '../redux/location/reducer';
+import { useEffect } from 'react';
+import { useBlogLocation } from "../redux/useActions";
+import { LocationConstants } from "../redux/statuses/reducers/locationReducer";
+import useStatuses from "../redux/useStatuses";
 
-
+import useData from "../redux/useData";
 
 const Home = () => {
 
-    const actions = useHomeActions();
-    const data = useHomeData();
-    const location = useBlogLocation();
+    const homeActions = useHomeActions();
+    const data = useData();
+    const homeStatuses = useStatuses().home;
+    const locationActions = useBlogLocation();
 
-    useEffect(() => location.setLocation(HOME), [location]);
+    useEffect(() => locationActions.setLocation(LocationConstants.HOME), [locationActions]);
 
     const onClickHandleMakerOtherPosts = (id) => {
         return () => {    
-            actions.setMainPostArrID(id);
+            homeActions.setMainPostArrID(id);
         }   
     }   
 
-    const otherPosts = data.posts.filter((p, i) => i !== data.mainPostArrID)
+    const otherPosts = data.posts.filter((p, i) => i !== homeStatuses.mainPostArrID)
                                 .map(oP => ({
                                     id: oP.arrID,
                                     feature_image_url: oP.feature_image_url,
@@ -47,7 +49,7 @@ const Home = () => {
                 <EntriesList 
                     entries={otherPosts} 
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
-                    numItemsPerPage={4}
+                    numItemsPerPage={5}
                     numPagiButtons={3}
                     />
                 

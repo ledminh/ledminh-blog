@@ -1,13 +1,11 @@
 import { combineReducers } from "redux";
 
-import homeReducer from "./home/reducer";
-import categoryReducer from "./category/reducer";
-import {locationReducer} from "./location/reducer";
+import dataReducer from "./data/reducers";
+import statusesReducer from "./statuses/reducers";
 
 const blogReducer = combineReducers({
-   home: homeReducer,
-   category: categoryReducer,
-   location: locationReducer
+   data: dataReducer,
+   statuses: statusesReducer
 });
 
 

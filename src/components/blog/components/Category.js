@@ -3,19 +3,20 @@ import Title from "./Title";
 import EntriesList from "./EntriesList";
 
 import { useEffect } from "react";
-import { CATEGORIES, useBlogLocation } from "../redux/location/reducer";
+import { useBlogLocation } from "../redux/useActions";
+import { LocationConstants } from "../redux/statuses/reducers/locationReducer";
 
-import useCategoryData from "../redux/category/useCategoryData";
+import useData from "../redux/useData";
 
 
 
 
 const Category = () => {
     
-    const data = useCategoryData();
-    const location = useBlogLocation();
+    const locationActions = useBlogLocation();
+    const {categories} = useData();
     
-    useEffect(() => location.setLocation(CATEGORIES), [location]);
+    useEffect(() => locationActions.setLocation(LocationConstants.CATEGORIES), [locationActions]);
 
 
     const onClickHandleMaker = () => {
@@ -32,7 +33,7 @@ const Category = () => {
                 List of all categories
             </SubTitle>
             <EntriesList 
-                    entries={data.catsList} 
+                    entries={categories} 
                     onClickHandleMaker={onClickHandleMaker}
                     numItemsPerPage={4}
                     numPagiButtons={3}

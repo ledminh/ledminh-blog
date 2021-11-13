@@ -6,7 +6,7 @@ import FeatureImage from './FeatureImage';
 import Pagination from './Pagination';
 
 const EntriesList = ({onClickHandleMaker, entries, numItemsPerPage, numPagiButtons}) => {
-    const [currentPage, setCurrentPage, displayedEntries, endPrev, endNext]  = usePage(entries);
+    const [currentPage, setCurrentPage, displayedEntries, endPrev, endNext]  = usePage(entries, numItemsPerPage);
 
     return (
         <>
@@ -82,10 +82,8 @@ const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) =
 };
 
 
-const usePage = (entries) => {
+const usePage = (entries, numItemsPerPage) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const numItemsPerPage = 4;
-
 
     const prevPage = currentPage - 1;
             

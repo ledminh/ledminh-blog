@@ -4,16 +4,17 @@ import MetaData from "./MetaData";
 import ExcerptFullPostToggle from "./ExcerptFullPostToggle";
 import ButtonsPanel from "./ButtonPanel";
 import Comments from "./Comments";
-import useHomeData from "../redux/home/useHomeData";
-import useHomeActions from "../redux/home/useHomeActions";
-import useHomeStatus from "../redux/home/useHomeStatus";
+import useData from "../redux/useData";
+import { useHomeActions } from "../redux/useActions";
+import useStatuses from "../redux/useStatuses";
 
 const MainPost = () => {
-    const data = useHomeData();
+    const {posts} = useData();
+    const homeStatuses = useStatuses().home;
     const actions = useHomeActions();
-    const status = useHomeStatus();
 
-    const mainPost = data.posts[data.mainPostArrID];
+    const mainPost = posts[homeStatuses.mainPostArrID];
+    
     return (
         <>
             <Title title={mainPost.title} />
@@ -29,20 +30,20 @@ const MainPost = () => {
             </SubTitle>
             
             <ExcerptFullPostToggle
-                showFullPostStatus={status.showFullPost}
+                showFullPostStatus={homeStatuses.showFullPost}
                 excerpt={mainPost.excerpt}
                 content={mainPost.content}
                 />
             <ButtonsPanel
                 toggleComments={actions.toggleComments}
                 toggleFullPost={actions.toggleFullPost}
-                showFullPostStatus={status.showFullPost}
-                showCommentsStatus={status.showComments}
+                showFullPostStatus={homeStatuses.showFullPost}
+                showCommentsStatus={homeStatuses.showComments}
                 />
 
             <Comments
                 hideComments={actions.hideComments}
-                showCommentsStatus={status.showComments} 
+                showCommentsStatus={homeStatuses.showComments} 
                 comments={mainPost.comments}
                 />
         </>
