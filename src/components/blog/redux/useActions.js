@@ -9,6 +9,7 @@ import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./statuses/actio
 
 import { setLocation } from "./statuses/actions";
 
+import { setFeatureImageURL } from "./statuses/actions";
 
 export const useHomeActions = () => 
                         useActions({showComments, hideComments, 
@@ -26,3 +27,4 @@ export const useCategoryActions = () => useActions({setCurrentPage: setCategoryC
 
 export const useBlogLocation = () => useActions({setLocation});
 
+export const useFeatureImageURL = () => useActions({setFeatureImageURL});

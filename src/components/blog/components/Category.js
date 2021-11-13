@@ -2,26 +2,26 @@ import SubTitle from "./SubTitle";
 import Title from "./Title";
 import EntriesList from "./EntriesList";
 
-import { useEffect } from "react";
-import { useBlogLocation, useCategoryActions } from "../redux/useActions";
-import { LocationConstants } from "../redux/statuses/reducers/locationReducer";
+import { useCategoryActions, useFeatureImageURL } from "../redux/useActions";
 
 import useData from "../redux/useData";
 import useStatuses from "../redux/useStatuses";
+import { useEffect } from "react";
 
 
 
 
 const Category = () => {
     
-    const locationActions = useBlogLocation();
     const {categories} = useData();
     const categoryStatuses = useStatuses().category;
     
     const categoryActions = useCategoryActions();
-    useEffect(() => locationActions.setLocation(LocationConstants.CATEGORIES), [locationActions]);
-
-
+    
+    const featureImg = useFeatureImageURL();
+    
+    
+    useEffect(() => featureImg.setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), [featureImg]);
     const onClickHandleMaker = () => {
 
         return () => {

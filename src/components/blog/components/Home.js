@@ -2,27 +2,29 @@ import MainPost from "./MainPost";
 
 import EntriesList from './EntriesList';
 
-import { useHomeActions } from "../redux/useActions";
+import { useFeatureImageURL, useHomeActions } from "../redux/useActions";
 
-import { useEffect } from 'react';
-import { useBlogLocation } from "../redux/useActions";
-import { LocationConstants } from "../redux/statuses/reducers/locationReducer";
 import useStatuses from "../redux/useStatuses";
 
 import useData from "../redux/useData";
+import { useEffect } from "react";
 
 const Home = () => {
 
     const homeActions = useHomeActions();
     const data = useData();
     const homeStatuses = useStatuses().home;
-    const locationActions = useBlogLocation();
 
-    useEffect(() => locationActions.setLocation(LocationConstants.HOME), [locationActions]);
+    const featureImg = useFeatureImageURL();
+    
+    useEffect(() => featureImg.setFeatureImageURL(data.posts[homeStatuses.mainPostArrID].feature_image_url), [featureImg, data.posts, homeStatuses.mainPostArrID]);
+    
+    
 
     const onClickHandleMakerOtherPosts = (id) => {
         return () => {    
             homeActions.setMainPostArrID(id);
+            featureImg.setFeatureImageURL(data.posts[id].feature_image_url);
         }   
     }   
 

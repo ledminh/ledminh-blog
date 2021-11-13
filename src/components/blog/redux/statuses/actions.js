@@ -1,8 +1,8 @@
-import { Category, Home, Location } from "./actionTypes";
+import { Category, FeatureImageURL, Home, Location } from "./actionTypes";
 
-/****************** 
+/**************************** 
  * Home Actions
-*/
+*****************************/
 
 // MainPostArrID
 export const setMainPostArrID = (id) => ({type: Home.SET_MAINPOST_ARR_ID, id: id});
@@ -23,9 +23,13 @@ export const setHomeCurrentPage = (p) => ({type: Home.SET_CURRENT_PAGE, page: p}
 // SET CURRENT PAGI
 export const setHomeCurrentPagi = (p) => ({type: Home.SET_CURRENT_PAGI, pagi: p});
 
-/****************** 
+
+
+
+
+/**************************** 
  * Category Actions
-*/
+*****************************/
 
 // SET CURRENT PAGE
 export const setCategoryCurrentPage = (p) => ({type: Category.SET_CURRENT_PAGE, page: p});
@@ -36,7 +40,20 @@ export const setCategoryCurrentPage = (p) => ({type: Category.SET_CURRENT_PAGE, 
 export const setCategoryCurrentPagi = (p) => ({type: Category.SET_CURRENT_PAGI, pagi: p});
 
 
-/****************** 
+
+
+
+
+/**************************** 
  * Location Actions
-*/
+*****************************/
 export const setLocation = (l) => ({type: Location.SET_LOCATION, location: l});
+
+
+
+
+
+/**************************** 
+ * Feature Image Actions
+*****************************/
+export const setFeatureImageURL = (url) => ({type: FeatureImageURL.SET_FEATURE_IMAGE_URL, url: url});
