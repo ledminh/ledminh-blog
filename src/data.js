@@ -1,8 +1,16 @@
+/*
+Cat ID: "cat-12345", "cat-12346", "cat-123332", "cat-1234112", "cat-12341197", "cat-1239999", "cat-12391299",
+            "cat-1237499", "cat-121337499"
+*/
+
+
+
 export const categories = [
     {
         id: "cat-12345",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Nature",
+        slug: "nature",
         meta_data:  {
             cat_subtitle: "Something about nature"
         }
@@ -12,6 +20,7 @@ export const categories = [
         id: "cat-12346",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Human",
+        slug: "human",
         meta_data:  {
             cat_subtitle: "Something about human"
         }
@@ -22,6 +31,7 @@ export const categories = [
         id: "cat-123332",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Food",
+        slug: "food",
         meta_data:  {
             cat_subtitle: "Food is my life"
         }
@@ -31,6 +41,7 @@ export const categories = [
         id: "cat-1234112",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Technology",
+        slug: "technology",
         meta_data:  {
             cat_subtitle: "Technology changes the way we live"
         }
@@ -41,6 +52,7 @@ export const categories = [
         id: "cat-12341197",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Nuclear Energy",
+        slug: "nuclear-energy",
         meta_data:  {
             cat_subtitle: "Everything about nuclear energy"
         }
@@ -50,6 +62,7 @@ export const categories = [
         id: "cat-1239999",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Critical Thinking",
+        slug: "critical-thinking",
         meta_data:  {
             cat_subtitle: "Basic on critical thinking"
         }
@@ -59,6 +72,7 @@ export const categories = [
         id: "cat-12391299",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Alan Turning",
+        slug: "alan-turning",
         meta_data:  {
             cat_subtitle: "The life of Alan Turning"
         }
@@ -68,6 +82,7 @@ export const categories = [
         id: "cat-1237499",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Vaccine",
+        slug: "vaccine",
         meta_data:  {
             cat_subtitle: "History of Vaccine"
         }
@@ -77,6 +92,7 @@ export const categories = [
         id: "cat-121337499",
         feature_image_url: "https://loremflickr.com/800/600",
         title: "Geography",
+        slug: "geography",
         meta_data:  {
             cat_subtitle: "Learning Geography"
         }
@@ -89,7 +105,7 @@ export const posts = [
         id: "123456789",
         title: "This is post 1",
         feature_image_url: "https://picsum.photos/875/600",
-        categories: ['Life Style', 'Healthcare', 'Science'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['sky', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -120,7 +136,7 @@ export const posts = [
         id: "123456780",
         title: "This is post 2",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Politic', 'Science'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['sky', 'circle', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -143,7 +159,7 @@ export const posts = [
         id: "123456789001",
         title: "This is post 3",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Science'],
+        categoryIDs: ["cat-123332", "cat-1234112", "cat-12341197"],
         tags: ['cat', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -169,7 +185,7 @@ export const posts = [
         id: "1234567891123",
         title: "This is post 4",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-1234112", "cat-12341197", "cat-1239999"],
         tags: ['sky', 'github', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -192,7 +208,7 @@ export const posts = [
         id: "123411245789",
         title: "This is post 5",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -223,7 +239,7 @@ export const posts = [
         id: "12345678111239",
         title: "This is post 6",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-1237499", "cat-121337499"],
         tags: ['pie', 'pen', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -257,7 +273,7 @@ export const posts = [
         id: "123456744442189",
         title: "This is post 7",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-1237499", "cat-121337499"],
         tags: ['pie', 'blue', 'tree'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -300,7 +316,7 @@ export const posts = [
         id: "12345678933246443",
         title: "This is post 8",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-1237499", "cat-121337499"],
         tags: ['pie', 'blue', 'hood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -334,7 +350,7 @@ export const posts = [
         id: "1234567891212121",
         title: "This is post 9",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-1237499", "cat-121337499"],
         tags: ['pie', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -352,7 +368,7 @@ export const posts = [
         id: "12345678909987",
         title: "This is post 10",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['teacher', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -378,7 +394,7 @@ export const posts = [
         id: "127891111235",
         title: "This is post 11",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -412,7 +428,7 @@ export const posts = [
         id: "12345623589",
         title: "This is post 12",
         feature_image_url: "https://picsum.photos/875/600",
-        categories: ['Life Style', 'Healthcare', 'Science'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['sky', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -443,7 +459,7 @@ export const posts = [
         id: "1234532180",
         title: "This is post 13",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Politic', 'Science'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['sky', 'circle', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -466,7 +482,7 @@ export const posts = [
         id: "1234561135901",
         title: "This is post 14",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Science'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['cat', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -492,7 +508,7 @@ export const posts = [
         id: "1234567891232",
         title: "This is post 15",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['sky', 'github', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -515,7 +531,7 @@ export const posts = [
         id: "121235341",
         title: "This is post 16",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['pie', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -546,7 +562,7 @@ export const posts = [
         id: "178152111239",
         title: "This is post 17",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['pie', 'pen', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -580,7 +596,7 @@ export const posts = [
         id: "1232182129",
         title: "This is post 18",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['pie', 'blue', 'tree'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -623,7 +639,7 @@ export const posts = [
         id: "13524623443",
         title: "This is post 19",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12346", "cat-123332", "cat-1234112"],
         tags: ['pie', 'blue', 'hood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -657,7 +673,7 @@ export const posts = [
         id: "1291234567812112",
         title: "This is post 20",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -675,7 +691,7 @@ export const posts = [
         id: "12378909987456",
         title: "This is post 21",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['teacher', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -701,7 +717,7 @@ export const posts = [
         id: "129111123785",
         title: "This is post 22",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -736,7 +752,7 @@ export const posts = [
         id: "1333566623",
         title: "This is post 23",
         feature_image_url: "https://picsum.photos/875/600",
-        categories: ['Life Style', 'Healthcare', 'Science'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['sky', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -767,7 +783,7 @@ export const posts = [
         id: "123045678",
         title: "This is post 24",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Politic', 'Science'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['sky', 'circle', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -790,7 +806,7 @@ export const posts = [
         id: "890012345671",
         title: "This is post 25",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Science'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['cat', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -816,7 +832,7 @@ export const posts = [
         id: "1567839112234",
         title: "This is post 26",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['sky', 'github', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -839,7 +855,7 @@ export const posts = [
         id: "245712318941",
         title: "This is post 27",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -870,7 +886,7 @@ export const posts = [
         id: "12342331249",
         title: "This is post 28",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'pen', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -904,7 +920,7 @@ export const posts = [
         id: "123421456744489",
         title: "This is post 29",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'tree'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -947,7 +963,7 @@ export const posts = [
         id: "123456433343",
         title: "This is post 30",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'hood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -981,7 +997,7 @@ export const posts = [
         id: "1221212345678911",
         title: "This is post 31",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -999,7 +1015,7 @@ export const posts = [
         id: "12384567890997",
         title: "This is post 32",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['teacher', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1025,7 +1041,7 @@ export const posts = [
         id: "1879112",
         title: "This is post 33",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1060,7 +1076,7 @@ export const posts = [
         id: "12343331189",
         title: "This is post 34",
         feature_image_url: "https://picsum.photos/875/600",
-        categories: ['Life Style', 'Healthcare', 'Science'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['sky', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1091,7 +1107,7 @@ export const posts = [
         id: "125647803",
         title: "This is post 35",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Politic', 'Science'],
+        categoryIDs: ["cat-12341197", "cat-1239999", "cat-12391299"],
         tags: ['sky', 'circle', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1114,7 +1130,7 @@ export const posts = [
         id: "120345678901",
         title: "This is post 36",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Science'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['cat', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1140,7 +1156,7 @@ export const posts = [
         id: "1212345678913",
         title: "This is post 37",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['sky', 'github', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1163,7 +1179,7 @@ export const posts = [
         id: "127893424511",
         title: "This is post 38",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1194,7 +1210,7 @@ export const posts = [
         id: "12345224539",
         title: "This is post 39",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'pen', 'dog'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1228,7 +1244,7 @@ export const posts = [
         id: "1442189",
         title: "This is post 40",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'tree'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1271,7 +1287,7 @@ export const posts = [
         id: "1642345678943",
         title: "This is post 41",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'hood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1305,7 +1321,7 @@ export const posts = [
         id: "12312221121",
         title: "This is post 42",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1323,7 +1339,7 @@ export const posts = [
         id: "1909542987",
         title: "This is post 43",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['teacher', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1349,7 +1365,7 @@ export const posts = [
         id: "15511235",
         title: "This is post 44",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1384,7 +1400,7 @@ export const posts = [
         id: "12332221",
         title: "This is post 45",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1402,7 +1418,7 @@ export const posts = [
         id: "190954244",
         title: "This is post 46",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['teacher', 'blue', 'mood'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1428,7 +1444,7 @@ export const posts = [
         id: "15236535",
         title: "This is post 47",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1463,7 +1479,7 @@ export const posts = [
         id: "15212336535",
         title: "This is post 48",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1498,7 +1514,7 @@ export const posts = [
         id: "152365359",
         title: "This is post 49",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [
@@ -1533,7 +1549,7 @@ export const posts = [
         id: "15212336505",
         title: "This is post 50",
         feature_image_url: "https://picsum.photos/875/400",
-        categories: ['Life Style', 'Birth', 'Nature'],
+        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
         tags: ['pie', 'blue', 'doctor'],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
         comments: [

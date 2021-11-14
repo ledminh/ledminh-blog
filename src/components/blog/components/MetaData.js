@@ -1,14 +1,17 @@
+import { useHistory } from 'react-router';
+
 import '../css/MetaData.css';
 
 
 const MetaData = ({showComments, categories, tags, date_created, comments, author}) => {
+    const history = useHistory();
 
     return (
         <>
             <span className="categories">
                 {
                     categories.map((c, i) => <span key={c} className="item">
-                                                <span className="link-on-title">{c}</span>
+                                                <span className="link-on-title" onClick={() => history.push("/" + c)}>{c}</span>
                                                 <span>{(i === categories.length - 1) ? "" : ","}</span>
                                             </span>)
                 }
