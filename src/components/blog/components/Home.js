@@ -21,16 +21,16 @@ const Home = () => {
     
     
 
-    const onClickHandleMakerOtherPosts = (id) => {
+    const onClickHandleMakerOtherPosts = (idInfo) => {
         return () => {    
-            homeActions.setMainPostArrID(id);
-            featureImg.setFeatureImageURL(data.posts[id].feature_image_url);
+            homeActions.setMainPostArrID(idInfo);
+            featureImg.setFeatureImageURL(data.posts[idInfo].feature_image_url);
         }   
     }   
 
     const otherPosts = data.posts.filter((p, i) => i !== homeStatuses.mainPostArrID)
                                 .map(oP => ({
-                                    id: oP.arrID,
+                                    idInfo: oP.arrID,
                                     feature_image_url: oP.feature_image_url,
                                     title: oP.title,
                                     meta_data: {

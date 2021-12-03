@@ -4,7 +4,10 @@ import { posts, categories } from "../../../../data";
 const getCatFromID = (catID) => {
     const category = find(categories, {id: catID});
 
-    return category.title;
+    return {
+        title: category.title,
+        slug: category.slug
+    };
 }
 
 

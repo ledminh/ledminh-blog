@@ -14,8 +14,8 @@ const EntriesList = ({onClickHandleMaker, entries,
         <div className="entries-list">
             {
                 displayedEntries.map(e => (
-                    <Entry key={e.id}
-                        id={e.id}
+                    <Entry key={e.idInfo}
+                        idInfo={e.idInfo}
                         feature_image_url={e.feature_image_url} 
                         title={e.title}
                         meta_data={e.meta_data}
@@ -47,10 +47,10 @@ const EntriesList = ({onClickHandleMaker, entries,
 
 export default EntriesList;
 
-const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) => {
+const Entry = ({ idInfo, feature_image_url, title, meta_data, onClickHandleMaker}) => {
     
-    const onClickHandle = onClickHandleMaker(id);
-
+    const onClickHandle = onClickHandleMaker(idInfo);
+    
     return (        
         <div className="entry" onClick={onClickHandle}>
             <FeatureImage 
