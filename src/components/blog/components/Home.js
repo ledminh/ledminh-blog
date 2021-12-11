@@ -12,23 +12,23 @@ import { useEffect } from "react";
 const Home = () => {
 
     const homeActions = useHomeActions();
-    const data = useData();
+    const {homePosts} = useData();
     const homeStatuses = useStatuses().home;
 
     const featureImg = useFeatureImageURL();
     
-    useEffect(() => featureImg.setFeatureImageURL(data.posts[homeStatuses.mainPostArrID].feature_image_url), [featureImg, data.posts, homeStatuses.mainPostArrID]);
+    useEffect(() => featureImg.setFeatureImageURL(homePosts[homeStatuses.mainPostArrID].feature_image_url), [featureImg, homePosts, homeStatuses.mainPostArrID]);
     
     
 
     const onClickHandleMakerOtherPosts = (idInfo) => {
         return () => {    
             homeActions.setMainPostArrID(idInfo);
-            featureImg.setFeatureImageURL(data.posts[idInfo].feature_image_url);
+            featureImg.setFeatureImageURL(homePosts[idInfo].feature_image_url);
         }   
     }   
 
-    const otherPosts = data.posts.filter((p, i) => i !== homeStatuses.mainPostArrID)
+    const otherPosts = homePosts.filter((p, i) => i !== homeStatuses.mainPostArrID)
                                 .map(oP => ({
                                     idInfo: oP.arrID,
                                     feature_image_url: oP.feature_image_url,

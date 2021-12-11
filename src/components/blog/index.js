@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import BlogNavigationBar from './components/BlogNavigationBar';
 import FeatureImage from './components/FeatureImage';
 import Home from './components/Home';
+import CategoryList from './components/CategoryList';
 import Category from './components/Category';
 
 import useStatuses from './redux/useStatuses';
@@ -23,8 +24,11 @@ const Blog = () => {
                 <FeatureImage feature_image_url ={featureImageURL} />
                 <MainContent>                         
                     <Switch>
+                        <Route path="/category/:cat">
+                            <Category/>
+                        </Route> 
                         <Route path="/category">
-                            <Category />
+                            <CategoryList />
                         </Route>
                         <Route path="/">                   
                             <Home />

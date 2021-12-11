@@ -17,7 +17,7 @@ export const toggleComments = () => ({type: Home.TOGGLE_COMMENTS});
 export const toggleFullPost = () => ({type: Home.TOGGLE_FULLPOST});
 
 // SET CURRENT PAGE
-export const setHomeCurrentPage = (p) => ({type: Home.SET_CURRENT_PAGE, page: p});
+export const setHomeCurrentPage = (p, nItems) => ({type: Home.SET_CURRENT_PAGE, page: p, numItemsPerPage: nItems});
 
 
 // SET CURRENT PAGI
