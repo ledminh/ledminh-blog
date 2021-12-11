@@ -4,8 +4,6 @@ import { Category, FeatureImageURL, Home, Location } from "./actionTypes";
  * Home Actions
 *****************************/
 
-// MainPostArrID
-export const setMainPostArrID = (id) => ({type: Home.SET_MAINPOST_ARR_ID, id: id});
 
 //SHOW COMMENTS
 export const showComments = () => ({type: Home.SHOW_COMMENTS});

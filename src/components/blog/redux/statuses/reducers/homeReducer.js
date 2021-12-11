@@ -6,15 +6,6 @@ import { Home } from "../actionTypes";
 
 
 //Reducers
-const mainPostArrIDReducer = (state = 0, action) => {
-    if(action.type === Home.SET_MAINPOST_ARR_ID){
-        return action.id
-    }
-
-    return state;
-}
-
-
 const showCommentsReducer = (state = false, action) => {
     if(action.type === Home.SHOW_COMMENTS){
         return true;
@@ -66,7 +57,6 @@ const currentPagiReducer = (state = 1, action) => {
 }
 
 const homeReducer = combineReducers({
-    mainPostArrID: mainPostArrIDReducer,
     showComments: showCommentsReducer,
     showFullPost: showFullPostReducer,
     numItemsPerPage: numItemsPerPageReducer,

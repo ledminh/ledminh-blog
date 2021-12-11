@@ -2,8 +2,10 @@ import { useActions } from "../../../redux/useActions";
 
 import { showComments, hideComments, 
             toggleComments, toggleFullPost, 
-            setMainPostArrID, setHomeCurrentPage,
+            setHomeCurrentPage,
             setHomeCurrentPagi } from "./statuses/actions";
+
+import { setMainPost } from "./data/actions";
 
 import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./statuses/actions";
 
@@ -14,7 +16,7 @@ import { setFeatureImageURL } from "./statuses/actions";
 export const useHomeActions = () => 
                         useActions({showComments, hideComments, 
                                     toggleComments, toggleFullPost,
-                                    setMainPostArrID, 
+                                    setMainPost,
                                     setCurrentPage: setHomeCurrentPage,
                                     setCurrentPagi: setHomeCurrentPagi
                                 });

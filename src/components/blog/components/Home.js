@@ -12,32 +12,21 @@ import { useEffect } from "react";
 const Home = () => {
 
     const homeActions = useHomeActions();
-    const {homePosts} = useData();
+    const {mainPost, otherPosts} = useData();
     const homeStatuses = useStatuses().home;
 
     const featureImg = useFeatureImageURL();
     
-    useEffect(() => featureImg.setFeatureImageURL(homePosts[homeStatuses.mainPostArrID].feature_image_url), [featureImg, homePosts, homeStatuses.mainPostArrID]);
+    useEffect(() => featureImg.setFeatureImageURL(mainPost.feature_image_url), [featureImg, mainPost]);
     
     
 
-    const onClickHandleMakerOtherPosts = (idInfo) => {
-        return () => {    
-            homeActions.setMainPostArrID(idInfo);
-            featureImg.setFeatureImageURL(homePosts[idInfo].feature_image_url);
+    const onClickHandleMakerOtherPosts = (id) => {
+        return () => {
+            homeActions.setMainPost(id);
+            featureImg.setFeatureImageURL(mainPost.feature_image_url);
         }   
     }   
-
-    const otherPosts = homePosts.filter((p, i) => i !== homeStatuses.mainPostArrID)
-                                .map(oP => ({
-                                    idInfo: oP.arrID,
-                                    feature_image_url: oP.feature_image_url,
-                                    title: oP.title,
-                                    meta_data: {
-                                        date_created: oP.date_created,
-                                        author: oP.author
-                                    }
-                                }));
     
     
     return (

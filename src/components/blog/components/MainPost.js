@@ -9,11 +9,10 @@ import { useHomeActions } from "../redux/useActions";
 import useStatuses from "../redux/useStatuses";
 
 const MainPost = () => {
-    const {posts} = useData();
+    const {mainPost} = useData();
     const homeStatuses = useStatuses().home;
     const actions = useHomeActions();
 
-    const mainPost = posts[homeStatuses.mainPostArrID];
     
     return (
         <>

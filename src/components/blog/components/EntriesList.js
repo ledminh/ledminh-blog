@@ -8,14 +8,14 @@ const EntriesList = ({onClickHandleMaker, entries,
                         currentPagi, setCurrentPagi,
                         numItemsPerPage, numPagiButtons}) => {
     const [displayedEntries, endPrev, endNext]  = getPage(entries, numItemsPerPage, currentPage);
-
+    
     return (
         <>
         <div className="entries-list">
             {
                 displayedEntries.map(e => (
-                    <Entry key={e.idInfo}
-                        idInfo={e.idInfo}
+                    <Entry key={e.id}
+                        id={e.id}
                         feature_image_url={e.feature_image_url} 
                         title={e.title}
                         meta_data={e.meta_data}
@@ -28,11 +28,11 @@ const EntriesList = ({onClickHandleMaker, entries,
                     numItemsTotal={entries.length}
                     numItemsPerPage={numItemsPerPage}
                     numButtons={numPagiButtons}
-                    nextOnClick={() =>setCurrentPage(currentPage + 1, numItemsPerPage)}
-                    prevOnClick={() =>setCurrentPage(currentPage - 1, numItemsPerPage)}
+                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
+                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
                     endPrev={endPrev}
                     endNext={endNext}
-                    setPageNumber={(p) => setCurrentPage(p, numItemsPerPage)}
+                    setPageNumber={(p) => setCurrentPage(p)}
                     currentPage={currentPage}
                     setCurrentPagi={setCurrentPagi}
                     currentPagi={currentPagi}
@@ -47,9 +47,9 @@ const EntriesList = ({onClickHandleMaker, entries,
 
 export default EntriesList;
 
-const Entry = ({ idInfo, feature_image_url, title, meta_data, onClickHandleMaker}) => {
+const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) => {
     
-    const onClickHandle = onClickHandleMaker(idInfo);
+    const onClickHandle = onClickHandleMaker(id);
     
     return (        
         <div className="entry" onClick={onClickHandle}>

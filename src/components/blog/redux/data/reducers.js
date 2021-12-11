@@ -1,67 +1,45 @@
 import { find } from "lodash";
-import { getHomePosts, categories, tags } from "../../data";
+import { getCategories, getPosts } from "../../../../data";
+import { HomeData } from "./actionTypes";
 
 
-import { Home } from "../statuses/actionTypes";
-
-
-const getItemFromID = (id, items) => find(items, {id: id});
-
-
-
-
+const posts = getPosts();
+const mainPost = posts[0];
 
 const initialState = {
-    homePosts: getHomePosts().map((p, i) => ({...p, 
-                                arrID: i, 
-                                categories: p.categoryIDs.map((catID) => {
-                                    let cat = getItemFromID(catID, categories);
-
-                                    return {
-                                        title: cat.title,
-                                        slug: cat.slug
-                                    }
-                                }),
-                                tags: p.tagIDs.map(tagID => {
-                                    let tag = getItemFromID(tagID, tags);
-
-                                    return tag.name;
-                                })
-                                })),
-    categories: categories     
+    categories: getCategories(),
+    
+    mainPost: posts[0],
+    otherPosts: posts.filter((p) => p.id !== mainPost.id)
+                    .map(oP => ({
+                        id: oP.id,
+                        feature_image_url: oP.feature_image_url,
+                        title: oP.title,
+                        meta_data: {
+                            date_created: oP.date_created,
+                            author: oP.author
+                        }
+                    }))
 }
 
 
+
 const dataReducer = (state = initialState, action) => {
-    if(action.type === Home.SET_CURRENT_PAGE){
-        const prevPage = action.page - 1;
-            
-        let beginID = prevPage*action.numItemsPerPage,
-            endID = currentPage*action.numItemsPerPage;
-
-        
-        let newState = {
+    if(action.type === HomeData.SET_MAIN_POST){
+        return {
             ...state,
-            posts: getHomePosts(beginID, endID).map((p, i) => ({...p, 
-                arrID: i, 
-                categories: p.categoryIDs.map((catID) => {
-                    let cat = getItemFromID(catID, categories);
-
-                    return {
-                        title: cat.title,
-                        slug: cat.slug
-                    }
-                }),
-                tags: p.tagIDs.map(tagID => {
-                    let tag = getItemFromID(tagID, tags);
-
-                    return tag.name;
-                })
-                }))
+            mainPost: find(posts, {id: action.id}),
+            otherPosts: posts.filter((p) => p.id !== action.id)
+                    .map(oP => ({
+                        id: oP.id,
+                        feature_image_url: oP.feature_image_url,
+                        title: oP.title,
+                        meta_data: {
+                            date_created: oP.date_created,
+                            author: oP.author
+                        }
+                    }))
         }
-
-
-        return newState;
     }
 
     return state;
