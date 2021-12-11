@@ -2,16 +2,16 @@ import { find } from "lodash";
 
 import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal } from "./data"
 
+const categories = categoriesLocal;
+const tags = tagsLocal;
 
 
+/* PRIVATE METHODS 
+---------------------------- */
+const getItemFromID = (id, items) => find(items, {id: id});
 
-export const categories = categoriesLocal;
-export const tags = tagsLocal;
-export const posts = postsLocal;
-
-
-export const getPosts = () => {
-    return posts.map((p, i) => ({...p, 
+const getPosts = () => {
+    return postsLocal.map((p, i) => ({...p, 
             categories: p.categoryIDs.map((catID) => {
                 let cat = getItemFromID(catID, categories);
 
@@ -28,6 +28,37 @@ export const getPosts = () => {
             }))
 }
 
+const posts = getPosts();
+
+/* PUBLIC METHODS
+-------------------------------*/
+
+
+
+
+export const getMainPost = (mainPostID) => {
+
+    if(!mainPostID) return posts[0];
+
+    return getItemFromID(mainPostID, posts);
+}
+
+
+export const getOtherPosts = (mainPostID = posts[0].id) => {
+    
+    return posts.filter((p) => p.id !== mainPostID)
+                .map(oP => ({
+                    id: oP.id,
+                    feature_image_url: oP.feature_image_url,
+                    title: oP.title,
+                    meta_data: {
+                        date_created: oP.date_created,
+                        author: oP.author
+                    }
+                }));
+}
+
+
 
 export const getCategories = () => {
 
@@ -37,7 +68,4 @@ export const getCategories = () => {
 
 
 
-/* PRIVATE METHODS 
----------------------------- */
 
-const getItemFromID = (id, items) => find(items, {id: id});
