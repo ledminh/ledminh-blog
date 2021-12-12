@@ -7,10 +7,13 @@ import Comments from "./Comments";
 import useData from "../redux/useData";
 import { useHomeActions } from "../redux/useActions";
 import useStatuses from "../redux/useStatuses";
+import useHome from "../redux/useHome";
 
 const MainPost = () => {
-    const {mainPost} = useData();
-    const homeStatuses = useStatuses().home;
+    const {data, showComments, showFullPost} = useHome();
+    const {mainPost} = data;
+
+
     const actions = useHomeActions();
 
     
@@ -29,20 +32,20 @@ const MainPost = () => {
             </SubTitle>
             
             <ExcerptFullPostToggle
-                showFullPostStatus={homeStatuses.showFullPost}
+                showFullPostStatus={showFullPost}
                 excerpt={mainPost.excerpt}
                 content={mainPost.content}
                 />
             <ButtonsPanel
                 toggleComments={actions.toggleComments}
                 toggleFullPost={actions.toggleFullPost}
-                showFullPostStatus={homeStatuses.showFullPost}
-                showCommentsStatus={homeStatuses.showComments}
+                showFullPostStatus={showFullPost}
+                showCommentsStatus={showComments}
                 />
 
             <Comments
                 hideComments={actions.hideComments}
-                showCommentsStatus={homeStatuses.showComments} 
+                showCommentsStatus={showComments} 
                 comments={mainPost.comments}
                 />
         </>

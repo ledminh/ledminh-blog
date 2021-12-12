@@ -3,9 +3,8 @@ import { useActions } from "../../../redux/useActions";
 import { showComments, hideComments, 
             toggleComments, toggleFullPost, 
             setHomeCurrentPage,
-            setHomeCurrentPagi } from "./statuses/actions";
-
-import { setMainPost } from "./data/actions";
+            setHomeCurrentPagi,
+            setMainPost } from "./home/actions";
 
 import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./statuses/actions";
 

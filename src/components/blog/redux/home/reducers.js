@@ -1,21 +1,43 @@
 import { combineReducers } from "redux";
 
-import { Home } from "../actionTypes";
+import { getMainPost, getOtherPosts } from "../../../../data";
+import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
+            TOGGLE_FULLPOST, SET_CURRENT_PAGE, SET_CURRENT_PAGI,
+            SET_MAIN_POST} from "./actionTypes";
 
 
 
+const dataInitialState = {
+    mainPost: getMainPost(),
+    otherPosts: getOtherPosts()
+}
 
-//Reducers
+
+
+const dataReducer = (state = dataInitialState, action) => {
+    if(action.type === SET_MAIN_POST){
+        return {
+            ...state,
+            mainPost: getMainPost(action.id),
+            otherPosts: getOtherPosts(action.id)
+        }
+    }
+
+    return state;
+};
+
+
+
 const showCommentsReducer = (state = false, action) => {
-    if(action.type === Home.SHOW_COMMENTS){
+    if(action.type === SHOW_COMMENTS){
         return true;
     }
 
-    if(action.type === Home.HIDE_COMMENTS){
+    if(action.type === HIDE_COMMENTS){
         return false;
     }
 
-    if(action.type === Home.TOGGLE_COMMENTS) {
+    if(action.type === TOGGLE_COMMENTS) {
         return !state;
     }
     
@@ -24,7 +46,7 @@ const showCommentsReducer = (state = false, action) => {
 
 
 const showFullPostReducer = (state = false, action) => {
-    if(action.type === Home.TOGGLE_FULLPOST){
+    if(action.type === TOGGLE_FULLPOST){
         return !state;
     }
 
@@ -41,7 +63,7 @@ const numPagiButtonsReducer = (state = 3, action) => {
 }
 
 const currentPageReducer = (state = 1, action) => {
-    if(action.type === Home.SET_CURRENT_PAGE){
+    if(action.type === SET_CURRENT_PAGE){
         return action.page;
     }
 
@@ -49,7 +71,7 @@ const currentPageReducer = (state = 1, action) => {
 }
 
 const currentPagiReducer = (state = 1, action) => {
-    if(action.type === Home.SET_CURRENT_PAGI) {
+    if(action.type === SET_CURRENT_PAGI) {
         return action.pagi;
     }
     
@@ -59,6 +81,7 @@ const currentPagiReducer = (state = 1, action) => {
 
 
 const homeReducer = combineReducers({
+    data: dataReducer,
     showComments: showCommentsReducer,
     showFullPost: showFullPostReducer,
     numItemsPerPage: numItemsPerPageReducer,

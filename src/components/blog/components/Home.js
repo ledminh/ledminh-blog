@@ -4,16 +4,15 @@ import EntriesList from './EntriesList';
 
 import { useFeatureImageURL, useHomeActions } from "../redux/useActions";
 
-import useStatuses from "../redux/useStatuses";
 
-import useData from "../redux/useData";
+import useHome from "../redux/useHome";
 import { useEffect } from "react";
 
 const Home = () => {
 
     const homeActions = useHomeActions();
-    const {mainPost, otherPosts} = useData();
-    const homeStatuses = useStatuses().home;
+    const {data, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useHome();
+    const {mainPost, otherPosts} = data;
 
     const featureImg = useFeatureImageURL();
     
@@ -39,13 +38,13 @@ const Home = () => {
 
                 <EntriesList 
                     entries={otherPosts}
-                    currentPage={homeStatuses.currentPage}
+                    currentPage={currentPage}
                     setCurrentPage={homeActions.setCurrentPage}
-                    currentPagi={homeStatuses.currentPagi}
+                    currentPagi={currentPagi}
                     setCurrentPagi={homeActions.setCurrentPagi}
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
-                    numItemsPerPage={homeStatuses.numItemsPerPage}
-                    numPagiButtons={homeStatuses.numPagiButtons}
+                    numItemsPerPage={numItemsPerPage}
+                    numPagiButtons={numPagiButtons}
                     
                     />
                 
