@@ -13,8 +13,6 @@ import useCategory from "../redux/useCategory";
 
 const CategoryList = () => {
     
-    const [entries, setEntries] = useState([]);
-    
     const {data, numItemsPerPage,numPagiButtons, currentPagi, currentPage} = useCategory();
     const {categories} = data;
 
@@ -27,10 +25,7 @@ const CategoryList = () => {
     
     useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), []);
     
-    useEffect(() => {
-        const catsList = categories.map((c) => ({...c, id: c.slug}));
-        setEntries(catsList);
-    }, [categories]);
+    
 
     const onClickHandleMaker = (slug) => {
 
@@ -44,7 +39,7 @@ const CategoryList = () => {
                 List of all categories
             </SubTitle>
             <EntriesList 
-                    entries={entries} 
+                    entries={categories} 
                     onClickHandleMaker={onClickHandleMaker}
                     numItemsPerPage={numItemsPerPage}
                     numPagiButtons={numPagiButtons}

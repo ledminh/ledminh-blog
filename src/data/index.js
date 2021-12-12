@@ -62,7 +62,7 @@ export const getOtherPosts = (mainPostID = posts[0].id) => {
 
 export const getCategories = () => {
 
-    return categories;
+    return categories.map((c) => ({...c, id: c.slug}));
 }
 
 
