@@ -10,13 +10,13 @@ import Home from './components/Home';
 import CategoryList from './components/CategoryList';
 import Category from './components/Category';
 
-import useStatuses from './redux/useStatuses';
+import useFeatureImage from './redux/useFeatureImage';
 
 
 
 const Blog = () => {
 
-    const featureImageURL = useStatuses().featureImageURL;
+    const featureImageURL = useFeatureImage().url;
     return (
         <Router>
             <div className="blog">                

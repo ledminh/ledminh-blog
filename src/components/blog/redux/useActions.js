@@ -9,7 +9,7 @@ import { showComments, hideComments,
 import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./category/actions";
 
 
-import { setFeatureImageURL } from "./statuses/actions";
+import { setFeatureImageURL } from "./featureImage/actions";
 
 export const useHomeActions = () => 
                         useActions({showComments, hideComments, 
@@ -26,4 +26,4 @@ export const useCategoryActions = () => useActions({setCurrentPage: setCategoryC
 
 
 
-export const useFeatureImageURL = () => useActions({setFeatureImageURL});
+export const useFeatureImageActions = () => useActions({setFeatureImageURL});

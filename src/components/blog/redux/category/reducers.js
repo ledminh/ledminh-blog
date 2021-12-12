@@ -8,8 +8,6 @@ const dataInitialState = {
     categories: getCategories()
 }
 
-
-
 const dataReducer = (state = dataInitialState, action) => {
     
     return state;

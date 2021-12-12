@@ -2,7 +2,7 @@ import MainPost from "./MainPost";
 
 import EntriesList from './EntriesList';
 
-import { useFeatureImageURL, useHomeActions } from "../redux/useActions";
+import { useFeatureImageActions, useHomeActions } from "../redux/useActions";
 
 
 import useHome from "../redux/useHome";
@@ -14,16 +14,16 @@ const Home = () => {
     const {data, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useHome();
     const {mainPost, otherPosts} = data;
 
-    const featureImg = useFeatureImageURL();
+    const {setFeatureImageURL} = useFeatureImageActions();
     
-    useEffect(() => featureImg.setFeatureImageURL(mainPost.feature_image_url), [featureImg, mainPost]);
+    useEffect(() => setFeatureImageURL(mainPost.feature_image_url), [mainPost]);
     
     
 
     const onClickHandleMakerOtherPosts = (id) => {
         return () => {
             homeActions.setMainPost(id);
-            featureImg.setFeatureImageURL(mainPost.feature_image_url);
+            setFeatureImageURL(mainPost.feature_image_url);
         }   
     }   
     

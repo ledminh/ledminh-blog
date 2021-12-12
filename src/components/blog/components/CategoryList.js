@@ -2,7 +2,7 @@ import SubTitle from "./SubTitle";
 import Title from "./Title";
 import EntriesList from "./EntriesList";
 
-import { useCategoryActions, useFeatureImageURL } from "../redux/useActions";
+import { useCategoryActions, useFeatureImageActions } from "../redux/useActions";
 
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
@@ -21,11 +21,11 @@ const CategoryList = () => {
     
     const categoryActions = useCategoryActions();
     
-    const featureImg = useFeatureImageURL();
+    const {setFeatureImageURL} = useFeatureImageActions();
     
     const history = useHistory()
     
-    useEffect(() => featureImg.setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), [featureImg]);
+    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), []);
     
     useEffect(() => {
         const catsList = categories.map((c) => ({...c, id: c.slug}));
