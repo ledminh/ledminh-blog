@@ -23,7 +23,6 @@ const Home = () => {
     const onClickHandleMakerOtherPosts = (id) => {
         return () => {
             homeActions.setMainPost(id);
-            setFeatureImageURL(mainPost.feature_image_url);
         }   
     }   
     
