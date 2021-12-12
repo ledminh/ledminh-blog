@@ -4,10 +4,9 @@ import EntriesList from "./EntriesList";
 
 import { useCategoryActions, useFeatureImageURL } from "../redux/useActions";
 
-import useData from "../redux/useData";
-import useStatuses from "../redux/useStatuses";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import useCategory from "../redux/useCategory";
 
 
 
@@ -15,9 +14,10 @@ import { useHistory } from "react-router";
 const CategoryList = () => {
     
     const [entries, setEntries] = useState([]);
+    
+    const {data, numItemsPerPage,numPagiButtons, currentPagi, currentPage} = useCategory();
+    const {categories} = data;
 
-    const {categories} = useData();
-    const categoryStatuses = useStatuses().category;
     
     const categoryActions = useCategoryActions();
     
@@ -28,7 +28,7 @@ const CategoryList = () => {
     useEffect(() => featureImg.setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), [featureImg]);
     
     useEffect(() => {
-        const catsList = categories.map((c) => ({...c, idInfo: c.slug}));
+        const catsList = categories.map((c) => ({...c, id: c.slug}));
         setEntries(catsList);
     }, [categories]);
 
@@ -46,11 +46,11 @@ const CategoryList = () => {
             <EntriesList 
                     entries={entries} 
                     onClickHandleMaker={onClickHandleMaker}
-                    numItemsPerPage={categoryStatuses.numItemsPerPage}
-                    numPagiButtons={categoryStatuses.numPagiButtons}
-                    currentPage={categoryStatuses.currentPage}
+                    numItemsPerPage={numItemsPerPage}
+                    numPagiButtons={numPagiButtons}
+                    currentPage={currentPage}
                     setCurrentPage={categoryActions.setCurrentPage}
-                    currentPagi={categoryStatuses.currentPagi}
+                    currentPagi={currentPagi}
                     setCurrentPagi={categoryActions.setCurrentPagi}
                     />
          

@@ -6,9 +6,8 @@ import { showComments, hideComments,
             setHomeCurrentPagi,
             setMainPost } from "./home/actions";
 
-import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./statuses/actions";
+import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./category/actions";
 
-import { setLocation } from "./statuses/actions";
 
 import { setFeatureImageURL } from "./statuses/actions";
 
@@ -26,6 +25,5 @@ export const useCategoryActions = () => useActions({setCurrentPage: setCategoryC
                                                     });
 
 
-export const useBlogLocation = () => useActions({setLocation});
 
 export const useFeatureImageURL = () => useActions({setFeatureImageURL});

@@ -1,6 +1,21 @@
 import { combineReducers } from "redux";
 
-import { Category } from "../actionTypes";
+import {getCategories} from "../../../../data";
+
+import { SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
+
+const dataInitialState = {
+    categories: getCategories()
+}
+
+
+
+const dataReducer = (state = dataInitialState, action) => {
+    
+    return state;
+};
+
+
 
 const numItemsPerPageReducer = (state = 4, action) => {
     return state;
@@ -11,7 +26,7 @@ const numPagiButtonsReducer = (state = 3, action) => {
 }
 
 const currentPageReducer = (state = 1, action) => {
-    if(action.type === Category.SET_CURRENT_PAGE){
+    if(action.type === SET_CURRENT_PAGE){
         return action.page;
     }
 
@@ -19,7 +34,7 @@ const currentPageReducer = (state = 1, action) => {
 }
 
 const currentPagiReducer = (state = 1, action) => {
-    if(action.type === Category.SET_CURRENT_PAGI) {
+    if(action.type === SET_CURRENT_PAGI) {
         return action.pagi;
     }
     
@@ -27,6 +42,7 @@ const currentPagiReducer = (state = 1, action) => {
 }
 
 const categoryReducer = combineReducers({
+    data: dataReducer,
     numItemsPerPage: numItemsPerPageReducer,
     numPagiButtons: numPagiButtonsReducer,
     currentPage: currentPageReducer,

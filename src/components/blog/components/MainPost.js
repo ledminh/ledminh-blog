@@ -4,9 +4,7 @@ import MetaData from "./MetaData";
 import ExcerptFullPostToggle from "./ExcerptFullPostToggle";
 import ButtonsPanel from "./ButtonPanel";
 import Comments from "./Comments";
-import useData from "../redux/useData";
 import { useHomeActions } from "../redux/useActions";
-import useStatuses from "../redux/useStatuses";
 import useHome from "../redux/useHome";
 
 const MainPost = () => {
