@@ -3,11 +3,12 @@ import '../css/EntriesList.css';
 import FeatureImage from './FeatureImage';
 import Pagination from './Pagination';
 
-const EntriesList = ({onClickHandleMaker, entries, 
+const EntriesList = ({onClickHandleMaker,
+                        numItemsTotal,
                         currentPage, setCurrentPage,
                         currentPagi, setCurrentPagi,
-                        numItemsPerPage, numPagiButtons}) => {
-    const [displayedEntries, endPrev, endNext]  = getPage(entries, numItemsPerPage, currentPage);
+                        numItemsPerPage, numPagiButtons,
+                        endPrev, endNext, displayedEntries}) => {
     
     return (
         <>
@@ -25,14 +26,14 @@ const EntriesList = ({onClickHandleMaker, entries,
             }                
         </div>
         <Pagination
-                    numItemsTotal={entries.length}
+                    numItemsTotal={numItemsTotal} //must fix
                     numItemsPerPage={numItemsPerPage}
                     numButtons={numPagiButtons}
-                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
-                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
+                    nextOnClick={() =>setCurrentPage(currentPage + 1, numItemsPerPage)}
+                    prevOnClick={() =>setCurrentPage(currentPage - 1, numItemsPerPage)}
                     endPrev={endPrev}
                     endNext={endNext}
-                    setPageNumber={(p) => setCurrentPage(p)}
+                    setPageNumber={(p) => setCurrentPage(p, numItemsPerPage)}
                     currentPage={currentPage}
                     setCurrentPagi={setCurrentPagi}
                     currentPagi={currentPagi}

@@ -1,35 +1,47 @@
 import { combineReducers } from "redux";
 
-import {getCategories} from "../../../../data";
+import {getDisplayedCategories, getNumCategories} from "../../../../data";
 
 import { SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
 
+const currentPageInit = 1;
+const numItemsPerPageInit = 4;
+
+const [displayedEntries, endPrev, endNext] = getDisplayedCategories(numItemsPerPageInit, currentPageInit);
+
 const dataInitialState = {
-    categories: getCategories()
+    numCategories: getNumCategories(),
+    displayedCategories: displayedEntries,
+    endPrev: endPrev,
+    endNext: endNext,
+    numItemsPerPage: 4,
+    currentPage: currentPageInit,
 }
 
 const dataReducer = (state = dataInitialState, action) => {
-    
+    if(action.type === SET_CURRENT_PAGE) {
+        const [displayedEntries, endPrev, endNext] = getDisplayedCategories(state.numItemsPerPage, action.page);
+
+        return {
+            ...state,
+            displayedCategories: displayedEntries,
+            endPrev: endPrev,
+            endNext: endNext,
+            currentPage: action.page
+        }
+
+
+    }
     return state;
 };
 
 
 
-const numItemsPerPageReducer = (state = 4, action) => {
-    return state;
-}
 
 const numPagiButtonsReducer = (state = 3, action) => {
     return state;
 }
 
-const currentPageReducer = (state = 1, action) => {
-    if(action.type === SET_CURRENT_PAGE){
-        return action.page;
-    }
-
-    return state;
-}
 
 const currentPagiReducer = (state = 1, action) => {
     if(action.type === SET_CURRENT_PAGI) {
@@ -41,9 +53,7 @@ const currentPagiReducer = (state = 1, action) => {
 
 const categoryReducer = combineReducers({
     data: dataReducer,
-    numItemsPerPage: numItemsPerPageReducer,
     numPagiButtons: numPagiButtonsReducer,
-    currentPage: currentPageReducer,
     currentPagi: currentPagiReducer
 });
 

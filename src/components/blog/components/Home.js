@@ -11,8 +11,8 @@ import { useEffect } from "react";
 const Home = () => {
 
     const homeActions = useHomeActions();
-    const {data, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useHome();
-    const {mainPost, otherPosts} = data;
+    const {data, numPagiButtons, currentPagi} = useHome();
+    const {mainPost, numPosts, displayedPosts, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
     const {setFeatureImageURL} = useFeatureImageActions();
     
@@ -29,7 +29,7 @@ const Home = () => {
     
     
     return (
-        otherPosts ?
+        displayedPosts ?
             (
             <>
                 <MainPost />             
@@ -37,7 +37,10 @@ const Home = () => {
                 <div className="separator" />
 
                 <EntriesList 
-                    entries={otherPosts}
+                    numItemsTotal={numPosts}
+                    displayedEntries={displayedPosts}
+                    endPrev={endPrev}
+                    endNext={endNext}
                     currentPage={currentPage}
                     setCurrentPage={homeActions.setCurrentPage}
                     currentPagi={currentPagi}

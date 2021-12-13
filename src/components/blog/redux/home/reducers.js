@@ -1,33 +1,50 @@
 import { combineReducers } from "redux";
 
-import { getMainPost, getOtherPosts } from "../../../../data";
+import { getDisplayedPosts, getMainPost, getNumPosts } from "../../../../data";
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
             TOGGLE_FULLPOST, SET_CURRENT_PAGE, SET_CURRENT_PAGI,
             SET_MAIN_POST} from "./actionTypes";
 
 
+const mainPost = getMainPost();
+
+const currentPageInit = 1;
+const numItemsPerPageInit = 4;
+
+const [displayedEntries, endPrev, endNext] = getDisplayedPosts(mainPost.id, numItemsPerPageInit, currentPageInit);
 
 const dataInitialState = {
     mainPost: getMainPost(),
-    otherPosts: getOtherPosts()
+    numPosts: getNumPosts(),
+    displayedPosts: displayedEntries,
+    endPrev: endPrev,
+    endNext: endNext,
+    numItemsPerPage: numItemsPerPageInit,
+    currentPage: currentPageInit
 }
-
-
 
 const dataReducer = (state = dataInitialState, action) => {
     if(action.type === SET_MAIN_POST){
+        const [displayedEntries, endPrev, endNext] = getDisplayedPosts(action.id, state.numItemsPerPage, state.currentPage);
+        
         return {
             ...state,
             mainPost: getMainPost(action.id), //action.id is mainPost's ID, it's used to get the main post (obviously)
-            otherPosts: getOtherPosts(action.id) // action.id is mainPost's ID, it's used to filter the main post out
+            displayedPosts: displayedEntries,
+            endPrev: endPrev,
+            endNext: endNext,            
         }
     }
 
     if(action.type === SET_CURRENT_PAGE) {
-        console.log(action);
+        const [displayedEntries, endPrev, endNext] =  getDisplayedPosts(state.mainPost.id, state.numItemsPerPage, action.page);
+        
         return {
             ...state,
-            // TO-DO: somehow change otherPosts to displayedPost
+            displayedPosts: displayedEntries,
+            endPrev: endPrev,
+            endNext: endNext,
+            currentPage: action.page
         }
     }
 
@@ -63,21 +80,11 @@ const showFullPostReducer = (state = false, action) => {
     return state;
 }
 
-const numItemsPerPageReducer = (state = 4, action) => {
-    return state;
-}
 
 const numPagiButtonsReducer = (state = 3, action) => {
     return state;
 }
 
-const currentPageReducer = (state = 1, action) => {
-    if(action.type === SET_CURRENT_PAGE){
-        return action.page;
-    }
-
-    return state;
-}
 
 const currentPagiReducer = (state = 1, action) => {
     if(action.type === SET_CURRENT_PAGI) {
@@ -93,9 +100,7 @@ const homeReducer = combineReducers({
     data: dataReducer,
     showComments: showCommentsReducer,
     showFullPost: showFullPostReducer,
-    numItemsPerPage: numItemsPerPageReducer,
     numPagiButtons: numPagiButtonsReducer,
-    currentPage: currentPageReducer,
     currentPagi: currentPagiReducer
 });
 

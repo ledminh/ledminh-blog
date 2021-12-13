@@ -2,45 +2,44 @@ import { find } from "lodash";
 
 import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal } from "./data"
 
-const categories = categoriesLocal;
-const tags = tagsLocal;
-
-
-/* PRIVATE METHODS 
----------------------------- */
 const getItemFromID = (id, items) => find(items, {id: id});
 
-const getPosts = () => {
-    return postsLocal.map((p, i) => ({...p, 
-            categories: p.categoryIDs.map((catID) => {
-                let cat = getItemFromID(catID, categories);
+const tags = tagsLocal;
+const categories = categoriesLocal.map((c) => ({...c, id: c.slug}));
+const posts = postsLocal.map((p, i) => ({...p, 
+                                        categories: p.categoryIDs.map((catID) => {
+                                            let cat = getItemFromID(catID, categoriesLocal);
 
-                return {
-                    title: cat.title,
-                    slug: cat.slug
-                }
-            }),
-            tags: p.tagIDs.map(tagID => {
-                let tag = getItemFromID(tagID, tags);
+                                            return {
+                                                title: cat.title,
+                                                slug: cat.slug
+                                            }
+                                        }),
+                                        tags: p.tagIDs.map(tagID => {
+                                            let tag = getItemFromID(tagID, tags);
 
-                return tag.name;
-            })
-            }))
+                                            return tag.name;
+                                        })
+                                        }))
+
+
+const getEntriesOnPage = (entries, numItemsPerPage, pageNum) => {
+    const prevPage = pageNum - 1;
+            
+    let beginID = prevPage*numItemsPerPage,
+        endID = pageNum*numItemsPerPage;
+    
+
+    const endPrev = beginID === 0;
+    const endNext = endID > entries.length - 1;
+
+    const displayedEntries = entries.slice(beginID, endID);
+
+    return [displayedEntries, endPrev, endNext];
 }
 
-const posts = getPosts();
 
-/* PUBLIC METHODS
--------------------------------*/
-export const getMainPost = (mainPostID) => {
-
-    if(!mainPostID) return posts[0];
-
-    return getItemFromID(mainPostID, posts);
-}
-
-
-export const getOtherPosts = (mainPostID = posts[0].id) => {
+const getOtherPosts = (mainPostID = posts[0].id) => {
     
     return posts.filter((p) => p.id !== mainPostID)
                 .map(oP => ({
@@ -54,12 +53,37 @@ export const getOtherPosts = (mainPostID = posts[0].id) => {
                 }));
 }
 
+/* PUBLIC METHODS
+-------------------------------*/
 
+/* POST */
+export const getMainPost = (mainPostID) => {
 
-export const getCategories = () => {
+    if(!mainPostID) return posts[0];
 
-    return categories.map((c) => ({...c, id: c.slug}));
+    return getItemFromID(mainPostID, posts);
 }
+
+
+export const getDisplayedPosts = (mainPostID, numItemsPerPage, pageNum) => {
+    let otherPosts = getOtherPosts(mainPostID);
+
+    return getEntriesOnPage(otherPosts, numItemsPerPage, pageNum);
+
+}
+
+export const getNumPosts = () => posts.length;
+
+
+
+
+
+/* CATEGORIES */
+export const getNumCategories = () => categories.length;
+
+export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage);
+
+
 
 
 

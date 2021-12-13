@@ -13,8 +13,8 @@ import useCategory from "../redux/useCategory";
 
 const CategoryList = () => {
     
-    const {data, numItemsPerPage,numPagiButtons, currentPagi, currentPage} = useCategory();
-    const {categories} = data;
+    const {data, numPagiButtons, currentPagi} = useCategory();
+    const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
     
     const categoryActions = useCategoryActions();
@@ -39,15 +39,20 @@ const CategoryList = () => {
                 List of all categories
             </SubTitle>
             <EntriesList 
-                    entries={categories} 
-                    onClickHandleMaker={onClickHandleMaker}
-                    numItemsPerPage={numItemsPerPage}
-                    numPagiButtons={numPagiButtons}
+                    numItemsTotal={numCategories}
+                    displayedEntries={displayedCategories}
+                    endPrev={endPrev}
+                    endNext={endNext}
                     currentPage={currentPage}
                     setCurrentPage={categoryActions.setCurrentPage}
                     currentPagi={currentPagi}
                     setCurrentPagi={categoryActions.setCurrentPagi}
+                    onClickHandleMaker={onClickHandleMaker}
+                    numItemsPerPage={numItemsPerPage}
+                    numPagiButtons={numPagiButtons}
+                    
                     />
+      
          
         </>
     );
