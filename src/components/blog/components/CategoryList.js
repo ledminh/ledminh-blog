@@ -4,7 +4,7 @@ import EntriesList from "./EntriesList";
 
 import { useCategoryActions, useFeatureImageActions } from "../redux/useActions";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router";
 import useCategory from "../redux/useCategory";
 
@@ -23,7 +23,7 @@ const CategoryList = () => {
     
     const history = useHistory()
     
-    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), []);
+    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), [setFeatureImageURL]);
     
     
 

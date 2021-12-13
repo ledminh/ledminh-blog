@@ -32,10 +32,6 @@ const posts = getPosts();
 
 /* PUBLIC METHODS
 -------------------------------*/
-
-
-
-
 export const getMainPost = (mainPostID) => {
 
     if(!mainPostID) return posts[0];

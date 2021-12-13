@@ -18,10 +18,19 @@ const dataReducer = (state = dataInitialState, action) => {
     if(action.type === SET_MAIN_POST){
         return {
             ...state,
-            mainPost: getMainPost(action.id),
-            otherPosts: getOtherPosts(action.id)
+            mainPost: getMainPost(action.id), //action.id is mainPost's ID, it's used to get the main post (obviously)
+            otherPosts: getOtherPosts(action.id) // action.id is mainPost's ID, it's used to filter the main post out
         }
     }
+
+    if(action.type === SET_CURRENT_PAGE) {
+        console.log(action);
+        return {
+            ...state,
+            // TO-DO: somehow change otherPosts to displayedPost
+        }
+    }
+
 
     return state;
 };

@@ -16,7 +16,8 @@ const Home = () => {
 
     const {setFeatureImageURL} = useFeatureImageActions();
     
-    useEffect(() => setFeatureImageURL(mainPost.feature_image_url), [mainPost]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => setFeatureImageURL(mainPost.feature_image_url), [mainPost.feature_image_url]);
     
     
 
