@@ -29,8 +29,8 @@ const EntriesList = ({onClickHandleMaker,
                     numItemsTotal={numItemsTotal} 
                     numItemsPerPage={numItemsPerPage}
                     numButtons={numPagiButtons}
-                    nextOnClick={() =>setCurrentPage(currentPage + 1, numItemsPerPage)}
-                    prevOnClick={() =>setCurrentPage(currentPage - 1, numItemsPerPage)}
+                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
+                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
                     endPrev={endPrev}
                     endNext={endNext}
                     setPageNumber={(p) => setCurrentPage(p, numItemsPerPage)}
