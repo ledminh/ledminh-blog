@@ -15,7 +15,7 @@ const Pagination = ({nextOnClick, prevOnClick,
         <>
         {
             (
-                (numItemsTotal === 0) ? ""
+                (numItemsTotal <= numItemsPerPage) ? ""
                                     :
                                     (<div className="pagination">
                                         <button className={endPrev? "inactive": ""} 

@@ -18,7 +18,7 @@ const singleCategoryReducer = (state = initialState, action) => {
         
         return {
             ...state,
-            ...getCategory(action.slug, state.numItemsPerPage, state.currentPage),        
+            ...getCategory(action.slug, state.numItemsPerPage, 1),        
             currentPagi: 1
         };
     }

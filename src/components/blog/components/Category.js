@@ -21,6 +21,7 @@ const Category = () => {
     
     const {displayedPosts, endPrev, endNext} = posts;
 
+    
     useEffect(() => {
         setCurrentCategory(slug);
         setFeatureImageURL(feature_image_url)
@@ -46,6 +47,7 @@ const Category = () => {
                                     />)
                 }
             </div>
+
             <Pagination
                     numItemsTotal={posts.totalPosts} 
                     numItemsPerPage={numItemsPerPage}
