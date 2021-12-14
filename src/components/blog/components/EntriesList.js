@@ -33,7 +33,7 @@ const EntriesList = ({onClickHandleMaker,
                     prevOnClick={() =>setCurrentPage(currentPage - 1)}
                     endPrev={endPrev}
                     endNext={endNext}
-                    setPageNumber={(p) => setCurrentPage(p, numItemsPerPage)}
+                    setPageNumber={(p) => setCurrentPage(p)}
                     currentPage={currentPage}
                     setCurrentPagi={setCurrentPagi}
                     currentPagi={currentPagi}
