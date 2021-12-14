@@ -1,6 +1,6 @@
 import SubTitle from "./SubTitle";
 import Title from "./Title";
-import EntriesList from "./EntriesList";
+import EntriesList, { GALLERY } from "./EntriesList";
 
 import { useCategoriesListActions, useFeatureImageActions } from "../redux/useActions";
 
@@ -41,7 +41,8 @@ const CategoriesList = () => {
             <SubTitle>
                 List of all categories
             </SubTitle>
-            <EntriesList 
+            <EntriesList
+                    listType={GALLERY}
                     numItemsTotal={numCategories}
                     displayedEntries={displayedCategories}
                     endPrev={endPrev}

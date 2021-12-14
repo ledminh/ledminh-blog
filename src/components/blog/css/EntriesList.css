@@ -1,7 +1,7 @@
 /***************************
-*   MAIN FRAME  
+*   GALLERY TYPE  
 */
-.blog .entries-list {
+.blog .gallery-list {
     margin-top: 10px;    
     display: flex;
     flex-flow: row wrap;
@@ -14,7 +14,7 @@
 *  SINGLE OTHER POST FRAME
 */
 
-.blog .entries-list .entry {
+.blog .gallery-list .entry {
     position: relative;
     table-layout: fixed;
     height: 250px;
@@ -31,7 +31,7 @@
 /***************************
 *  FEATURE IMAGE
 */
-.blog .entries-list .entry .feature-image {
+.blog .gallery-list .entry .feature-image {
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -41,7 +41,7 @@
     border-radius: 0;
 }
 
-.blog .entries-list .entry:hover .feature-image {
+.blog .gallery-list .entry:hover .feature-image {
     transform: scale(1.1);
 
     filter: blur(0px);
@@ -50,7 +50,7 @@
 /***************************
 *  INFORMATION
 */
-.blog .entries-list .entry .information {
+.blog .gallery-list .entry .information {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -68,7 +68,7 @@
 }
 
 
-.blog .entries-list .entry:hover .information {
+.blog .gallery-list .entry:hover .information {
     opacity: .9;
     
 }
@@ -77,16 +77,42 @@
 /***************************
 *  INFORMATION CHILDREN
 */
-.blog .entries-list .entry .information .title {
+.blog .gallery-list .entry .information .title {
     margin-top: 0;
     width: 100%;
 }
 
 
 /* meta data */
-.blog .entries-list .entry .information .meta-data {
+.blog .gallery-list .entry .information .meta-data {
     width: 100%;
 
 }
 
 
+/********************
+* VERTICAL TYPE
+*/
+.blog .vertical-list {
+    width: 95%;
+    margin: auto;
+    
+}
+
+.blog .vertical-list .post {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: gray solid 1px;
+
+    cursor: pointer;
+
+}
+
+.blog .vertical-list .post:hover {
+    background-color: rgb(209, 209, 209);
+}
+
+.blog .vertical-list .post .excerpt {
+    font-style: italic;
+}

@@ -7,10 +7,10 @@ import useSingleCategory from "../redux/useSingleCategory";
 
 import Title from "./Title";
 import SubTitle from "./SubTitle";
-import Pagination from "./Pagination";
-
+import EntriesList from "./EntriesList";
 
 import '../css/CategoryPosts.css';
+import { VERTICAL_LIST } from "./EntriesList";
 
 const Category = () => {
     const {slug} = useParams();
@@ -20,6 +20,15 @@ const Category = () => {
     const {title, meta_data, feature_image_url, posts, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useSingleCategory();
     
     const {displayedPosts, endPrev, endNext} = posts;
+
+    const history = useHistory();
+
+    const onClickHandleMakerOtherPosts = (idInfo) => {
+        return () => {
+            history.push("/post/" + idInfo.slug)
+        }   
+    }
+
 
     
     useEffect(() => {
@@ -35,33 +44,20 @@ const Category = () => {
             <SubTitle>
                 {meta_data.cat_subtitle}
             </SubTitle>
-            <div className="category-posts">
-                {
-                    displayedPosts.map(p => <Post
-                                        key={p.title}
-                                        title={p.title}
-                                        date_created={p.date_created}
-                                        author={p.author}
-                                        excerpt={p.excerpt}
-                                        slug={p.slug}
-                                    />)
-                }
-            </div>
-
-            <Pagination
-                    numItemsTotal={posts.totalPosts} 
-                    numItemsPerPage={numItemsPerPage}
-                    numButtons={numPagiButtons}
-                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
-                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
+            <EntriesList
+                    listType={VERTICAL_LIST}
+                    numItemsTotal={posts.totalPosts}
+                    displayedEntries={displayedPosts}
                     endPrev={endPrev}
                     endNext={endNext}
-                    setPageNumber={(p) => setCurrentPage(p)}
                     currentPage={currentPage}
-                    setCurrentPagi={setCurrentPagi} 
+                    setCurrentPage={setCurrentPage}
                     currentPagi={currentPagi}
-                    
-                    />
+                    setCurrentPagi={setCurrentPagi}
+                    onClickHandleMaker={onClickHandleMakerOtherPosts}
+                    numItemsPerPage={numItemsPerPage}
+                    numPagiButtons={numPagiButtons}
+                    />       
         </>)
         :(
             <div>Loading ...</div>
@@ -72,20 +68,6 @@ const Category = () => {
 export default Category;
 
 
-
-const Post = ({title, date_created, author, excerpt, slug}) => {
-    const history = useHistory();
-    
-    return (
-        <div className="post"
-            onClick={() => history.push("/post/" + slug)}
-            >
-            <h4>{title}</h4>
-            <div className="meta-data"><h6>{date_created} - {author} </h6></div>
-            <div className="excerpt">{excerpt}</div>
-        </div>
-    )
-}
 
 /*
 async function postsOnCat() {

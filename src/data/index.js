@@ -96,7 +96,9 @@ export const  getCategory = (slug, numItemsPerPage, pageNum) => {
                     })
                     .map(p => ({
                         title: p.title,
-                        slug: p.slug,
+                        idInfo:{
+                            slug: p.slug
+                        },
                         date_created: p.date_created,
                         author: p.author,
                         excerpt: p.excerpt

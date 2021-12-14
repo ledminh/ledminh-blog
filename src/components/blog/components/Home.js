@@ -1,6 +1,6 @@
 import MainPost from "./MainPost";
 
-import EntriesList from './EntriesList';
+import EntriesList, { GALLERY } from './EntriesList';
 
 import { useFeatureImageActions, useHomeActions } from "../redux/useActions";
 
@@ -36,7 +36,8 @@ const Home = () => {
 
                 <div className="separator" />
 
-                <EntriesList 
+                <EntriesList
+                    listType={GALLERY}
                     numItemsTotal={numPosts}
                     displayedEntries={displayedPosts}
                     endPrev={endPrev}

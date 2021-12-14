@@ -3,26 +3,51 @@ import '../css/EntriesList.css';
 import FeatureImage from './FeatureImage';
 import Pagination from './Pagination';
 
+export const GALLERY = "ENTRY_LIST/GALLERY";
+export const VERTICAL_LIST = "ENTRY_LIST_VERTICAL";
+
 const EntriesList = ({onClickHandleMaker,
                         numItemsTotal,
                         currentPage, setCurrentPage,
                         currentPagi, setCurrentPagi,
                         numItemsPerPage, numPagiButtons,
-                        endPrev, endNext, displayedEntries}) => {
+                        endPrev, endNext, displayedEntries,
+                        listType
+                    }) => {
     
     return (
         <>
-        <div className="entries-list">
+        <div className={(listType === GALLERY) ? "gallery-list"
+                        : ((listType === VERTICAL_LIST)? "vertical-list": "") }>
             {
-                displayedEntries.map(e => (
-                    <Entry key={e.id}
-                        idInfo={e.idInfo}
-                        feature_image_url={e.feature_image_url} 
-                        title={e.title}
-                        meta_data={e.meta_data}
-                        onClickHandleMaker={onClickHandleMaker}
-                        />)                             
-                )
+                displayedEntries.map(e => {
+                    
+                    let entry;
+
+                    if(listType === GALLERY){
+                        entry = <GalerryEntry key={e.id}
+                            idInfo={e.idInfo}
+                            feature_image_url={e.feature_image_url} 
+                            title={e.title}
+                            meta_data={e.meta_data}
+                            onClickHandleMaker={onClickHandleMaker}
+                            />
+                    }
+                    else if(listType === VERTICAL_LIST){
+                        entry = <VerticalEntry
+                                key={e.title}
+                                title={e.title}
+                                date_created={e.date_created}
+                                author={e.author}
+                                excerpt={e.excerpt}
+                                idInfo={e.idInfo}
+                                onClickHandleMaker={onClickHandleMaker}
+                            />
+                    }
+
+                    return entry;
+
+                })
             }                
         </div>
         <Pagination
@@ -48,7 +73,7 @@ const EntriesList = ({onClickHandleMaker,
 
 export default EntriesList;
 
-const Entry = ({ idInfo, feature_image_url, title, meta_data, onClickHandleMaker}) => {
+const GalerryEntry = ({ idInfo, feature_image_url, title, meta_data, onClickHandleMaker}) => {
     
     const onClickHandle = onClickHandleMaker(idInfo);
     
@@ -86,3 +111,16 @@ const Entry = ({ idInfo, feature_image_url, title, meta_data, onClickHandleMaker
 };
 
 
+const VerticalEntry =  ({title, date_created, author, excerpt, idInfo, onClickHandleMaker}) => {
+    
+    const onClickHandle = onClickHandleMaker(idInfo);
+    return (
+        <div className="post"
+            onClick={onClickHandle}
+            >
+            <h4>{title}</h4>
+            <div className="meta-data"><h6>{date_created} - {author} </h6></div>
+            <div className="excerpt">{excerpt}</div>
+        </div>
+    )
+}

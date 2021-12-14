@@ -1,10 +1,10 @@
-.blog .category-posts {
+.blog .vertical-list {
     width: 95%;
     margin: auto;
     
 }
 
-.blog .category-posts .post {
+.blog .vertical-list .post {
     margin-top: 10px;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -14,10 +14,10 @@
 
 }
 
-.blog .category-posts .post:hover {
+.blog .vertical-list .post:hover {
     background-color: rgb(209, 209, 209);
 }
 
-.blog .category-posts .post .excerpt {
+.blog .vertical-list .post .excerpt {
     font-style: italic;
 }
