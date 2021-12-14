@@ -49,7 +49,9 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
     return posts.filter((p) => p.id !== mainPostID)
                 .map(oP => ({
                     id: oP.id,
-                    idInfo: oP.id,
+                    idInfo: {
+                        id: oP.id
+                    },
                     feature_image_url: oP.feature_image_url,
                     title: oP.title,
                     meta_data: {

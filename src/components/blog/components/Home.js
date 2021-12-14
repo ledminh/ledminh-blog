@@ -23,7 +23,7 @@ const Home = () => {
 
     const onClickHandleMakerOtherPosts = (idInfo) => {
         return () => {
-            homeActions.setMainPost(idInfo);
+            homeActions.setMainPost(idInfo.id);
         }   
     }   
     
