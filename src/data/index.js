@@ -4,7 +4,12 @@ import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal }
 
 const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
 
-const tags = tagsLocal;
+const tags = tagsLocal.map((t) => ({ ...t,
+                                        idInfo: {
+                                            name: t.name
+                                        }                                    
+                                    }));
+
 const categories = categoriesLocal.map((c) => ({...c, 
                                                 idInfo: {
                                                     slug: c.slug
@@ -130,4 +135,8 @@ export const getSinglePost = (slug) => {
     return p;
 }
 
+/* TAGS LIST */
+export const getTagsList = () => {
 
+    return tags;
+}

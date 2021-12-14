@@ -7,7 +7,7 @@ const BlogNavigationBar = () => {
         <div className="blog-navigation-bar">
             <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/category">Categories</Link></li>
+                <li><Link to="/categories">Categories</Link></li>
             </ul>
         </div>
     );

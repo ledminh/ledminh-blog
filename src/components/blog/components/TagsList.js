@@ -6,14 +6,15 @@ import { useFeatureImageActions } from "../redux/useActions";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 
+import useTagsList from "../redux/useTagsList";
 
-
+import '../css/TagsList.css';
 
 
 const TagsList = () => {
     
-    const {data} = useTagsList();
-    const {tags} = data;
+    const {tags} = useTagsList();
+    
 
     
     const {setFeatureImageURL} = useFeatureImageActions();
@@ -28,7 +29,7 @@ const TagsList = () => {
     const onClickHandleMaker = (idInfo) => {
 
         return () => {
-            history.push("/tag/" + idInfo.slug)
+            history.push("/tag/" + idInfo.name)
         };
     }
 
@@ -38,21 +39,19 @@ const TagsList = () => {
             <SubTitle>
                 List of all Tags
             </SubTitle>
-            <EntriesList
-                    listType={GALLERY}
-                    numItemsTotal={numCategories}
-                    displayedEntries={displayedCategories}
-                    endPrev={endPrev}
-                    endNext={endNext}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    currentPagi={currentPagi}
-                    setCurrentPagi={setCurrentPagi}
-                    onClickHandleMaker={onClickHandleMaker}
-                    numItemsPerPage={numItemsPerPage}
-                    numPagiButtons={numPagiButtons}
-                    
-                    />
+            <div className="tags-list">
+                {
+                    tags.map((t)  => (
+                        <Tag
+                            key={t.name}
+                            onClickHandleMaker={onClickHandleMaker}
+                            idInfo={t.idInfo}
+                            name={t.name}
+                        />
+                    ))
+                }
+            </div>
+            
       
          
         </>
@@ -60,3 +59,16 @@ const TagsList = () => {
 }
 
 export default TagsList;
+
+
+const Tag = ({onClickHandleMaker, idInfo, name}) => {
+    const onClickHandle = onClickHandleMaker(idInfo);
+
+    return (
+        <div className="tag"
+            onClick = {onClickHandle}
+        >
+            {name}
+        </div>
+    )
+}

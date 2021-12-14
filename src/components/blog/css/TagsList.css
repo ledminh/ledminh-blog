@@ -1,0 +1,21 @@
+.blog .tags-list {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.blog .tags-list .tag {
+    display: inline-block;
+    border: gray 1px solid;
+    margin: 10px;
+    padding: 5px;
+
+    color:rgb(97, 97, 97);
+    cursor: pointer;
+}
+
+.blog .tags-list .tag:hover {
+    background-color: rgb(231, 231, 231);
+    color: black;
+}
