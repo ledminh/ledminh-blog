@@ -2,22 +2,22 @@ import SubTitle from "./SubTitle";
 import Title from "./Title";
 import EntriesList from "./EntriesList";
 
-import { useCategoryActions, useFeatureImageActions } from "../redux/useActions";
+import { useCategoriesListActions, useFeatureImageActions } from "../redux/useActions";
 
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-import useCategory from "../redux/useCategory";
+import useCategoriesList from "../redux/useCategoriesList";
 
 
 
 
-const CategoryList = () => {
+const CategoriesList = () => {
     
-    const {data, numPagiButtons, currentPagi} = useCategory();
+    const {data, numPagiButtons, currentPagi} = useCategoriesList();
     const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
     
-    const {setCurrentPage, setCurrentPagi} = useCategoryActions();
+    const {setCurrentPage, setCurrentPagi} = useCategoriesListActions();
     
     const {setFeatureImageURL} = useFeatureImageActions();
     
@@ -61,4 +61,4 @@ const CategoryList = () => {
     );
 }
 
-export default CategoryList;
+export default CategoriesList;

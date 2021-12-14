@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import BlogNavigationBar from './components/BlogNavigationBar';
 import FeatureImage from './components/FeatureImage';
 import Home from './components/Home';
-import CategoryList from './components/CategoryList';
+import CategoriesList from './components/CategoriesList';
 import Category from './components/Category';
 import SinglePostPage from './components/SinglePostPage';
 
@@ -32,7 +32,7 @@ const Blog = () => {
                             <Category/>
                         </Route> 
                         <Route path="/category">
-                            <CategoryList />
+                            <CategoriesList />
                         </Route>
                         <Route path="/">                   
                             <Home />

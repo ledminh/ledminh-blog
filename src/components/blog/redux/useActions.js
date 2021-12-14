@@ -6,10 +6,11 @@ import { showComments as showCommentsHome, hideComments as hideCommentsHome,
             setHomeCurrentPagi,
             setMainPost } from "./home/actions";
 
-import { setCategoryCurrentPage, setCategoryCurrentPagi, setCurrentCategory } from "./category/actions";
+import { setCurrentPagi as setCategoriesListCurrentPagi, setCurrentPage as setCategoriesListCurrentPage } from "./categoriesList/actions";
 
 import { setCurrentSinglePost, showComments as showCommentSinglePost, hideComments as hideCommentSinglePost} from "./singlePost/actions";
 
+import { setCurrentCategory as setSingleCategoryCurrentCategory, setCurrentPage as setSingleCategoryCurrentPage, setCurrentPagi as setSingleCategoryCurrentPagi } from "./singleCategory/actions";
 
 import { setFeatureImageURL } from "./featureImage/actions";
 
@@ -23,9 +24,8 @@ export const useHomeActions = () =>
                                 });
 
 
-export const useCategoryActions = () => useActions({setCurrentPage: setCategoryCurrentPage,
-                                                    setCurrentPagi: setCategoryCurrentPagi,
-                                                    setCurrentCategory
+export const useCategoriesListActions = () => useActions({setCurrentPage: setCategoriesListCurrentPage,
+                                                            setCurrentPagi: setCategoriesListCurrentPagi
                                                     });
 
 
@@ -35,3 +35,8 @@ export const useFeatureImageActions = () => useActions({setFeatureImageURL});
 export const useSinglePostActions = () => useActions({setCurrentSinglePost,
                                                         showComments: showCommentSinglePost, 
                                                         hideComments: hideCommentSinglePost});
+
+export const useSingleCategoryActions = () => useActions({setCurrentCategory: setSingleCategoryCurrentCategory,
+                                                            setCurrentPage: setSingleCategoryCurrentPage,
+                                                            setCurrentPagi: setSingleCategoryCurrentPagi                                                            
+                                                        });

@@ -83,14 +83,12 @@ export const getNumPosts = () => posts.length;
 
 
 
-
-
 /* CATEGORIES */
 export const getNumCategories = () => categories.length;
 
 export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage);
 
-export const  getCategory = (slug) => {
+export const  getCategory = (slug, numItemsPerPage, pageNum) => {
     let cat = find(categories, {slug: slug});
 
     let ps = posts.filter(p => {
@@ -104,8 +102,15 @@ export const  getCategory = (slug) => {
                         excerpt: p.excerpt
                     }));
     
+    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+
     
-    cat.posts = ps;
+    cat.posts = {
+        displayedPosts: displayedPosts,
+        totalPosts: ps.length,
+        endPrev: endPrev,
+        endNext: endNext
+    };
 
     return cat;
     

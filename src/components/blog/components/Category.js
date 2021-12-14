@@ -1,29 +1,29 @@
 import { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import { useCategoryActions, useFeatureImageActions } from "../redux/useActions";
+import { useSingleCategoryActions, useFeatureImageActions } from "../redux/useActions";
 
 
-import useCategory from "../redux/useCategory";
+import useSingleCategory from "../redux/useSingleCategory";
 
 import Title from "./Title";
 import SubTitle from "./SubTitle";
+import Pagination from "./Pagination";
 
 
 import '../css/CategoryPosts.css';
 
 const Category = () => {
     const {slug} = useParams();
-    const {setCurrentCategory} = useCategoryActions();
+    const {setCurrentCategory, setCurrentPage, setCurrentPagi} = useSingleCategoryActions();
     const {setFeatureImageURL} = useFeatureImageActions();
 
-    const {data} = useCategory();
-    const {currentCategory} = data;
-    const {title, meta_data, posts} = currentCategory;
-
+    const {title, meta_data, feature_image_url, posts, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useSingleCategory();
+    
+    const {displayedPosts, endPrev, endNext} = posts;
 
     useEffect(() => {
         setCurrentCategory(slug);
-        setFeatureImageURL(currentCategory.feature_image_url)
+        setFeatureImageURL(feature_image_url)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slug]);
 
@@ -36,7 +36,7 @@ const Category = () => {
             </SubTitle>
             <div className="category-posts">
                 {
-                    posts.map(p => <Post
+                    displayedPosts.map(p => <Post
                                         key={p.title}
                                         title={p.title}
                                         date_created={p.date_created}
@@ -45,7 +45,21 @@ const Category = () => {
                                         slug={p.slug}
                                     />)
                 }
-            </div>   
+            </div>
+            <Pagination
+                    numItemsTotal={posts.totalPosts} 
+                    numItemsPerPage={numItemsPerPage}
+                    numButtons={numPagiButtons}
+                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
+                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
+                    endPrev={endPrev}
+                    endNext={endNext}
+                    setPageNumber={(p) => setCurrentPage(p)}
+                    currentPage={currentPage}
+                    setCurrentPagi={setCurrentPagi} 
+                    currentPagi={currentPagi}
+                    
+                    />
         </>)
         :(
             <div>Loading ...</div>
