@@ -2,13 +2,14 @@ import { find } from "lodash";
 
 import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal } from "./data"
 
-const getItemFromID = (id, items) => find(items, {id: id});
+
 
 const tags = tagsLocal;
-const categories = categoriesLocal.map((c) => ({...c, id: c.slug}));
-const posts = postsLocal.map((p, i) => ({...p, 
+const categories = categoriesLocal.map((c) => ({...c, 
+                                                idInfo: c.slug}));
+const posts = postsLocal.map((p, i) => ({...p,
                                         categories: p.categoryIDs.map((catID) => {
-                                            let cat = getItemFromID(catID, categoriesLocal);
+                                            let cat = find(categories, {id: catID});
 
                                             return {
                                                 title: cat.title,
@@ -16,7 +17,7 @@ const posts = postsLocal.map((p, i) => ({...p,
                                             }
                                         }),
                                         tags: p.tagIDs.map(tagID => {
-                                            let tag = getItemFromID(tagID, tags);
+                                            let tag = find(tags, {id: tagID});
 
                                             return tag.name;
                                         })
@@ -44,6 +45,7 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
     return posts.filter((p) => p.id !== mainPostID)
                 .map(oP => ({
                     id: oP.id,
+                    idInfo: oP.id,
                     feature_image_url: oP.feature_image_url,
                     title: oP.title,
                     meta_data: {
@@ -53,6 +55,9 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
                 }));
 }
 
+
+const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
+
 /* PUBLIC METHODS
 -------------------------------*/
 
@@ -60,14 +65,15 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
 export const getMainPost = (mainPostID) => {
 
     if(!mainPostID) return posts[0];
+    
 
-    return getItemFromID(mainPostID, posts);
+    return find(posts, {id: mainPostID});
 }
 
 
 export const getDisplayedPosts = (mainPostID, numItemsPerPage, pageNum) => {
     let otherPosts = getOtherPosts(mainPostID);
-
+    
     return getEntriesOnPage(otherPosts, numItemsPerPage, pageNum);
 
 }
@@ -83,8 +89,26 @@ export const getNumCategories = () => categories.length;
 
 export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage);
 
+export const  getCategory = (slug) => {
+    let cat = find(categories, {slug: slug});
 
+    let ps = posts.filter(p => {
+                        return p.categoryIDs.indexOf(cat.id) !== -1;
+                    })
+                    .map(p => ({
+                        title: p.title,
+                        slug: convertTitleToSlug(p.title),
+                        date_created: p.date_created,
+                        author: p.author,
+                        excerpt: p.excerpt
+                    }));
+    
+    
+    cat.posts = ps;
 
+    return cat;
+    
+}
 
 
 

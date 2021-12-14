@@ -16,7 +16,7 @@ const EntriesList = ({onClickHandleMaker,
             {
                 displayedEntries.map(e => (
                     <Entry key={e.id}
-                        id={e.id}
+                        idInfo={e.idInfo}
                         feature_image_url={e.feature_image_url} 
                         title={e.title}
                         meta_data={e.meta_data}
@@ -26,7 +26,7 @@ const EntriesList = ({onClickHandleMaker,
             }                
         </div>
         <Pagination
-                    numItemsTotal={numItemsTotal} //must fix
+                    numItemsTotal={numItemsTotal} 
                     numItemsPerPage={numItemsPerPage}
                     numButtons={numPagiButtons}
                     nextOnClick={() =>setCurrentPage(currentPage + 1, numItemsPerPage)}
@@ -48,9 +48,9 @@ const EntriesList = ({onClickHandleMaker,
 
 export default EntriesList;
 
-const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) => {
+const Entry = ({ idInfo, feature_image_url, title, meta_data, onClickHandleMaker}) => {
     
-    const onClickHandle = onClickHandleMaker(id);
+    const onClickHandle = onClickHandleMaker(idInfo);
     
     return (        
         <div className="entry" onClick={onClickHandle}>
@@ -86,17 +86,3 @@ const Entry = ({ id, feature_image_url, title, meta_data, onClickHandleMaker}) =
 };
 
 
-const getPage = (entries, numItemsPerPage, currentPage) => {
-    const prevPage = currentPage - 1;
-            
-    let beginID = prevPage*numItemsPerPage,
-        endID = currentPage*numItemsPerPage;
-    
-
-    const endPrev = beginID === 0;
-    const endNext = endID > entries.length - 1;
-
-    const displayedEntries = entries.slice(beginID, endID);
-
-    return [displayedEntries, endPrev, endNext];
-}

@@ -17,19 +17,22 @@ const CategoryList = () => {
     const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
     
-    const categoryActions = useCategoryActions();
+    const {setCurrentPage, setCurrentPagi} = useCategoryActions();
     
     const {setFeatureImageURL} = useFeatureImageActions();
     
     const history = useHistory()
     
-    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), [setFeatureImageURL]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), []);
     
     
 
     const onClickHandleMaker = (slug) => {
 
-        return () => history.push("/category/" + slug);
+        return () => {
+            history.push("/category/" + slug)
+        };
     }
 
     return (
@@ -44,9 +47,9 @@ const CategoryList = () => {
                     endPrev={endPrev}
                     endNext={endNext}
                     currentPage={currentPage}
-                    setCurrentPage={categoryActions.setCurrentPage}
+                    setCurrentPage={setCurrentPage}
                     currentPagi={currentPagi}
-                    setCurrentPagi={categoryActions.setCurrentPagi}
+                    setCurrentPagi={setCurrentPagi}
                     onClickHandleMaker={onClickHandleMaker}
                     numItemsPerPage={numItemsPerPage}
                     numPagiButtons={numPagiButtons}

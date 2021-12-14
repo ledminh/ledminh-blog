@@ -6,7 +6,7 @@ import { showComments, hideComments,
             setHomeCurrentPagi,
             setMainPost } from "./home/actions";
 
-import { setCategoryCurrentPage, setCategoryCurrentPagi } from "./category/actions";
+import { setCategoryCurrentPage, setCategoryCurrentPagi, setCurrentCategory } from "./category/actions";
 
 
 import { setFeatureImageURL } from "./featureImage/actions";
@@ -21,7 +21,8 @@ export const useHomeActions = () =>
 
 
 export const useCategoryActions = () => useActions({setCurrentPage: setCategoryCurrentPage,
-                                                    setCurrentPagi: setCategoryCurrentPagi
+                                                    setCurrentPagi: setCategoryCurrentPagi,
+                                                    setCurrentCategory
                                                     });
 
 

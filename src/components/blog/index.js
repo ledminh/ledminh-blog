@@ -9,6 +9,7 @@ import FeatureImage from './components/FeatureImage';
 import Home from './components/Home';
 import CategoryList from './components/CategoryList';
 import Category from './components/Category';
+import SinglePostPage from './components/SinglePostPage';
 
 import useFeatureImage from './redux/useFeatureImage';
 
@@ -24,7 +25,10 @@ const Blog = () => {
                 <FeatureImage feature_image_url ={featureImageURL} />
                 <MainContent>                         
                     <Switch>
-                        <Route path="/category/:cat">
+                        <Route path="/post/:slug">
+                            <SinglePostPage/>
+                        </Route>
+                        <Route path="/category/:slug">
                             <Category/>
                         </Route> 
                         <Route path="/category">

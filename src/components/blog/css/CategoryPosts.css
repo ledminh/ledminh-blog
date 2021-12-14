@@ -1,0 +1,23 @@
+.blog .category-posts {
+    width: 95%;
+    margin: auto;
+    
+}
+
+.blog .category-posts .post {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: gray solid 1px;
+
+    cursor: pointer;
+
+}
+
+.blog .category-posts .post:hover {
+    background-color: rgb(209, 209, 209);
+}
+
+.blog .category-posts .post .excerpt {
+    font-style: italic;
+}

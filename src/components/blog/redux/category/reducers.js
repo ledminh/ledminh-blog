@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 
-import {getDisplayedCategories, getNumCategories} from "../../../../data";
+import {getDisplayedCategories, getNumCategories, getCategory} from "../../../../data";
 
-import { SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
+import { SET_CURRENT_PAGE, SET_CURRENT_PAGI, SET_CURRENT_CATEGORY } from "./actionTypes";
 
 const currentPageInit = 1;
 const numItemsPerPageInit = 4;
@@ -16,6 +16,8 @@ const dataInitialState = {
     endNext: endNext,
     numItemsPerPage: 4,
     currentPage: currentPageInit,
+    currentCategory: {}
+    
 }
 
 const dataReducer = (state = dataInitialState, action) => {
@@ -31,6 +33,15 @@ const dataReducer = (state = dataInitialState, action) => {
         }
 
 
+    }
+
+    if(action.type === SET_CURRENT_CATEGORY) {
+        
+        const currentCategory = getCategory(action.slug);
+        return {
+            ...state,
+            currentCategory: currentCategory
+        }
     }
     return state;
 };

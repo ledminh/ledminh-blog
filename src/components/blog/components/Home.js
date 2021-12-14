@@ -21,9 +21,9 @@ const Home = () => {
     
     
 
-    const onClickHandleMakerOtherPosts = (id) => {
+    const onClickHandleMakerOtherPosts = (idInfo) => {
         return () => {
-            homeActions.setMainPost(id);
+            homeActions.setMainPost(idInfo);
         }   
     }   
     
