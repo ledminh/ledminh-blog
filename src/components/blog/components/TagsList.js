@@ -1,45 +1,42 @@
 import SubTitle from "./SubTitle";
 import Title from "./Title";
-import EntriesList, { GALLERY } from "./EntriesList";
 
-import { useCategoriesListActions, useFeatureImageActions } from "../redux/useActions";
+import { useFeatureImageActions } from "../redux/useActions";
 
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-import useCategoriesList from "../redux/useCategoriesList";
 
 
 
 
-const CategoriesList = () => {
+
+const TagsList = () => {
     
-    const {data, numPagiButtons, currentPagi} = useCategoriesList();
-    const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
+    const {data} = useTagsList();
+    const {tags} = data;
 
-    
-    const {setCurrentPage, setCurrentPagi} = useCategoriesListActions();
     
     const {setFeatureImageURL} = useFeatureImageActions();
     
     const history = useHistory()
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), []);
+    useEffect(() => setFeatureImageURL("https://cdn5.vectorstock.com/i/1000x1000/28/19/set-blank-vintage-frames-gift-tags-labels-vector-13982819.jpg"), []);
     
     
 
     const onClickHandleMaker = (idInfo) => {
 
         return () => {
-            history.push("/category/" + idInfo.slug)
+            history.push("/tag/" + idInfo.slug)
         };
     }
 
     return (
         <>
-            <Title title="Categories"/>
+            <Title title="Tags"/>
             <SubTitle>
-                List of all categories
+                List of all Tags
             </SubTitle>
             <EntriesList
                     listType={GALLERY}
@@ -62,4 +59,4 @@ const CategoriesList = () => {
     );
 }
 
-export default CategoriesList;
+export default TagsList;

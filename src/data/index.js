@@ -6,7 +6,10 @@ const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).j
 
 const tags = tagsLocal;
 const categories = categoriesLocal.map((c) => ({...c, 
-                                                idInfo: c.slug}));
+                                                idInfo: {
+                                                    slug: c.slug
+                                                }
+                                                }));
 const posts = postsLocal.map((p, i) => ({...p,
                                         slug: convertTitleToSlug(p.title),
                                         categories: p.categoryIDs.map((catID) => {
