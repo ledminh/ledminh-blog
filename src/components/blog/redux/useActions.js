@@ -8,6 +8,8 @@ import { showComments, hideComments,
 
 import { setCategoryCurrentPage, setCategoryCurrentPagi, setCurrentCategory } from "./category/actions";
 
+import { setCurrentSinglePost } from "./singlePost/actions";
+
 
 import { setFeatureImageURL } from "./featureImage/actions";
 
@@ -28,3 +30,5 @@ export const useCategoryActions = () => useActions({setCurrentPage: setCategoryC
 
 
 export const useFeatureImageActions = () => useActions({setFeatureImageURL});
+
+export const useSinglePostActions = () => useActions({setCurrentSinglePost});
