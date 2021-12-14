@@ -1,6 +1,6 @@
 import { useActions } from "../../../redux/useActions";
 
-import { showComments, hideComments, 
+import { showComments as showCommentsHome, hideComments as hideCommentsHome, 
             toggleComments, toggleFullPost, 
             setHomeCurrentPage,
             setHomeCurrentPagi,
@@ -8,13 +8,14 @@ import { showComments, hideComments,
 
 import { setCategoryCurrentPage, setCategoryCurrentPagi, setCurrentCategory } from "./category/actions";
 
-import { setCurrentSinglePost } from "./singlePost/actions";
+import { setCurrentSinglePost, showComments as showCommentSinglePost, hideComments as hideCommentSinglePost} from "./singlePost/actions";
 
 
 import { setFeatureImageURL } from "./featureImage/actions";
 
 export const useHomeActions = () => 
-                        useActions({showComments, hideComments, 
+                        useActions({showComments: showCommentsHome, 
+                                    hideComments: hideCommentsHome, 
                                     toggleComments, toggleFullPost,
                                     setMainPost,
                                     setCurrentPage: setHomeCurrentPage,
@@ -31,4 +32,6 @@ export const useCategoryActions = () => useActions({setCurrentPage: setCategoryC
 
 export const useFeatureImageActions = () => useActions({setFeatureImageURL});
 
-export const useSinglePostActions = () => useActions({setCurrentSinglePost});
+export const useSinglePostActions = () => useActions({setCurrentSinglePost,
+                                                        showComments: showCommentSinglePost, 
+                                                        hideComments: hideCommentSinglePost});

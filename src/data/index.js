@@ -2,12 +2,13 @@ import { find } from "lodash";
 
 import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal } from "./data"
 
-
+const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
 
 const tags = tagsLocal;
 const categories = categoriesLocal.map((c) => ({...c, 
                                                 idInfo: c.slug}));
 const posts = postsLocal.map((p, i) => ({...p,
+                                        slug: convertTitleToSlug(p.title),
                                         categories: p.categoryIDs.map((catID) => {
                                             let cat = find(categories, {id: catID});
 
@@ -56,7 +57,7 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
 }
 
 
-const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
+
 
 /* PUBLIC METHODS
 -------------------------------*/
@@ -97,7 +98,7 @@ export const  getCategory = (slug) => {
                     })
                     .map(p => ({
                         title: p.title,
-                        slug: convertTitleToSlug(p.title),
+                        slug: p.slug,
                         date_created: p.date_created,
                         author: p.author,
                         excerpt: p.excerpt
@@ -110,6 +111,11 @@ export const  getCategory = (slug) => {
     
 }
 
+/* CATEGORIES */
+export const getSinglePost = (slug) => {
+    let p = find(posts, {slug: slug});
 
+    return p;
+}
 
 
