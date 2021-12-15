@@ -1,7 +1,8 @@
-import { SET_CURRENT_PAGE, SET_CURRENT_PAGI, SET_CURRENT_CATEGORY } from "./actionTypes";
-import { getCategory } from "../../../../data";
+import { SET_CURRENT_TAG, SET_CURRENT_PAGI, SET_CURRENT_PAGE } from "./actionTypes";
+import { getTag } from "../../../../data";
 
 const initialState = {
+    name: "",
     numItemsPerPage: 5,
     currentPage: 1,
     numPagiButtons: 3,
@@ -13,12 +14,11 @@ const initialState = {
     }
 }
 
-const singleCategoryReducer = (state = initialState, action) => {
-    if(action.type === SET_CURRENT_CATEGORY) {
-        
+const singleTagPageReducer = (state = initialState, action) => {
+    if(action.type === SET_CURRENT_TAG) {
         return {
             ...state,
-            ...getCategory(action.slug, state.numItemsPerPage, 1),
+            ...getTag(action.name, state.numItemsPerPage, 1),
             currentPage: 1,        
             currentPagi: 1
         };
@@ -28,7 +28,7 @@ const singleCategoryReducer = (state = initialState, action) => {
         return {
             ...state,
             currentPage: action.page,
-            ...getCategory(state.slug, state.numItemsPerPage, action.page)
+            ...getTag(state.name, state.numItemsPerPage, action.page)
         };
     }
 
@@ -43,4 +43,4 @@ const singleCategoryReducer = (state = initialState, action) => {
 
 }
 
-export default singleCategoryReducer;
+export default singleTagPageReducer;

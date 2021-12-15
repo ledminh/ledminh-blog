@@ -13,6 +13,7 @@ import SinglePostPage from './components/SinglePostPage';
 
 import useFeatureImage from './redux/useFeatureImage';
 import TagsList from './components/TagsList';
+import SingleTagPage from './components/SingleTagPage';
 
 
 
@@ -26,6 +27,9 @@ const Blog = () => {
                 <FeatureImage feature_image_url ={featureImageURL} />
                 <MainContent>                         
                     <Switch>
+                        <Route path="/tag/:tagName">
+                            <SingleTagPage/>
+                        </Route>
                         <Route path="/tags">
                             <TagsList/>
                         </Route>

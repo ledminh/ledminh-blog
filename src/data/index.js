@@ -140,3 +140,33 @@ export const getTagsList = () => {
 
     return tags;
 }
+
+export const  getTag = (name, numItemsPerPage, pageNum) => {
+    let tag = find(tags, {name: name});
+
+    let ps = posts.filter(p => {
+                        return p.tagIDs.indexOf(tag.id) !== -1;
+                    })
+                    .map(p => ({
+                        title: p.title,
+                        idInfo:{
+                            slug: p.slug
+                        },
+                        date_created: p.date_created,
+                        author: p.author,
+                        excerpt: p.excerpt
+                    }));
+    
+    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+
+    
+    tag.posts = {
+        displayedPosts: displayedPosts,
+        totalPosts: ps.length,
+        endPrev: endPrev,
+        endNext: endNext
+    };
+
+    return tag;
+    
+}

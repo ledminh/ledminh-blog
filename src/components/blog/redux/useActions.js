@@ -11,6 +11,7 @@ import { setCurrentPagi as setCategoriesListCurrentPagi, setCurrentPage as setCa
 import { setCurrentSinglePost, showComments as showCommentSinglePost, hideComments as hideCommentSinglePost} from "./singlePost/actions";
 
 import { setCurrentCategory as setSingleCategoryCurrentCategory, setCurrentPage as setSingleCategoryCurrentPage, setCurrentPagi as setSingleCategoryCurrentPagi } from "./singleCategory/actions";
+import { setCurrentTag, setCurrentPage as setSingleTagCurrentPage, setCurrentPagi as setSingleTagCurrentPagi } from "./singleTagPage/actions";
 
 import { setFeatureImageURL } from "./featureImage/actions";
 
@@ -39,4 +40,8 @@ export const useSinglePostActions = () => useActions({setCurrentSinglePost,
 export const useSingleCategoryActions = () => useActions({setCurrentCategory: setSingleCategoryCurrentCategory,
                                                             setCurrentPage: setSingleCategoryCurrentPage,
                                                             setCurrentPagi: setSingleCategoryCurrentPagi                                                            
+                                                        });
+export const useSingleTagPageActions = () => useActions({setCurrentTag: setCurrentTag,
+                                                            setCurrentPage: setSingleTagCurrentPage,
+                                                            setCurrentPagi: setSingleTagCurrentPagi                                                            
                                                         });
