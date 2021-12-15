@@ -26,27 +26,9 @@
 
 
 /* Add prefix to metadata */
-.blog .subtitle .categories::before,
-.blog .subtitle .tags::before,
-.blog .subtitle .date-created::before,
-.blog .subtitle .author::before {
+.blog .subtitle .title {
     color: #3D5A80;
     font-weight: bold;
     font-style: normal;
 }
 
-.blog .subtitle .categories::before {
-    content: "Categories: "
-}
-
-.blog .subtitle .tags::before {
-    content: "Tags: ";
-}
-
-.blog .subtitle .date-created::before {
-    content: "Date: ";
-}
-
-.blog .subtitle .author::before {
-    content: "Author: ";
-}

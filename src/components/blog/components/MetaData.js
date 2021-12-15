@@ -9,6 +9,7 @@ const MetaData = ({showComments, categories, tags, date_created, comments, autho
     return (
         <>
             <span className="categories">
+                <span className="title link-on-title" onClick={() => history.push("/categories")}>Categories: </span>
                 {
                     categories.map((c, i) => <span key={c.slug} className="item">
                                                 <span className="link-on-title" onClick={() => history.push("/category/" + c.slug)}>{c.title}</span>
@@ -17,6 +18,7 @@ const MetaData = ({showComments, categories, tags, date_created, comments, autho
                 }
             </span>
             <span className="tags">
+                <span className="title link-on-title" onClick={() => history.push("/tags")}>Tags: </span>
                 {
                     tags.map((t, i) => <span key={t} className="item">
                                             <span className="link-on-title" onClick={() => history.push("/tag/" + t)}>{t}</span>
@@ -24,9 +26,9 @@ const MetaData = ({showComments, categories, tags, date_created, comments, autho
                                         </span>)
                 }
             </span>
-            <span className="date-created"><span className="link-on-title">{date_created}</span></span>
+            <span className="date-created"><span className="title link-on-title" onClick={() => history.push("/dates")}>Date created: </span><span className="link-on-title">{date_created}</span></span>
             <span className="comment-link link-on-title" onClick={showComments}>{comments.length} Comments</span>
-            <span className="author"><span className="link-on-title">{author}</span></span>
+            <span className="author"><span className="title link-on-title">Author: </span><span className="link-on-title" onClick={() => history.push("/authors")}>{author}</span></span>
         </>
     );
 }
