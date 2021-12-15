@@ -21,7 +21,7 @@ const posts = postsLocal.map((p, i) => ({...p,
                                             let cat = find(categories, {id: catID});
 
                                             return {
-                                                title: cat.title,
+                                                title: cat.name,
                                                 slug: cat.slug
                                             }
                                         }),

@@ -17,7 +17,7 @@ const Category = () => {
     const {setCurrentCategory, setCurrentPage, setCurrentPagi} = useSingleCategoryActions();
     const {setFeatureImageURL} = useFeatureImageActions();
 
-    const {title, meta_data, feature_image_url, posts, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useSingleCategory();
+    const {name, meta_data, feature_image_url, posts, numItemsPerPage, numPagiButtons, currentPage, currentPagi} = useSingleCategory();
     
     const {displayedPosts, endPrev, endNext} = posts;
 
@@ -40,7 +40,7 @@ const Category = () => {
     return (
         meta_data ?
         (<>
-            <Title title={title}/>
+            <Title title={name}/>
             <SubTitle>
                 {meta_data.cat_subtitle}
             </SubTitle>
