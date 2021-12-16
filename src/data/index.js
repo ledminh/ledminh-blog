@@ -1,8 +1,9 @@
-import { find } from "lodash";
+import { find, reduce } from "lodash";
 
 import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal } from "./data"
 
 const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
+export const convertDateToSlug = (date) => date.replace(',', '').toLowerCase().split(" ").splice(0).join("-");
 
 const tags = tagsLocal.map((t) => ({ ...t,
                                         idInfo: {
@@ -16,6 +17,10 @@ const categories = categoriesLocal.map((c) => ({...c,
                                                 }
                                                 }));
 const posts = postsLocal.map((p, i) => ({...p,
+                                        date_created: {
+                                            text: p.date_created,
+                                            slug: convertDateToSlug(p.date_created)
+                                        },
                                         slug: convertTitleToSlug(p.title),
                                         categories: p.categoryIDs.map((catID) => {
                                             let cat = find(categories, {id: catID});
@@ -124,6 +129,9 @@ export const  getCategory = (slug, numItemsPerPage, pageNum) => {
         endNext: endNext
     };
 
+    cat.featureImage = {
+        url: cat.feature_image_url
+    }
     return cat;
     
 }
@@ -169,4 +177,23 @@ export const  getTag = (name, numItemsPerPage, pageNum) => {
 
     return tag;
     
+}
+
+/* DATES LIST */
+export const getDatesList = () => {
+    let datesList = reduce(posts, (dsL, p) => {
+                            if(dsL.indexOf(p.date_created.text) === -1){
+                                dsL.push(p.date_created.text)
+                            }
+
+                            return dsL;
+                        }, [])
+                        .map(date => ({
+                            name: date,
+                            idInfo: {
+                                slug: convertDateToSlug(date)
+                            }
+                        }));
+
+    return datesList;
 }

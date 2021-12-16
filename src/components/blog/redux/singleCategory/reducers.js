@@ -10,6 +10,9 @@ const initialState = {
         displayedPosts: [], 
         endPrev:false, 
         endNext: false
+    },
+    featureImage: {
+        url: ""
     }
 }
 

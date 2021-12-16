@@ -7,6 +7,7 @@ import featureImageReducer from "./featureImage/reducers";
 import singlePostReducer from "./singlePost/reducers";
 import tagsListReducer from "./tagsList/reducers";
 import singleTagPageReducer from "./singleTagPage/reducers";
+import datesListReducer from "./datesList/reducers";
 
 const blogReducer = combineReducers({
    home: homeReducer,
@@ -15,7 +16,8 @@ const blogReducer = combineReducers({
    singleTagPage: singleTagPageReducer,
    featureImage: featureImageReducer,
    singlePost: singlePostReducer,
-   singleCategory: singleCategoryReducer
+   singleCategory: singleCategoryReducer,
+   datesList: datesListReducer
 });
 
 

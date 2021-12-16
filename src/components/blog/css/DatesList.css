@@ -1,0 +1,16 @@
+.blog .dates-list {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.blog .dates-list .date {
+    cursor: pointer;
+
+}
+
+.blog .dates-list .date:hover {
+    color: #dd4b39;
+    border-bottom: #dd4b39 solid 1px;
+    
+}

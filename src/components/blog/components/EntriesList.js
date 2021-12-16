@@ -91,8 +91,8 @@ const GalerryEntry = ({ idInfo, feature_image_url, title, meta_data, onClickHand
                             Object.keys(meta_data).map(
                                 (key, i) => 
                                         (
-                                            <span key={key + meta_data[key]}>
-                                                <span className={key}>{meta_data[key]}</span>
+                                            <span key={key + ((key === "date_created")? meta_data[key].text : meta_data[key])}>
+                                                <span className={key}>{(key === "date_created")? meta_data[key].text : meta_data[key]}</span>
                                                 {
                                                     (i === Object.keys(meta_data).length - 1) ?
                                                         <span></span>
@@ -119,7 +119,7 @@ const VerticalEntry =  ({title, date_created, author, excerpt, idInfo, onClickHa
             onClick={onClickHandle}
             >
             <h4>{title}</h4>
-            <div className="meta-data"><h6>{date_created} - {author} </h6></div>
+            <div className="meta-data"><h6>{date_created.text} - {author} </h6></div>
             <div className="excerpt">{excerpt}</div>
         </div>
     )
