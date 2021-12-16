@@ -11,6 +11,9 @@ const initialState = {
         displayedPosts: [], 
         endPrev:false, 
         endNext: false
+    },
+    featureImage : {
+        url: "https://cdn5.vectorstock.com/i/1000x1000/28/19/set-blank-vintage-frames-gift-tags-labels-vector-13982819.jpg" 
     }
 }
 

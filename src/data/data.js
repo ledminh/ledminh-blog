@@ -49,7 +49,7 @@ export const categories = [
     {
         id: "cat-12345",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Nature",
+        title: "Nature",
         slug: "nature",
         meta_data:  {
             cat_subtitle: "Something about nature"
@@ -59,7 +59,7 @@ export const categories = [
     {
         id: "cat-12346",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Human",
+        title: "Human",
         slug: "human",
         meta_data:  {
             cat_subtitle: "Something about human"
@@ -70,7 +70,7 @@ export const categories = [
     {
         id: "cat-123332",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Food",
+        title: "Food",
         slug: "food",
         meta_data:  {
             cat_subtitle: "Food is my life"
@@ -80,7 +80,7 @@ export const categories = [
     {
         id: "cat-1234112",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Technology",
+        title: "Technology",
         slug: "technology",
         meta_data:  {
             cat_subtitle: "Technology changes the way we live"
@@ -91,7 +91,7 @@ export const categories = [
     {
         id: "cat-12341197",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Nuclear Energy",
+        title: "Nuclear Energy",
         slug: "nuclear-energy",
         meta_data:  {
             cat_subtitle: "Everything about nuclear energy"
@@ -101,7 +101,7 @@ export const categories = [
     {
         id: "cat-1239999",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Critical Thinking",
+        title: "Critical Thinking",
         slug: "critical-thinking",
         meta_data:  {
             cat_subtitle: "Basic on critical thinking"
@@ -111,7 +111,7 @@ export const categories = [
     {
         id: "cat-12391299",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Alan Turning",
+        title: "Alan Turning",
         slug: "alan-turning",
         meta_data:  {
             cat_subtitle: "The life of Alan Turning"
@@ -121,7 +121,7 @@ export const categories = [
     {
         id: "cat-1237499",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Vaccine",
+        title: "Vaccine",
         slug: "vaccine",
         meta_data:  {
             cat_subtitle: "History of Vaccine"
@@ -131,7 +131,7 @@ export const categories = [
     {
         id: "cat-121337499",
         feature_image_url: "https://loremflickr.com/800/600",
-        name: "Geography",
+        title: "Geography",
         slug: "geography",
         meta_data:  {
             cat_subtitle: "Learning Geography"

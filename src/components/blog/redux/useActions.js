@@ -37,11 +37,11 @@ export const useSinglePostActions = () => useActions({setCurrentSinglePost,
                                                         showComments: showCommentSinglePost, 
                                                         hideComments: hideCommentSinglePost});
 
-export const useSingleCategoryActions = () => useActions({setCurrentCategory: setSingleCategoryCurrentCategory,
+export const useSingleCategoryActions = () => useActions({setCurrentItem: setSingleCategoryCurrentCategory,
                                                             setCurrentPage: setSingleCategoryCurrentPage,
                                                             setCurrentPagi: setSingleCategoryCurrentPagi                                                            
                                                         });
-export const useSingleTagPageActions = () => useActions({setCurrentTag: setCurrentTag,
+export const useSingleTagPageActions = () => useActions({setCurrentItem: setCurrentTag,
                                                             setCurrentPage: setSingleTagCurrentPage,
                                                             setCurrentPagi: setSingleTagCurrentPagi                                                            
                                                         });

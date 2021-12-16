@@ -8,12 +8,11 @@ import BlogNavigationBar from './components/BlogNavigationBar';
 import FeatureImage from './components/FeatureImage';
 import Home from './components/Home';
 import CategoriesList from './components/CategoriesList';
-import Category from './components/Category';
 import SinglePostPage from './components/SinglePostPage';
 
 import useFeatureImage from './redux/useFeatureImage';
 import TagsList from './components/TagsList';
-import SingleTagPage from './components/SingleTagPage';
+import PostsList, { PL_SINGLE_CATEGORY, PL_SINGLE_TAG_PAGE } from './components/PostsList';
 
 
 
@@ -27,8 +26,8 @@ const Blog = () => {
                 <FeatureImage feature_image_url ={featureImageURL} />
                 <MainContent>                         
                     <Switch>
-                        <Route path="/tag/:tagName">
-                            <SingleTagPage/>
+                        <Route path="/tag/:idInfo">
+                            <PostsList type={PL_SINGLE_TAG_PAGE} />
                         </Route>
                         <Route path="/tags">
                             <TagsList/>
@@ -36,8 +35,8 @@ const Blog = () => {
                         <Route path="/post/:slug">
                             <SinglePostPage/>
                         </Route>
-                        <Route path="/category/:slug">
-                            <Category/>
+                        <Route path="/category/:idInfo">
+                            <PostsList type={PL_SINGLE_CATEGORY} />
                         </Route> 
                         <Route path="/categories">
                             <CategoriesList />
