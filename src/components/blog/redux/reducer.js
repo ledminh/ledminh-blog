@@ -8,6 +8,7 @@ import singlePostReducer from "./singlePost/reducers";
 import tagsListReducer from "./tagsList/reducers";
 import singleTagPageReducer from "./singleTagPage/reducers";
 import datesListReducer from "./datesList/reducers";
+import singleDatePageReducer from "./singleDatePage/reducers";
 
 const blogReducer = combineReducers({
    home: homeReducer,
@@ -17,7 +18,8 @@ const blogReducer = combineReducers({
    featureImage: featureImageReducer,
    singlePost: singlePostReducer,
    singleCategory: singleCategoryReducer,
-   datesList: datesListReducer
+   datesList: datesListReducer,
+   singleDatePage: singleDatePageReducer
 });
 
 

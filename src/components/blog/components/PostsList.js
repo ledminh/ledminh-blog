@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import { useSingleTagPageActions, useFeatureImageActions, useSingleCategoryActions } from "../redux/useActions";
+import { useSingleTagPageActions, useFeatureImageActions, useSingleCategoryActions, useSingleDatePageActions } from "../redux/useActions";
 
 
 
@@ -12,10 +12,11 @@ import '../css/CategoryPosts.css';
 import { VERTICAL_LIST } from "./EntriesList";
 import useSingleCategory from "../redux/useSingleCategory";
 import useSingleTagPage from "../redux/useSingleTagPage";
-
+import useSingleDatePage from "../redux/useSingleDatePage";
 
 export const PL_SINGLE_TAG_PAGE = "TYPE/POSTS_LIST/SINGLE_TAG_PAGE";
 export const PL_SINGLE_CATEGORY = "TYPE/POSTS_LIST/SINGLE_CATEGORY";
+export const PL_SINGLE_DATE_PAGE = "TYPE/POSTS_LIST/SINGLE_DATE_PAGE";
 
 const PostsList = ({type}) => {
     // Get props based on type of list
@@ -91,9 +92,14 @@ const useProps = (type) => {
         
     }
 
-    
+    if(type === PL_SINGLE_DATE_PAGE){
+        useData = useSingleDatePage;
+        useActions = useSingleDatePageActions;
+    }
 
-    let {title, name, posts, meta_data, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage} = useData();
+    
+    let data = useData();
+    let {title, name, posts, meta_data, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage} = data;
     let {setCurrentItem, setCurrentPage, setCurrentPagi} = useActions();
     
     const {displayedPosts, totalPosts, endPrev, endNext} = posts;
@@ -102,12 +108,18 @@ const useProps = (type) => {
     let subtitle = "";
     
     if(type === PL_SINGLE_TAG_PAGE){
-        title = "#" + name;
+        title = (name !== "")? ("#" + name) : "";
         subtitle = "List of posts under #" + name;       
     }
 
     if(type === PL_SINGLE_CATEGORY) {
         subtitle = meta_data? meta_data.cat_subtitle : ""
+    }
+
+    if(type === PL_SINGLE_DATE_PAGE) {
+        
+        title = (name !== "")? ("On "  + name) : "";
+        subtitle = "List of posted published on " + name;
     }
 
     return [setCurrentItem, setCurrentPage, setCurrentPagi,

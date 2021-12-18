@@ -14,6 +14,7 @@ import { setCurrentCategory as setSingleCategoryCurrentCategory, setCurrentPage 
 import { setCurrentTag, setCurrentPage as setSingleTagCurrentPage, setCurrentPagi as setSingleTagCurrentPagi } from "./singleTagPage/actions";
 
 import { setFeatureImageURL } from "./featureImage/actions";
+import { setCurrentDate, setCurrentPage as setDatePageCurrentPage, setCurrentPagi as setDatePageCurrentPagi } from "./singleDatePage/actions";
 
 export const useHomeActions = () => 
                         useActions({showComments: showCommentsHome, 
@@ -44,4 +45,9 @@ export const useSingleCategoryActions = () => useActions({setCurrentItem: setSin
 export const useSingleTagPageActions = () => useActions({setCurrentItem: setCurrentTag,
                                                             setCurrentPage: setSingleTagCurrentPage,
                                                             setCurrentPagi: setSingleTagCurrentPagi                                                            
+                                                        });
+
+export const useSingleDatePageActions = () => useActions({ setCurrentItem: setCurrentDate,
+                                                            setCurrentPage: setDatePageCurrentPage,
+                                                            setCurrentPagi: setDatePageCurrentPagi
                                                         });

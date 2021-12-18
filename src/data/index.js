@@ -194,6 +194,42 @@ export const getDatesList = () => {
                                 slug: convertDateToSlug(date)
                             }
                         }));
-
+    
     return datesList;
+}
+
+/* SINGLE DATE PAGE */
+export const getPostsOnDate = (slug, numItemsPerPage, pageNum) => {
+    const dates = getDatesList();
+
+    let date = find(dates, {idInfo: {slug: slug}});
+    
+
+    let ps = posts.filter(p => {
+                        return p.date_created.slug === slug;
+                    })
+                    .map(p => ({
+                        title: p.title,
+                        idInfo:{
+                            slug: p.slug
+                        },
+                        date_created: p.date_created,
+                        author: p.author,
+                        excerpt: p.excerpt
+                    }));
+    
+    
+
+    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+
+    date.posts = {
+        displayedPosts: displayedPosts,
+        totalPosts: ps.length,
+        endPrev: endPrev,
+        endNext: endNext
+    };
+
+    
+    return date;
+    
 }

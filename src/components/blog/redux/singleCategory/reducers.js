@@ -2,14 +2,16 @@ import { SET_CURRENT_PAGE, SET_CURRENT_PAGI, SET_CURRENT_CATEGORY } from "./acti
 import { getCategory } from "../../../../data";
 
 const initialState = {
+    title: "",
     numItemsPerPage: 5,
     currentPage: 1,
     numPagiButtons: 3,
     currentPagi: 1,
     posts: {
-        displayedPosts: [], 
+        totalPosts: 0,
+        displayedPosts: [],
         endPrev:false, 
-        endNext: false
+        endNext: false, 
     },
     featureImage: {
         url: ""

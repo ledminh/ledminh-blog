@@ -8,6 +8,7 @@ const initialState = {
     numPagiButtons: 3,
     currentPagi: 1,
     posts: {
+        totalPosts: 0,
         displayedPosts: [], 
         endPrev:false, 
         endNext: false
