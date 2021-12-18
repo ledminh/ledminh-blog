@@ -14,6 +14,7 @@ import useFeatureImage from './redux/useFeatureImage';
 import TagsList from './components/TagsList';
 import PostsList, { PL_SINGLE_CATEGORY, PL_SINGLE_DATE_PAGE, PL_SINGLE_TAG_PAGE } from './components/PostsList';
 import DatesList from './components/DatesList';
+import AuthorsList from './components/AuthorsList';
 
 
 
@@ -27,6 +28,9 @@ const Blog = () => {
                 <FeatureImage feature_image_url ={featureImageURL} />
                 <MainContent>                         
                     <Switch>
+                        <Route path="/authors">
+                            <AuthorsList />
+                        </Route>
                         <Route path="/date/:idInfo">
                             <PostsList type={PL_SINGLE_DATE_PAGE} />
                         </Route>

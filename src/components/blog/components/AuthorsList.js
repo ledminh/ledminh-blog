@@ -32,6 +32,8 @@ const AuthorsList = () => {
         };
     }
 
+    console.log(authorsList);
+
     return (
         <>
             <Title title="Authors"/>
