@@ -32,7 +32,7 @@ const AuthorsList = () => {
         };
     }
 
-    console.log(authorsList);
+    
 
     return (
         <>
@@ -41,19 +41,18 @@ const AuthorsList = () => {
                 List of all authors
             </SubTitle>
             <div className="authors-list">
-                <ul>
                 {
-                    data.map((d)  => (
-                        <li key={d.name}>
-                            <Author
-                                onClickHandleMaker={onClickHandleMaker}
-                                idInfo={d.idInfo}
-                                name={d.name}
-                            />
-                        </li>
+                    data.map((d)  => (                        
+                        <Author
+                            key={d.name}
+                            onClickHandleMaker={onClickHandleMaker}
+                            idInfo={d.idInfo}
+                            name={d.name}
+                            slogan={d.slogan}
+                            profilePictureURL={d.profilePicture.url}
+                        />
                     ))
                 }
-                </ul>
             </div>
         </>
     );
@@ -62,14 +61,16 @@ const AuthorsList = () => {
 export default AuthorsList;
 
 
-const Author = ({onClickHandleMaker, idInfo, name}) => {
+const Author = ({onClickHandleMaker, idInfo, name, slogan, profilePictureURL}) => {
     const onClickHandle = onClickHandleMaker(idInfo);
 
     return (
-        <span className="author"
+        <div className="author"
             onClick = {onClickHandle}
         >
-            {name}
-        </span>
+            <div>{name}</div>
+            <div>{slogan}</div>
+            <img alt={name + " profile"} src={profilePictureURL}></img>
+        </div>
     )
 }

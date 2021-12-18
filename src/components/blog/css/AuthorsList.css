@@ -1,7 +1,11 @@
 .blog .authors-list {
-
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .blog .authors-list .author {
-    
+    width: 33%;
 }
