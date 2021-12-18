@@ -5,7 +5,7 @@ export const authors = [
         name: "Minh Le",
         slogan: "This is the slogan of author Minh Le",
         profilePicture :{
-            url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
     },
 
@@ -15,7 +15,7 @@ export const authors = [
         name: "Rockie Mountain",
         slogan: "This is the slogan of author Rockie Mountain",
         profilePicture :{
-            url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
     },
 
@@ -25,7 +25,7 @@ export const authors = [
         name: "Timolee West",
         slogan: "This is the slogan of author Timolee West",
         profilePicture :{
-            url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
     },
 
@@ -35,7 +35,7 @@ export const authors = [
         name: "Bruce Willis",
         slogan: "This is the slogan of author Bruce Willis",
         profilePicture :{
-            url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
     },
 
@@ -45,7 +45,7 @@ export const authors = [
         name: "Peterson Mike",
         slogan: "This is the slogan of author Peterson Mike",
         profilePicture :{
-            url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
     },
 
@@ -55,7 +55,7 @@ export const authors = [
         name: "Kimberly Adolf",
         slogan: "This is the slogan of author Kimberly Adolf",
         profilePicture :{
-            url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+            url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
     },
 

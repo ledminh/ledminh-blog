@@ -1,11 +1,49 @@
 .blog .authors-list {
     width: 90%;
+    height: auto;
     margin: auto;
     margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .blog .authors-list .author {
-    width: 33%;
+    
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 2px gray;
+    cursor: pointer;
+}
+
+.blog .authors-list .author .feature-image {
+    border-radius: 50%;
+    height: auto;
+}
+
+.blog .authors-list .author .name {
+    text-align: center;
+
+}
+
+.blog .authors-list .author .slogan {
+    text-align: center;
+}
+
+.blog .authors-list .author:hover {
+    box-shadow: 0 0 4px gray;
+}
+
+.blog .authors-list .author:hover .feature-image {
+    box-shadow: 0 0 5px gray;
+}
+
+.blog .authors-list .author:hover .name {
+    text-shadow: 0 0 1px black;
+}
+
+.blog .authors-list .author:hover .slogan {
+    color: #b85840;
+    text-shadow: 0 0 1px black;
 }

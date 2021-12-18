@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import useAuthorsList from "../redux/useAuthorsList";
 
 import '../css/AuthorsList.css';
+import FeatureImage from "./FeatureImage";
 
 
 const AuthorsList = () => {
@@ -68,9 +69,12 @@ const Author = ({onClickHandleMaker, idInfo, name, slogan, profilePictureURL}) =
         <div className="author"
             onClick = {onClickHandle}
         >
-            <div>{name}</div>
-            <div>{slogan}</div>
-            <img alt={name + " profile"} src={profilePictureURL}></img>
+            <FeatureImage 
+                feature_image_url={profilePictureURL} 
+                altText={name + " profile"}
+                />
+            <div className="name"><h4>{name}</h4></div>
+            <div className="slogan">{slogan}</div>
         </div>
     )
 }
