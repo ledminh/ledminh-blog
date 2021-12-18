@@ -31,7 +31,7 @@ const MetaData = ({showComments, categories, tags, date_created, comments, autho
                 <span className="link-on-title" onClick={() => history.push("/date/" + date_created.slug)}>{date_created.text}</span>
             </span>
             <span className="comment-link link-on-title" onClick={showComments}>{comments.length} Comments</span>
-            <span className="author"><span className="title link-on-title">Author: </span><span className="link-on-title" onClick={() => history.push("/authors")}>{author}</span></span>
+            <span className="author"><span className="title link-on-title" onClick={() => history.push("/authors")}>Author: </span><span className="link-on-title">{author.name}</span></span>
         </>
     );
 }

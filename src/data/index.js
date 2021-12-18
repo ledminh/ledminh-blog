@@ -1,6 +1,6 @@
 import { find, reduce } from "lodash";
 
-import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal } from "./data"
+import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal, authors as authorsLocal } from "./data"
 
 const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
 export const convertDateToSlug = (date) => date.replace(',', '').toLowerCase().split(" ").splice(0).join("-");
@@ -34,7 +34,8 @@ const posts = postsLocal.map((p, i) => ({...p,
                                             let tag = find(tags, {id: tagID});
 
                                             return tag.name;
-                                        })
+                                        }),
+                                        author: find(authorsLocal, {id: p.authorID}) 
                                         }))
 
 

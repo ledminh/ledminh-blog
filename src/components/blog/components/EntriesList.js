@@ -38,7 +38,7 @@ const EntriesList = ({onClickHandleMaker,
                                 key={e.title}
                                 title={e.title}
                                 date_created={e.date_created}
-                                author={e.author}
+                                author={e.author.name}
                                 excerpt={e.excerpt}
                                 idInfo={e.idInfo}
                                 onClickHandleMaker={onClickHandleMaker}
@@ -91,8 +91,12 @@ const GalerryEntry = ({ idInfo, feature_image_url, title, meta_data, onClickHand
                             Object.keys(meta_data).map(
                                 (key, i) => 
                                         (
-                                            <span key={key + ((key === "date_created")? meta_data[key].text : meta_data[key])}>
-                                                <span className={key}>{(key === "date_created")? meta_data[key].text : meta_data[key]}</span>
+                                            <span key={key + ((key === "date_created")? meta_data[key].text 
+                                                                                    :((key === "author")? meta_data[key].name 
+                                                                                    : meta_data[key]))}>
+                                                <span className={key}>{((key === "date_created")? meta_data[key].text 
+                                                                                    :((key === "author")? meta_data[key].name 
+                                                                                    : meta_data[key]))}</span>
                                                 {
                                                     (i === Object.keys(meta_data).length - 1) ?
                                                         <span></span>
