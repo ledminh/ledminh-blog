@@ -15,6 +15,7 @@ import { setCurrentTag, setCurrentPage as setSingleTagCurrentPage, setCurrentPag
 
 import { setFeatureImageURL } from "./featureImage/actions";
 import { setCurrentDate, setCurrentPage as setDatePageCurrentPage, setCurrentPagi as setDatePageCurrentPagi } from "./singleDatePage/actions";
+import { setCurrentAuthor, setCurrentPage as setAuthorPageCurrentPage, setCurrentPagi as setAuthorPageCurrentPagi } from "./authorPage/actions";
 
 export const useHomeActions = () => 
                         useActions({showComments: showCommentsHome, 
@@ -50,4 +51,9 @@ export const useSingleTagPageActions = () => useActions({setCurrentItem: setCurr
 export const useSingleDatePageActions = () => useActions({ setCurrentItem: setCurrentDate,
                                                             setCurrentPage: setDatePageCurrentPage,
                                                             setCurrentPagi: setDatePageCurrentPagi
+                                                        });
+
+export const useAuthorPageActions = () => useActions({ setCurrentItem: setCurrentAuthor,
+                                                            setCurrentPage: setAuthorPageCurrentPage,
+                                                            setCurrentPagi: setAuthorPageCurrentPagi
                                                         });

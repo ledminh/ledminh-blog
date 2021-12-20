@@ -32,7 +32,7 @@
 }
 
 .blog .authors-list .author:hover {
-    box-shadow: 0 0 4px gray;
+    box-shadow: 0 0 4px #b85840;
 }
 
 .blog .authors-list .author:hover .feature-image {

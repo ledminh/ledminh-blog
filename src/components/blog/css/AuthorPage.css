@@ -1,0 +1,26 @@
+.blog .author-page .author-info {
+    display: flex;
+    flex-flow: row wrap;
+
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.blog .author-page .author-info img {
+    width: 28%;
+    height: auto;
+    padding: 10px;
+    object-fit: cover;
+}
+
+.blog .author-page .author-info .bio {
+    width: 70%;
+    border-left: 1px solid gray;
+    padding-left: 10px;
+}
+
+.blog .author-page .posts-list {
+    margin-top: 15px;
+    
+}

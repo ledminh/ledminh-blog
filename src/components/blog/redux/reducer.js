@@ -10,6 +10,7 @@ import singleTagPageReducer from "./singleTagPage/reducers";
 import datesListReducer from "./datesList/reducers";
 import singleDatePageReducer from "./singleDatePage/reducers";
 import authorsListReducer from "./authorsList/reducers";
+import authorPageReducer from "./authorPage/reducers";
 
 const blogReducer = combineReducers({
    home: homeReducer,
@@ -21,7 +22,8 @@ const blogReducer = combineReducers({
    singleCategory: singleCategoryReducer,
    datesList: datesListReducer,
    singleDatePage: singleDatePageReducer,
-   authorsList: authorsListReducer
+   authorsList: authorsListReducer,
+   authorPage: authorPageReducer
 });
 
 

@@ -244,3 +244,33 @@ export const getPostsOnDate = (slug, numItemsPerPage, pageNum) => {
 
 /* AUTHORS LIST */
 export const getAuthorsList = () => authors;
+
+
+
+export const getAuthor = (slug, numItemsPerPage, pageNum) => {
+    let author = find(authors, {idInfo: {slug: slug}});
+
+    let ps = posts.filter(p => {
+                                return p.authorID === author.id
+                            })
+                            .map(p => ({
+                                title: p.title,
+                                idInfo:{
+                                    slug: p.slug
+                                },
+                                date_created: p.date_created,
+                                author: p.author,
+                                excerpt: p.excerpt
+                            }));
+    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+
+    author.posts = {
+        displayedPosts: displayedPosts,
+        totalPosts: ps.length,
+        endPrev: endPrev,
+        endNext: endNext
+    };
+
+    
+    return author;
+}

@@ -15,6 +15,7 @@ import TagsList from './components/TagsList';
 import PostsList, { PL_SINGLE_CATEGORY, PL_SINGLE_DATE_PAGE, PL_SINGLE_TAG_PAGE } from './components/PostsList';
 import DatesList from './components/DatesList';
 import AuthorsList from './components/AuthorsList';
+import AuthorPage from './components/AuthorPage';
 
 
 
@@ -28,6 +29,9 @@ const Blog = () => {
                 <FeatureImage feature_image_url ={featureImageURL} />
                 <MainContent>                         
                     <Switch>
+                        <Route path="/author/:idInfo">
+                            <AuthorPage />
+                        </Route>
                         <Route path="/authors">
                             <AuthorsList />
                         </Route>

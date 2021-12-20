@@ -4,6 +4,9 @@ export const authors = [
         username: "ledminh",
         name: "Minh Le",
         slogan: "This is the slogan of author Minh Le",
+        bio: {
+            text: "<p>Quis non voluptate qui qui. Do Lorem pariatur officia anim consectetur. Exercitation pariatur aliquip esse et ad consectetur nulla duis consectetur pariatur aliquip.</p> <p>Fugiat magna occaecat duis veniam. Culpa deserunt cillum nisi consequat magna ea aliquip cupidatat occaecat. Irure culpa elit commodo tempor labore laborum excepteur aute do minim dolor eiusmod.</p> <p>Consectetur pariatur tempor minim est mollit anim magna.</p>"
+        },
         profilePicture :{
             url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
@@ -14,6 +17,9 @@ export const authors = [
         username: "rokie",
         name: "Rockie Mountain",
         slogan: "This is the slogan of author Rockie Mountain",
+        bio: {
+            text: "<p>Quis non voluptate qui qui. Do Lorem pariatur officia anim consectetur. Exercitation pariatur aliquip esse et ad consectetur nulla duis consectetur pariatur aliquip.</p> <p>Fugiat magna occaecat duis veniam. Culpa deserunt cillum nisi consequat magna ea aliquip cupidatat occaecat. Irure culpa elit commodo tempor labore laborum excepteur aute do minim dolor eiusmod.</p> <p>Consectetur pariatur tempor minim est mollit anim magna.</p>"
+        },
         profilePicture :{
             url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
@@ -24,6 +30,9 @@ export const authors = [
         username: "funfun",
         name: "Timolee West",
         slogan: "This is the slogan of author Timolee West",
+        bio: {
+            text: "<p>Quis non voluptate qui qui. Do Lorem pariatur officia anim consectetur. Exercitation pariatur aliquip esse et ad consectetur nulla duis consectetur pariatur aliquip.</p> <p>Fugiat magna occaecat duis veniam. Culpa deserunt cillum nisi consequat magna ea aliquip cupidatat occaecat. Irure culpa elit commodo tempor labore laborum excepteur aute do minim dolor eiusmod.</p> <p>Consectetur pariatur tempor minim est mollit anim magna.</p>"
+        },
         profilePicture :{
             url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
@@ -34,6 +43,9 @@ export const authors = [
         username: "brucely",
         name: "Bruce Willis",
         slogan: "This is the slogan of author Bruce Willis",
+        bio: {
+            text: "<p>Quis non voluptate qui qui. Do Lorem pariatur officia anim consectetur. Exercitation pariatur aliquip esse et ad consectetur nulla duis consectetur pariatur aliquip.</p> <p>Fugiat magna occaecat duis veniam. Culpa deserunt cillum nisi consequat magna ea aliquip cupidatat occaecat. Irure culpa elit commodo tempor labore laborum excepteur aute do minim dolor eiusmod.</p> <p>Consectetur pariatur tempor minim est mollit anim magna.</p>"
+        },
         profilePicture :{
             url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
@@ -44,6 +56,9 @@ export const authors = [
         username: "peterson",
         name: "Peterson Mike",
         slogan: "This is the slogan of author Peterson Mike",
+        bio: {
+            text: "<p>Quis non voluptate qui qui. Do Lorem pariatur officia anim consectetur. Exercitation pariatur aliquip esse et ad consectetur nulla duis consectetur pariatur aliquip.</p> <p>Fugiat magna occaecat duis veniam. Culpa deserunt cillum nisi consequat magna ea aliquip cupidatat occaecat. Irure culpa elit commodo tempor labore laborum excepteur aute do minim dolor eiusmod.</p> <p>Consectetur pariatur tempor minim est mollit anim magna.</p>"
+        },
         profilePicture :{
             url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
@@ -54,6 +69,9 @@ export const authors = [
         username: "KimAdole",
         name: "Kimberly Adolf",
         slogan: "This is the slogan of author Kimberly Adolf",
+        bio: {
+            text: "<p>Quis non voluptate qui qui. Do Lorem pariatur officia anim consectetur. Exercitation pariatur aliquip esse et ad consectetur nulla duis consectetur pariatur aliquip.</p> <p>Fugiat magna occaecat duis veniam. Culpa deserunt cillum nisi consequat magna ea aliquip cupidatat occaecat. Irure culpa elit commodo tempor labore laborum excepteur aute do minim dolor eiusmod.</p> <p>Consectetur pariatur tempor minim est mollit anim magna.</p>"
+        },
         profilePicture :{
             url: "https://www.seekpng.com/png/detail/202-2024774_my-profile-comments-my-profile-icon-png.png"
         }
