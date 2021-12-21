@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { getSinglePost } from "../../../../data";
+import { REFRESH_COMMENTS } from "../Comments";
 import { SET_CURRENT_SINGLE_POST, SHOW_COMMENTS, HIDE_COMMENTS } from "./actionTypes";
 
 
@@ -10,6 +11,11 @@ const postReducer = (state = {}, action) => {
         return getSinglePost(action.slug);
     }
 
+    if(action.type === REFRESH_COMMENTS) {
+        
+        return state;
+
+    }
 
     return state;
 }

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import { getDisplayedPosts, getMainPost, getNumPosts } from "../../../../data";
+import { REFRESH_COMMENTS } from "../Comments";
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
             TOGGLE_FULLPOST, SET_CURRENT_PAGE, SET_CURRENT_PAGI,
             SET_MAIN_POST} from "./actionTypes";
@@ -30,6 +31,18 @@ const dataReducer = (state = dataInitialState, action) => {
         return {
             ...state,
             mainPost: getMainPost(action.id), //action.id is mainPost's ID, it's used to get the main post (obviously)
+            displayedPosts: displayedEntries,
+            endPrev: endPrev,
+            endNext: endNext,            
+        }
+    }
+
+    if(action.type === REFRESH_COMMENTS){
+        const [displayedEntries, endPrev, endNext] = getDisplayedPosts(state.mainPost.id, state.numItemsPerPage, state.currentPage);
+        
+        return {
+            ...state,
+            mainPost: getMainPost(state.mainPost.id), //action.id is mainPost's ID, it's used to get the main post (obviously)
             displayedPosts: displayedEntries,
             endPrev: endPrev,
             endNext: endNext,            

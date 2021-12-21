@@ -49,6 +49,7 @@ const SinglePostPage = () => {
                     hideComments={hideComments}
                     showCommentsStatus={showCommentsStatus} 
                     comments={post.comments}
+                    postID={post.id}
                     />
             </>
         ):

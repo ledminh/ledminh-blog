@@ -45,6 +45,7 @@ const MainPost = () => {
                 hideComments={actions.hideComments}
                 showCommentsStatus={showComments} 
                 comments={mainPost.comments}
+                postID={mainPost.id}
                 />
         </>
     );

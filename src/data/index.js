@@ -274,3 +274,14 @@ export const getAuthor = (slug, numItemsPerPage, pageNum) => {
     
     return author;
 }
+
+
+/* COMMENTS */
+export const addComment = ({postID, author, content}) => {
+    const i = posts.findIndex((p) => p.id === postID);
+    const comments = posts[i].comments.slice();
+    comments.unshift({author: author, content: content})
+    posts[i].comments = comments;
+
+    
+}
