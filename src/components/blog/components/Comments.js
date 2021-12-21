@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import '../css/Comments.css';
 import { addComment as saveToData} from '../../../data';
 
+
+
 const Comments = ({ postID, hideComments, showCommentsStatus, comments }) => {
     
     const [commentsLocal, setCommentsLocal] = useState([]);
@@ -22,6 +24,7 @@ const Comments = ({ postID, hideComments, showCommentsStatus, comments }) => {
     
 
     return (
+
         <div className={"comments" + (showCommentsStatus ? " show" : " hidden")}>
             <div className="title">
                 <span className="text"><h4>COMMENTS</h4></span>
@@ -35,7 +38,7 @@ const Comments = ({ postID, hideComments, showCommentsStatus, comments }) => {
                 key={c.content}
                 author={c.author}
                 content={c.content}
-                 />)
+                />)
             )}
 
         </div>
@@ -44,19 +47,34 @@ const Comments = ({ postID, hideComments, showCommentsStatus, comments }) => {
 
 export default Comments;
 
-
+const processComment = (comment) => comment.split("\n")
+                                            .map(s => "<p>" + s + "</p>")
+                                            .join("");
 
 const AddComment = ({postID, addComment}) => {
 
     const [author, setAuthor] = useState("");
     const [comment, setComment] = useState("");
+    const [error, setError] = useState("");
+    
+    
 
-    
-    
     const submitForm = () => {
+        if(author === "") {
+            setError("Author's name is empty!!!");
+            return;
+        }
+        
+        if(comment === "") {
+            setError("Comment is empty!!!");
+            return;
+        }
+
+        setError("");
+
         const CommentObj = {
             author: author,
-            content: comment,
+            content: processComment(comment),
             postID: postID
         }
 
@@ -64,6 +82,7 @@ const AddComment = ({postID, addComment}) => {
         setComment("");
         
         
+
         addComment(CommentObj);
         
 
@@ -91,20 +110,28 @@ const AddComment = ({postID, addComment}) => {
     }, [author, comment]);
 
     return (
-        <form className="add-comment">
-            <label htmlFor="author" id="lbl-author">Author</label>
-            <input type="text" id="author" value={author} onChange={(e)=> setAuthor(e.target.value)}></input>
-            <label htmlFor="comment" id="lbl-comment">Comment</label>
-            <textarea id="comment" value={comment} onChange={(e) => setComment(e.target.value)}/>
-            <div className="button-wrapper">
-                <button type="button" className="submit-button"
-                    onClick={() => {
-                        submitForm();
-                    }}>
-                    SUBMIT
-                </button>
-            </div>
-        </form>
+        <>
+            {
+                (error === "")? ""
+                                : <div className="add-comment-error"><span className="content">{error}</span></div>
+            }
+            
+            <form className="add-comment">
+                <label htmlFor="author" id="lbl-author">Author</label>
+                <input type="text" id="author" value={author} onChange={(e)=> setAuthor(e.target.value)}></input>
+                <label htmlFor="comment" id="lbl-comment">Comment</label>
+                <textarea id="comment" value={comment} onChange={(e) => setComment(e.target.value)}/>
+                
+                <div className="button-wrapper">
+                    <button type="button" className="submit-button"
+                        onClick={() => {
+                            submitForm();
+                        }}>
+                        SUBMIT
+                    </button>
+                </div>            
+            </form>
+        </>
     );
 }
 
@@ -113,7 +140,7 @@ const Comment = ({ author, content }) => {
     return (
         <div className="comment">
             <div className="author"><h5>{author}</h5></div>
-            <div className="content">{content}</div>
+            <div className="content" dangerouslySetInnerHTML={{__html: content}} />
         </div>
     );
 };

@@ -28,7 +28,6 @@
 }
 
 
-
 /********************
 *  TITLE
 */
@@ -85,6 +84,21 @@
 /**********************
 *  FORM TO ADD COMMENT
 */
+
+.blog .add-comment-error {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.blog .add-comment-error .content {
+    display: inline-block;
+    background-color: rgb(209, 144, 144); 
+    padding: 5px;
+    font-style: italic;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
 .blog .add-comment {
     width: 80%;    
     margin: auto;
