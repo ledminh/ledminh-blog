@@ -13,7 +13,7 @@ import { getMainPost as getMainPostLocal,
 */
 
 
-import * as local from './localIndex';
+import * as local from './local';
 
 let getMainPost = local.getMainPost,
     getDisplayedPosts = local.getDisplayedPosts,
