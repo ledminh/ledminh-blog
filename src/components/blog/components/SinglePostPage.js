@@ -11,6 +11,7 @@ import MetaData from "./MetaData";
 import Comments from "./Comments";
 import ExcerptFullPostToggle from "./ExcerptFullPostToggle";
 import SocialShareButtons from "./SocialShareButtons";
+import { useLocation } from "react-router-dom";
 
 const SinglePostPage = () => {
 
@@ -20,6 +21,8 @@ const SinglePostPage = () => {
 
     const {post, showCommentsStatus} = useSinglePost();
     
+
+    const location = useLocation();
 
     useEffect(() => {
         setCurrentSinglePost(slug);
@@ -48,7 +51,13 @@ const SinglePostPage = () => {
                     content={post.content}
                     />
                 <div className="social-share">
-                    <SocialShareButtons />
+                    <SocialShareButtons 
+                        url={"https://www.ledminh.dev/blog/post/" + location.pathname}
+                        summary={post.excerpt}
+                        hashtag={"#ledminh_writing"}
+                        title={post.title}
+                        webName={"LEDMINH BLOG"}
+                        />
                 </div>
                 <Comments
                     hideComments={hideComments}

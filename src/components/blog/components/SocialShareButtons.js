@@ -1,29 +1,61 @@
-import { useLocation } from 'react-router-dom';
-import {FacebookShareButton} from 'react-share';
+import {FacebookShareButton, TwitterShareButton, RedditShareButton, LinkedinShareButton, EmailShareButton} from 'react-share';
 
 import "../css/SocialShareButtons.css";
 
-const SocialShareButtons = () => {
-    const location = useLocation();
-    const currentURL = "https://www.ledminh.dev" + location.pathname;
+const SocialShareButtons = ({url, title, summary, hashtag, webName}) => {
     return (
         <div className="share">
             <ul>
                 <li className="share-title"><i className="fas fa-share" /></li>
                 <li>                 
                     <FacebookShareButton 
-                        url={currentURL}
-                        quote={"CampersTribe - World is yours to explore"}
-                        hashtag="#camperstribe"
+                        url={url}
+                        quote={summary}
+                        hashtag={hashtag}
                         className="react-share-button"
                         >
                         <i className="fa fa-facebook" />
                     </FacebookShareButton>
                 </li>
-                <li><i className="fa fa-twitter" /></li>
-                <li><i className="fa fa-google" /></li>
-                <li><i className="fa fa-instagram" /></li>
-                <li><i className="fa fa-youtube" /></li>
+                <li>
+                    <TwitterShareButton
+                        url={url}
+                        hashtags={[hashtag.slice(1)]}
+                        className="react-share-button"                        
+                    >
+                        <i className="fa fa-twitter" />
+                    </TwitterShareButton>                    
+                </li>
+                <li>
+                    <RedditShareButton
+                        url={url}
+                        title={title}
+                        className="react-share-button"
+                    >
+                        <i className="fa fa-reddit" />
+                    </RedditShareButton>
+                </li>
+                <li>
+                    <LinkedinShareButton
+                        url={url}
+                        title={title}
+                        summary={summary}
+                        source={webName}
+                        className="react-share-button"
+                        >
+                        <i className="fa fa-linkedin" />
+                    </LinkedinShareButton>
+                </li>
+                <li>
+                    <EmailShareButton
+                        url={url}
+                        subject={title}
+                        body={summary}
+                        className="react-share-button"
+                        >
+                        <i className="far fa-envelope" />
+                    </EmailShareButton>
+                </li>
             </ul>
         </div>                      
     )

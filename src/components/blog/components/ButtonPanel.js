@@ -3,12 +3,19 @@ import SocialShareButtons from './SocialShareButtons';
 
 
 const ButtonsPanel = ({showFullPostStatus, showCommentsStatus,
-                        toggleFullPost, toggleComments}) => {
+                        toggleFullPost, toggleComments,
+                        url, summary, hashtag, title, webName}) => {
 
     return (
         <div className="buttons-panel">
             <button className="continue-reading" onClick={toggleFullPost}>{showFullPostStatus ? "Minimize" : "Continue Reading"}</button>
-            <SocialShareButtons />
+            <SocialShareButtons 
+                url={url}
+                summary={summary}
+                hashtag={hashtag}
+                title={title}
+                webName={webName}
+                />
             <button className="comment-toggle" onClick={toggleComments}>
                 {(showCommentsStatus ? "CLOSE " : "READ ") + "COMMENT(S)"}
             </button>

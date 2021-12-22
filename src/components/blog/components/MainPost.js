@@ -39,6 +39,11 @@ const MainPost = () => {
                 toggleFullPost={actions.toggleFullPost}
                 showFullPostStatus={showFullPost}
                 showCommentsStatus={showComments}
+                url={"https://www.ledminh.dev/blog/post/" + mainPost.slug}
+                summary={mainPost.excerpt}
+                hashtag={"#ledminh_writing"}
+                title={mainPost.title}
+                webName={"LEDMINH BLOG"}
                 />
 
             <Comments

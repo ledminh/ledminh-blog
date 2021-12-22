@@ -18,51 +18,52 @@ import AuthorsList from './components/AuthorsList';
 import AuthorPage from './components/AuthorPage';
 
 
-
 const Blog = () => {
 
     const featureImageURL = useFeatureImage().url;
     return (
-        <Router>
-            <div className="blog">                
-                <BlogNavigationBar />
-                <FeatureImage feature_image_url ={featureImageURL} />
-                <MainContent>                         
-                    <Switch>
-                        <Route path="/author/:idInfo">
-                            <AuthorPage />
-                        </Route>
-                        <Route path="/authors">
-                            <AuthorsList />
-                        </Route>
-                        <Route path="/date/:idInfo">
-                            <PostsList type={PL_SINGLE_DATE_PAGE} />
-                        </Route>
-                        <Route path="/dates">
-                            <DatesList/>
-                        </Route>
-                        <Route path="/tag/:idInfo">
-                            <PostsList type={PL_SINGLE_TAG_PAGE} />
-                        </Route>
-                        <Route path="/tags">
-                            <TagsList/>
-                        </Route>
-                        <Route path="/post/:slug">
-                            <SinglePostPage/>
-                        </Route>
-                        <Route path="/category/:idInfo">
-                            <PostsList type={PL_SINGLE_CATEGORY} />
-                        </Route> 
-                        <Route path="/categories">
-                            <CategoriesList />
-                        </Route>
-                        <Route path="/">                   
-                            <Home />
-                        </Route>
-                    </Switch>
-                </MainContent>                       
-            </div>           
-        </Router>
+        <>
+            <Router>
+                <div className="blog">                
+                    <BlogNavigationBar />
+                    <FeatureImage feature_image_url ={featureImageURL} />
+                    <MainContent>                         
+                        <Switch>
+                            <Route path="/author/:idInfo">
+                                <AuthorPage />
+                            </Route>
+                            <Route path="/authors">
+                                <AuthorsList />
+                            </Route>
+                            <Route path="/date/:idInfo">
+                                <PostsList type={PL_SINGLE_DATE_PAGE} />
+                            </Route>
+                            <Route path="/dates">
+                                <DatesList/>
+                            </Route>
+                            <Route path="/tag/:idInfo">
+                                <PostsList type={PL_SINGLE_TAG_PAGE} />
+                            </Route>
+                            <Route path="/tags">
+                                <TagsList/>
+                            </Route>
+                            <Route path="/post/:slug">
+                                <SinglePostPage/>
+                            </Route>
+                            <Route path="/category/:idInfo">
+                                <PostsList type={PL_SINGLE_CATEGORY} />
+                            </Route> 
+                            <Route path="/categories">
+                                <CategoriesList />
+                            </Route>
+                            <Route path="/">                   
+                                <Home />
+                            </Route>
+                        </Switch>
+                    </MainContent>                       
+                </div>           
+            </Router>
+        </>
     );
 };
 
