@@ -1,4 +1,6 @@
 import '../css/ButtonsPanel.css'
+import SocialShareButtons from './SocialShareButtons';
+
 
 const ButtonsPanel = ({showFullPostStatus, showCommentsStatus,
                         toggleFullPost, toggleComments}) => {
@@ -6,16 +8,7 @@ const ButtonsPanel = ({showFullPostStatus, showCommentsStatus,
     return (
         <div className="buttons-panel">
             <button className="continue-reading" onClick={toggleFullPost}>{showFullPostStatus ? "Minimize" : "Continue Reading"}</button>
-            <div className="share">
-                <ul>
-                    <li className="share-title"><i className="fas fa-share" /></li>
-                    <li><i className="fa fa-facebook" /></li>
-                    <li><i className="fa fa-twitter" /></li>
-                    <li><i className="fa fa-google" /></li>
-                    <li><i className="fa fa-instagram" /></li>
-                    <li><i className="fa fa-youtube" /></li>
-                </ul>
-            </div>
+            <SocialShareButtons />
             <button className="comment-toggle" onClick={toggleComments}>
                 {(showCommentsStatus ? "CLOSE " : "READ ") + "COMMENT(S)"}
             </button>

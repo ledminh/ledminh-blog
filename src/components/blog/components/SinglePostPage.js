@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import { useSinglePostActions, useFeatureImageActions } from "../redux/useActions";
 import useSinglePost from "../redux/useSinglePost";
 
+import "../css/SinglePostPage.css";
+
 import Title from "./Title";
 import SubTitle from "./SubTitle";
 import MetaData from "./MetaData";
 import Comments from "./Comments";
 import ExcerptFullPostToggle from "./ExcerptFullPostToggle";
+import SocialShareButtons from "./SocialShareButtons";
 
 const SinglePostPage = () => {
 
@@ -28,7 +31,7 @@ const SinglePostPage = () => {
     return (
         post.title?
         (
-            <>
+            <div className="single-post-page">
                 <Title title={post.title} />
                 <SubTitle>
                     <MetaData
@@ -44,14 +47,16 @@ const SinglePostPage = () => {
                     showFullPostStatus={true}
                     content={post.content}
                     />
-                
+                <div className="social-share">
+                    <SocialShareButtons />
+                </div>
                 <Comments
                     hideComments={hideComments}
                     showCommentsStatus={showCommentsStatus} 
                     comments={post.comments}
                     postID={post.id}
                     />
-            </>
+            </div>
         ):
         (
         <>Loading ... </>

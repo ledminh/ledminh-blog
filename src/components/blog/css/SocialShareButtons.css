@@ -1,0 +1,88 @@
+/* Share button */
+.blog .share {
+    background-color: rgb(185, 185, 185);
+    border-radius: 50px;
+    width: 35px;
+    height:35px;
+    overflow: hidden;
+
+    cursor: pointer;
+    transition: width .4s ease-out;
+    margin-right: 10px;
+
+}
+
+.blog .share ul {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.blog .share .share-title {
+    background-color: white;
+    border: 1.5px solid black;
+}
+
+.blog .share .share-title:hover {    
+    border: 0;
+}
+
+.blog .share li  {
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+.blog .share li .react-share-button {
+    width: 100%;
+    height: 100%;
+}
+
+.blog .share:hover {
+    width: 230px;
+}
+
+.blog .share .fa {
+    text-decoration: none;
+    color: black;
+
+}
+
+.blog .share i {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.blog .share .fa-facebook:hover {
+    background-color: #3B5998;
+    color: white;
+}
+
+.blog .share i.fa-twitter:hover {
+    background-color: #55ACEE;
+    color: white;
+}
+
+.blog .share i.fa-google:hover {
+    background-color: #dd4b39;
+    color: white;
+}
+
+.blog .share i.fa-instagram:hover {
+    background-color: #125688;
+    color: white;
+}
+
+
+.blog .share i.fa-youtube:hover {
+    background-color: #bb0000;
+    color: white;
+}
