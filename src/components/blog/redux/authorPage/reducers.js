@@ -1,4 +1,4 @@
-import { getAuthor } from "../../../../data";
+import { getAuthor } from "../../data";
 import {SET_CURRENT_AUTHOR, SET_CURRENT_PAGE, SET_CURRENT_PAGI} from "./actionTypes";
 
 

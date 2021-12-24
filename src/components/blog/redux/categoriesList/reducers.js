@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import {getDisplayedCategories, getNumCategories} from "../../../../data";
+import {getDisplayedCategories, getNumCategories} from "../../data";
 
 import { SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
 

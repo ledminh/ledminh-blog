@@ -1,4 +1,4 @@
-import { getAuthorsList } from "../../../../data";
+import { getAuthorsList } from "../../data";
 
 const initState = {
     featureImage: {

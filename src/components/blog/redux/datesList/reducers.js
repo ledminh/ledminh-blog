@@ -1,4 +1,4 @@
-import { getDatesList } from "../../../../data";
+import { getDatesList } from "../../data";
 
 const initState = {
     featureImage: {

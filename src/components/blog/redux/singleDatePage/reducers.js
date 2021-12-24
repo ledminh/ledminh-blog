@@ -1,5 +1,5 @@
 import { SET_CURRENT_DATE, SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
-import { getPostsOnDate } from "../../../../data";
+import { getPostsOnDate } from "../../data";
 
 const initState = {
     name: "",

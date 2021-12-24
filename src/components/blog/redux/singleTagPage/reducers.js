@@ -1,5 +1,5 @@
 import { SET_CURRENT_TAG, SET_CURRENT_PAGI, SET_CURRENT_PAGE } from "./actionTypes";
-import { getTag } from "../../../../data";
+import { getTag } from "../../data";
 
 const initialState = {
     name: "",

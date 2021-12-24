@@ -1,4 +1,4 @@
-import { getTagsList } from "../../../../data";
+import { getTagsList } from "../../data";
 
 const initState = {
     tags: getTagsList()

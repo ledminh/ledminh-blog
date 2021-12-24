@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../css/Comments.css';
-import { addComment as saveToData} from '../../../data';
+import { addComment as saveToData} from "../data";
 
 
 

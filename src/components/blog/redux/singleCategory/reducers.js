@@ -1,5 +1,5 @@
 import { SET_CURRENT_PAGE, SET_CURRENT_PAGI, SET_CURRENT_CATEGORY } from "./actionTypes";
-import { getCategory } from "../../../../data";
+import { getCategory } from "../../data";
 
 const initialState = {
     title: "",
