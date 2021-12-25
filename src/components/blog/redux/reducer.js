@@ -12,7 +12,7 @@ import singleDatePageReducer from "./singleDatePage/reducers";
 import authorsListReducer from "./authorsList/reducers";
 import authorPageReducer from "./authorPage/reducers";
 
-const blogReducer = combineReducers({
+const reducer = combineReducers({
    home: homeReducer,
    categoriesList: categoriesListReducer,
    tagsList: tagsListReducer,
@@ -27,4 +27,4 @@ const blogReducer = combineReducers({
 });
 
 
-export default blogReducer;
+export default reducer;

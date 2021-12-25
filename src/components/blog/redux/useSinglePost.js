@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
 
-const useSinglePost = () => useSelector(state => state.blog.singlePost);
+const useSinglePost = () => useSelector(state => state.singlePost);
 
 export default useSinglePost;

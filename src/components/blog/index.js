@@ -1,5 +1,6 @@
 import './css/index.css';
-
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -18,9 +19,16 @@ import AuthorsList from './components/AuthorsList';
 import AuthorPage from './components/AuthorPage';
 
 
-const Blog = () => {
+const Blog = () => (
+    <Provider store={store}>
+        <Content />
+    </Provider>
+)
 
-    const featureImageURL = useFeatureImage().url;
+
+const Content = () => {
+    const featureImageURL = useFeatureImage().url;  
+    
     return (
         <>
             <Router>

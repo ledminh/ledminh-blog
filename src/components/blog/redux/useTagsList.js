@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
 
-const useTagsList = () => useSelector(state => state.blog.tagsList);
+const useTagsList = () => useSelector(state => state.tagsList);
 
 export default useTagsList;
