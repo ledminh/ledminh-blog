@@ -28,7 +28,7 @@ const SinglePostPage = () => {
         setCurrentSinglePost(slug);
         setFeatureImageURL(post.feature_image_url)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [slug, post]);
+    }, [slug]);
 
     
     return (

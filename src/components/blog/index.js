@@ -17,18 +17,39 @@ import PostsList, { PL_SINGLE_CATEGORY, PL_SINGLE_DATE_PAGE, PL_SINGLE_TAG_PAGE 
 import DatesList from './components/DatesList';
 import AuthorsList from './components/AuthorsList';
 import AuthorPage from './components/AuthorPage';
+import { useEffect, useState } from 'react';
+import { initData } from './data';
 
 
-const Blog = () => (
-    <Provider store={store}>
-        <Content />
-    </Provider>
-)
+const Blog = () => {
+
+    const [dataReady, setDataReady] = useState(false);
+
+    useEffect(() => {
+        initData();
+        setDataReady(true);
+
+        return () => setDataReady(false);
+    }, []);
+
+
+    return (
+        dataReady?
+            (<Provider store={store}>
+                <Content />
+            </Provider>): <div>Loading...</div>
+    );
+}
+
 
 
 const Content = () => {
     const featureImageURL = useFeatureImage().url;  
     
+    
+
+    
+
     return (
         <>
             <Router>

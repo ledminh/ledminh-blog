@@ -1,52 +1,136 @@
-import { find, reduce } from "lodash";
+import { find } from "lodash";
 
-import { posts as postsLocal, categories as categoriesLocal, tags as tagsLocal, authors as authorsLocal } from "./data"
+import { posts as postsLocal, 
+        categories as categoriesLocal, 
+        tags as tagsLocal, 
+        authors as authorsLocal, 
+        getPostsFromCategoriesData, 
+        getPostFromData,
+        getPostsOnDateFromData,
+        getPostsFromTagData,
+        getPostsFromAuthorData,
+        getDatesListFromData
+    } from "./data"
 
 const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
 export const convertDateToSlug = (date) => date.replace(',', '').toLowerCase().split(" ").splice(0).join("-");
 
-const authors = authorsLocal.map(a => ({ ...a,
-                                        idInfo: {
-                                            slug: a.username
-                                        }
-                                            
-                                        }));
 
-const tags = tagsLocal.map((t) => ({ ...t,
-                                        idInfo: {
-                                            name: t.name
-                                        }                                    
-                                    }));
-
-const categories = categoriesLocal.map((c) => ({...c, 
-                                                idInfo: {
-                                                    slug: c.slug
-                                                }
-                                                }));
-const posts = postsLocal.map((p, i) => ({...p,
-                                        date_created: {
-                                            text: p.date_created,
-                                            slug: convertDateToSlug(p.date_created)
-                                        },
-                                        slug: convertTitleToSlug(p.title),
-                                        categories: p.categoryIDs.map((catID) => {
-                                            let cat = find(categories, {id: catID});
-
-                                            return {
-                                                title: cat.title,
-                                                slug: cat.slug
-                                            }
-                                        }),
-                                        tags: p.tagIDs.map(tagID => {
-                                            let tag = find(tags, {id: tagID});
-
-                                            return tag.name;
-                                        }),
-                                        author: find(authors, {id: p.authorID}) 
-                                        }))
+const convertToAuthor = a => ({
+    id: a.id,
+    name: a.name,
+    slogan: a.slogan,
+    bio: {
+        text: a.bio.text
+    },
+    profilePicture: {
+        url: a.profilePicture.url
+    },
+    idInfo: {
+        slug: a.username
+    }
+});
 
 
-const getEntriesOnPage = (entries, numItemsPerPage, pageNum) => {
+const convertToTag = t => ({
+    id: t.id,
+    name: t.name,
+    idInfo: {
+        name: t.name
+    }
+});
+
+
+const convertToCategory = c => ({
+    id: c.id,
+    feature_image_url: c.feature_image_url,
+    title: c.title,
+    idInfo: {
+        slug: c.slug
+    },
+    meta_data: {
+        cat_subtitle: c.meta_data.cat_subtitle
+    }
+});
+
+
+const convertToPost = p => ({
+    id: p.id,
+    title: p.title,
+    slug: convertTitleToSlug(p.title),
+    feature_image_url: p.feature_image_url,
+    categories: p.categoryIDs.map((catID) => {
+
+        let cat = find(categories, {id: catID});
+
+        return {
+            title: cat.title,
+            slug: cat.idInfo.slug
+        }
+    }),
+
+
+    tags: p.tagIDs.map(tagID => {
+        let tag = find(tags, {id: tagID});
+        return tag.name
+    }),
+    date_created: {
+        text: p.date_created,
+        slug: convertDateToSlug(p.date_created)
+    },
+    comments: p.comments,
+    author: find(authors, {id: p.authorID}),
+    excerpt: p.excerpt,
+    content: p.content
+});
+
+let numPosts = -1;
+let posts = [];
+
+let numCategories = -1;
+let categories = [];
+
+let tags = [];
+
+let authors = [];
+
+
+
+
+const loadAuthors = () => {
+
+    authors = authorsLocal.map(convertToAuthor);
+}
+
+const loadTags = () => {
+    tags = tagsLocal.map(convertToTag);
+}
+
+
+const loadCategories = () => {
+
+    categories = categoriesLocal.map(convertToCategory);
+    
+}
+
+
+
+const loadNumCategories = () => numCategories = categoriesLocal.length;
+
+const loadNumPosts = () => numPosts = postsLocal.length;
+
+const loadPosts = (totalPostsNeeded) => {
+
+    let newPosts = postsLocal.slice(posts.length, totalPostsNeeded);
+
+    newPosts = newPosts.map(convertToPost);
+    
+    posts = posts.concat(newPosts);
+}
+
+
+
+const getEntriesOnPage = (entries, numItemsPerPage, pageNum, numEntries) => {
     const prevPage = pageNum - 1;
             
     let beginID = prevPage*numItemsPerPage,
@@ -54,7 +138,7 @@ const getEntriesOnPage = (entries, numItemsPerPage, pageNum) => {
     
 
     const endPrev = beginID === 0;
-    const endNext = endID > entries.length - 1;
+    const endNext = endID > numEntries - 1;
 
     const displayedEntries = entries.slice(beginID, endID);
 
@@ -84,6 +168,18 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
 
 /* PUBLIC METHODS
 -------------------------------*/
+export const initData = () => {
+    loadAuthors();
+    loadTags();
+    loadCategories();
+    loadNumCategories();
+    loadNumPosts();
+    loadPosts(9);
+
+}
+
+initData();
+
 
 /* POST */
 export const getMainPost = (mainPostID) => {
@@ -96,36 +192,41 @@ export const getMainPost = (mainPostID) => {
 
 
 export const getDisplayedPosts = (mainPostID, numItemsPerPage, pageNum) => {
+    let totalPostsNeeded = numItemsPerPage*pageNum + 1;
+
+    if(totalPostsNeeded > posts.length){
+        loadPosts(totalPostsNeeded);
+    }
+    
     let otherPosts = getOtherPosts(mainPostID);
     
-    return getEntriesOnPage(otherPosts, numItemsPerPage, pageNum);
+    return getEntriesOnPage(otherPosts, numItemsPerPage, pageNum, numPosts);
 
 }
 
-export const getNumPosts = () => posts.length;
+export const getNumPosts = () => numPosts;
 
 
 
 /* CATEGORIES */
-export const getNumCategories = () => categories.length;
+export const getNumCategories = () => numCategories;
 
-export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage);
+export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage, numCategories);
 
 export const  getCategory = (slug, numItemsPerPage, pageNum) => {
-    let cat = find(categories, {slug: slug});
+    let cat = find(categories, {idInfo: {slug: slug}});
+    
+    let ps = getPostsFromCategoriesData(cat);
 
-    let ps = posts.filter(p => {
-                        return p.categoryIDs.indexOf(cat.id) !== -1;
-                    })
-                    .map(p => ({
-                        title: p.title,
-                        idInfo:{
-                            slug: p.slug
-                        },
-                        date_created: p.date_created,
-                        author: p.author,
-                        excerpt: p.excerpt
-                    }));
+    ps = ps.map(convertToPost).map(p => ({
+                            title: p.title,
+                            idInfo:{
+                                slug: p.slug
+                            },
+                            date_created: p.date_created,
+                            author: p.author,
+                            excerpt: p.excerpt
+                        }));
     
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
 
@@ -146,9 +247,9 @@ export const  getCategory = (slug, numItemsPerPage, pageNum) => {
 
 /* CATEGORIES */
 export const getSinglePost = (slug) => {
-    let p = find(posts, {slug: slug});
+    let p = getPostFromData(slug);
 
-    return p;
+    return convertToPost(p);
 }
 
 /* TAGS LIST */
@@ -160,18 +261,17 @@ export const getTagsList = () => {
 export const  getTag = (name, numItemsPerPage, pageNum) => {
     let tag = find(tags, {name: name});
 
-    let ps = posts.filter(p => {
-                        return p.tagIDs.indexOf(tag.id) !== -1;
-                    })
-                    .map(p => ({
-                        title: p.title,
-                        idInfo:{
-                            slug: p.slug
-                        },
-                        date_created: p.date_created,
-                        author: p.author,
-                        excerpt: p.excerpt
-                    }));
+    let ps = getPostsFromTagData(tag);
+
+    ps = ps.map(convertToPost).map(p => ({
+                                        title: p.title,
+                                        idInfo:{
+                                            slug: p.slug
+                                        },
+                                        date_created: p.date_created,
+                                        author: p.author,
+                                        excerpt: p.excerpt
+                                    }));
     
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
 
@@ -189,19 +289,13 @@ export const  getTag = (name, numItemsPerPage, pageNum) => {
 
 /* DATES LIST */
 export const getDatesList = () => {
-    let datesList = reduce(posts, (dsL, p) => {
-                            if(dsL.indexOf(p.date_created.text) === -1){
-                                dsL.push(p.date_created.text)
-                            }
-
-                            return dsL;
-                        }, [])
-                        .map(date => ({
-                            name: date,
-                            idInfo: {
-                                slug: convertDateToSlug(date)
-                            }
-                        }));
+    let datesList = getDatesListFromData().map(date => ({
+                                                    name: date,
+                                                    idInfo: {
+                                                        slug: convertDateToSlug(date)
+                                                    }
+                                                })); 
+    
     
     return datesList;
 }
@@ -212,23 +306,21 @@ export const getPostsOnDate = (slug, numItemsPerPage, pageNum) => {
 
     let date = find(dates, {idInfo: {slug: slug}});
     
+    let ps = getPostsOnDateFromData(date.name);
 
-    let ps = posts.filter(p => {
-                        return p.date_created.slug === slug;
-                    })
-                    .map(p => ({
-                        title: p.title,
-                        idInfo:{
-                            slug: p.slug
-                        },
-                        date_created: p.date_created,
-                        author: p.author,
-                        excerpt: p.excerpt
-                    }));
+    ps = ps.map(convertToPost).map(p => ({
+                                            title: p.title,
+                                            idInfo:{
+                                                slug: p.slug
+                                            },
+                                            date_created: p.date_created,
+                                            author: p.author,
+                                            excerpt: p.excerpt
+                                        }));
     
     
 
-    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
 
     date.posts = {
         displayedPosts: displayedPosts,
@@ -249,20 +341,18 @@ export const getAuthorsList = () => authors;
 
 export const getAuthor = (slug, numItemsPerPage, pageNum) => {
     let author = find(authors, {idInfo: {slug: slug}});
-
-    let ps = posts.filter(p => {
-                                return p.authorID === author.id
-                            })
-                            .map(p => ({
-                                title: p.title,
-                                idInfo:{
-                                    slug: p.slug
-                                },
-                                date_created: p.date_created,
-                                author: p.author,
-                                excerpt: p.excerpt
-                            }));
-    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+    let ps = getPostsFromAuthorData(author);
+    ps = ps.map(convertToPost)
+            .map(p => ({
+                title: p.title,
+                idInfo:{
+                    slug: p.slug
+                },
+                date_created: p.date_created,
+                author: p.author,
+                excerpt: p.excerpt
+            }));
+    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
 
     author.posts = {
         displayedPosts: displayedPosts,

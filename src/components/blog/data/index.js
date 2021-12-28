@@ -15,7 +15,8 @@ import { getMainPost as getMainPostLocal,
 
 import * as local from './local';
 
-let getMainPost = local.getMainPost,
+let initData = local.initData,
+    getMainPost = local.getMainPost,
     getDisplayedPosts = local.getDisplayedPosts,
     getNumPosts = local.getNumPosts,
     getNumCategories = local.getNumCategories,
@@ -36,6 +37,7 @@ let getMainPost = local.getMainPost,
 
     
 export {
+    initData,
     getMainPost,
     getDisplayedPosts,
     getNumPosts,

@@ -11,10 +11,10 @@ const MetaData = ({showComments, categories, tags, date_created, comments, autho
             <span className="categories">
                 <span className="title link-on-title" onClick={() => history.push("/categories")}>Categories: </span>
                 {
-                    categories.map((c, i) => <span key={c.slug} className="item">
+                    categories.map((c, i) =>(<span key={c.slug} className="item">
                                                 <span className="link-on-title" onClick={() => history.push("/category/" + c.slug)}>{c.title}</span>
                                                 <span>{(i === categories.length - 1) ? "" : ","}</span>
-                                            </span>)
+                                            </span>))
                 }
             </span>
             <span className="tags">
