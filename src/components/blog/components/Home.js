@@ -19,7 +19,13 @@ const Home = () => {
     const {setFeatureImageURL} = useFeatureImageActions();
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL(mainPost.feature_image_url), [mainPost.feature_image_url]);
+    useEffect(() => {
+        if(dataInitialized)
+            setFeatureImageURL(mainPost.featureImage.url)
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[dataInitialized, mainPost]);
+    
     
     
 

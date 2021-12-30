@@ -47,7 +47,7 @@ const PostsList = ({type}) => {
         }
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [idInfo, dataInitialized]);
+    }, [idInfo, dataInitialized, featureImage.url]);
 
 
     return (

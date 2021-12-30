@@ -1,6 +1,6 @@
 import { SET_CURRENT_PAGE, SET_CURRENT_PAGI, SET_SINGLE_CATEGORY_DATA_READY } from "./actionTypes";
 import { getCategory } from "../../data";
-import { SET_CURRENT_CATEGORY_DONE } from "../loadData";
+import { SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE, SET_CURRENT_CATEGORY_DONE } from "../loadData";
 
 const initialState = {
     dataReady: false,
@@ -35,17 +35,17 @@ const singleCategoryReducer = (state = initialState, action) => {
             ...state,
             currentPage: 1,
             currentPagi: 1,
-            ...action.cat
+            ...action.cat,
+            dataReady: true
         };
 
         
     }
 
-    if(action.type === SET_CURRENT_PAGE) {
+    if(action.type === SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE) {
         return {
             ...state,
-            currentPage: action.page,
-            ...getCategory(state.slug, state.numItemsPerPage, action.page)
+            ...action.cat
         };
     }
 

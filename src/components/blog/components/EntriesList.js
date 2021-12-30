@@ -27,7 +27,7 @@ const EntriesList = ({onClickHandleMaker,
                     if(listType === GALLERY){
                         entry = <GalerryEntry key={e.id}
                             idInfo={e.idInfo}
-                            feature_image_url={e.feature_image_url} 
+                            feature_image_url={e.featureImage.url} 
                             title={e.title}
                             meta_data={e.meta_data}
                             onClickHandleMaker={onClickHandleMaker}

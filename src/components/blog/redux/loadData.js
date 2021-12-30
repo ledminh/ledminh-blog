@@ -1,7 +1,7 @@
 import { getCategory, initData, loadPosts } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setSingleCategoryDataReady } from "./singleCategory/actions";
-import { SET_CURRENT_CATEGORY } from "./singleCategory/actionTypes";
+import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
 
 
 /* Signal that Data has already been Initialized */
@@ -45,6 +45,7 @@ export const displayedPostsMiddleware = storeAPI => next => action => {
         });
     }
 
+
     return next(action);
 
 }
@@ -54,6 +55,12 @@ export const SET_CURRENT_CATEGORY_DONE = "BLOG/LOAD_DATA/SET_CURRENT_CATEGORY_DO
 
 export const setCurrentCategoryDone = (cat) => ({type: SET_CURRENT_CATEGORY_DONE, cat: cat});
 
+export const SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE";
+
+export const setCurrentCategoryCurrentPageDone = (cat) => ({type: SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE, cat: cat});
+
+
+
 export const getCurrentCategoryMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_CATEGORY){
         storeAPI.dispatch(setSingleCategoryDataReady(false));
@@ -62,13 +69,21 @@ export const getCurrentCategoryMiddleware = storeAPI => next => action => {
 
         getCategory(slug, numItemsPerPage, 1).then(cat => {
             storeAPI.dispatch(setCurrentCategoryDone(cat));
-            storeAPI.dispatch(setSingleCategoryDataReady(true));
         });
 
         
 
     }
 
+    if(action.type === SET_CURRENT_PAGE_SINGLE_CATEGORY) {
+        let cat = storeAPI.getState().singleCategory;
+        let numItemsPerPage = cat.numItemsPerPage;
+        let currentPage = action.page;
+        
+        getCategory(undefined, numItemsPerPage, currentPage, cat).then(cat => {
+            storeAPI.dispatch(setCurrentCategoryCurrentPageDone(cat));
+        });
+    }
     
 
     return next(action);

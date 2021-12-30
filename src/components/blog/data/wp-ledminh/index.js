@@ -47,7 +47,9 @@ const convertToTag = t => ({
 
 const convertToCategory = c => ({
     id: "cat-" + c.id,
-    feature_image_url: CategoryImageURL,
+    featureImage: {
+        url: CategoryImageURL
+    },
     title: c.name,
     idInfo: {
         slug: c.slug
@@ -62,7 +64,9 @@ const convertToPost = p => ({
     id: "post-" + p.id,
     title: p.title.rendered,
     slug: p.slug,
-    feature_image_url: p.jetpack_featured_media_url,
+    featureImage: {
+        url: p.jetpack_featured_media_url 
+    },
     categories: p.categories.map((catID) => {
 
         
@@ -231,7 +235,7 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
                     idInfo: {
                         id: oP.id
                     },
-                    feature_image_url: oP.feature_image_url,
+                    featureImage: oP.featureImage,
                     title: oP.title,
                     meta_data: {
                         date_created: oP.date_created,
@@ -285,7 +289,24 @@ export const getNumCategories = () => numCategories;
 
 export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage, numCategories);
 
-export const  getCategory = async (slug, numItemsPerPage, pageNum) => {
+export const  getCategory = async (slug, numItemsPerPage, pageNum, currentCat) => {
+    if(!slug){
+        const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentCat.posts.data, numItemsPerPage, pageNum, currentCat.posts.data.length);
+        let newCat = {
+            ...currentCat,
+            posts: {
+                ... currentCat.posts,
+                displayedPosts: displayedPosts,
+                endPrev: endPrev,
+                endNext: endNext
+            },
+            currentPage: pageNum
+        }
+
+        return newCat;
+    }
+
+
     let cats = await wp.categories().slug(slug),
         cat = cats[0];
         
@@ -309,15 +330,15 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum) => {
     cat = convertToCategory(cat);
 
     cat.posts = {
+        data: ps,
         displayedPosts: displayedPosts,
         totalPosts: ps.length,
         endPrev: endPrev,
         endNext: endNext
     };
 
-    cat.featureImage = {
-        url: cat.feature_image_url
-    }
+    
+
     return cat;
     
 }
