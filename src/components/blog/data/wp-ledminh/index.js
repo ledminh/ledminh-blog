@@ -3,6 +3,7 @@ import { convertDateToSlug } from "../utils";
 
 
 import WPAPI from 'wpapi';
+import { CategoryImageURL } from "../../../../assets/imageLinks";
 const wp = new WPAPI({endpoint: "https://www.ledminh.com/wp-json"});
 
 let numPosts = -1;
@@ -45,7 +46,7 @@ const convertToTag = t => ({
 
 const convertToCategory = c => ({
     id: "cat-" + c.id,
-    feature_image_url: "",
+    feature_image_url: CategoryImageURL,
     title: c.name,
     idInfo: {
         slug: c.slug
@@ -201,6 +202,7 @@ export const loadPosts = async (currentPage, numItemsPerPage) => {
 
 
 const getEntriesOnPage = (entries, numItemsPerPage, pageNum, numEntries) => {
+    
     const prevPage = pageNum - 1;
             
     let beginID = prevPage*numItemsPerPage,

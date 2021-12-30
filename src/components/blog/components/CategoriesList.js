@@ -13,7 +13,7 @@ import useCategoriesList from "../redux/useCategoriesList";
 
 const CategoriesList = () => {
     
-    const {data, numPagiButtons, currentPagi} = useCategoriesList();
+    const {data, numPagiButtons, currentPagi, featureImage} = useCategoriesList();
     const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
     
@@ -24,7 +24,7 @@ const CategoriesList = () => {
     const history = useHistory()
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL("https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png"), []);
+    useEffect(() => setFeatureImageURL(featureImage.url), []);
     
     
 
