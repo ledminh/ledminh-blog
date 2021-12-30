@@ -124,7 +124,7 @@ const VerticalEntry =  ({title, date_created, author, excerpt, idInfo, onClickHa
             >
             <h4>{title}</h4>
             <div className="meta-data"><h6>{date_created.text} - {author} </h6></div>
-            <div className="excerpt">{excerpt}</div>
+            <div className="excerpt" dangerouslySetInnerHTML={{__html: excerpt}}/>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import {getDisplayedCategories, getNumCategories} from "../../data";
 
 import { SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
 import { DATA_INITIALIZED } from "../loadData";
-import { CategoryImageURL } from "../../../../assets/imageLinks";
+import { CategoryImageURL } from "../../assets/imageLinks";
 
 /********************
  * DATA REDUCER

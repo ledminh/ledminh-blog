@@ -3,7 +3,8 @@ import { convertDateToSlug } from "../utils";
 
 
 import WPAPI from 'wpapi';
-import { CategoryImageURL } from "../../../../assets/imageLinks";
+import { CategoryImageURL } from "../../assets/imageLinks";
+
 const wp = new WPAPI({endpoint: "https://www.ledminh.com/wp-json"});
 
 let numPosts = -1;
@@ -64,8 +65,10 @@ const convertToPost = p => ({
     feature_image_url: p.jetpack_featured_media_url,
     categories: p.categories.map((catID) => {
 
-        let cat = find(categories, {id: "cat-" + catID});
+        
 
+        let cat = find(categories, {id: "cat-" + catID});
+        
         return {
             title: cat.title,
             slug: cat.idInfo.slug
@@ -84,8 +87,10 @@ const convertToPost = p => ({
     },
     comments: [],
     author: find(authors, {id: "author-" + p.author}),
-    excerpt: p.excerpt.rendered,
+    excerpt: (p.excerpt.rendered.length > 300)? p.excerpt.rendered.substring(0,300) : p.excerpt.rendered,
     content: p.content.rendered
+
+
 });
 
 
@@ -281,11 +286,13 @@ export const getNumCategories = () => numCategories;
 export const getDisplayedCategories = (numItemsPerPage, currentPage) => getEntriesOnPage(categories, numItemsPerPage, currentPage, numCategories);
 
 export const  getCategory = async (slug, numItemsPerPage, pageNum) => {
-    let cat = await wp.categories().slug(slug);
+    let cats = await wp.categories().slug(slug),
+        cat = cats[0];
+        
 
+    
     let ps = await wp.posts().categories(cat.id);
     
-
     ps = ps.map(convertToPost).map(p => ({
                             title: p.title,
                             idInfo:{
@@ -297,6 +304,7 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum) => {
                         }));
     
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+
 
     cat = convertToCategory(cat);
 

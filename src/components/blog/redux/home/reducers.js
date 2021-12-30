@@ -48,6 +48,18 @@ const dataReducer =  (state = dataInitialState, action) => {
         }
     }
 
+    if(action.type === DISPLAY_POSTS_AT_HOME_DONE) {
+        const [displayedEntries, endPrev, endNext] =  getDisplayedPosts(state.mainPost.id, state.numItemsPerPage, action.page);
+        
+        return {
+            ...state,
+            displayedPosts: displayedEntries,
+            endPrev: endPrev,
+            endNext: endNext,
+            currentPage: action.page
+        }
+    }
+
     if(action.type === SET_MAIN_POST){
         const [displayedEntries, endPrev, endNext] = getDisplayedPosts(action.id, state.numItemsPerPage, state.currentPage);
         
@@ -72,17 +84,7 @@ const dataReducer =  (state = dataInitialState, action) => {
         }
     }
 
-    if(action.type === DISPLAY_POSTS_AT_HOME_DONE) {
-        const [displayedEntries, endPrev, endNext] =  getDisplayedPosts(state.mainPost.id, state.numItemsPerPage, action.page);
-        
-        return {
-            ...state,
-            displayedPosts: displayedEntries,
-            endPrev: endPrev,
-            endNext: endNext,
-            currentPage: action.page
-        }
-    }
+    
 
 
     return state;

@@ -7,8 +7,10 @@ import { useFeatureImageActions, useHomeActions } from "../redux/useActions";
 
 import useHome from "../redux/useHome";
 import { useEffect } from "react";
+import useDataInitialized from "../redux/useDataInitialized";
 
 const Home = () => {
+    const dataInitialized = useDataInitialized();
 
     const homeActions = useHomeActions();
     const {data, numPagiButtons, currentPagi} = useHome();
@@ -29,7 +31,7 @@ const Home = () => {
     
     
     return (
-        displayedPosts ?
+        dataInitialized ?
             (
             <>
                 <MainPost />             

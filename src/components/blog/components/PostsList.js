@@ -13,16 +13,19 @@ import { VERTICAL_LIST } from "./EntriesList";
 import useSingleCategory from "../redux/useSingleCategory";
 import useSingleTagPage from "../redux/useSingleTagPage";
 import useSingleDatePage from "../redux/useSingleDatePage";
+import useDataInitialized from "../redux/useDataInitialized";
 
 export const PL_SINGLE_TAG_PAGE = "TYPE/POSTS_LIST/SINGLE_TAG_PAGE";
 export const PL_SINGLE_CATEGORY = "TYPE/POSTS_LIST/SINGLE_CATEGORY";
 export const PL_SINGLE_DATE_PAGE = "TYPE/POSTS_LIST/SINGLE_DATE_PAGE";
 
 const PostsList = ({type}) => {
+    const dataInitialized = useDataInitialized();
+    
     // Get props based on type of list
     const [setCurrentItem, setCurrentPage, setCurrentPagi,
         title, totalPosts, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage,
-        displayedPosts, endPrev, endNext, subtitle    
+        displayedPosts, endPrev, endNext, subtitle, dataReady    
     ] = useProps(type);
     
 
@@ -38,14 +41,17 @@ const PostsList = ({type}) => {
     const {idInfo} = useParams();
     const {setFeatureImageURL} = useFeatureImageActions();
     useEffect(() => {
-        setCurrentItem(idInfo);
-        setFeatureImageURL(featureImage? (featureImage.url): "")
+        if(dataInitialized){
+            setCurrentItem(idInfo);
+            setFeatureImageURL(featureImage? (featureImage.url): "");
+        }
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [idInfo]);
+    }, [idInfo, dataInitialized]);
 
 
     return (
-        (title !== "")?
+        (dataInitialized && dataReady)?
         (<>
             
             <Title title={title}/>
@@ -78,7 +84,8 @@ export default PostsList;
 
 const useProps = (type) => {
     let useData  = () => {},
-            useActions= () => {};
+            useActions= () => {}
+            ;
     
     if(type === PL_SINGLE_TAG_PAGE){
         useData = useSingleTagPage;
@@ -99,7 +106,7 @@ const useProps = (type) => {
 
     
     let data = useData();
-    let {title, name, posts, meta_data, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage} = data;
+    let {title, name, posts, meta_data, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage, dataReady} = data;
     let {setCurrentItem, setCurrentPage, setCurrentPagi} = useActions();
     
     const {displayedPosts, totalPosts, endPrev, endNext} = posts;
@@ -124,7 +131,7 @@ const useProps = (type) => {
 
     return [setCurrentItem, setCurrentPage, setCurrentPagi,
         title, totalPosts, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage,
-        displayedPosts, endPrev, endNext, subtitle    
+        displayedPosts, endPrev, endNext, subtitle, dataReady    
     ]
 }
 

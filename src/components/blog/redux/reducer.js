@@ -11,8 +11,10 @@ import datesListReducer from "./datesList/reducers";
 import singleDatePageReducer from "./singleDatePage/reducers";
 import authorsListReducer from "./authorsList/reducers";
 import authorPageReducer from "./authorPage/reducers";
+import { dataInitializedReducer } from "./loadData";
 
 const reducer = combineReducers({
+   dataInitialized: dataInitializedReducer,
    home: homeReducer,
    categoriesList: categoriesListReducer,
    tagsList: tagsListReducer,
