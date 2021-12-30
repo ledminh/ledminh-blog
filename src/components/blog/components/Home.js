@@ -38,7 +38,7 @@ const Home = () => {
 
                 <EntriesList
                     listType={GALLERY}
-                    numItemsTotal={numPosts}
+                    numItemsTotal={numPosts - 1}
                     displayedEntries={displayedPosts}
                     endPrev={endPrev}
                     endNext={endNext}

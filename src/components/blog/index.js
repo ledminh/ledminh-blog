@@ -17,27 +17,20 @@ import PostsList, { PL_SINGLE_CATEGORY, PL_SINGLE_DATE_PAGE, PL_SINGLE_TAG_PAGE 
 import DatesList from './components/DatesList';
 import AuthorsList from './components/AuthorsList';
 import AuthorPage from './components/AuthorPage';
-import { useEffect, useState } from 'react';
-import { initData } from './data';
+import { useEffect } from 'react';
+import { useDataLoadActions } from './redux/useActions';
+
+
 
 
 const Blog = () => {
 
-    const [dataReady, setDataReady] = useState(false);
-
-    useEffect(() => {
-        initData();
-        setDataReady(true);
-
-        return () => setDataReady(false);
-    }, []);
-
+    
 
     return (
-        dataReady?
-            (<Provider store={store}>
-                <Content />
-            </Provider>): <div>Loading...</div>
+        <Provider store={store}>
+            <Content />
+        </Provider>
     );
 }
 
@@ -46,8 +39,12 @@ const Blog = () => {
 const Content = () => {
     const featureImageURL = useFeatureImage().url;  
     
-    
+    const {initializeData} = useDataLoadActions();
 
+    useEffect(() => {
+        initializeData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
 
     return (

@@ -1,5 +1,5 @@
 import { find } from "lodash";
-
+import { convertTitleToSlug, convertDateToSlug } from "../utils";
 import { posts as postsLocal, 
         categories as categoriesLocal, 
         tags as tagsLocal, 
@@ -12,8 +12,18 @@ import { posts as postsLocal,
         getDatesListFromData
     } from "./data"
 
-const convertTitleToSlug = (title) => title.toLowerCase().split(" ").splice(0).join("-");
-export const convertDateToSlug = (date) => date.replace(',', '').toLowerCase().split(" ").splice(0).join("-");
+
+
+let numPosts = -1;
+let posts = [];
+
+let numCategories = -1;
+let categories = [];
+
+let tags = [];
+
+let authors = [];
+
 
 
 const convertToAuthor = a => ({
@@ -84,15 +94,7 @@ const convertToPost = p => ({
     content: p.content
 });
 
-let numPosts = -1;
-let posts = [];
 
-let numCategories = -1;
-let categories = [];
-
-let tags = [];
-
-let authors = [];
 
 
 

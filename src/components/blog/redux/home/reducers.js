@@ -3,28 +3,51 @@ import { combineReducers } from "redux";
 import { getDisplayedPosts, getMainPost, getNumPosts } from "../../data";
 import { REFRESH_COMMENTS } from "../Comments";
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
-            TOGGLE_FULLPOST, SET_CURRENT_PAGE, SET_CURRENT_PAGI,
+            TOGGLE_FULLPOST, SET_CURRENT_PAGI,
             SET_MAIN_POST} from "./actionTypes";
 
-
-const mainPost = getMainPost();
+import { DATA_INITIALIZED, DISPLAY_POSTS_AT_HOME_DONE } from "../loadData";
 
 const currentPageInit = 1;
 const numItemsPerPageInit = 4;
 
-const [displayedEntries, endPrev, endNext] = getDisplayedPosts(mainPost.id, numItemsPerPageInit, currentPageInit);
+
 
 const dataInitialState = {
-    mainPost: getMainPost(),
-    numPosts: getNumPosts(),
-    displayedPosts: displayedEntries,
-    endPrev: endPrev,
-    endNext: endNext,
+    mainPost: {id: "-1",
+                feature_image_url: "",
+                categories: [],
+                tags: [],
+                date_created: "",
+                comments: [],
+                author: {}
+            },
+    numPosts: -1,
+    displayedPosts: [],
+    endPrev: false,
+    endNext: false,
     numItemsPerPage: numItemsPerPageInit,
     currentPage: currentPageInit
 }
 
-const dataReducer = (state = dataInitialState, action) => {
+const dataReducer =  (state = dataInitialState, action) => {
+    if(action.type === DATA_INITIALIZED){
+        const mainPost = getMainPost();
+
+        const [displayedEntries, endPrev, endNext] =  getDisplayedPosts(mainPost.id, numItemsPerPageInit, currentPageInit);
+        
+        return {
+            ...state,
+            mainPost: mainPost,
+            numPosts: getNumPosts(),
+            displayedPosts: displayedEntries,
+            endPrev: endPrev,
+            endNext: endNext,
+            numItemsPerPage: numItemsPerPageInit,
+            currentPage: currentPageInit
+        }
+    }
+
     if(action.type === SET_MAIN_POST){
         const [displayedEntries, endPrev, endNext] = getDisplayedPosts(action.id, state.numItemsPerPage, state.currentPage);
         
@@ -49,7 +72,7 @@ const dataReducer = (state = dataInitialState, action) => {
         }
     }
 
-    if(action.type === SET_CURRENT_PAGE) {
+    if(action.type === DISPLAY_POSTS_AT_HOME_DONE) {
         const [displayedEntries, endPrev, endNext] =  getDisplayedPosts(state.mainPost.id, state.numItemsPerPage, action.page);
         
         return {

@@ -17,8 +17,16 @@ import Home from './components/Home';
 import Copyright from './components/Copyright';
 
 
+
+
 function App() {
   const [sideBarOut, setSideBarOut] = useState(false);
+
+
+
+
+  
+
 
   return (
     <div className={"App" + (sideBarOut? " side-bar-out": "")}>

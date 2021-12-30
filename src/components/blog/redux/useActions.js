@@ -1,5 +1,8 @@
 import { useActions } from "../../../redux/useActions";
 
+
+import { initializeDataAction } from "./loadData";
+
 import { showComments as showCommentsHome, hideComments as hideCommentsHome, 
             toggleComments, toggleFullPost, 
             setHomeCurrentPage,
@@ -16,7 +19,11 @@ import { setCurrentTag, setCurrentPage as setSingleTagCurrentPage, setCurrentPag
 import { setFeatureImageURL } from "./featureImage/actions";
 import { setCurrentDate, setCurrentPage as setDatePageCurrentPage, setCurrentPagi as setDatePageCurrentPagi } from "./singleDatePage/actions";
 import { setCurrentAuthor, setCurrentPage as setAuthorPageCurrentPage, setCurrentPagi as setAuthorPageCurrentPagi } from "./authorPage/actions";
-import { refreshComments } from "./Comments";
+import { refreshComments } from "./Comments"; 
+
+
+
+export const useDataLoadActions = () => useActions({initializeData: initializeDataAction});
 
 export const useHomeActions = () => 
                         useActions({showComments: showCommentsHome, 
@@ -25,6 +32,7 @@ export const useHomeActions = () =>
                                     setMainPost,
                                     setCurrentPage: setHomeCurrentPage,
                                     setCurrentPagi: setHomeCurrentPagi
+                                    
                                 });
 
 

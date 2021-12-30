@@ -1,6 +1,7 @@
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
     TOGGLE_FULLPOST, SET_CURRENT_PAGE, SET_CURRENT_PAGI,
-    SET_MAIN_POST} from "./actionTypes";
+    SET_MAIN_POST,
+    } from "./actionTypes";
 
 
 //SHOW COMMENTS
@@ -22,3 +23,5 @@ export const setHomeCurrentPagi = (p) => ({type: SET_CURRENT_PAGI, pagi: p});
 
 // SET MAIN POST
 export const setMainPost = (id) => ({type: SET_MAIN_POST, id: id});
+
+

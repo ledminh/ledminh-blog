@@ -13,23 +13,26 @@ import { getMainPost as getMainPostLocal,
 */
 
 
-import * as local from './local';
+//import * as local from './local';
+import * as wp_ledminh from './wp-ledminh';
 
-let initData = local.initData,
-    getMainPost = local.getMainPost,
-    getDisplayedPosts = local.getDisplayedPosts,
-    getNumPosts = local.getNumPosts,
-    getNumCategories = local.getNumCategories,
-    getDisplayedCategories = local.getDisplayedCategories,
-    getCategory = local.getCategory,
-    getSinglePost = local.getSinglePost,
-    getTagsList = local.getTagsList,
-    getTag = local.getTag,
-    getDatesList = local.getDatesList,
-    getPostsOnDate = local.getPostsOnDate,
-    getAuthorsList = local.getAuthorsList,
-    getAuthor = local.getAuthor,
-    addComment = local.addComment
+
+let initData = wp_ledminh.initData,
+    loadPosts = wp_ledminh.loadPosts,
+    getMainPost = wp_ledminh.getMainPost,
+    getDisplayedPosts = wp_ledminh.getDisplayedPosts,
+    getNumPosts = wp_ledminh.getNumPosts,
+    getNumCategories = wp_ledminh.getNumCategories,
+    getDisplayedCategories = wp_ledminh.getDisplayedCategories,
+    getCategory = wp_ledminh.getCategory,
+    getSinglePost = wp_ledminh.getSinglePost,
+    getTagsList = wp_ledminh.getTagsList,
+    getTag = wp_ledminh.getTag,
+    getDatesList = wp_ledminh.getDatesList,
+    getPostsOnDate = wp_ledminh.getPostsOnDate,
+    getAuthorsList = wp_ledminh.getAuthorsList,
+    getAuthor = wp_ledminh.getAuthor,
+    addComment = wp_ledminh.addComment
     ;
 
 
@@ -38,6 +41,7 @@ let initData = local.initData,
     
 export {
     initData,
+    loadPosts,
     getMainPost,
     getDisplayedPosts,
     getNumPosts,

@@ -4,9 +4,8 @@ const ExcerptFullPostToggle = ({ showFullPostStatus, excerpt, content}) => {
     
     return (
         <>
-            <section className={"excerpt" + (showFullPostStatus ? " hidden" : " show")}>
-                {excerpt}
-            </section>
+            <div className={"excerpt" + (showFullPostStatus ? " hidden" : " show")}
+                dangerouslySetInnerHTML={{__html:excerpt}} />
             <div className={"content" + (showFullPostStatus ? " show" : " hidden")}
                 dangerouslySetInnerHTML={{ __html: content }} />
         </>
