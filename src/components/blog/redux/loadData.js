@@ -35,7 +35,7 @@ const displayedPostsAtHomeDone = (page) => ({type: DISPLAY_POSTS_AT_HOME_DONE, p
 
 
 
-export const displayedPostsMiddleware = storeAPI => next => action => {
+export const homeMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_PAGE_AT_HOME) {
         const currentPage = action.page;
         const numItemsPerPage = storeAPI.getState().home.data.numItemsPerPage; 
@@ -50,7 +50,7 @@ export const displayedPostsMiddleware = storeAPI => next => action => {
 
 }
 
-/*SET CURRENT CATEGORY*/
+/*SINGLE CATEGORY*/
 export const SET_CURRENT_CATEGORY_DONE = "BLOG/LOAD_DATA/SET_CURRENT_CATEGORY_DONE";
 
 export const setCurrentCategoryDone = (cat) => ({type: SET_CURRENT_CATEGORY_DONE, cat: cat});
@@ -61,7 +61,7 @@ export const setCurrentCategoryCurrentPageDone = (cat) => ({type: SET_CURRENT_CA
 
 
 
-export const getCurrentCategoryMiddleware = storeAPI => next => action => {
+export const singleCategoryMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_CATEGORY){
         storeAPI.dispatch(setSingleCategoryDataReady(false));
         let slug = action.slug;
