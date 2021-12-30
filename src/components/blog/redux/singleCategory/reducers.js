@@ -33,9 +33,9 @@ const singleCategoryReducer = (state = initialState, action) => {
 
         return {
             ...state,
+            ...action.cat,
             currentPage: 1,
             currentPagi: 1,
-            ...action.cat,
             dataReady: true
         };
 

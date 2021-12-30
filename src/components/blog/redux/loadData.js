@@ -1,8 +1,9 @@
-import { getCategory, initData, loadPosts } from "../data";
+import { getCategory, initData, loadPosts, getTag } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setSingleCategoryDataReady } from "./singleCategory/actions";
 import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
-
+import { SET_CURRENT_TAG, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_TAG } from "./singleTagPage/actionTypes";
+import {setSingleTagDataReady} from "./singleTagPage/actions";
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
@@ -82,6 +83,47 @@ export const singleCategoryMiddleware = storeAPI => next => action => {
         
         getCategory(undefined, numItemsPerPage, currentPage, cat).then(cat => {
             storeAPI.dispatch(setCurrentCategoryCurrentPageDone(cat));
+        });
+    }
+    
+
+    return next(action);
+
+}
+
+
+/*SINGLE TAG*/
+export const SET_CURRENT_TAG_DONE = "BLOG/LOAD_DATA/SET_CURRENT_TAG_DONE";
+
+export const setCurrentTagDone = (tag) => ({type: SET_CURRENT_TAG_DONE, tag: tag});
+
+export const SET_CURRENT_TAG_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_TAG_CURRENT_PAGE_DONE";
+
+export const setCurrentTagCurrentPageDone = (tag) => ({type: SET_CURRENT_TAG_CURRENT_PAGE_DONE, tag: tag});
+
+
+
+export const singleTagMiddleware = storeAPI => next => action => {
+    if(action.type === SET_CURRENT_TAG){
+        storeAPI.dispatch(setSingleTagDataReady(false));
+        let name = action.name;
+        let numItemsPerPage = storeAPI.getState().singleTagPage.numItemsPerPage;
+
+        getTag(name, numItemsPerPage, 1).then(tag => {
+            storeAPI.dispatch(setCurrentTagDone(tag));
+        });
+
+        
+
+    }
+
+    if(action.type === SET_CURRENT_PAGE_SINGLE_TAG) {
+        let tag = storeAPI.getState().singleTagPage;
+        let numItemsPerPage = tag.numItemsPerPage;
+        let currentPage = action.page;
+        
+        getTag(undefined, numItemsPerPage, currentPage, tag).then(tag => {
+            storeAPI.dispatch(setCurrentTagCurrentPageDone(tag));
         });
     }
     

@@ -356,10 +356,28 @@ export const getTagsList = () => {
     return tags;
 }
 
-export const  getTag = async (name, numItemsPerPage, pageNum) => {
+export const  getTag = async (name, numItemsPerPage, pageNum, currentTag) => {
+    if(!name) {
+        const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentTag.posts.data, numItemsPerPage, pageNum, currentTag.posts.data.length);
+        let newTag = {
+            ...currentTag,
+            posts: {
+                ...currentTag.posts,
+                displayedPosts: displayedPosts,
+                endPrev: endPrev,
+                endNext: endNext
+            },
+            currentPage: pageNum
+        }
+
+        return newTag;
+
+    }
+ 
     let tag = find(tags, {name: name});
 
     let ps = await wp.posts().tags(tag.idFromWP);
+    
     
 
     ps = ps.map(convertToPost).map(p => ({
@@ -376,11 +394,13 @@ export const  getTag = async (name, numItemsPerPage, pageNum) => {
 
     
     tag.posts = {
+        data: ps,
         displayedPosts: displayedPosts,
         totalPosts: ps.length,
         endPrev: endPrev,
         endNext: endNext
     };
+
 
     return tag;
     

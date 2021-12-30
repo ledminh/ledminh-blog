@@ -1,7 +1,10 @@
-import { SET_CURRENT_TAG, SET_CURRENT_PAGI, SET_CURRENT_PAGE } from "./actionTypes";
-import { getTag } from "../../data";
+import {  SET_CURRENT_PAGI, SET_SINGLE_TAG_DATA_READY } from "./actionTypes";
+
+import { TagsImageURL } from "../../assets/imageLinks";
+import { SET_CURRENT_TAG_CURRENT_PAGE_DONE, SET_CURRENT_TAG_DONE } from "../loadData";
 
 const initialState = {
+    dataReady: false,
     name: "",
     numItemsPerPage: 5,
     currentPage: 1,
@@ -14,25 +17,33 @@ const initialState = {
         endNext: false
     },
     featureImage : {
-        url: "https://cdn5.vectorstock.com/i/1000x1000/28/19/set-blank-vintage-frames-gift-tags-labels-vector-13982819.jpg" 
+        url: TagsImageURL
     }
 }
 
 const singleTagPageReducer = (state = initialState, action) => {
-    if(action.type === SET_CURRENT_TAG) {
+    if(action.type === SET_SINGLE_TAG_DATA_READY) {
         return {
             ...state,
-            ...getTag(action.name, state.numItemsPerPage, 1),
-            currentPage: 1,        
-            currentPagi: 1
+            dataReady: action.status
+        }
+    }
+    
+    if(action.type ===  SET_CURRENT_TAG_DONE) {
+
+        return {
+            ...state,
+            ...action.tag,
+            currentPage: 1,
+            currentPagi: 1,
+            dataReady: true
         };
     }
 
-    if(action.type === SET_CURRENT_PAGE) {
+    if(action.type === SET_CURRENT_TAG_CURRENT_PAGE_DONE) {
         return {
             ...state,
-            currentPage: action.page,
-            ...getTag(state.name, state.numItemsPerPage, action.page)
+            ...action.tag
         };
     }
 
