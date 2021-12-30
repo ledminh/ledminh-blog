@@ -1,8 +1,9 @@
+import { DatesImageURL } from "../../assets/imageLinks";
 import { getDatesList } from "../../data";
 
 const initState = {
     featureImage: {
-        url: "https://www.saratogian.com/wp-content/uploads/2021/11/calendar.jpg"
+        url: DatesImageURL
     },
     data: getDatesList()
 };
