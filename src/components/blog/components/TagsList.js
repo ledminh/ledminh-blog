@@ -9,20 +9,21 @@ import { useHistory } from "react-router";
 import useTagsList from "../redux/useTagsList";
 
 import '../css/TagsList.css';
+import useDataInitialized from "../redux/useDataInitialized";
 
 
 const TagsList = () => {
     
-    const {tags} = useTagsList();
+    const {tags, featureImage} = useTagsList();
+    
     
 
-    
     const {setFeatureImageURL} = useFeatureImageActions();
     
     const history = useHistory()
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL("https://cdn5.vectorstock.com/i/1000x1000/28/19/set-blank-vintage-frames-gift-tags-labels-vector-13982819.jpg"), []);
+    useEffect(() => setFeatureImageURL(featureImage.url), []);
     
     
 
@@ -51,9 +52,6 @@ const TagsList = () => {
                     ))
                 }
             </div>
-            
-      
-         
         </>
     );
 }
