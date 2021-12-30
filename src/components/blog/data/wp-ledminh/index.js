@@ -295,7 +295,7 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum, currentCat) =
         let newCat = {
             ...currentCat,
             posts: {
-                ... currentCat.posts,
+                ...currentCat.posts,
                 displayedPosts: displayedPosts,
                 endPrev: endPrev,
                 endNext: endNext

@@ -1,5 +1,5 @@
-import { SET_CURRENT_PAGE, SET_CURRENT_PAGI, SET_SINGLE_CATEGORY_DATA_READY } from "./actionTypes";
-import { getCategory } from "../../data";
+import { SET_CURRENT_PAGI, SET_SINGLE_CATEGORY_DATA_READY } from "./actionTypes";
+
 import { SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE, SET_CURRENT_CATEGORY_DONE } from "../loadData";
 
 const initialState = {

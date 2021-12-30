@@ -9,7 +9,6 @@ import { useHistory } from "react-router";
 import useTagsList from "../redux/useTagsList";
 
 import '../css/TagsList.css';
-import useDataInitialized from "../redux/useDataInitialized";
 
 
 const TagsList = () => {
