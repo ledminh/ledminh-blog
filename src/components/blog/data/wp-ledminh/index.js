@@ -442,9 +442,11 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum) => {
 
     let date = find(dates, {idInfo: {slug: slug}});
     
-    let theDay = new Date(date);
-    let theDayAfter = new Date(date);
+
+    let theDay = new Date(date.name);
+    let theDayAfter = new Date(date.name);
     theDayAfter.setDate(theDayAfter.getDate() + 1);
+
 
     let ps = await wp.posts()
                     .before(theDayAfter)
