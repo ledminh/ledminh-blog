@@ -1,14 +1,21 @@
+import { AuthorListsImageURL } from "../../assets/imageLinks";
 import { getAuthorsList } from "../../data";
+import { DATA_INITIALIZED } from "../loadData";
 
 const initState = {
     featureImage: {
-        url: "https://s26162.pcdn.co/wp-content/uploads/2018/02/writing-group.jpg"
+        url: AuthorListsImageURL
     },
-    data: getAuthorsList()
+    data: []
 }
 
-const authorsListReducer = (state = initState, actions) => {
-
+const authorsListReducer = (state = initState, action) => {
+    if(action.type === DATA_INITIALIZED){
+        return {
+            ...state,
+            data: getAuthorsList()
+        }
+    }
     return state;
 }
 
