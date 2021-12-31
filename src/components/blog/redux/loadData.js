@@ -1,9 +1,12 @@
-import { getCategory, initData, loadPosts, getTag } from "../data";
+import { getCategory, initData, loadPosts, getTag, getPostsOnDate } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setSingleCategoryDataReady } from "./singleCategory/actions";
 import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
 import { SET_CURRENT_TAG, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_TAG } from "./singleTagPage/actionTypes";
 import {setSingleTagDataReady} from "./singleTagPage/actions";
+import { SET_CURRENT_DATE, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_DATE } from "./singleDatePage/actionTypes";
+import {setSingleDateDataReady} from "./singleDatePage/actions";
+
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
@@ -124,6 +127,47 @@ export const singleTagMiddleware = storeAPI => next => action => {
         
         getTag(undefined, numItemsPerPage, currentPage, tag).then(tag => {
             storeAPI.dispatch(setCurrentTagCurrentPageDone(tag));
+        });
+    }
+    
+
+    return next(action);
+
+}
+
+
+/*SINGLE DATE*/
+export const SET_CURRENT_DATE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_DATE_DONE";
+
+export const setCurrentDateDone = (date) => ({type: SET_CURRENT_DATE_DONE, date: date});
+
+export const SET_CURRENT_DATE_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_DATE_CURRENT_PAGE_DONE";
+
+export const setCurrentDateCurrentPageDone = (date) => ({type: SET_CURRENT_DATE_CURRENT_PAGE_DONE, date: date});
+
+
+
+export const singleDateMiddleware = storeAPI => next => action => {
+    if(action.type === SET_CURRENT_DATE){
+        storeAPI.dispatch(setSingleDateDataReady(false));
+        let slug = action.slug;
+        let numItemsPerPage = storeAPI.getState().singleDatePage.numItemsPerPage;
+
+        getPostsOnDate(slug, numItemsPerPage, 1).then(date => {
+            storeAPI.dispatch(setCurrentDateDone(date));
+        });
+
+        
+
+    }
+
+    if(action.type === SET_CURRENT_PAGE_SINGLE_DATE) {
+        let date = storeAPI.getState().singleDatePage;
+        let numItemsPerPage = date.numItemsPerPage;
+        let currentPage = action.page;
+        
+        getTag(undefined, numItemsPerPage, currentPage, date).then(date => {
+            storeAPI.dispatch(setCurrentDateCurrentPageDone(date));
         });
     }
     

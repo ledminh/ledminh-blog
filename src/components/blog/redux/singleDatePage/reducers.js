@@ -1,7 +1,9 @@
-import { SET_CURRENT_DATE, SET_CURRENT_PAGE, SET_CURRENT_PAGI } from "./actionTypes";
-import { getPostsOnDate } from "../../data";
+import {  SET_CURRENT_PAGI, SET_SINGLE_DATE_DATA_READY } from "./actionTypes";
+
+import { SET_CURRENT_DATE_CURRENT_PAGE_DONE, SET_CURRENT_DATE_DONE } from "../loadData";
 
 const initState = {
+    dataReady: false,
     name: "",
     numItemsPerPage: 5,
     currentPage: 1,
@@ -19,20 +21,27 @@ const initState = {
 };
 
 const singleDatePageReducer = (state = initState, action) => {
-    if(action.type === SET_CURRENT_DATE){
+    if(action.type === SET_SINGLE_DATE_DATA_READY){
         return {
             ...state,
-            ...getPostsOnDate(action.slug, state.numItemsPerPage, 1),
+            dataReady: action.status
+        };
+    }
+
+    if(action.type === SET_CURRENT_DATE_DONE){
+        return {
+            ...state,
+            ...action.date,
             currentPage: 1,        
-            currentPagi: 1
+            currentPagi: 1,
+            dataReady: true
         }
     }
 
-    if(action.type === SET_CURRENT_PAGE) {
+    if(action.type === SET_CURRENT_DATE_CURRENT_PAGE_DONE) {
         return {
             ...state,
-            currentPage: action.page,
-            ...getPostsOnDate(state.idInfo.slug, state.numItemsPerPage, action.page)
+            ...action.date
         };
     }
     

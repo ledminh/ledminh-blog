@@ -437,7 +437,25 @@ export const getDatesList = () => {
 }
 
 /* SINGLE DATE PAGE */
-export const getPostsOnDate = async (slug, numItemsPerPage, pageNum) => {
+export const getPostsOnDate = async (slug, numItemsPerPage, pageNum, currentDate) => {
+    if(!slug) {
+        const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentDate.posts.data, numItemsPerPage, pageNum, currentDate.posts.data.length);
+
+        let newDate = {
+            ...currentDate,
+            posts: {
+                ...currentDate.posts,
+                displayedPosts: displayedPosts,
+                endPrev: endPrev,
+                endNext: endNext
+            },
+            currentPage: pageNum
+        }
+
+        return newDate;
+    }
+
+
     const dates = getDatesList();
 
     let date = find(dates, {idInfo: {slug: slug}});
@@ -469,6 +487,7 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum) => {
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
 
     date.posts = {
+        data: ps,
         displayedPosts: displayedPosts,
         totalPosts: ps.length,
         endPrev: endPrev,
@@ -482,8 +501,6 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum) => {
 
 /* AUTHORS LIST */
 export const getAuthorsList = () => authors;
-
-
 
 export const getAuthor = async (slug, numItemsPerPage, pageNum) => {
     let author = await wp.users().slug(slug);
