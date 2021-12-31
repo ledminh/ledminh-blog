@@ -1,4 +1,4 @@
-import { find, reduce } from "lodash";
+import { find, reduce, filter } from "lodash";
 import { convertDateToSlug } from "../utils";
 
 
@@ -420,6 +420,8 @@ const getDatesListFromData = () => {
 
     }, []);
 
+    
+
     return dl;
 }
 
@@ -431,6 +433,7 @@ export const getDatesList = () => {
                                                         slug: date.slug
                                                     }
                                                 })); 
+    
     
     
     return datesList;
@@ -460,29 +463,33 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum, currentDate
 
     let date = find(dates, {idInfo: {slug: slug}});
     
+    let ps = filter(posts, {date_created: {slug: slug}})
+    
 
-    let theDay = new Date(date.name);
-    let theDayAfter = new Date(date.name);
-    theDayAfter.setDate(theDayAfter.getDate() + 1);
+    // let theDay = new Date(date.name);
+    // let theDayAfter = new Date(date.name);
+    // theDayAfter.setDate(theDayAfter.getDate() + 1);
 
 
-    let ps = await wp.posts()
-                    .before(theDayAfter)
-                    .after(theDay);
+    // let ps = await wp.posts()
+    //                 .after(theDay)
+    //                 .before(theDayAfter)
+    //                 ;
     
     
     
-    ps = ps.map(convertToPost).map(p => ({
-                                            title: p.title,
-                                            idInfo:{
-                                                slug: p.slug
-                                            },
-                                            date_created: p.date_created,
-                                            author: p.author,
-                                            excerpt: p.excerpt
-                                        }));
+    ps = ps.map(p => ({
+                        title: p.title,
+                        idInfo:{
+                            slug: p.slug
+                        },
+                        date_created: p.date_created,
+                        author: p.author,
+                        excerpt: p.excerpt
+                    }));
     
     
+
 
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
 

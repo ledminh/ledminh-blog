@@ -1,6 +1,6 @@
 import { DatesImageURL } from "../../assets/imageLinks";
 import { getDatesList } from "../../data";
-import { DATA_INITIALIZED } from "../loadData";
+import { DATA_INITIALIZED, DISPLAY_POSTS_AT_HOME_DONE } from "../loadData";
 
 const initState = {
     featureImage: {
@@ -10,12 +10,15 @@ const initState = {
 };
 
 const datesListReducer = (state = initState, action) => {
-    if(action.type === DATA_INITIALIZED) {
+    if(action.type === DATA_INITIALIZED ||
+        action.type === DISPLAY_POSTS_AT_HOME_DONE) {
         return {
             ...state,
             data: getDatesList()
         }
     }
+
+
     return state;
 }
 
