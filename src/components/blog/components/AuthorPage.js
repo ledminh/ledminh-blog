@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useFeatureImageActions, useAuthorPageActions } from "../redux/useActions";
-
 import useAuthorPage from "../redux/useAuthorPage";
+import useDataInitialized from "../redux/useDataInitialized";
+
 import EntriesList from "./EntriesList";
 import SubTitle from "./SubTitle";
 import Title from "./Title";
@@ -12,10 +13,11 @@ import { VERTICAL_LIST } from "./EntriesList";
 
 
 const AuthorPage = () => {
-    const {name, slogan, featureImage, profilePicture, bio, posts, currentPage, currentPagi, numItemsPerPage, numPagiButtons } = useAuthorPage();
+    const {dataReady, name, slogan, featureImage, profilePicture, bio, posts, currentPage, currentPagi, numItemsPerPage, numPagiButtons } = useAuthorPage();
     const {totalPosts, displayedPosts, endPrev, endNext} = posts;
     const {setCurrentItem, setCurrentPage, setCurrentPagi} = useAuthorPageActions();
 
+    const dataInitialized = useDataInitialized();
     //Create onClickHandle for each of item on the list
     const history = useHistory();
     const onClickHandleMakerPost = (idIf) => {
@@ -28,14 +30,16 @@ const AuthorPage = () => {
     const {idInfo} = useParams();
     const {setFeatureImageURL} = useFeatureImageActions();
     useEffect(() => {
-        setCurrentItem(idInfo);
-        setFeatureImageURL(featureImage? (featureImage.url): "")
+        if(dataInitialized) {
+            setCurrentItem(idInfo);
+            setFeatureImageURL(featureImage? (featureImage.url): "")
+        }
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [idInfo]);
-
+    }, [idInfo, dataInitialized]);
 
     return (
-        (name !== "")?
+        (dataInitialized && dataReady)?
         (<div className="author-page">
             <Title title={name}/>
             <SubTitle>

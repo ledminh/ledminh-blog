@@ -465,16 +465,19 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum, currentDate
     
     let ps = filter(posts, {date_created: {slug: slug}})
     
+    if(ps.length === 0){
+        let theDay = new Date(date.name);
+        let theDayAfter = new Date(date.name);
+        theDayAfter.setDate(theDayAfter.getDate() + 1);
 
-    // let theDay = new Date(date.name);
-    // let theDayAfter = new Date(date.name);
-    // theDayAfter.setDate(theDayAfter.getDate() + 1);
 
-
-    // let ps = await wp.posts()
-    //                 .after(theDay)
-    //                 .before(theDayAfter)
-    //                 ;
+        ps = await wp.posts()
+                        .after(theDay)
+                        .before(theDayAfter)
+                        ;
+        ps = ps.map(convertToPost);
+    }
+    
     
     
     
@@ -509,13 +512,36 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum, currentDate
 /* AUTHORS LIST */
 export const getAuthorsList = () => authors;
 
-export const getAuthor = async (slug, numItemsPerPage, pageNum) => {
-    let author = await wp.users().slug(slug);
+export const getAuthor = async (slug, numItemsPerPage, pageNum, currentAuthor) => {
+    if(!slug) {
+        const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentAuthor.posts.data, numItemsPerPage, pageNum, currentAuthor.posts.data.length);
+
+        let newAuthor = {
+            ...currentAuthor,
+            posts: {
+                ...currentAuthor.posts,
+                displayedPosts: displayedPosts,
+                endPrev: endPrev,
+                endNext: endNext
+            },
+            currentPage: pageNum
+        }
+
+        return newAuthor;
+    }
+
+    let aths = await wp.users().slug(slug);
+    let author = aths[0];
+
+    let ps = filter(posts, {author: {idInfo: {slug: slug}}});
     
-    let ps = await wp.posts().users(author.id);
+    // if(ps.length === 0) {
+    //     ps = await wp.posts().users(author.id);
+    //     ps = ps.map(convertToPost);
+    // }
     
-    ps = ps.map(convertToPost)
-            .map(p => ({
+    
+    ps = ps.map(p => ({
                 title: p.title,
                 idInfo:{
                     slug: p.slug
@@ -525,8 +551,10 @@ export const getAuthor = async (slug, numItemsPerPage, pageNum) => {
                 excerpt: p.excerpt
             }));
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
-
-    convertToAuthor(author).posts = {
+    
+    author = convertToAuthor(author); 
+    author.posts = {
+        data: ps,
         displayedPosts: displayedPosts,
         totalPosts: ps.length,
         endPrev: endPrev,

@@ -1,12 +1,16 @@
-import { getCategory, initData, loadPosts, getTag, getPostsOnDate } from "../data";
+import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setSingleCategoryDataReady } from "./singleCategory/actions";
 import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
 import { SET_CURRENT_TAG, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_TAG } from "./singleTagPage/actionTypes";
+
 import {setSingleTagDataReady} from "./singleTagPage/actions";
 import { SET_CURRENT_DATE, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_DATE } from "./singleDatePage/actionTypes";
-import {setSingleDateDataReady} from "./singleDatePage/actions";
 
+import {setSingleDateDataReady} from "./singleDatePage/actions";
+import { SET_CURRENT_AUTHOR, SET_CURRENT_PAGE as SET_CURRENT_PAGE_AUTHOR_PAGE } from "./authorPage/actionTypes";
+
+import { setAuthorPageDataReady } from "./authorPage/actions";
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
@@ -175,3 +179,45 @@ export const singleDateMiddleware = storeAPI => next => action => {
     return next(action);
 
 }
+
+
+/* AUTHOR PAGE */
+export const SET_CURRENT_AUTHOR_DONE = "BLOG/LOAD_DATA/SET_CURRENT_AUTHOR_DONE";
+
+export const setCurrentAuthorDone = (author) => ({type: SET_CURRENT_AUTHOR_DONE, author: author});
+
+export const SET_AUTHOR_PAGE_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_AUTHOR_PAGE_CURRENT_PAGE_DONE";
+
+export const setAuthorPageCurrentPageDone = (author) => ({type: SET_AUTHOR_PAGE_CURRENT_PAGE_DONE, author: author});
+
+
+
+export const authorPageMiddleware = storeAPI => next => action => {
+    if(action.type === SET_CURRENT_AUTHOR){
+        storeAPI.dispatch(setAuthorPageDataReady(false));
+        let slug = action.slug;
+        let numItemsPerPage = storeAPI.getState().authorPage.numItemsPerPage;
+
+        getAuthor(slug, numItemsPerPage, 1).then(author => {
+            storeAPI.dispatch(setCurrentAuthorDone(author));
+        });
+
+        
+
+    }
+
+    if(action.type === SET_CURRENT_PAGE_AUTHOR_PAGE) {
+        let author = storeAPI.getState().authorPage;
+        let numItemsPerPage = author.numItemsPerPage;
+        let currentPage = action.page;
+        
+        getAuthor(undefined, numItemsPerPage, currentPage, author).then(author => {
+            storeAPI.dispatch(setAuthorPageCurrentPageDone(author));
+        });
+    }
+    
+
+    return next(action);
+
+}
+

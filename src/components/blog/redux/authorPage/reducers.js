@@ -1,8 +1,9 @@
-import { getAuthor } from "../../data";
-import {SET_CURRENT_AUTHOR, SET_CURRENT_PAGE, SET_CURRENT_PAGI} from "./actionTypes";
+import { SET_AUTHOR_PAGE_CURRENT_PAGE_DONE, SET_CURRENT_AUTHOR_DONE } from "../loadData";
+import { SET_CURRENT_PAGI, SET_AUTHOR_PAGE_DATA_READY} from "./actionTypes";
 
 
 const initState = {
+    dataReady: false,
     name: "",
     slogan: "",
     featureImage: {
@@ -21,21 +22,28 @@ const initState = {
 };
 
 export const authorPageReducer = (state = initState, action) => {
-    if(action.type === SET_CURRENT_AUTHOR) {
-        
+    if(action.type === SET_AUTHOR_PAGE_DATA_READY) {
         return {
             ...state,
-            ...getAuthor(action.slug, state.numItemsPerPage, 1),
+            dataReady: action.status
+        }
+    }
+
+    if(action.type === SET_CURRENT_AUTHOR_DONE) {
+
+        return {
+            ...state,
+            ...action.author,
             currentPage: 1,        
-            currentPagi: 1
+            currentPagi: 1,
+            dataReady: true
         };
     }
 
-    if(action.type === SET_CURRENT_PAGE) {
+    if(action.type === SET_AUTHOR_PAGE_CURRENT_PAGE_DONE) {
         return {
             ...state,
-            currentPage: action.page,
-            ...getAuthor(state.idInfo.slug, state.numItemsPerPage, action.page)
+            ...action.author
         };
     }
 
