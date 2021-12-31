@@ -59,6 +59,7 @@ const convertToCategory = c => ({
     }
 });
 
+const formatDate = (d) => (new Date(d)).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'})
 
 const convertToPost = p => ({
     id: "post-" + p.id,
@@ -86,8 +87,8 @@ const convertToPost = p => ({
     }),
 
     date_created: {
-        text: p.date,
-        slug: convertDateToSlug(p.date)
+        text: formatDate(p.date),
+        slug: convertDateToSlug(formatDate(p.date))
     },
     comments: [],
     author: find(authors, {id: "author-" + p.author}),
@@ -409,23 +410,25 @@ export const  getTag = async (name, numItemsPerPage, pageNum, currentTag) => {
 /* DATES LIST */
 
 const getDatesListFromData = () => {
-
-    return reduce(posts, (dsL, p) => {
-        if(dsL.indexOf(p.date_created) === -1){
+    let dl = reduce(posts, (dsL, p) => {
+        
+        if(!find(dsL, {text: p.date_created.text})){
             dsL.push(p.date_created);
 
         }
         return dsL;
 
     }, []);
+
+    return dl;
 }
 
 
 export const getDatesList = () => {
     let datesList = getDatesListFromData().map(date => ({
-                                                    name: date,
+                                                    name: date.text,
                                                     idInfo: {
-                                                        slug: convertDateToSlug(date)
+                                                        slug: date.slug
                                                     }
                                                 })); 
     
