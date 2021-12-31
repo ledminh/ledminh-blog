@@ -1,3 +1,4 @@
+import { AuthorPageImageURL } from "../../assets/imageLinks";
 import { SET_AUTHOR_PAGE_CURRENT_PAGE_DONE, SET_CURRENT_AUTHOR_DONE } from "../loadData";
 import { SET_CURRENT_PAGI, SET_AUTHOR_PAGE_DATA_READY} from "./actionTypes";
 
@@ -7,7 +8,7 @@ const initState = {
     name: "",
     slogan: "",
     featureImage: {
-        url: "https://collegeinfogeek.com/wp-content/uploads/2020/05/writing-apps-featured-document-on-computer.jpg"
+        url: AuthorPageImageURL
     },
     posts: {
         totalPosts: 0,
