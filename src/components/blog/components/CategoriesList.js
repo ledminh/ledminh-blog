@@ -7,12 +7,15 @@ import { useCategoriesListActions, useFeatureImageActions } from "../redux/useAc
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import useCategoriesList from "../redux/useCategoriesList";
+import useDataInitialized from "../redux/useDataInitialized";
+import LoadingPage from "./LoadingPage";
 
 
 
 
 const CategoriesList = () => {
-    
+    const dataInitialized = useDataInitialized();
+
     const {data, numPagiButtons, currentPagi, featureImage} = useCategoriesList();
     const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
@@ -21,10 +24,18 @@ const CategoriesList = () => {
     
     const {setFeatureImageURL} = useFeatureImageActions();
     
-    const history = useHistory()
-    
+    const history = useHistory();
+
+    useEffect(() => setFeatureImageURL(""), 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL(featureImage.url), []);
+    []);
+    
+    useEffect(() => {
+        if(dataInitialized)
+            setFeatureImageURL(featureImage.url)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[featureImage.url, dataInitialized]);
     
     
 
@@ -36,7 +47,8 @@ const CategoriesList = () => {
     }
 
     return (
-        <>
+        dataInitialized?
+        (<>
             <Title title="Categories"/>
             <SubTitle>
                 List of all categories
@@ -54,11 +66,9 @@ const CategoriesList = () => {
                     onClickHandleMaker={onClickHandleMaker}
                     numItemsPerPage={numItemsPerPage}
                     numPagiButtons={numPagiButtons}
-                    
-                    />
-      
-         
-        </>
+                    dataReady={true}
+                    />  
+        </>) : (<LoadingPage />)
     );
 }
 

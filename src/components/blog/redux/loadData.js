@@ -1,5 +1,7 @@
 import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor, getSinglePost } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
+import { setHomeDataReady } from "./home/actions";
+
 import { setSingleCategoryDataReady } from "./singleCategory/actions";
 import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
 import { SET_CURRENT_TAG, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_TAG } from "./singleTagPage/actionTypes";
@@ -49,6 +51,7 @@ const displayedPostsAtHomeDone = (page) => ({type: DISPLAY_POSTS_AT_HOME_DONE, p
 
 export const homeMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_PAGE_AT_HOME) {
+        storeAPI.dispatch(setHomeDataReady(false));
         const currentPage = action.page;
         const numItemsPerPage = storeAPI.getState().home.data.numItemsPerPage; 
 

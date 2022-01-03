@@ -30,17 +30,28 @@ const AuthorPage = () => {
     //set feature image and change current item to display appropriately
     const {idInfo} = useParams();
     const {setFeatureImageURL} = useFeatureImageActions();
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => setFeatureImageURL(""), []);
+    
     useEffect(() => {
         if(dataInitialized) {
             setCurrentItem(idInfo);
-            setFeatureImageURL(featureImage? (featureImage.url): "")
         }
-        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [idInfo, dataInitialized]);
 
+
+    useEffect(() => {
+        if(dataReady) {
+            setFeatureImageURL(featureImage.url);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataReady, featureImage.url]);
+
+
     return (
-        (dataInitialized && dataReady)?
+        (dataReady)?
         (<div className="author-page">
             <Title title={name}/>
             <SubTitle>
@@ -68,6 +79,7 @@ const AuthorPage = () => {
                     onClickHandleMaker={onClickHandleMakerPost}
                     numItemsPerPage={numItemsPerPage}
                     numPagiButtons={numPagiButtons}
+                    dataReady={dataReady}
                     />       
         </div>)
         :(

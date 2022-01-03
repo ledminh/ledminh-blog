@@ -41,18 +41,29 @@ const PostsList = ({type}) => {
     //set feature image and change current item to display appropriately
     const {idInfo} = useParams();
     const {setFeatureImageURL} = useFeatureImageActions();
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => setFeatureImageURL(""), []);
+    
     useEffect(() => {
         if(dataInitialized){
             setCurrentItem(idInfo);
-            setFeatureImageURL(featureImage? (featureImage.url): "");
         }
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [idInfo, dataInitialized, featureImage.url]);
+    }, [idInfo, dataInitialized]);
+
+
+    useEffect(() => {
+        if(dataReady)
+            setFeatureImageURL(featureImage.url);
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataReady]);
 
 
     return (
-        (dataInitialized && dataReady)?
+        (dataReady)?
         (<>
             
             <Title title={title}/>
@@ -72,6 +83,7 @@ const PostsList = ({type}) => {
                     onClickHandleMaker={onClickHandleMakerPost}
                     numItemsPerPage={numItemsPerPage}
                     numPagiButtons={numPagiButtons}
+                    dataReady={dataReady}
                     />       
         </>)
         :(

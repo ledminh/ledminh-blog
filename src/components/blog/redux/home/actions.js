@@ -1,6 +1,6 @@
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
     TOGGLE_FULLPOST, SET_CURRENT_PAGE, SET_CURRENT_PAGI,
-    SET_MAIN_POST,
+    SET_MAIN_POST, SET_HOME_DATA_READY
     } from "./actionTypes";
 
 
@@ -23,5 +23,9 @@ export const setHomeCurrentPagi = (p) => ({type: SET_CURRENT_PAGI, pagi: p});
 
 // SET MAIN POST
 export const setMainPost = (id) => ({type: SET_MAIN_POST, id: id});
+
+
+// SET DATA READY
+export const setHomeDataReady = (status) => ({type: SET_HOME_DATA_READY, status: status});
 
 

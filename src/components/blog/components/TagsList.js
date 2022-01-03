@@ -9,10 +9,13 @@ import { useHistory } from "react-router";
 import useTagsList from "../redux/useTagsList";
 
 import '../css/TagsList.css';
+import useDataInitialized from "../redux/useDataInitialized";
+import LoadingPage from "./LoadingPage";
 
 
 const TagsList = () => {
-    
+    const dataInitialized = useDataInitialized();
+
     const {tags, featureImage} = useTagsList();
     
     
@@ -22,7 +25,15 @@ const TagsList = () => {
     const history = useHistory()
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL(featureImage.url), []);
+    useEffect(() => setFeatureImageURL(""), []);
+
+    useEffect(() => {
+        if(dataInitialized) {
+            setFeatureImageURL(featureImage.url);
+        }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataInitialized, featureImage.url]);
     
     
 
@@ -34,7 +45,8 @@ const TagsList = () => {
     }
 
     return (
-        <>
+        dataInitialized?
+        (<>
             <Title title="Tags"/>
             <SubTitle>
                 List of all Tags
@@ -51,7 +63,7 @@ const TagsList = () => {
                     ))
                 }
             </div>
-        </>
+        </>) : (<LoadingPage />)
     );
 }
 

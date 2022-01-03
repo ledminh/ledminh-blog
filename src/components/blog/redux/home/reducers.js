@@ -4,7 +4,8 @@ import { getDisplayedPosts, getMainPost, getNumPosts } from "../../data";
 import { REFRESH_COMMENTS } from "../Comments";
 import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS, 
             TOGGLE_FULLPOST, SET_CURRENT_PAGI,
-            SET_MAIN_POST} from "./actionTypes";
+            SET_MAIN_POST,
+            SET_HOME_DATA_READY} from "./actionTypes";
 
 import { DATA_INITIALIZED, DISPLAY_POSTS_AT_HOME_DONE } from "../loadData";
 
@@ -14,6 +15,7 @@ const numItemsPerPageInit = 4;
 
 
 const dataInitialState = {
+    dataReady: false,
     mainPost: {id: "-1",
                 feature_image_url: "",
                 categories: [],
@@ -44,7 +46,15 @@ const dataReducer =  (state = dataInitialState, action) => {
             endPrev: endPrev,
             endNext: endNext,
             numItemsPerPage: numItemsPerPageInit,
-            currentPage: currentPageInit
+            currentPage: currentPageInit,
+            dataReady: true
+        }
+    }
+
+    if(action.type === SET_HOME_DATA_READY) {
+        return {
+            ...state,
+            dataReady: action.status
         }
     }
 
@@ -56,7 +66,8 @@ const dataReducer =  (state = dataInitialState, action) => {
             displayedPosts: displayedEntries,
             endPrev: endPrev,
             endNext: endNext,
-            currentPage: action.page
+            currentPage: action.page,
+            dataReady: true
         }
     }
 

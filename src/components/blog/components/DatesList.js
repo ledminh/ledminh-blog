@@ -9,10 +9,13 @@ import { useHistory } from "react-router";
 import useDatesList from "../redux/useDatesList";
 
 import '../css/DatesList.css';
+import useDataInitialized from "../redux/useDataInitialized";
+import LoadingPage from "./LoadingPage";
 
 
 const DatesList = () => {
-    
+    const dataInitialized = useDataInitialized();
+
     const dates = useDatesList(); 
     const {featureImage, data} = dates;
     
@@ -21,7 +24,15 @@ const DatesList = () => {
     const history = useHistory()
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL(featureImage.url), []);
+    useEffect(() => setFeatureImageURL(""), []);
+
+    useEffect(() => {
+        if(dataInitialized) {
+            setFeatureImageURL(featureImage.url);
+        }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataInitialized]);
     
     
 
@@ -33,7 +44,8 @@ const DatesList = () => {
     }
 
     return (
-        <>
+        dataInitialized?
+        (<>
             <Title title="Dates"/>
             <SubTitle>
                 List of all dates when there were something published
@@ -53,7 +65,7 @@ const DatesList = () => {
                 }
                 </ul>
             </div>
-        </>
+        </>): (<LoadingPage />)
     );
 }
 

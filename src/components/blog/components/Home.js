@@ -15,15 +15,19 @@ const Home = () => {
 
     const homeActions = useHomeActions();
     const {data, numPagiButtons, currentPagi} = useHome();
-    const {mainPost, numPosts, displayedPosts, endPrev, endNext, numItemsPerPage, currentPage} = data;
+    const {dataReady, mainPost, numPosts, displayedPosts, endPrev, endNext, numItemsPerPage, currentPage} = data;
 
     const {setFeatureImageURL} = useFeatureImageActions();
     
+    //Initialize
+    useEffect(() => {
+        setFeatureImageURL("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     useEffect(() => {
         if(dataInitialized)
-            setFeatureImageURL(mainPost.featureImage.url)
-    
+            setFeatureImageURL(mainPost.featureImage.url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dataInitialized, mainPost]);
     
@@ -37,10 +41,8 @@ const Home = () => {
     }   
     
     
-    return (
-        dataInitialized ?
-            (
-            <>
+    return dataInitialized ?
+            (<>
                 <MainPost />             
 
                 <div className="separator" />
@@ -58,14 +60,14 @@ const Home = () => {
                     onClickHandleMaker={onClickHandleMakerOtherPosts}
                     numItemsPerPage={numItemsPerPage}
                     numPagiButtons={numPagiButtons}
-                    
+                    dataReady={dataReady}
                     />
                 
                 
-            </>
-            ):
+            </>)
+            :
             (<LoadingPage />)
-    );
+    
 }
 
 export default Home;

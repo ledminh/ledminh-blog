@@ -10,10 +10,13 @@ import useAuthorsList from "../redux/useAuthorsList";
 
 import '../css/AuthorsList.css';
 import FeatureImage from "./FeatureImage";
+import useDataInitialized from "../redux/useDataInitialized";
+import LoadingPage from "./LoadingPage";
 
 
 const AuthorsList = () => {
-    
+    const dataInitialized = useDataInitialized();
+
     const authorsList = useAuthorsList(); 
     const {featureImage, data} = authorsList;
     
@@ -22,9 +25,14 @@ const AuthorsList = () => {
     const history = useHistory()
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL(featureImage.url), []);
+    useEffect(() => setFeatureImageURL(""), []);
     
-    
+    useEffect(() => {
+        if(dataInitialized)
+            setFeatureImageURL(featureImage.url);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataInitialized]);
 
     const onClickHandleMaker = (idInfo) => {
 
@@ -36,7 +44,8 @@ const AuthorsList = () => {
     
 
     return (
-        <>
+        dataInitialized?
+        (<>
             <Title title="Authors"/>
             <SubTitle>
                 List of all authors
@@ -55,7 +64,7 @@ const AuthorsList = () => {
                     ))
                 }
             </div>
-        </>
+        </>) : (<LoadingPage />)
     );
 }
 

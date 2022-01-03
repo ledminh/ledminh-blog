@@ -27,6 +27,9 @@ const SinglePostPage = () => {
 
     const location = useLocation();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => setFeatureImageURL(""), []);
+
     useEffect(() => {
         if(dataInitialized){
             setCurrentSinglePost(slug);          
@@ -39,6 +42,9 @@ const SinglePostPage = () => {
     useEffect(() => {
         if(dataReady)
             setFeatureImageURL(data.featureImage.url);
+        else
+            setFeatureImageURL("");
+            
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataReady])
     

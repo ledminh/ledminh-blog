@@ -1,6 +1,7 @@
 import '../css/EntriesList.css';
 
 import FeatureImage from './FeatureImage';
+import LoadingPage from './LoadingPage';
 import Pagination from './Pagination';
 
 export const GALLERY = "ENTRY_LIST/GALLERY";
@@ -12,59 +13,61 @@ const EntriesList = ({onClickHandleMaker,
                         currentPagi, setCurrentPagi,
                         numItemsPerPage, numPagiButtons,
                         endPrev, endNext, displayedEntries,
-                        listType
+                        listType, dataReady
                     }) => {
     
     return (
+        dataReady?
+        (
         <>
-        <div className={(listType === GALLERY) ? "gallery-list"
-                        : ((listType === VERTICAL_LIST)? "vertical-list": "") }>
-            {
-                displayedEntries.map(e => {
-                    
-                    let entry;
+            <div className={(listType === GALLERY) ? "gallery-list"
+                            : ((listType === VERTICAL_LIST)? "vertical-list": "") }>
+                {
+                    displayedEntries.map(e => {
+                        
+                        let entry;
 
-                    if(listType === GALLERY){
-                        entry = <GalerryEntry key={e.id}
-                            idInfo={e.idInfo}
-                            feature_image_url={e.featureImage.url} 
-                            title={e.title}
-                            meta_data={e.meta_data}
-                            onClickHandleMaker={onClickHandleMaker}
-                            />
-                    }
-                    else if(listType === VERTICAL_LIST){
-                        entry = <VerticalEntry
-                                key={e.title}
-                                title={e.title}
-                                date_created={e.date_created}
-                                author={e.author.name}
-                                excerpt={e.excerpt}
+                        if(listType === GALLERY){
+                            entry = <GalerryEntry key={e.id}
                                 idInfo={e.idInfo}
+                                feature_image_url={e.featureImage.url} 
+                                title={e.title}
+                                meta_data={e.meta_data}
                                 onClickHandleMaker={onClickHandleMaker}
-                            />
-                    }
+                                />
+                        }
+                        else if(listType === VERTICAL_LIST){
+                            entry = <VerticalEntry
+                                    key={e.title}
+                                    title={e.title}
+                                    date_created={e.date_created}
+                                    author={e.author.name}
+                                    excerpt={e.excerpt}
+                                    idInfo={e.idInfo}
+                                    onClickHandleMaker={onClickHandleMaker}
+                                />
+                        }
 
-                    return entry;
+                        return entry;
 
-                })
-            }                
-        </div>
-        <Pagination
-                    numItemsTotal={numItemsTotal} 
-                    numItemsPerPage={numItemsPerPage}
-                    numButtons={numPagiButtons}
-                    nextOnClick={() =>setCurrentPage(currentPage + 1)}
-                    prevOnClick={() =>setCurrentPage(currentPage - 1)}
-                    endPrev={endPrev}
-                    endNext={endNext}
-                    setPageNumber={(p) => setCurrentPage(p)}
-                    currentPage={currentPage}
-                    setCurrentPagi={setCurrentPagi}
-                    currentPagi={currentPagi}
-                    
-                    />
-        </>
+                    })
+                }                
+            </div>
+            <Pagination
+                        numItemsTotal={numItemsTotal} 
+                        numItemsPerPage={numItemsPerPage}
+                        numButtons={numPagiButtons}
+                        nextOnClick={() =>setCurrentPage(currentPage + 1)}
+                        prevOnClick={() =>setCurrentPage(currentPage - 1)}
+                        endPrev={endPrev}
+                        endNext={endNext}
+                        setPageNumber={(p) => setCurrentPage(p)}
+                        currentPage={currentPage}
+                        setCurrentPagi={setCurrentPagi}
+                        currentPagi={currentPagi}
+                        
+                        />
+            </>): (<LoadingPage />)
     );
 }
 
