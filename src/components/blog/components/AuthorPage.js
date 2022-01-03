@@ -9,6 +9,7 @@ import SubTitle from "./SubTitle";
 import Title from "./Title";
 import '../css/AuthorPage.css';
 import { VERTICAL_LIST } from "./EntriesList";
+import LoadingPage from "./LoadingPage";
 
 
 
@@ -70,7 +71,7 @@ const AuthorPage = () => {
                     />       
         </div>)
         :(
-            <div>Loading ...</div>
+            <LoadingPage />
         )
     );
 }

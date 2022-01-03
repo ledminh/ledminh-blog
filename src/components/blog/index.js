@@ -43,6 +43,7 @@ const Content = () => {
 
     useEffect(() => {
         initializeData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
@@ -53,7 +54,7 @@ const Content = () => {
                 <div className="blog">                
                     <BlogNavigationBar />
                     <FeatureImage feature_image_url ={featureImageURL} />
-                    <MainContent>                         
+                    <MainContent>
                         <Switch>
                             <Route path="/author/:idInfo">
                                 <AuthorPage />

@@ -14,6 +14,7 @@ import useSingleCategory from "../redux/useSingleCategory";
 import useSingleTagPage from "../redux/useSingleTagPage";
 import useSingleDatePage from "../redux/useSingleDatePage";
 import useDataInitialized from "../redux/useDataInitialized";
+import LoadingPage from "./LoadingPage";
 
 export const PL_SINGLE_TAG_PAGE = "TYPE/POSTS_LIST/SINGLE_TAG_PAGE";
 export const PL_SINGLE_CATEGORY = "TYPE/POSTS_LIST/SINGLE_CATEGORY";
@@ -74,7 +75,7 @@ const PostsList = ({type}) => {
                     />       
         </>)
         :(
-            <div>Loading ...</div>
+            <LoadingPage />
         )
     );
 }

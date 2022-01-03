@@ -346,9 +346,10 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum, currentCat) =
 
 /* CATEGORIES */
 export const getSinglePost = async (slug) => {
-    let p = wp.posts().slug(slug);
+    let p = await wp.posts().slug(slug);
 
-    return convertToPost(p);
+    
+    return convertToPost(p[0]);
 }
 
 /* TAGS LIST */

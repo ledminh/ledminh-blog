@@ -1,4 +1,4 @@
-import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor } from "../data";
+import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor, getSinglePost } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setSingleCategoryDataReady } from "./singleCategory/actions";
 import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
@@ -11,6 +11,10 @@ import {setSingleDateDataReady} from "./singleDatePage/actions";
 import { SET_CURRENT_AUTHOR, SET_CURRENT_PAGE as SET_CURRENT_PAGE_AUTHOR_PAGE } from "./authorPage/actionTypes";
 
 import { setAuthorPageDataReady } from "./authorPage/actions";
+import { SET_CURRENT_SINGLE_POST } from "./singlePost/actionTypes";
+
+import { setSinglePostDataReady } from "./singlePost/actions";
+
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
@@ -221,3 +225,19 @@ export const authorPageMiddleware = storeAPI => next => action => {
 
 }
 
+/* Single Post Middleware  */
+export const SET_SINGLE_POST_DONE = "BLOG/LOAD_DATA/SET_SINGLE_POST_DONE";
+const setSinglePostDone = (post) => ({type: SET_SINGLE_POST_DONE, post: post});
+
+export const singlePostMiddleware = storeAPI => next => action => {
+    if(action.type === SET_CURRENT_SINGLE_POST){
+        storeAPI.dispatch(setSinglePostDataReady(false));
+
+        getSinglePost(action.slug).then(post => {
+            storeAPI.dispatch(setSinglePostDone(post));
+        });
+    }
+
+    return next(action);
+
+}

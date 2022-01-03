@@ -1,14 +1,28 @@
 import { combineReducers } from "redux";
-import { getSinglePost } from "../../data";
 import { REFRESH_COMMENTS } from "../Comments";
-import { SET_CURRENT_SINGLE_POST, SHOW_COMMENTS, HIDE_COMMENTS } from "./actionTypes";
+import { SET_SINGLE_POST_DONE } from "../loadData";
+import { SHOW_COMMENTS, HIDE_COMMENTS, SINGLE_POST_DATA_READY } from "./actionTypes";
+
+const initState = {
+    data: {},
+    dataReady: false
+}
 
 
+const postReducer = (state = initState, action) => {
+    if(action.type === SINGLE_POST_DATA_READY) {
+        return {
+            ...state,
+            dataReady: action.status
+        };
+    }
 
 
-const postReducer = (state = {}, action) => {
-    if(action.type === SET_CURRENT_SINGLE_POST){
-        return getSinglePost(action.slug);
+    if(action.type === SET_SINGLE_POST_DONE){
+        return {
+            data: action.post,
+            dataReady: true
+        };
     }
 
     if(action.type === REFRESH_COMMENTS) {

@@ -13,62 +13,73 @@ import ExcerptFullPostToggle from "./ExcerptFullPostToggle";
 import SocialShareButtons from "./SocialShareButtons";
 import { useLocation } from "react-router-dom";
 
-const SinglePostPage = () => {
+import useDataInitialized from '../redux/useDataInitialized';
+import LoadingPage from "./LoadingPage";
 
+const SinglePostPage = () => {
+    const dataInitialized = useDataInitialized();
     const {slug} = useParams();
     const {setCurrentSinglePost, showComments, hideComments} = useSinglePostActions();
     const {setFeatureImageURL} = useFeatureImageActions();
 
     const {post, showCommentsStatus} = useSinglePost();
-    
+    const {data, dataReady} = post;
 
     const location = useLocation();
 
     useEffect(() => {
-        setCurrentSinglePost(slug);
-        setFeatureImageURL(post.feature_image_url)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [slug]);
+        if(dataInitialized){
+            setCurrentSinglePost(slug);          
 
+            
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [slug, dataInitialized]);
+
+    useEffect(() => {
+        if(dataReady)
+            setFeatureImageURL(data.featureImage.url);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataReady])
     
     return (
-        post.title?
+        (dataReady)?
         (
             <div className="single-post-page">
-                <Title title={post.title} />
+                <Title title={data.title} />
                 <SubTitle>
                     <MetaData
                         showComments={showComments}
-                        categories={post.categories}
-                        tags= {post.tags}
-                        date_created= {post.date_created}
-                        comments={post.comments}
-                        author={post.author}
+                        categories={data.categories}
+                        tags= {data.tags}
+                        date_created= {data.date_created}
+                        comments={data.comments}
+                        author={data.author}
                         />
                 </SubTitle>
                 <ExcerptFullPostToggle
                     showFullPostStatus={true}
-                    content={post.content}
+                    content={data.content}
                     />
                 <div className="social-share">
                     <SocialShareButtons 
                         url={"https://www.ledminh.dev/blog/post/" + location.pathname}
-                        summary={post.excerpt}
+                        summary={data.excerpt}
                         hashtag={"#ledminh_writing"}
-                        title={post.title}
+                        title={data.title}
                         webName={"LEDMINH BLOG"}
                         />
                 </div>
                 <Comments
                     hideComments={hideComments}
                     showCommentsStatus={showCommentsStatus} 
-                    comments={post.comments}
-                    postID={post.id}
+                    comments={data.comments}
+                    postID={data.id}
                     />
             </div>
         ):
         (
-        <>Loading ... </>
+            <LoadingPage />
         )
     )
 }

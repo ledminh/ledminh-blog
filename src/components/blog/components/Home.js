@@ -8,6 +8,7 @@ import { useFeatureImageActions, useHomeActions } from "../redux/useActions";
 import useHome from "../redux/useHome";
 import { useEffect } from "react";
 import useDataInitialized from "../redux/useDataInitialized";
+import LoadingPage from "./LoadingPage";
 
 const Home = () => {
     const dataInitialized = useDataInitialized();
@@ -63,7 +64,7 @@ const Home = () => {
                 
             </>
             ):
-            (<span>Loading ... </span>)
+            (<LoadingPage />)
     );
 }
 
