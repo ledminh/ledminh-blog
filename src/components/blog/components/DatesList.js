@@ -12,28 +12,39 @@ import '../css/DatesList.css';
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
 
+import { useDatesListActions } from "../redux/useActions";
 
 const DatesList = () => {
     const dataInitialized = useDataInitialized();
 
-    const dates = useDatesList(); 
-    const {featureImage, data} = dates;
+    const {featureImage, data} = useDatesList(); 
+    const {datesList, dataReady} = data;
+
+    const {setDatesList} = useDatesListActions();
+
     
     const {setFeatureImageURL} = useFeatureImageActions();
     
-    const history = useHistory()
     
+    const history = useHistory()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => setFeatureImageURL(""), []);
 
     useEffect(() => {
         if(dataInitialized) {
+            setDatesList();            
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dataInitialized]);
+    
+    useEffect(() => {
+        if(dataReady) {
             setFeatureImageURL(featureImage.url);
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataInitialized]);
-    
+    }, [dataReady]);
     
 
     const onClickHandleMaker = (idInfo) => {
@@ -44,7 +55,7 @@ const DatesList = () => {
     }
 
     return (
-        dataInitialized?
+        dataReady?
         (<>
             <Title title="Dates"/>
             <SubTitle>
@@ -53,7 +64,7 @@ const DatesList = () => {
             <div className="dates-list">
                 <ul>
                 {
-                    data.map((d)  => (
+                    datesList.map((d)  => (
                         <li key={d.name}>
                             <Date
                                 onClickHandleMaker={onClickHandleMaker}

@@ -16,7 +16,10 @@ import { setAuthorPageDataReady } from "./authorPage/actions";
 import { SET_CURRENT_SINGLE_POST } from "./singlePost/actionTypes";
 
 import { setSinglePostDataReady } from "./singlePost/actions";
+import { getDatesList } from "../data";
 
+import { SET_DATES_LIST } from "./datesList/actionTypes";
+import { setDatesListDataReady } from "./datesList/actions";
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
@@ -243,4 +246,22 @@ export const singlePostMiddleware = storeAPI => next => action => {
 
     return next(action);
 
+}
+
+/* datesListMiddleware */
+export const SET_DATES_LIST_DONE = "BLOG/LOAD_DATA/SET_DATES_LIST_DONE"; 
+const setDatesListDone = (datesList) => ({type: SET_DATES_LIST_DONE, datesList: datesList});
+
+export const datesListMiddleware =  storeAPI => next => action => {
+    if(action.type === SET_DATES_LIST) {
+        
+        storeAPI.dispatch(setDatesListDataReady(false));
+        
+
+        getDatesList().then((datesList) => {
+            storeAPI.dispatch(setDatesListDone(datesList));
+        })
+    }
+
+    return next(action);
 }

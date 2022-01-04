@@ -5,6 +5,8 @@ import { convertDateToSlug } from "../utils";
 import WPAPI from 'wpapi';
 import { CategoryImageURL } from "../../assets/imageLinks";
 
+let numCategoriesFromData = -1;
+
 const wp = new WPAPI({endpoint: "https://www.ledminh.com/wp-json"});
 
 let numPosts = -1;
@@ -37,7 +39,7 @@ const convertToAuthor = a => ({
 
 const convertToTag = t => ({
     id: "tag-" + t.id,
-    idFromWP: t.id,
+    idFromData: t.id,
     name: t.name,
     idInfo: {
         name: t.name
@@ -47,6 +49,7 @@ const convertToTag = t => ({
 
 const convertToCategory = c => ({
     id: "cat-" + c.id,
+    idFromData: c.id,
     featureImage: {
         url: CategoryImageURL
     },
@@ -90,20 +93,18 @@ const convertToPost = p => ({
         text: formatDate(p.date),
         slug: convertDateToSlug(formatDate(p.date))
     },
+
     comments: [],
     author: find(authors, {id: "author-" + p.author}),
     excerpt: (p.excerpt.rendered.length > 300)? p.excerpt.rendered.substring(0,300) : p.excerpt.rendered,
     content: p.content.rendered
 
 
+
 });
 
-
-
-
-
-
-export const loadAuthors = async () => {
+/* common functions */
+const loadAuthorsFromData = async () => {
     let entry = await wp.users();
     
     const total = entry._paging.total;
@@ -116,21 +117,16 @@ export const loadAuthors = async () => {
         promises.push(wp.users().page(i + 1).perPage(20));
     }
 
-    Promise.allSettled(promises).then((results) => {
+    let results =  await Promise.allSettled(promises);
+    
+    let usersFromWP = [];
 
-        let usersFromWP = [];
+    results.forEach(r => usersFromWP = usersFromWP.concat(r.value));
 
-        results.forEach(r => usersFromWP = usersFromWP.concat(r.value));
-
-        authors = usersFromWP.map(convertToAuthor);
-    });
-
-
+    return usersFromWP;
 }
 
-
-const loadTags = async () => {
-    
+const loadTagsFromData = async () => {
     let entry = await wp.tags();
     
     const total = entry._paging.total;
@@ -143,26 +139,21 @@ const loadTags = async () => {
         promises.push(wp.tags().page(i + 1).perPage(20));
     }
 
-    Promise.allSettled(promises).then((results) => {
+    let results = await Promise.allSettled(promises);
 
-        let tagsFromWP = [];
+    let tagsFromWP = [];
 
-        results.forEach(r => tagsFromWP = tagsFromWP.concat(r.value));
+    results.forEach(r => tagsFromWP = tagsFromWP.concat(r.value));
 
-        tags = tagsFromWP.map(convertToTag);
-    });
-
-    
+    return tagsFromWP;
 }
 
-
-const loadCategories = async () => {
-
+const loadCategoriesFromData = async () => {
     let entry = await wp.categories();
     
     const total = entry._paging.total;
     
-    numCategories = total;
+    numCategoriesFromData = total;
 
     const numPages = Math.ceil(total/20);
 
@@ -172,44 +163,100 @@ const loadCategories = async () => {
         promises.push(wp.categories().page(i + 1).perPage(20));
     }
 
-    Promise.allSettled(promises).then((results) => {
+    let results = await Promise.allSettled(promises);
 
-        let categoriesFromWP = [];
+    let categoriesFromWP = [];
 
-        results.forEach(r => categoriesFromWP = categoriesFromWP.concat(r.value));
+    results.forEach(r => categoriesFromWP = categoriesFromWP.concat(r.value));
 
-        categories = categoriesFromWP.map(convertToCategory);
-    });
-    
-    
+    return categoriesFromWP;
 }
 
+const loadNumCategoriesFromData = async () => {
+    return new Promise((resolve, reject) => {
+        resolve(numCategoriesFromData) 
+    });
+}
 
-
-const loadNumCategories = async () => {/* Already done on loadCategories() */}
-
-const loadNumPosts = async () => {
+const loadNumPostsFromData = async () => {
     let entry = await wp.posts();
     
     const total = entry._paging.total;
-    
-    numPosts = total;
 
+    return total;
 }
 
-export const loadPosts = async (currentPage, numItemsPerPage) => {
-    const totalPostsNeeded = currentPage*numItemsPerPage + 1;
+const loadPostsFromData = async (totalPostsNeeded, postsLength) => {
+    let newPosts = await wp.posts().offset(postsLength).perPage(totalPostsNeeded - postsLength);
 
-    if(totalPostsNeeded <= posts.length) return;
-
-    let newPosts = await wp.posts().offset(posts.length).perPage(totalPostsNeeded - posts.length);
-
-
-    posts = posts.concat(newPosts.map(convertToPost));
-
+    return newPosts;
 }
 
 
+const loadPostsOfCategoryFromData = async (catIDFromData) => {
+    let ps = await wp.posts().categories(catIDFromData);
+
+    return ps;
+}
+
+const loadSinglePostFromData = async (slug) => {
+    let p = await wp.posts().slug(slug);
+
+    return p[0];
+}
+
+const loadPostsOfTagFromData = async (tagIDFromData) => {
+    let ps = await wp.posts().tags(tagIDFromData);
+
+    return ps;
+}
+
+const loadPostsOnDateFromData = async (dateName) => {
+    return new Promise((resolve, reject) => {
+
+        resolve(posts.filter(p => p.date_created.text === dateName));
+    });
+}
+
+const loadPostsOfAuthorFromData = async (author) => {
+    return new Promise((resolve, reject) => {
+        
+        let ps = filter(posts, {author: {name: author.name}})
+        
+        resolve(ps);
+    });
+}
+
+/* ****************************************************************** */
+
+
+const loadAuthors = async () => {
+    let authorsFromData = await loadAuthorsFromData();
+    authors = authorsFromData.map(convertToAuthor);
+}
+
+
+const loadTags = async () => {
+    let tagsFromData = await loadTagsFromData();
+    tags = tagsFromData.map(convertToTag);
+}
+
+
+const loadCategories = async () => {
+    let categoriesFromData = await loadCategoriesFromData();
+    categories = categoriesFromData.map(convertToCategory); 
+}
+
+const loadNumCategories = async () => {
+    let numCatsFromData = await loadNumCategoriesFromData();
+    numCategories = numCatsFromData;
+}
+
+const loadNumPosts = async () => {
+    let numPostsFromData = await loadNumPostsFromData();
+    numPosts = numPostsFromData;
+
+}
 
 const getEntriesOnPage = (entries, numItemsPerPage, pageNum, numEntries) => {
     
@@ -245,10 +292,44 @@ const getOtherPosts = (mainPostID = posts[0].id) => {
                 }));
 }
 
+const loadDatesListFromData =  async () => {
+    return new Promise((resolve, reject) => {
+        let dl = reduce(posts, (dsL, p) => {
+        
+            if(!find(dsL, {text: p.date_created.text})){
+                dsL.push(p.date_created);
+    
+            }
+            return dsL;
+    
+        }, []);
+    
+        
+    
+        resolve(dl);
+    });
+
+    
+}
+
+
 
 
 /* PUBLIC METHODS
 -------------------------------*/
+export const loadPosts = async (currentPage, numItemsPerPage) => {
+    const totalPostsNeeded = currentPage*numItemsPerPage + 1;
+
+    if(totalPostsNeeded <= posts.length) return;
+
+    let newPosts = await loadPostsFromData(totalPostsNeeded, posts.length);
+
+    newPosts = newPosts.map(convertToPost);
+    
+    posts = posts.concat(newPosts);
+
+}
+
 export const initData = async () => {
     
     await loadAuthors();
@@ -307,13 +388,10 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum, currentCat) =
         return newCat;
     }
 
-
-    let cats = await wp.categories().slug(slug),
-        cat = cats[0];
-        
+    let cat = find(categories, {idInfo: {slug: slug}});    
 
     
-    let ps = await wp.posts().categories(cat.id);
+    let ps = await loadPostsOfCategoryFromData(cat.idFromData);
     
     ps = ps.map(convertToPost).map(p => ({
                             title: p.title,
@@ -328,7 +406,6 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum, currentCat) =
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
 
 
-    cat = convertToCategory(cat);
 
     cat.posts = {
         data: ps,
@@ -346,10 +423,9 @@ export const  getCategory = async (slug, numItemsPerPage, pageNum, currentCat) =
 
 /* CATEGORIES */
 export const getSinglePost = async (slug) => {
-    let p = await wp.posts().slug(slug);
-
+    let p = await loadSinglePostFromData(slug);
     
-    return convertToPost(p[0]);
+    return convertToPost(p);
 }
 
 /* TAGS LIST */
@@ -378,8 +454,8 @@ export const  getTag = async (name, numItemsPerPage, pageNum, currentTag) => {
  
     let tag = find(tags, {name: name});
 
-    let ps = await wp.posts().tags(tag.idFromWP);
-    
+    let ps = await loadPostsOfTagFromData(tag.idFromData)
+   
     
 
     ps = ps.map(convertToPost).map(p => ({
@@ -410,32 +486,15 @@ export const  getTag = async (name, numItemsPerPage, pageNum, currentTag) => {
 
 /* DATES LIST */
 
-const getDatesListFromData = () => {
-    let dl = reduce(posts, (dsL, p) => {
-        
-        if(!find(dsL, {text: p.date_created.text})){
-            dsL.push(p.date_created);
-
-        }
-        return dsL;
-
-    }, []);
-
-    
-
-    return dl;
-}
-
-
-export const getDatesList = () => {
-    let datesList = getDatesListFromData().map(date => ({
-                                                    name: date.text,
-                                                    idInfo: {
-                                                        slug: date.slug
-                                                    }
-                                                })); 
+export const getDatesList = async () => {
+    let datesList = await loadDatesListFromData(); 
     
     
+    datesList = datesList.map(date => ({ name: date.text,
+                                            idInfo: {
+                                                slug: date.slug
+                                            }
+                                        }));
     
     return datesList;
 }
@@ -460,27 +519,11 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum, currentDate
     }
 
 
-    const dates = getDatesList();
+    const dates = await getDatesList();
 
     let date = find(dates, {idInfo: {slug: slug}});
     
-    let ps = filter(posts, {date_created: {slug: slug}})
-    
-    if(ps.length === 0){
-        let theDay = new Date(date.name);
-        let theDayAfter = new Date(date.name);
-        theDayAfter.setDate(theDayAfter.getDate() + 1);
-
-
-        ps = await wp.posts()
-                        .after(theDay)
-                        .before(theDayAfter)
-                        ;
-        ps = ps.map(convertToPost);
-    }
-    
-    
-    
+    let ps = await loadPostsOnDateFromData(date.name);
     
     ps = ps.map(p => ({
                         title: p.title,
@@ -491,7 +534,6 @@ export const getPostsOnDate = async (slug, numItemsPerPage, pageNum, currentDate
                         author: p.author,
                         excerpt: p.excerpt
                     }));
-    
     
 
 
@@ -531,16 +573,10 @@ export const getAuthor = async (slug, numItemsPerPage, pageNum, currentAuthor) =
         return newAuthor;
     }
 
-    let aths = await wp.users().slug(slug);
-    let author = aths[0];
+    let author = find(authors, {idInfo: {slug: slug}});
+    
+    let ps = await loadPostsOfAuthorFromData(author);
 
-    let ps = filter(posts, {author: {idInfo: {slug: slug}}});
-    
-    // if(ps.length === 0) {
-    //     ps = await wp.posts().users(author.id);
-    //     ps = ps.map(convertToPost);
-    // }
-    
     
     ps = ps.map(p => ({
                 title: p.title,
@@ -553,7 +589,6 @@ export const getAuthor = async (slug, numItemsPerPage, pageNum, currentAuthor) =
             }));
     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
     
-    author = convertToAuthor(author); 
     author.posts = {
         data: ps,
         displayedPosts: displayedPosts,
@@ -569,10 +604,10 @@ export const getAuthor = async (slug, numItemsPerPage, pageNum, currentAuthor) =
 
 /* COMMENTS */
 export const addComment = ({postID, author, content}) => {
-    // const i = posts.findIndex((p) => p.id === postID);
-    // const comments = posts[i].comments.slice();
-    // comments.unshift({author: author, content: content})
-    // posts[i].comments = comments;
+    const i = posts.findIndex((p) => p.id === postID);
+    const comments = posts[i].comments.slice();
+    comments.unshift({author: author, content: content})
+    posts[i].comments = comments;
 
     
 }
@@ -584,443 +619,4 @@ export const addComment = ({postID, author, content}) => {
 
 
 
-
-
-
-
-
-// async function loadAuthorsFromWP() {
-//     let us = await wp.users();
-    
-//     const totalUsers = us._paging.total;
-
-//     us = await wp.users().page(1).perPage(totalUsers);
-    
-//     authors = us.map((u) => {
-
-//         let aURLsKeys = Object.keys(u.avatar_urls);
-
-//         let profilePicture = u.avatar_urls[aURLsKeys[2]];
-
-
-
-//         return {
-//             id: "author-" + u.id,
-//             name: u.name,
-//             slogan: u.description,
-//             bio: {
-//                 text: ""
-//             },
-//             profilePicture: {
-//                 url: profilePicture
-//             },
-//             idInfo: {
-//                 slug: u.slug
-//             }
-//         }
-//     });
-    
-    
-
-// }
-
-
-// async function loadTagsFromWP() {
-//     let ts = await wp.tags();
-    
-//     const totalTags = ts._paging.total;
-//     const numPages = Math.ceil(totalTags/20);
-//     let promiseTags = [];
-
-//     for(let i = 1; i <= numPages; i++){
-//         promiseTags.push(wp.tags().page(i).perPage(20));
-//     }
-
-//     Promise.allSettled(promiseTags).then(results => {
-//         tags = results.map(t => {
-
-
-//             return {
-//                 id: "tag-" + t.id,
-//                 name: t.name,
-//                 idInfo: {
-//                     name: t.name
-//                 }
-//             }
-//         }); 
-//     });
-
-
-    
-    
-
-// }
-
-
-// async function loadCategoriesFromWP() {
-
-//     let catsFromWP = await wp.categories();
-    
-//     const numCategories = catsFromWP._paging.total;
-//     const numPages = Math.ceil(numCategories/20);
-
-//     let promiseCats = [];
-
-//     for(let i = 1; i <= numPages; i++){
-//         promiseCats.push(wp.categories().page(i).perPage(20));
-//     }
-
-    
-
-//     Promise.allSettled(promiseCats).then(results => {
-        
-//         categories = results.map(c => {
-
-
-//             return {
-//                 id: "cat-" + c.id,
-//                 feature_image_url: "",
-//                 title: c.name,
-//                 idInfo: {
-//                     slug: c.slug
-//                 },
-//                 meta_data: {
-//                     cat_subtitle: c.description
-//                 }
-//             }
-//         });
-        
-        
-//     });
-// }
-
-
-// async function getNumPostsFromWP() {
-    
-//     wp.posts().headers()
-//                 .then((h) => {
-//                     numPosts = h["x-wp-total"]
-//                 });
-        
-                    
-// }
-
-// async function loadPostsFromWP(totalPostsNeeded) {
-//     let numPostsToLoad = totalPostsNeeded - posts.length;
-
-//     const pArray = await wp.posts().perPage(numPostsToLoad).offset(posts.length);
-    
-    
-
-
-
-    
-    
-    
-//     for(let i = 0; i < pArray.length; i++) {
-//         let p = pArray[i];
-        
-
-//         const media  = await wp.media().id(p.featured_media);
-
-//         const feature_image_url = media.guid.rendered;
-    
-//         const commentsWP = await wp.comments().slug(p.slug);
-
-//         const comments = commentsWP.map((c) => ({
-//                             author: c.author_name,
-//                             content: c.content.rendered
-//                         }));
-
-//         const newPost  = {
-//             id: p.id,
-//             title: p.title.rendered,
-//             slug: p.slug,
-//             feature_image_url: feature_image_url,
-//             categories: p.categories.map((catID) => {
-
-//                 let cat = find(categories, {id: "cat-" + catID});
-
-//                 return {
-//                     title: cat.title,
-//                     slug: cat.slug
-//                 }
-//             }),
-
-
-//             tags: p.tags.map(tagID => {
-//                 let tag = find(tags, {id: "tag-" + tagID});
-//                 return tag.name
-//             }),
-//             date_created: {
-//                 text: p.date,
-//                 slug: convertDateToSlug(p.date)
-//             },
-//             comments: comments,
-//             author: find(authors, {id: "author" + p.author}),
-//             excerpt: p.excerpt.rendered,
-//             content: p.content.rendered,
-            
-//         };
-
-//         posts.push(newPost);
-
-
-//     }
-    
-
-    
-// }
-
-
-
-
-
-
-
-
-// export async function initData() {
-
-//     await loadAuthorsFromWP();
-//     await loadTagsFromWP();
-//     await loadCategoriesFromWP();
-
-//     await getNumPostsFromWP();
-
-//     await loadPostsFromWP(11);
-
-// } 
-
-
-// initData();
-
-
-
-
-// /* PUBLIC METHODS
-// -------------------------------*/
-// /* POST */
-
-// export const getMainPost = (mainPostID) => {
-//     if(!mainPostID) {
-//         if(!posts[0]) return {};
-
-//         return posts[0];
-//     }
-    
-//     return find(posts, {id: mainPostID});
-// }
-
-
-// export const getDisplayedPosts = async (mainPostID, numItemsPerPage, pageNum) => {
-//     let totalPostsNeeded = numItemsPerPage*pageNum + 1;
-
-//     if(totalPostsNeeded > posts.length){
-//         await loadPostsFromWP(totalPostsNeeded);
-//     }
-    
-    
-
-//     let otherPosts = getOtherPosts(posts, mainPostID);
-    
-//     console.log(otherPosts);
-//     return getEntriesOnPage(otherPosts, numItemsPerPage, pageNum);
-
-// }
-
-// export const getNumPosts = () => numPosts;
-
-
-
-// /* CATEGORIES */
-// export const getNumCategories = () => numCategories;
-
-
-// export const getDisplayedCategories = (numItemsPerPage, currentPage) => {
-    
-
-//     return getEntriesOnPage(categories, numItemsPerPage, currentPage);
-// }
-
-
-
-
-// export const  getCategory = (slug, numItemsPerPage, pageNum) => {
-//     let cat = find(categories, {slug: slug});
-
-//     let ps = posts.filter(p => {
-//                         return p.categoryIDs.indexOf(cat.id) !== -1;
-//                     })
-//                     .map(p => ({
-//                         title: p.title,
-//                         idInfo:{
-//                             slug: p.slug
-//                         },
-//                         date_created: p.date_created,
-//                         author: p.author,
-//                         excerpt: p.excerpt
-//                     }));
-    
-//     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
-
-    
-//     cat.posts = {
-//         displayedPosts: displayedPosts,
-//         totalPosts: ps.length,
-//         endPrev: endPrev,
-//         endNext: endNext
-//     };
-
-//     cat.featureImage = {
-//         url: cat.feature_image_url
-//     }
-//     return cat;
-    
-// }
-
-// /* CATEGORIES */
-// export const getSinglePost = (slug) => {
-//     let p = find(posts, {slug: slug});
-
-//     return p;
-// }
-
-// /* TAGS LIST */
-// export const getTagsList = () => {
-
-//     return tags;
-// }
-
-// export const  getTag = (name, numItemsPerPage, pageNum) => {
-//     let tag = find(tags, {name: name});
-
-//     let ps = posts.filter(p => {
-//                         return p.tagIDs.indexOf(tag.id) !== -1;
-//                     })
-//                     .map(p => ({
-//                         title: p.title,
-//                         idInfo:{
-//                             slug: p.slug
-//                         },
-//                         date_created: p.date_created,
-//                         author: p.author,
-//                         excerpt: p.excerpt
-//                     }));
-    
-//     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
-
-    
-//     tag.posts = {
-//         displayedPosts: displayedPosts,
-//         totalPosts: ps.length,
-//         endPrev: endPrev,
-//         endNext: endNext
-//     };
-
-//     return tag;
-    
-// }
-
-// /* DATES LIST */
-// export const getDatesList = () => {
-//     let datesList = reduce(posts, (dsL, p) => {
-//                             if(dsL.indexOf(p.date_created.text) === -1){
-//                                 dsL.push(p.date_created.text)
-//                             }
-
-//                             return dsL;
-//                         }, [])
-//                         .map(date => ({
-//                             name: date,
-//                             idInfo: {
-//                                 slug: convertDateToSlug(date)
-//                             }
-//                         }));
-    
-//     return datesList;
-// }
-
-// /* SINGLE DATE PAGE */
-// export const getPostsOnDate = (slug, numItemsPerPage, pageNum) => {
-//     const dates = getDatesList();
-
-//     let date = find(dates, {idInfo: {slug: slug}});
-    
-
-//     let ps = posts.filter(p => {
-//                         return p.date_created.slug === slug;
-//                     })
-//                     .map(p => ({
-//                         title: p.title,
-//                         idInfo:{
-//                             slug: p.slug
-//                         },
-//                         date_created: p.date_created,
-//                         author: p.author,
-//                         excerpt: p.excerpt
-//                     }));
-    
-    
-
-//     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
-
-//     date.posts = {
-//         displayedPosts: displayedPosts,
-//         totalPosts: ps.length,
-//         endPrev: endPrev,
-//         endNext: endNext
-//     };
-
-    
-//     return date;
-    
-// }
-
-// /* AUTHORS LIST */
-// export const getAuthorsList = () => authors;
-
-
-
-// export const getAuthor = (slug, numItemsPerPage, pageNum) => {
-//     let author = find(authors, {idInfo: {slug: slug}});
-
-//     let ps = posts.filter(p => {
-//                                 return p.authorID === author.id
-//                             })
-//                             .map(p => ({
-//                                 title: p.title,
-//                                 idInfo:{
-//                                     slug: p.slug
-//                                 },
-//                                 date_created: p.date_created,
-//                                 author: p.author,
-//                                 excerpt: p.excerpt
-//                             }));
-//     const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
-
-//     author.posts = {
-//         displayedPosts: displayedPosts,
-//         totalPosts: ps.length,
-//         endPrev: endPrev,
-//         endNext: endNext
-//     };
-
-    
-//     return author;
-// }
-
-
-// /* COMMENTS */
-// export const addComment = ({postID, author, content}) => {
-
-// }
-
-// export const addComment = ({postID, author, content}) => {
-//     const i = posts.findIndex((p) => p.id === postID);
-//     const comments = posts[i].comments.slice();
-//     comments.unshift({author: author, content: content})
-//     posts[i].comments = comments;
-
-    
-// }
 

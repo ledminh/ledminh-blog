@@ -1,22 +1,38 @@
 import { DatesImageURL } from "../../assets/imageLinks";
-import { getDatesList } from "../../data";
-import { DATA_INITIALIZED, DISPLAY_POSTS_AT_HOME_DONE } from "../loadData";
+import { SET_DATES_LIST_DONE } from "../loadData";
+import { SET_DATES_LIST_DATA_READY } from "./actionTypes";
 
 const initState = {
     featureImage: {
         url: DatesImageURL
     },
-    data: []
+    data: {
+        datesList: [],
+        dataReady: false
+    }
 };
 
 const datesListReducer = (state = initState, action) => {
-    if(action.type === DATA_INITIALIZED ||
-        action.type === DISPLAY_POSTS_AT_HOME_DONE) {
+    if(action.type === SET_DATES_LIST_DATA_READY){
         return {
             ...state,
-            data: getDatesList()
+            data: {
+                ...state.data,
+                dataReady: action.status
+            }
         }
     }
+
+    if(action.type === SET_DATES_LIST_DONE) {
+        return {
+            ...state,
+            data: {
+                datesList: action.datesList,
+                dataReady: true
+            }
+        }
+    }
+
 
 
     return state;

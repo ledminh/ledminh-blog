@@ -20,6 +20,7 @@ import { setFeatureImageURL } from "./featureImage/actions";
 import { setCurrentDate, setCurrentPage as setDatePageCurrentPage, setCurrentPagi as setDatePageCurrentPagi } from "./singleDatePage/actions";
 import { setCurrentAuthor, setCurrentPage as setAuthorPageCurrentPage, setCurrentPagi as setAuthorPageCurrentPagi } from "./authorPage/actions";
 import { refreshComments } from "./Comments"; 
+import { setDatesList } from "./datesList/actions";
 
 
 
@@ -56,6 +57,8 @@ export const useSingleTagPageActions = () => useActions({setCurrentItem: setCurr
                                                             setCurrentPage: setSingleTagCurrentPage,
                                                             setCurrentPagi: setSingleTagCurrentPagi                                                            
                                                         });
+
+export const useDatesListActions = () => useActions({ setDatesList });
 
 export const useSingleDatePageActions = () => useActions({ setCurrentItem: setCurrentDate,
                                                             setCurrentPage: setDatePageCurrentPage,
