@@ -1,4 +1,4 @@
-import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor, getSinglePost } from "../data";
+import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor, getSinglePost, LOCAL_DATA, WP_DATA } from "../data";
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setHomeDataReady } from "./home/actions";
 
@@ -37,7 +37,7 @@ export const dataInitializedReducer = (state = false, action) => {
 
 /* Initialize Data */
 export const initializeData = async (dispatch, getState) => {
-    await initData();
+    await initData(LOCAL_DATA);
 
     dispatch(dataInitialized());
 }

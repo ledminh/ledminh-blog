@@ -1,47 +1,45 @@
-import * as local from './local';
-import * as wp_ledminh from './wp-ledminh';
+import {init, LOCAL_DATA, WP_DATA} from "./core";
 
 
-let initData = local.initData,
-    loadPosts = local.loadPosts,
-    getMainPost = local.getMainPost,
-    getDisplayedPosts = local.getDisplayedPosts,
-    getNumPosts = local.getNumPosts,
-    getNumCategories = local.getNumCategories,
-    getDisplayedCategories = local.getDisplayedCategories,
-    getCategory = local.getCategory,
-    getSinglePost = local.getSinglePost,
-    getTagsList = local.getTagsList,
-    getTag = local.getTag,
-    getDatesList = local.getDatesList,
-    getPostsOnDate = local.getPostsOnDate,
-    getAuthorsList = local.getAuthorsList,
-    getAuthor = local.getAuthor,
-    addComment = local.addComment
-    ;
+let loadPosts, getMainPost, 
+    getDisplayedPosts, getNumPosts, 
+    getNumCategories, getDisplayedCategories,
+    getCategory, getSinglePost, getTagsList,
+    getTag, getDatesList, getPostsOnDate, 
+    getAuthorsList, getAuthor, addComment;
+
+
+const initData = async (dataSource, wp_address) => {
+
+    const coreFuncs =  await init(dataSource, wp_address);
+
+    loadPosts = coreFuncs.loadPosts;
+    getMainPost = coreFuncs.getMainPost; 
+    getDisplayedPosts = coreFuncs.getDisplayedPosts;
+    getNumPosts = coreFuncs.getNumPosts;
+    getNumCategories = coreFuncs.getNumCategories;
+    getDisplayedCategories = coreFuncs.getDisplayedCategories;
+    getCategory = coreFuncs.getCategory;
+    getSinglePost = coreFuncs.getSinglePost; 
+    getTagsList = coreFuncs.getTagsList;
+    getTag = coreFuncs.getTag;
+    getDatesList = coreFuncs.getDatesList; 
+    getPostsOnDate = coreFuncs.getPostsOnDate;
+    getAuthorsList = coreFuncs.getAuthorsList; 
+    getAuthor = coreFuncs.getAuthor;
+    addComment = coreFuncs.addComment;
+
+}
 
 
 
-// let loadPosts = wp_ledminh.loadPosts,
-//     initData = wp_ledminh.initData,
-//     getMainPost = wp_ledminh.getMainPost,
-//     getDisplayedPosts = wp_ledminh.getDisplayedPosts,
-//     getNumPosts = wp_ledminh.getNumPosts,
-//     getNumCategories = wp_ledminh.getNumCategories,
-//     getDisplayedCategories = wp_ledminh.getDisplayedCategories,
-//     getCategory = wp_ledminh.getCategory,
-//     getSinglePost = wp_ledminh.getSinglePost,
-//     getTagsList = wp_ledminh.getTagsList,
-//     getTag = wp_ledminh.getTag,
-//     getDatesList = wp_ledminh.getDatesList,
-//     getPostsOnDate = wp_ledminh.getPostsOnDate,
-//     getAuthorsList = wp_ledminh.getAuthorsList,
-//     getAuthor = wp_ledminh.getAuthor,
-//     addComment = wp_ledminh.addComment
-//     ;
 
-    
+
+
+
 export {
+    LOCAL_DATA,
+    WP_DATA,
     loadPosts,
     initData,
     getMainPost,
