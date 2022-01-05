@@ -17,15 +17,13 @@ import PostsList, { PL_SINGLE_CATEGORY, PL_SINGLE_DATE_PAGE, PL_SINGLE_TAG_PAGE 
 import DatesList from './components/DatesList';
 import AuthorsList from './components/AuthorsList';
 import AuthorPage from './components/AuthorPage';
+
+import DataSourceSelectors from './components/DataSourceSelectors';
 import { useEffect } from 'react';
 import { useDataLoadActions } from './redux/useActions';
 
 
-
-
 const Blog = () => {
-
-    
 
     return (
         <Provider store={store}>
@@ -41,6 +39,7 @@ const Content = () => {
     
     const {initializeData} = useDataLoadActions();
 
+
     useEffect(() => {
         initializeData();
 
@@ -48,11 +47,13 @@ const Content = () => {
     }, []);
     
 
+
     return (
         <>
             <Router>
                 <div className="blog">                
                     <BlogNavigationBar />
+                    <DataSourceSelectors />                 
                     <FeatureImage feature_image_url ={featureImageURL} />
                     <MainContent>
                         <Switch>
@@ -95,7 +96,13 @@ const Content = () => {
 };
 
 
+
+
+
 export default Blog;
+
+
+
 
 const MainContent = ({children}) => {
 

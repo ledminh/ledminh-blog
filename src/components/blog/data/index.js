@@ -29,6 +29,7 @@ const initData = async (dataSource, wp_address) => {
     getAuthor = coreFuncs.getAuthor;
     addComment = coreFuncs.addComment;
 
+
 }
 
 

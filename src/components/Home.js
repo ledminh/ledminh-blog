@@ -1,8 +1,12 @@
 import Blog from "./blog";
 
 const Home = () => {
+   
+
     return (
-        <Blog/>
+        <>
+            <Blog />
+        </>
     );
 }
 

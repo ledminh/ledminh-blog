@@ -23,12 +23,12 @@ import { setDatesListDataReady } from "./datesList/actions";
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
-const dataInitialized = () => ({type: DATA_INITIALIZED});
+const dataInitialized = (status) => ({type: DATA_INITIALIZED, status: status});
 
 export const dataInitializedReducer = (state = false, action) => {
 
     if(action.type === DATA_INITIALIZED){
-        return true;
+        return action.status;
     }
 
     return state;
@@ -37,13 +37,44 @@ export const dataInitializedReducer = (state = false, action) => {
 
 /* Initialize Data */
 export const initializeData = async (dispatch, getState) => {
+    dispatch(dataInitialized(false));
     await initData(LOCAL_DATA);
 
-    dispatch(dataInitialized());
+    dispatch(dataInitialized(true));
 }
 
-export const initializeDataAction = () => initializeData;
+export const initializeDataAction = () =>  initializeData;
 
+/* Change data source */
+const SET_DATA_SOURCE_LOCAL = "BLOG/DATA_SOURCE/SET_DATA_SOURCE_LOCAL";
+const SET_DATA_SOURCE_WP = "BLOG/DATA_SOURCE/SET_DATA_SOURCE_WP";
+
+export const setDataSourceLocalAction = () => ({type: SET_DATA_SOURCE_LOCAL})
+export const setDataSourceWPAction = (wp_address) => ({type: SET_DATA_SOURCE_WP, wp_address: wp_address});
+
+export const dataSourceMiddleware = storeAPI => next => action => {
+    if(action.type === SET_DATA_SOURCE_LOCAL){
+        storeAPI.dispatch(dataInitialized(false));
+
+        initData(LOCAL_DATA).then(() => {
+            storeAPI.dispatch(dataInitialized(true));
+        });
+
+        
+    }
+
+    if(action.type === SET_DATA_SOURCE_WP){
+        storeAPI.dispatch(dataInitialized(false));
+        
+        initData(WP_DATA, action.wp_address).then(() => {
+            storeAPI.dispatch(dataInitialized(true));
+        });
+
+        
+    }
+
+    return next(action);
+}
 
 
 /* getDisplayedPosts at Home */

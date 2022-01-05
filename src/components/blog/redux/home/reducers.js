@@ -34,7 +34,13 @@ const dataInitialState = {
 
 const dataReducer =  (state = dataInitialState, action) => {
     if(action.type === DATA_INITIALIZED){
+        if(action.status === false){
+            return dataInitialState;
+        }
+
+
         const mainPost = getMainPost();
+        
 
         const [displayedEntries, endPrev, endNext] =  getDisplayedPosts(mainPost.id, numItemsPerPageInit, currentPageInit);
         

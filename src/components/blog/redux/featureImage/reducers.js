@@ -1,3 +1,4 @@
+import { DATA_INITIALIZED } from "../loadData";
 import { SET_FEATURE_IMAGE_URL } from "./actionTypes";
 
 const initialState = {
@@ -9,6 +10,14 @@ const featureImageReducer = (state = initialState, action) => {
         
         return {
             url: action.url
+        }
+    }
+
+    if(action.type === DATA_INITIALIZED){
+        if(action.status === false){
+            return {
+                url: ""
+            }
         }
     }
     return state;

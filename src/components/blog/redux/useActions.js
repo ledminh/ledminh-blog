@@ -1,7 +1,7 @@
 import { useActions } from "../../../redux/useActions";
 
 
-import { initializeDataAction } from "./loadData";
+import { initializeDataAction, setDataSourceLocalAction, setDataSourceWPAction } from "./loadData";
 
 import { showComments as showCommentsHome, hideComments as hideCommentsHome, 
             toggleComments, toggleFullPost, 
@@ -24,7 +24,10 @@ import { setDatesList } from "./datesList/actions";
 
 
 
-export const useDataLoadActions = () => useActions({initializeData: initializeDataAction});
+export const useDataLoadActions = () => useActions({initializeData: initializeDataAction,
+                                                        setDataSourceLocal: setDataSourceLocalAction,
+                                                        setDataSourceWP: setDataSourceWPAction,    
+                                                    });
 
 export const useHomeActions = () => 
                         useActions({showComments: showCommentsHome, 

@@ -96,6 +96,15 @@ export const WP_DATA = "BLOG/WP_DATA";
 
 
 export const init = async (dataSource, wp_address) => {
+    numPosts = -1;
+    posts = [];
+
+    numCategories = -1;
+    categories = [];
+
+    tags = [];
+
+    authors = [];
     
     if(dataSource === WP_DATA){
         await wp_source.loadAPI(wp_address);
@@ -119,7 +128,6 @@ export const init = async (dataSource, wp_address) => {
         
     }
     else if(dataSource === LOCAL_DATA) {
-        console.log("local", local);
         convertToAuthor = local.convertToAuthor; 
         convertToTag = local.convertToTag; 
         convertToCategory = local.convertToCategory; 
@@ -136,6 +144,7 @@ export const init = async (dataSource, wp_address) => {
         loadDatesListFromData = local.loadDatesListFromData; 
         loadPostsOnDateFromData = local.loadPostsOnDateFromData; 
         loadPostsOfAuthorFromData = local.loadPostsOfAuthorFromData;
+        
     }
 
 

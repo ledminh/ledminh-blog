@@ -26,6 +26,9 @@ const dataInitialState = {
 
 const dataReducer = (state = dataInitialState, action) => {
     if(action.type === DATA_INITIALIZED) {
+        if(action.status === false){
+            return dataInitialState;
+        }
         const [displayedEntries, endPrev, endNext] = getDisplayedCategories(numItemsPerPageInit, currentPageInit);
 
         return {

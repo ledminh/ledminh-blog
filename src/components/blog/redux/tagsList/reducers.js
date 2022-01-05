@@ -15,6 +15,10 @@ const initState = {
 
 const tagsListReducer = (state = initState, action) => {
     if(action.type === DATA_INITIALIZED){
+        if(action.status === false){
+            return initState;
+        }
+
         return {
             ...state,
             tags: getTagsList()
