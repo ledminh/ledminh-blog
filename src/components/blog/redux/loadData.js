@@ -2,7 +2,6 @@ import { getCategory, initData, loadPosts, getTag, getPostsOnDate, getAuthor, ge
 import { SET_CURRENT_PAGE as SET_CURRENT_PAGE_AT_HOME} from "./home/actionTypes";
 import { setHomeDataReady } from "./home/actions";
 
-import { setSingleCategoryDataReady } from "./singleCategory/actions";
 import { SET_CURRENT_CATEGORY, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_CATEGORY } from "./singleCategory/actionTypes";
 import { SET_CURRENT_TAG, SET_CURRENT_PAGE as SET_CURRENT_PAGE_SINGLE_TAG } from "./singleTagPage/actionTypes";
 
@@ -115,7 +114,10 @@ export const setCurrentCategoryCurrentPageDone = (cat) => ({type: SET_CURRENT_CA
 
 export const singleCategoryMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_CATEGORY){
-        storeAPI.dispatch(setSingleCategoryDataReady(false));
+        storeAPI.dispatch(setFeatureImageURL(""));
+        storeAPI.dispatch(resetErrorAction());
+        storeAPI.dispatch(setSingleTagDataReady(false));
+
         let slug = action.slug;
         let numItemsPerPage = storeAPI.getState().singleCategory.numItemsPerPage;
 
@@ -124,6 +126,7 @@ export const singleCategoryMiddleware = storeAPI => next => action => {
             storeAPI.dispatch(setCurrentCategoryDone(cat));
         })
         .catch((error) => {
+            storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
             storeAPI.dispatch(setCurrentCategoryDone(undefined, error));
         });
 

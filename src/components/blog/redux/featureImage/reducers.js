@@ -1,6 +1,4 @@
-import { RESET_ERROR } from "../error";
 import { DATA_INITIALIZED } from "../loadData";
-import { SINGLE_POST_DATA_READY } from "../singlePost/actionTypes";
 import { SET_FEATURE_IMAGE_URL } from "./actionTypes";
 
 const initialState = {

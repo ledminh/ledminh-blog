@@ -1,6 +1,7 @@
 import { SET_CURRENT_PAGI, SET_SINGLE_CATEGORY_DATA_READY } from "./actionTypes";
 
-import { SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE, SET_CURRENT_CATEGORY_DONE } from "../loadData";
+import { DATA_INITIALIZED, SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE, SET_CURRENT_CATEGORY_DONE } from "../loadData";
+import { RESET_ERROR } from "../error";
 
 const initialState = {
     dataReady: false,
@@ -17,21 +18,55 @@ const initialState = {
     },
     featureImage: {
         url: ""
+    },
+    error: {
+        status: false,
+        name: "",
+        message: ""
     }
 }
 
 const singleCategoryReducer = (state = initialState, action) => {
+    if(action.type === DATA_INITIALIZED) {
+        if(action.status === false){
+            return {
+                ...state,
+                dataReady: false
+            }
+        }
+    }
+
     if(action.type === SET_SINGLE_CATEGORY_DATA_READY){
         return {
             ...state,
             dataReady: action.status
         };
     }
+
+    if(action.type === RESET_ERROR) {
+        return {
+            ...state,
+            error: {
+                status: false,
+                name: "",
+                message: ""
+            }
+        }
+    }
     
     if(action.type === SET_CURRENT_CATEGORY_DONE) {
         if(action.error) {
 
-            
+            return {
+                ...state,
+                error: {
+                    status: true,
+                    name: action.error.name,
+                    message: action.error.message
+                },
+                dataReady: false
+                
+            };
         }
 
         return {

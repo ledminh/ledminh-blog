@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import { useSingleTagPageActions, useFeatureImageActions, useSingleCategoryActions, useSingleDatePageActions, useErrorActions } from "../redux/useActions";
+import { useSingleTagPageActions, useFeatureImageActions, useSingleCategoryActions, useSingleDatePageActions } from "../redux/useActions";
 
 
 
@@ -16,7 +16,7 @@ import useSingleDatePage from "../redux/useSingleDatePage";
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
-import { SingleTagErrorConstants } from "../assets/constants";
+import { SingleCategoryErrorConstants, SingleTagErrorConstants } from "../assets/constants";
 
 export const PL_SINGLE_TAG_PAGE = "TYPE/POSTS_LIST/SINGLE_TAG_PAGE";
 export const PL_SINGLE_CATEGORY = "TYPE/POSTS_LIST/SINGLE_CATEGORY";
@@ -150,7 +150,11 @@ const useProps = (type) => {
     }
 
     if(type === PL_SINGLE_CATEGORY) {
-        subtitle = meta_data? meta_data.cat_subtitle : ""
+        subtitle = meta_data? meta_data.cat_subtitle : "";
+        errorMessage = {
+            name: SingleCategoryErrorConstants.title,
+            message: SingleCategoryErrorConstants.message
+        }
     }
 
     if(type === PL_SINGLE_DATE_PAGE) {

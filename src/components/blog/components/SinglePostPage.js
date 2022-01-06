@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect } from "react";
-import { useSinglePostActions, useFeatureImageActions, useErrorActions } from "../redux/useActions";
+import { useSinglePostActions, useFeatureImageActions } from "../redux/useActions";
 import useSinglePost from "../redux/useSinglePost";
 
 import "../css/SinglePostPage.css";

@@ -11,3 +11,9 @@ export const SingleTagErrorConstants = {
     title: "Opps, tag not found !!!!",
     message: "Can't not find the tag you're looking for."
 }
+
+/* Single Tag Error */
+export const SingleCategoryErrorConstants = {
+    title: "Opps, category not found !!!!",
+    message: "Can't not find the category you're looking for."
+}
