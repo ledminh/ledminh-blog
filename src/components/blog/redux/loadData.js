@@ -150,7 +150,7 @@ export const singleCategoryMiddleware = storeAPI => next => action => {
 /*SINGLE TAG*/
 export const SET_CURRENT_TAG_DONE = "BLOG/LOAD_DATA/SET_CURRENT_TAG_DONE";
 
-export const setCurrentTagDone = (tag) => ({type: SET_CURRENT_TAG_DONE, tag: tag});
+export const setCurrentTagDone = (tag, error) => ({type: SET_CURRENT_TAG_DONE, tag: tag, error: error});
 
 export const SET_CURRENT_TAG_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_TAG_CURRENT_PAGE_DONE";
 
@@ -160,13 +160,21 @@ export const setCurrentTagCurrentPageDone = (tag) => ({type: SET_CURRENT_TAG_CUR
 
 export const singleTagMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_TAG){
+        
+        storeAPI.dispatch(setFeatureImageURL(""));
+        storeAPI.dispatch(resetErrorAction());
         storeAPI.dispatch(setSingleTagDataReady(false));
+
         let name = action.name;
         let numItemsPerPage = storeAPI.getState().singleTagPage.numItemsPerPage;
 
         getTag(name, numItemsPerPage, 1).then(tag => {
             storeAPI.dispatch(setCurrentTagDone(tag));
-        });
+        }) 
+        .catch((error) => {
+            storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
+            storeAPI.dispatch(setCurrentTagDone(undefined, error));
+        });;
 
         
 

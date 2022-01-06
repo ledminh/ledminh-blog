@@ -24,7 +24,6 @@ const SinglePostPage = () => {
     const {setCurrentSinglePost, showComments, hideComments} = useSinglePostActions();
     const {setFeatureImageURL} = useFeatureImageActions();
     
-    const {resetError} = useErrorActions();
     const {post, showCommentsStatus} = useSinglePost();
     const {data, dataReady, error} = post;
 

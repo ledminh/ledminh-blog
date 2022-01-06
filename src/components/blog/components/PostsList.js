@@ -15,6 +15,8 @@ import useSingleTagPage from "../redux/useSingleTagPage";
 import useSingleDatePage from "../redux/useSingleDatePage";
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
+import { SingleTagErrorConstants } from "../assets/constants";
 
 export const PL_SINGLE_TAG_PAGE = "TYPE/POSTS_LIST/SINGLE_TAG_PAGE";
 export const PL_SINGLE_CATEGORY = "TYPE/POSTS_LIST/SINGLE_CATEGORY";
@@ -26,7 +28,7 @@ const PostsList = ({type}) => {
     // Get props based on type of list
     const [setCurrentItem, setCurrentPage, setCurrentPagi,
         title, totalPosts, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage,
-        displayedPosts, endPrev, endNext, subtitle, dataReady    
+        displayedPosts, endPrev, endNext, subtitle, dataReady, error, errorMessage    
     ] = useProps(type);
     
 
@@ -65,6 +67,12 @@ const PostsList = ({type}) => {
 
 
     return (
+        (error.status)?
+            <ErrorPage 
+                error={error}
+                title={errorMessage.title}
+                message={errorMessage.message} />
+            :
         (dataReady)?
         (<>
             
@@ -121,17 +129,24 @@ const useProps = (type) => {
 
     
     let data = useData();
-    let {title, name, posts, meta_data, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage, dataReady} = data;
+    let {title, name, posts, meta_data, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage, dataReady, error} = data;
     let {setCurrentItem, setCurrentPage, setCurrentPagi} = useActions();
     
     const {displayedPosts, totalPosts, endPrev, endNext} = posts;
 
         
     let subtitle = "";
+
+    let errorMessage = {};
     
     if(type === PL_SINGLE_TAG_PAGE){
         title = (name !== "")? ("#" + name) : "";
         subtitle = "List of posts under #" + name;       
+        
+        errorMessage = {
+            name: SingleTagErrorConstants.title,
+            message: SingleTagErrorConstants.message
+        }
     }
 
     if(type === PL_SINGLE_CATEGORY) {
@@ -146,7 +161,7 @@ const useProps = (type) => {
 
     return [setCurrentItem, setCurrentPage, setCurrentPagi,
         title, totalPosts, numItemsPerPage, numPagiButtons, currentPage, currentPagi, featureImage,
-        displayedPosts, endPrev, endNext, subtitle, dataReady    
+        displayedPosts, endPrev, endNext, subtitle, dataReady, error, errorMessage    
     ]
 }
 

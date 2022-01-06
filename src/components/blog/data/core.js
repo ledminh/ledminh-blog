@@ -279,49 +279,62 @@ export const getTagsList = () => {
 }
 
 export const  getTag = async (name, numItemsPerPage, pageNum, currentTag) => {
-    if(!name) {
-        const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentTag.posts.data, numItemsPerPage, pageNum, currentTag.posts.data.length);
-        let newTag = {
-            ...currentTag,
-            posts: {
-                ...currentTag.posts,
-                displayedPosts: displayedPosts,
-                endPrev: endPrev,
-                endNext: endNext
-            },
-            currentPage: pageNum
+    
+    return new Promise((resolve, reject) => {
+        if(!name) {
+            const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentTag.posts.data, numItemsPerPage, pageNum, currentTag.posts.data.length);
+            let newTag = {
+                ...currentTag,
+                posts: {
+                    ...currentTag.posts,
+                    displayedPosts: displayedPosts,
+                    endPrev: endPrev,
+                    endNext: endNext
+                },
+                currentPage: pageNum
+            }
+    
+            resolve(newTag);
+    
+        }
+    
+        let tag = find(tags, {name: name});
+        
+        if(!tag) reject(new Error("tag with name " + name +  " not found on the database"));
+        else {
+            loadPostsOfTagFromData(tag.idFromData).then((ps)=> {
+                const convertToPost = convertToPostMaker(categories, tags, authors);
+                ps = ps.map(convertToPost).map(p => ({
+                                                    title: p.title,
+                                                    idInfo:{
+                                                        slug: p.slug
+                                                    },
+                                                    date_created: p.date_created,
+                                                    author: p.author,
+                                                    excerpt: p.excerpt
+                                                }));
+            
+                
+                const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
+            
+                
+                tag.posts = {
+                    data: ps,
+                    displayedPosts: displayedPosts,
+                    totalPosts: ps.length,
+                    endPrev: endPrev,
+                    endNext: endNext
+                };
+            
+                resolve(tag);
+            }).catch((error) => reject(error));
         }
 
-        return newTag;
-
-    }
-
-    let tag = find(tags, {name: name});
-
-    let ps = await loadPostsOfTagFromData(tag.idFromData);
-    const convertToPost = convertToPostMaker(categories, tags, authors);
-    ps = ps.map(convertToPost).map(p => ({
-                                        title: p.title,
-                                        idInfo:{
-                                            slug: p.slug
-                                        },
-                                        date_created: p.date_created,
-                                        author: p.author,
-                                        excerpt: p.excerpt
-                                    }));
     
-    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum);
-
+        
+    });
     
-    tag.posts = {
-        data: ps,
-        displayedPosts: displayedPosts,
-        totalPosts: ps.length,
-        endPrev: endPrev,
-        endNext: endNext
-    };
-
-    return tag;
+    
 
 
     

@@ -200,8 +200,9 @@ export const loadSinglePostFromData = async (slug) => {
 }
 
 export const loadPostsOfTagFromData = async (tagIDFromData) => {
+   
     let ps = await wp.posts().tags(tagIDFromData);
-
+   
     return ps;
 }
 

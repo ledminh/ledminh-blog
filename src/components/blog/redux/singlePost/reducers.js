@@ -54,7 +54,8 @@ const postReducer = (state = initState, action) => {
                     status: true,
                     name: action.error.name,
                     message: action.error.message
-                }
+                },
+                dataReady: true
                 
             };
         }
