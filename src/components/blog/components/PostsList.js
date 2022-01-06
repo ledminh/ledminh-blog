@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import { useSingleTagPageActions, useFeatureImageActions, useSingleCategoryActions, useSingleDatePageActions } from "../redux/useActions";
+import { useSingleTagPageActions, useFeatureImageActions, useSingleCategoryActions, useSingleDatePageActions, useErrorActions } from "../redux/useActions";
 
 
 
@@ -32,6 +32,8 @@ const PostsList = ({type}) => {
 
     //Create onClickHandle for each of item on the list
     const history = useHistory();
+    const {setFeatureImageURL} = useFeatureImageActions();
+
     const onClickHandleMakerPost = (idIf) => {
         return () => {
             history.push("/post/" + idIf.slug)
@@ -40,7 +42,7 @@ const PostsList = ({type}) => {
 
     //set feature image and change current item to display appropriately
     const {idInfo} = useParams();
-    const {setFeatureImageURL} = useFeatureImageActions();
+    
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => setFeatureImageURL(""), []);
@@ -149,16 +151,3 @@ const useProps = (type) => {
 }
 
 
-/*
-async function postsOnCat() {
-    
-    const res = await fetch("https://www.ledminh.com/wp-json/wp/v2/posts");
-
-    let numP = res.headers.get("x-wp-total");
-                    
-    console.log(numP);
-
-    
-}
-
-*/

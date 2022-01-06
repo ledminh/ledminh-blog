@@ -29,7 +29,10 @@ const singleCategoryReducer = (state = initialState, action) => {
     }
     
     if(action.type === SET_CURRENT_CATEGORY_DONE) {
-        
+        if(action.error) {
+
+            
+        }
 
         return {
             ...state,

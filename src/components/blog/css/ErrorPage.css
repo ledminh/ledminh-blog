@@ -1,0 +1,35 @@
+.blog .error-page .title{
+    color:brown;
+}
+
+.blog .error-page .content code {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgb(66, 30, 30);
+    color: rgb(206, 206, 206);
+    border-radius: 15px;
+}
+
+.blog .error-page .content code::before {
+    content: "::: ERROR :::";
+    font-size: 20px;
+    font-weight: bold;
+    color:rgb(255, 206, 206)
+}
+
+.blog .error-page .content code .label {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.blog .error-page .content .home-link {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(5, 70, 33);
+    cursor: pointer;
+}
+
+.blog .error-page .content .home-link:hover {
+    color:rgb(23, 179, 90);
+}

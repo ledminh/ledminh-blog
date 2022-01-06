@@ -1,4 +1,7 @@
-import { useActions } from "../../../redux/useActions";
+import { bindActionCreators } from "redux";
+import { useDispatch } from "react-redux";
+import { useMemo } from "react";
+
 
 
 import { initializeDataAction, setDataSourceLocalAction, setDataSourceWPAction } from "./loadData";
@@ -21,8 +24,21 @@ import { setCurrentDate, setCurrentPage as setDatePageCurrentPage, setCurrentPag
 import { setCurrentAuthor, setCurrentPage as setAuthorPageCurrentPage, setCurrentPagi as setAuthorPageCurrentPagi } from "./authorPage/actions";
 import { refreshComments } from "./Comments"; 
 import { setDatesList } from "./datesList/actions";
+import { resetErrorAction } from "./error";
 
 
+
+function useActions(actions) {
+    const dispatch = useDispatch();
+    
+    return useMemo(
+        () => {
+        return bindActionCreators(actions, dispatch);
+        }, 
+    [actions, dispatch]);
+}
+
+export const useErrorActions = () => useActions({resetError: resetErrorAction});
 
 export const useDataLoadActions = () => useActions({initializeData: initializeDataAction,
                                                         setDataSourceLocal: setDataSourceLocalAction,

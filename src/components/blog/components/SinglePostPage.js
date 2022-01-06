@@ -1,10 +1,10 @@
 import { useParams } from "react-router";
 import { useEffect } from "react";
-import { useSinglePostActions, useFeatureImageActions } from "../redux/useActions";
+import { useSinglePostActions, useFeatureImageActions, useErrorActions } from "../redux/useActions";
 import useSinglePost from "../redux/useSinglePost";
 
 import "../css/SinglePostPage.css";
-
+import { SinglePostPageErrorConstants as sppeConst } from "../assets/constants";
 import Title from "./Title";
 import SubTitle from "./SubTitle";
 import MetaData from "./MetaData";
@@ -15,20 +15,20 @@ import { useLocation } from "react-router-dom";
 
 import useDataInitialized from '../redux/useDataInitialized';
 import LoadingPage from "./LoadingPage";
+import  ErrorPage  from "./ErrorPage";
+
 
 const SinglePostPage = () => {
     const dataInitialized = useDataInitialized();
     const {slug} = useParams();
     const {setCurrentSinglePost, showComments, hideComments} = useSinglePostActions();
     const {setFeatureImageURL} = useFeatureImageActions();
-
+    
+    const {resetError} = useErrorActions();
     const {post, showCommentsStatus} = useSinglePost();
-    const {data, dataReady} = post;
+    const {data, dataReady, error} = post;
 
     const location = useLocation();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => setFeatureImageURL(""), []);
 
     useEffect(() => {
         if(dataInitialized){
@@ -40,15 +40,25 @@ const SinglePostPage = () => {
     }, [slug, dataInitialized]);
 
     useEffect(() => {
-        if(dataReady)
+        if(dataReady){
             setFeatureImageURL(data.featureImage.url);
-        else
+        }
+        else{
             setFeatureImageURL("");
-            
+        }   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataReady])
     
+
+    
+
     return (
+        (error.status)?
+            <ErrorPage 
+                error={error}
+                title={sppeConst.title}
+                message={sppeConst.message} />
+            :
         (dataReady)?
         (
             <div className="single-post-page">

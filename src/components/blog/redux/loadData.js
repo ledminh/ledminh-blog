@@ -20,6 +20,9 @@ import { getDatesList } from "../data";
 
 import { SET_DATES_LIST } from "./datesList/actionTypes";
 import { setDatesListDataReady } from "./datesList/actions";
+import { resetErrorAction } from "./error";
+import { setFeatureImageURL } from "./featureImage/actions";
+import { ErrorProfileImage } from "../assets/imageLinks";
 
 /* Signal that Data has already been Initialized */
 export const DATA_INITIALIZED = "BLOG/DATA_INITIALIZED";
@@ -102,7 +105,7 @@ export const homeMiddleware = storeAPI => next => action => {
 /*SINGLE CATEGORY*/
 export const SET_CURRENT_CATEGORY_DONE = "BLOG/LOAD_DATA/SET_CURRENT_CATEGORY_DONE";
 
-export const setCurrentCategoryDone = (cat) => ({type: SET_CURRENT_CATEGORY_DONE, cat: cat});
+export const setCurrentCategoryDone = (cat, error) => ({type: SET_CURRENT_CATEGORY_DONE, cat: cat, error: error});
 
 export const SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_CATEGORY_CURRENT_PAGE_DONE";
 
@@ -116,8 +119,12 @@ export const singleCategoryMiddleware = storeAPI => next => action => {
         let slug = action.slug;
         let numItemsPerPage = storeAPI.getState().singleCategory.numItemsPerPage;
 
-        getCategory(slug, numItemsPerPage, 1).then(cat => {
+        getCategory(slug, numItemsPerPage, 1)
+        .then(cat => {
             storeAPI.dispatch(setCurrentCategoryDone(cat));
+        })
+        .catch((error) => {
+            storeAPI.dispatch(setCurrentCategoryDone(undefined, error));
         });
 
         
@@ -264,15 +271,23 @@ export const authorPageMiddleware = storeAPI => next => action => {
 
 /* Single Post Middleware  */
 export const SET_SINGLE_POST_DONE = "BLOG/LOAD_DATA/SET_SINGLE_POST_DONE";
-const setSinglePostDone = (post) => ({type: SET_SINGLE_POST_DONE, post: post});
+const setSinglePostDone = (post, error) => ({type: SET_SINGLE_POST_DONE, post: post, error: error});
 
 export const singlePostMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_SINGLE_POST){
+        storeAPI.dispatch(setFeatureImageURL(""));
+        storeAPI.dispatch(resetErrorAction());
         storeAPI.dispatch(setSinglePostDataReady(false));
 
-        getSinglePost(action.slug).then(post => {
-            storeAPI.dispatch(setSinglePostDone(post));
-        });
+        getSinglePost(action.slug)
+            .then(post => {
+                
+                storeAPI.dispatch(setSinglePostDone(post));
+            })
+            .catch((error) => {
+                storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
+                storeAPI.dispatch(setSinglePostDone(undefined, error));
+            });
     }
 
     return next(action);
