@@ -161,6 +161,8 @@ const useProps = (type) => {
         
         title = (name !== "")? ("On "  + name) : "";
         subtitle = "List of posted published on " + name;
+    
+        
     }
 
     return [setCurrentItem, setCurrentPage, setCurrentPagi,

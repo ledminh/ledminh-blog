@@ -17,3 +17,9 @@ export const SingleCategoryErrorConstants = {
     title: "Opps, category not found !!!!",
     message: "Can't not find the category you're looking for."
 }
+
+/* Single Tag Error */
+export const AuthorErrorConstants = {
+    title: "Opps, author not found !!!!",
+    message: "Can't not find the author you're looking for."
+}

@@ -11,10 +11,12 @@ import '../css/AuthorPage.css';
 import { VERTICAL_LIST } from "./EntriesList";
 import LoadingPage from "./LoadingPage";
 
+import ErrorPage from "./ErrorPage";
+import { AuthorErrorConstants as errorMessage } from "../assets/constants";
 
 
 const AuthorPage = () => {
-    const {dataReady, name, slogan, featureImage, profilePicture, bio, posts, currentPage, currentPagi, numItemsPerPage, numPagiButtons } = useAuthorPage();
+    const {dataReady, name, slogan, featureImage, profilePicture, bio, posts, currentPage, currentPagi, numItemsPerPage, numPagiButtons, error } = useAuthorPage();
     const {totalPosts, displayedPosts, endPrev, endNext} = posts;
     const {setCurrentItem, setCurrentPage, setCurrentPagi} = useAuthorPageActions();
 
@@ -51,6 +53,12 @@ const AuthorPage = () => {
 
 
     return (
+        (error.status)?
+            <ErrorPage 
+                error={error}
+                title={errorMessage.title}
+                message={errorMessage.message} />
+            :
         (dataReady)?
         (<div className="author-page">
             <Title title={name}/>

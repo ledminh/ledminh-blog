@@ -416,50 +416,61 @@ export const getAuthorsList = () => authors;
 
 
 export const getAuthor = async (slug, numItemsPerPage, pageNum, currentAuthor) => {
-    if(!slug) {
-        const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentAuthor.posts.data, numItemsPerPage, pageNum, currentAuthor.posts.data.length);
-
-        let newAuthor = {
-            ...currentAuthor,
-            posts: {
-                ...currentAuthor.posts,
-                displayedPosts: displayedPosts,
-                endPrev: endPrev,
-                endNext: endNext
-            },
-            currentPage: pageNum
-        }
-
-        return newAuthor;
-    }
-
-
-    let author = find(authors, {idInfo: {slug: slug}});
-    const convertToPost = convertToPostMaker(categories, tags, authors);
-
-    let ps = await loadPostsOfAuthorFromData(author, convertToPost, posts);
+    return new Promise((resolve, reject) => {
+        if(!slug) {
+            const [displayedPosts, endPrev, endNext] = getEntriesOnPage(currentAuthor.posts.data, numItemsPerPage, pageNum, currentAuthor.posts.data.length);
     
-    ps = ps.map(p => ({
-                title: p.title,
-                idInfo:{
-                    slug: p.slug
+            let newAuthor = {
+                ...currentAuthor,
+                posts: {
+                    ...currentAuthor.posts,
+                    displayedPosts: displayedPosts,
+                    endPrev: endPrev,
+                    endNext: endNext
                 },
-                date_created: p.date_created,
-                author: p.author,
-                excerpt: p.excerpt
-            }));
-
-    const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
-
-    author.posts = {
-        displayedPosts: displayedPosts,
-        totalPosts: ps.length,
-        endPrev: endPrev,
-        endNext: endNext
-    };
-
+                currentPage: pageNum
+            }
     
-    return author;
+            resolve(newAuthor);
+        }
+    
+    
+        let author = find(authors, {idInfo: {slug: slug}});
+        
+        if(!author) reject(new Error("Author " + author + " not found"));
+        else {
+            const convertToPost = convertToPostMaker(categories, tags, authors);
+    
+            loadPostsOfAuthorFromData(author, convertToPost, posts).then((ps) => {
+                ps = ps.map(p => ({
+                    title: p.title,
+                    idInfo:{
+                        slug: p.slug
+                    },
+                    date_created: p.date_created,
+                    author: p.author,
+                    excerpt: p.excerpt
+                }));
+
+                const [displayedPosts, endPrev, endNext] = getEntriesOnPage(ps, numItemsPerPage, pageNum, ps.length);
+
+                author.posts = {
+                    displayedPosts: displayedPosts,
+                    totalPosts: ps.length,
+                    endPrev: endPrev,
+                    endNext: endNext
+                };
+
+                
+                resolve(author);
+            })
+            .catch((error) => reject(error));
+        }
+        
+
+        
+    });
+    
 
     
 }

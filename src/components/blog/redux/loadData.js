@@ -243,7 +243,7 @@ export const singleDateMiddleware = storeAPI => next => action => {
 /* AUTHOR PAGE */
 export const SET_CURRENT_AUTHOR_DONE = "BLOG/LOAD_DATA/SET_CURRENT_AUTHOR_DONE";
 
-export const setCurrentAuthorDone = (author) => ({type: SET_CURRENT_AUTHOR_DONE, author: author});
+export const setCurrentAuthorDone = (author, error) => ({type: SET_CURRENT_AUTHOR_DONE, author: author, error: error});
 
 export const SET_AUTHOR_PAGE_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_AUTHOR_PAGE_CURRENT_PAGE_DONE";
 
@@ -253,13 +253,20 @@ export const setAuthorPageCurrentPageDone = (author) => ({type: SET_AUTHOR_PAGE_
 
 export const authorPageMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_AUTHOR){
+        storeAPI.dispatch(setFeatureImageURL(""));
+        storeAPI.dispatch(resetErrorAction());
         storeAPI.dispatch(setAuthorPageDataReady(false));
+
         let slug = action.slug;
         let numItemsPerPage = storeAPI.getState().authorPage.numItemsPerPage;
 
         getAuthor(slug, numItemsPerPage, 1).then(author => {
             storeAPI.dispatch(setCurrentAuthorDone(author));
-        });
+        })
+        .catch((error) => {
+            storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
+            storeAPI.dispatch(setCurrentAuthorDone(undefined, error));
+        });;
 
         
 
