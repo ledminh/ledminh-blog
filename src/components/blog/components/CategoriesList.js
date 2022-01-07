@@ -18,7 +18,6 @@ const CategoriesList = () => {
 
     const {data, numPagiButtons, currentPagi, featureImage} = useCategoriesList();
     const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage, error} = data;
-    console.log(data);
     
     const {setCurrentPage, setCurrentPagi} = useCategoriesListActions();
     
