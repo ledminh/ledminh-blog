@@ -202,7 +202,7 @@ export const singleTagMiddleware = storeAPI => next => action => {
 /*SINGLE DATE*/
 export const SET_CURRENT_DATE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_DATE_DONE";
 
-export const setCurrentDateDone = (date) => ({type: SET_CURRENT_DATE_DONE, date: date});
+export const setCurrentDateDone = (date, error) => ({type: SET_CURRENT_DATE_DONE, date: date, error: error});
 
 export const SET_CURRENT_DATE_CURRENT_PAGE_DONE = "BLOG/LOAD_DATA/SET_CURRENT_DATE_CURRENT_PAGE_DONE";
 
@@ -212,12 +212,19 @@ export const setCurrentDateCurrentPageDone = (date) => ({type: SET_CURRENT_DATE_
 
 export const singleDateMiddleware = storeAPI => next => action => {
     if(action.type === SET_CURRENT_DATE){
+        storeAPI.dispatch(setFeatureImageURL(""));
+        storeAPI.dispatch(resetErrorAction());
         storeAPI.dispatch(setSingleDateDataReady(false));
+
         let slug = action.slug;
         let numItemsPerPage = storeAPI.getState().singleDatePage.numItemsPerPage;
 
         getPostsOnDate(slug, numItemsPerPage, 1).then(date => {
             storeAPI.dispatch(setCurrentDateDone(date));
+        })
+        .catch((error) => {
+            storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
+            storeAPI.dispatch(setCurrentDateDone(undefined, error));
         });
 
         
@@ -266,7 +273,7 @@ export const authorPageMiddleware = storeAPI => next => action => {
         .catch((error) => {
             storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
             storeAPI.dispatch(setCurrentAuthorDone(undefined, error));
-        });;
+        });
 
         
 

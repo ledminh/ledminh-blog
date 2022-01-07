@@ -1,6 +1,7 @@
 import {  SET_CURRENT_PAGI, SET_SINGLE_DATE_DATA_READY } from "./actionTypes";
 
-import { SET_CURRENT_DATE_CURRENT_PAGE_DONE, SET_CURRENT_DATE_DONE } from "../loadData";
+import { DATA_INITIALIZED, SET_CURRENT_DATE_CURRENT_PAGE_DONE, SET_CURRENT_DATE_DONE } from "../loadData";
+import { RESET_ERROR } from "../error";
 
 const initState = {
     dataReady: false,
@@ -17,10 +18,24 @@ const initState = {
     },
     featureImage: {
         url: "https://www.saratogian.com/wp-content/uploads/2021/11/calendar.jpg"
+    },
+    error: {
+        status: false,
+        name: "",
+        message: ""
     } 
 };
 
 const singleDatePageReducer = (state = initState, action) => {
+    if(action.type === DATA_INITIALIZED) {
+        if(action.status === false){
+            return {
+                ...state,
+                dataReady: false
+            }
+        }
+    }
+
     if(action.type === SET_SINGLE_DATE_DATA_READY){
         return {
             ...state,
@@ -28,7 +43,32 @@ const singleDatePageReducer = (state = initState, action) => {
         };
     }
 
+    if(action.type === RESET_ERROR) {
+        return {
+            ...state,
+            error: {
+                status: false,
+                name: "",
+                message: ""
+            }
+        }
+    }
+
     if(action.type === SET_CURRENT_DATE_DONE){
+        if(action.error) {
+
+            return {
+                ...state,
+                error: {
+                    status: true,
+                    name: action.error.name,
+                    message: action.error.message
+                },
+                dataReady: false
+                
+            };
+        }
+
         return {
             ...state,
             ...action.date,

@@ -23,3 +23,10 @@ export const AuthorErrorConstants = {
     title: "Opps, author not found !!!!",
     message: "Can't not find the author you're looking for."
 }
+
+/* */
+/* Single Tag Error */
+export const SingleDateErrorConstants = {
+    title: "Opps, date not found !!!!",
+    message: "Maybe there's not any posts published on the date you're looking for."
+}

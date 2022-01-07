@@ -16,7 +16,7 @@ import useSingleDatePage from "../redux/useSingleDatePage";
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
-import { SingleCategoryErrorConstants, SingleTagErrorConstants } from "../assets/constants";
+import { SingleCategoryErrorConstants, SingleDateErrorConstants, SingleTagErrorConstants } from "../assets/constants";
 
 export const PL_SINGLE_TAG_PAGE = "TYPE/POSTS_LIST/SINGLE_TAG_PAGE";
 export const PL_SINGLE_CATEGORY = "TYPE/POSTS_LIST/SINGLE_CATEGORY";
@@ -59,8 +59,10 @@ const PostsList = ({type}) => {
 
 
     useEffect(() => {
-        if(dataReady)
+        if(dataReady){
             setFeatureImageURL(featureImage.url);
+        }
+            
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataReady]);
@@ -144,7 +146,7 @@ const useProps = (type) => {
         subtitle = "List of posts under #" + name;       
         
         errorMessage = {
-            name: SingleTagErrorConstants.title,
+            title: SingleTagErrorConstants.title,
             message: SingleTagErrorConstants.message
         }
     }
@@ -152,7 +154,7 @@ const useProps = (type) => {
     if(type === PL_SINGLE_CATEGORY) {
         subtitle = meta_data? meta_data.cat_subtitle : "";
         errorMessage = {
-            name: SingleCategoryErrorConstants.title,
+            title: SingleCategoryErrorConstants.title,
             message: SingleCategoryErrorConstants.message
         }
     }
@@ -162,7 +164,10 @@ const useProps = (type) => {
         title = (name !== "")? ("On "  + name) : "";
         subtitle = "List of posted published on " + name;
     
-        
+        errorMessage = {
+            title: SingleDateErrorConstants.title,
+            message: SingleDateErrorConstants.message
+        }
     }
 
     return [setCurrentItem, setCurrentPage, setCurrentPagi,

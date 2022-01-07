@@ -46,7 +46,6 @@ const singleTagPageReducer = (state = initialState, action) => {
     }
 
     if(action.type === RESET_ERROR){
-
         return {
             ...state,
             error: {
@@ -66,7 +65,7 @@ const singleTagPageReducer = (state = initialState, action) => {
                     name: action.error.name,
                     message: action.error.message
                 },
-                dataReady: true
+                dataReady: false
             }
         }
 
