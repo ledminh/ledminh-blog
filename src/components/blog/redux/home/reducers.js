@@ -7,7 +7,7 @@ import { SHOW_COMMENTS, HIDE_COMMENTS, TOGGLE_COMMENTS,
             SET_MAIN_POST,
             SET_HOME_DATA_READY} from "./actionTypes";
 
-import { DATA_INITIALIZED, DISPLAY_POSTS_AT_HOME_DONE } from "../loadData";
+import { DATA_INITIALIZED, DATA_INITIALIZED_ERROR, DISPLAY_POSTS_AT_HOME_DONE } from "../loadData";
 
 const currentPageInit = 1;
 const numItemsPerPageInit = 4;
@@ -29,10 +29,29 @@ const dataInitialState = {
     endPrev: false,
     endNext: false,
     numItemsPerPage: numItemsPerPageInit,
-    currentPage: currentPageInit
+    currentPage: currentPageInit,
+    error: {
+        status: false,
+        name: "",
+        message: ""
+    }
 }
 
 const dataReducer =  (state = dataInitialState, action) => {
+    if(action.type === DATA_INITIALIZED_ERROR){
+        
+        
+        return {
+            ...state,
+            error: {
+                status: true,
+                name: "Data Initialized Error",
+                message: "Invalid data source"
+            }
+        };
+
+    }
+
     if(action.type === DATA_INITIALIZED){
         if(action.status === false){
             return dataInitialState;

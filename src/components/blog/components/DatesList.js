@@ -13,12 +13,13 @@ import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
 
 import { useDatesListActions } from "../redux/useActions";
+import ErrorPage from "./ErrorPage";
 
 const DatesList = () => {
     const dataInitialized = useDataInitialized();
 
     const {featureImage, data} = useDatesList(); 
-    const {datesList, dataReady} = data;
+    const {datesList, dataReady, error} = data;
 
     const {setDatesList} = useDatesListActions();
 
@@ -55,6 +56,12 @@ const DatesList = () => {
     }
 
     return (
+        error.status?
+        <ErrorPage 
+                error={error}
+                title={"Opps!!! There's some error occurs."}
+                message={"Might be the data source is invalid"}
+            />:
         dataReady?
         (<>
             <Title title="Dates"/>

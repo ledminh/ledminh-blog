@@ -9,13 +9,14 @@ import useHome from "../redux/useHome";
 import { useEffect } from "react";
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
 
 const Home = () => {
     const dataInitialized = useDataInitialized();
 
     const homeActions = useHomeActions();
     const {data, numPagiButtons, currentPagi} = useHome();
-    const {dataReady, mainPost, numPosts, displayedPosts, endPrev, endNext, numItemsPerPage, currentPage} = data;
+    const {dataReady, mainPost, numPosts, displayedPosts, endPrev, endNext, numItemsPerPage, currentPage, error} = data;
 
     const {setFeatureImageURL} = useFeatureImageActions();
     
@@ -41,7 +42,13 @@ const Home = () => {
     }   
     
     
-    return dataInitialized ?
+    return error.status?
+            <ErrorPage 
+                error={error}
+                title={"Opps!!! There's some error occurs."}
+                message={"Might be the data source is invalid"}
+            />:
+            dataInitialized ?
             (<>
                 <MainPost />             
 

@@ -1,6 +1,6 @@
 import { AuthorPageImageURL } from "../../assets/imageLinks";
 import { RESET_ERROR } from "../error";
-import { DATA_INITIALIZED, SET_AUTHOR_PAGE_CURRENT_PAGE_DONE, SET_CURRENT_AUTHOR_DONE } from "../loadData";
+import { DATA_INITIALIZED, DATA_INITIALIZED_ERROR, SET_AUTHOR_PAGE_CURRENT_PAGE_DONE, SET_CURRENT_AUTHOR_DONE } from "../loadData";
 import { SET_CURRENT_PAGI, SET_AUTHOR_PAGE_DATA_READY} from "./actionTypes";
 
 
@@ -33,6 +33,19 @@ export const authorPageReducer = (state = initState, action) => {
         if(action.status === false){
             return initState;
         }
+    }
+
+    if(action.type === DATA_INITIALIZED_ERROR){       
+        
+        return {
+            ...state,
+            error: {
+                status: true,
+                name: "Data Initialized Error",
+                message: "Invalid data source"
+            }
+        };
+
     }
 
     if(action.type === SET_AUTHOR_PAGE_DATA_READY) {

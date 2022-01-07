@@ -12,13 +12,14 @@ import '../css/AuthorsList.css';
 import FeatureImage from "./FeatureImage";
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
 
 
 const AuthorsList = () => {
     const dataInitialized = useDataInitialized();
 
     const authorsList = useAuthorsList(); 
-    const {featureImage, data} = authorsList;
+    const {featureImage, data, error} = authorsList;
     
     const {setFeatureImageURL} = useFeatureImageActions();
     
@@ -44,6 +45,12 @@ const AuthorsList = () => {
     
 
     return (
+        error.status?
+        <ErrorPage 
+                error={error}
+                title={"Opps!!! There's some error occurs."}
+                message={"Might be the data source is invalid"}
+            />:
         dataInitialized?
         (<>
             <Title title="Authors"/>

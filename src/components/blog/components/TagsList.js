@@ -11,12 +11,13 @@ import useTagsList from "../redux/useTagsList";
 import '../css/TagsList.css';
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
 
 
 const TagsList = () => {
     const dataInitialized = useDataInitialized();
 
-    const {tags, featureImage} = useTagsList();
+    const {tags, featureImage, error} = useTagsList();
     
     
 
@@ -45,6 +46,12 @@ const TagsList = () => {
     }
 
     return (
+        error.status?
+            <ErrorPage 
+                error={error}
+                title={"Opps!!! There's some error occurs."}
+                message={"Might be the data source is invalid"}
+            />:
         dataInitialized?
         (<>
             <Title title="Tags"/>

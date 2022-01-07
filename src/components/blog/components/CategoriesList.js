@@ -9,7 +9,7 @@ import { useHistory } from "react-router";
 import useCategoriesList from "../redux/useCategoriesList";
 import useDataInitialized from "../redux/useDataInitialized";
 import LoadingPage from "./LoadingPage";
-
+import ErrorPage from "./ErrorPage";
 
 
 
@@ -17,8 +17,8 @@ const CategoriesList = () => {
     const dataInitialized = useDataInitialized();
 
     const {data, numPagiButtons, currentPagi, featureImage} = useCategoriesList();
-    const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage} = data;
-
+    const {numCategories, displayedCategories, endPrev, endNext, numItemsPerPage, currentPage, error} = data;
+    console.log(data);
     
     const {setCurrentPage, setCurrentPagi} = useCategoriesListActions();
     
@@ -47,6 +47,12 @@ const CategoriesList = () => {
     }
 
     return (
+        error.status?
+        <ErrorPage 
+                error={error}
+                title={"Opps!!! There's some error occurs."}
+                message={"Might be the data source is invalid"}
+            />:
         dataInitialized?
         (<>
             <Title title="Categories"/>

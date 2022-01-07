@@ -1,7 +1,7 @@
 import {  SET_CURRENT_PAGI, SET_SINGLE_TAG_DATA_READY } from "./actionTypes";
 
 import { TagsImageURL } from "../../assets/imageLinks";
-import { DATA_INITIALIZED, SET_CURRENT_TAG_CURRENT_PAGE_DONE, SET_CURRENT_TAG_DONE } from "../loadData";
+import { DATA_INITIALIZED, DATA_INITIALIZED_ERROR, SET_CURRENT_TAG_CURRENT_PAGE_DONE, SET_CURRENT_TAG_DONE } from "../loadData";
 import { RESET_ERROR } from "../error";
 
 const initialState = {
@@ -33,6 +33,19 @@ const singleTagPageReducer = (state = initialState, action) => {
         if(action.status === false){
             return initialState;
         }
+    }
+
+    if(action.type === DATA_INITIALIZED_ERROR){       
+        
+        return {
+            ...state,
+            error: {
+                status: true,
+                name: "Data Initialized Error",
+                message: "Invalid data source"
+            }
+        };
+
     }
 
     if(action.type === SET_SINGLE_TAG_DATA_READY) {

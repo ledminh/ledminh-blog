@@ -50,9 +50,12 @@ export const initializeDataAction = () =>  initializeData;
 /* Change data source */
 const SET_DATA_SOURCE_LOCAL = "BLOG/DATA_SOURCE/SET_DATA_SOURCE_LOCAL";
 const SET_DATA_SOURCE_WP = "BLOG/DATA_SOURCE/SET_DATA_SOURCE_WP";
+export const DATA_INITIALIZED_ERROR = "BLOG/DATA_SOURCE/DATA_INITIALIZED_ERROR";
+
 
 export const setDataSourceLocalAction = () => ({type: SET_DATA_SOURCE_LOCAL})
 export const setDataSourceWPAction = (wp_address) => ({type: SET_DATA_SOURCE_WP, wp_address: wp_address});
+export const dataInitializedErrorAction = (error) => ({type: DATA_INITIALIZED_ERROR, error: error});
 
 export const dataSourceMiddleware = storeAPI => next => action => {
     if(action.type === SET_DATA_SOURCE_LOCAL){
@@ -71,6 +74,12 @@ export const dataSourceMiddleware = storeAPI => next => action => {
         
         initData(WP_DATA, action.wp_address).then(() => {
             storeAPI.dispatch(dataInitialized(true));
+        })
+        .catch((error) => {
+            console.log("hello", error);
+            
+            storeAPI.dispatch(setFeatureImageURL(ErrorProfileImage));
+            storeAPI.dispatch(dataInitializedErrorAction(error));
         });
 
         

@@ -1,12 +1,17 @@
 import { AuthorListsImageURL } from "../../assets/imageLinks";
 import { getAuthorsList } from "../../data";
-import { DATA_INITIALIZED } from "../loadData";
+import { DATA_INITIALIZED, DATA_INITIALIZED_ERROR } from "../loadData";
 
 const initState = {
     featureImage: {
         url: AuthorListsImageURL
     },
-    data: []
+    data: [],
+    error: {
+        status: false,
+        name: "",
+        message: ""
+    }
 }
 
 const authorsListReducer = (state = initState, action) => {
@@ -19,6 +24,19 @@ const authorsListReducer = (state = initState, action) => {
             ...state,
             data: getAuthorsList()
         }
+    }
+
+    if(action.type === DATA_INITIALIZED_ERROR){       
+        
+        return {
+            ...state,
+            error: {
+                status: true,
+                name: "Data Initialized Error",
+                message: "Invalid data source"
+            }
+        };
+
     }
     return state;
 }
