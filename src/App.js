@@ -12,7 +12,7 @@ import PageTitle from './components/PageTitle';
 
 import AboutMeBlock from './components/AboutMeBlock';
 
-import Home from './components/Home';
+import Home from './components/home';
 
 import Copyright from './components/Copyright';
 
