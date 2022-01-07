@@ -6,7 +6,10 @@ const initialState = {
 }
 
 const featureImageReducer = (state = initialState, action) => {
-    
+    if(action.type === DATA_INITIALIZED){
+        if(action.status === false)
+            return initialState;
+    }
     if(action.type === SET_FEATURE_IMAGE_URL) {
         return {
             url: action.url

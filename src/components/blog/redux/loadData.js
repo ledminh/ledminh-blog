@@ -56,6 +56,7 @@ export const setDataSourceWPAction = (wp_address) => ({type: SET_DATA_SOURCE_WP,
 
 export const dataSourceMiddleware = storeAPI => next => action => {
     if(action.type === SET_DATA_SOURCE_LOCAL){
+        //data is not initialized yet === data reset
         storeAPI.dispatch(dataInitialized(false));
 
         initData(LOCAL_DATA).then(() => {

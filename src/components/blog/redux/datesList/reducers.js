@@ -1,5 +1,5 @@
 import { DatesImageURL } from "../../assets/imageLinks";
-import { SET_DATES_LIST_DONE } from "../loadData";
+import { DATA_INITIALIZED, SET_DATES_LIST_DONE } from "../loadData";
 import { SET_DATES_LIST_DATA_READY } from "./actionTypes";
 
 const initState = {
@@ -13,6 +13,13 @@ const initState = {
 };
 
 const datesListReducer = (state = initState, action) => {
+    if(action.type === DATA_INITIALIZED){
+        if(action.status === false){
+            return initState;
+        }
+        
+    }
+
     if(action.type === SET_DATES_LIST_DATA_READY){
         return {
             ...state,

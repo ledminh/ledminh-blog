@@ -29,10 +29,7 @@ const initialState = {
 const singleCategoryReducer = (state = initialState, action) => {
     if(action.type === DATA_INITIALIZED) {
         if(action.status === false){
-            return {
-                ...state,
-                dataReady: false
-            }
+            return initialState;
         }
     }
 
