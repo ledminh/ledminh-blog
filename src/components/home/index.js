@@ -1,5 +1,6 @@
 import Header from "./header";
 import Introduction from "./introduction";
+import Skills from "./skills";
 
 const Home = () => {
    
@@ -8,6 +9,7 @@ const Home = () => {
         <div className="home">
             <Header />
             <Introduction />
+            <Skills />
         </div>
     );
 }
