@@ -137,7 +137,7 @@ export const ProfilePicture = styled.div`
         bottom: 0px;
         border-radius: 50%;
 
-        opacity: .7;
+        opacity: .8;
 
         transition: opacity .4s, transform .4s;
     }
@@ -191,6 +191,7 @@ export const Slogan = styled.div`
 
     @media (max-width: 474px) {
         font-size: 22px;
+        text-align: center;
 
     }
 
