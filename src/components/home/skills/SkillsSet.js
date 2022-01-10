@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import styled, {css} from 'styled-components';
 
-const SkillsSet = ({title, skills}) => {
+const SkillsSet = ({title, skills, showInfoDialog, 
+                    hideDialog, activeSkill, 
+                    setActiveSkill, clearActiveSkill}) => {
     const [hover, setHover] = useState(false);
 
     return (
@@ -12,7 +14,34 @@ const SkillsSet = ({title, skills}) => {
             <Title hover={hover}>{title}</Title>
             <Content>
                 {
-                    skills.map(s => <SkillTag key={s} hover={hover}>{s}</SkillTag>)
+                    skills.map(s => {
+                                    const onClickHandle = (e) => {
+                                        if(s.name !== activeSkill){
+                                            const rect = e.target.getBoundingClientRect();
+                                            showInfoDialog(rect, s.description, s.img);
+                                            setActiveSkill(s.name);
+                                        }
+                                        else {
+                                            hideDialog();
+                                            clearActiveSkill();
+                                        }
+                                        
+                                    }
+
+                                    const onMouseOutHandle = (e) => {
+                                        hideDialog();
+                                        clearActiveSkill();
+                                    }
+                                return <SkillTag key={s.name} 
+                                                hover={hover}
+                                                active={s.name === activeSkill}
+                                                onClick={onClickHandle}
+                                                onMouseOut={onMouseOutHandle}
+                                                >
+                                                    {s.name}
+                                        </SkillTag>
+                                
+                                })
                 }
             </Content>
         </Wrapper>
@@ -29,6 +58,8 @@ const Wrapper = styled.div`
     margin-bottom: 15px;
 
     overflow: hidden;
+
+    
 
     ${props => props.hover && css`
         box-shadow: 0 0 5px black;
@@ -66,6 +97,22 @@ const SkillTag = styled.span`
     
     margin: 4px;
     padding: 4px;
+
+    cursor: pointer;
+    
+    :hover {
+        background-color: #747474;
+        color: white;
+    }
+
+    
+    ${props => props.active && css`
+        :hover {
+            background-color: #232323;
+            text-shadow: 0 0 2px white;
+        }
+    `}
+
 
     ${props => props.hover && css`
         border: 1px solid #EE6C4D;
