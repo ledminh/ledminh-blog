@@ -5,8 +5,8 @@ import SkillsSet from './SkillsSet';
 import { SkillsSet as SkillsSetArr } from './constants';
 import useData from './useData';
 
-
-
+import SectionTitle from '../components/SectionTitle';
+import SectionWrapper from '../components/SectionWrapper';
 
 
 
@@ -36,8 +36,8 @@ const Skills = () => {
 
 
     return (
-        <Wrapper>
-            <Title>Skills</Title>
+        <SectionWrapper>
+            <SectionTitle>Skills</SectionTitle>
             <Content>
                 {SkillsSetArr.map(({title, skills}) => 
                                         (<SkillsSet key={title} 
@@ -58,7 +58,7 @@ const Skills = () => {
                 <DialogImage src={state.dialogData.img}/>
                 <DialogContent>{state.dialogData.description}</DialogContent>
             </Dialog>
-        </Wrapper>
+        </SectionWrapper>
     );
 }
 
@@ -99,22 +99,9 @@ const DialogImage = styled.img`
 
 const DialogContent = styled.div``
 
-const Wrapper = styled.div`
-    width: 70%;
-    margin: auto;
-    margin-top: 15px;
-`;
 
-const Title = styled.div`
-    width: 60%;
-    margin: auto;
-    text-align: center;
-    font-family: cursive;
-    font-weight: 800;
-    font-size: 30px;
-    border-bottom: 2px dashed black;
-    margin-bottom: 20px;
-`;
+
+
 
 
 const Content = styled.div`
