@@ -9,4 +9,4 @@ Actually, the blog is an UI that can get data from three sources: local, my pers
 
 My next plan is to make it become a real blog (by adding mongoDB database, admin panel, editor, etc..).
 
-You can visit the demo here: https://www.ledminh.dev
+You can visit demo of the blog here: https://www.ledminh.dev/blog
