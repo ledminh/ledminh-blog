@@ -28,7 +28,7 @@ export default Item;
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 100px auto;
-    min-height: 100px;
+    min-height: 90px;
 
     padding-bottom: 5px;
     grid-gap: 10px;
@@ -44,6 +44,16 @@ const Wrapper = styled.div`
 
     cursor: pointer;
 
+    @media (max-width: 494px) {
+        grid-template-columns: 90px auto;
+    
+    }
+
+    @media (max-width: 412px) {
+        grid-template-columns: auto;
+    
+    }
+
     ${props => props.hover && css`
         box-shadow: 0 0 2px black;
         
@@ -58,6 +68,17 @@ const Logo = styled.img`
     width: 90px;
     height: 90px;
     
+    @media (max-width: 494px) {
+        width: 80px;
+        height: 80px;
+
+    }
+
+    @media (max-width: 412px) {
+        grid-row: 1/2;
+    }
+
+    
 `
 
 const Content = styled.div`
@@ -65,11 +86,23 @@ const Content = styled.div`
     grid-column: 2/3;
     width: 100%;
     height: 90%;
+
+    @media (max-width: 412px) {
+        grid-column: 1/2;
+        grid-row: 2/3;
+
+        text-align: center;
+    }
 ` 
 
 const Title = styled.div`
     text-transform: uppercase;
     font-weight: 700;
+
+    @media (max-width: 494px) {
+        font-size: 14px;
+
+    }
     ${props => props.hover && css`
         color: #0d65aa;
     `}
@@ -78,6 +111,11 @@ const Title = styled.div`
 
 const Description = styled.div`
     color: #5f5f5f;
+
+    @media (max-width: 494px) {
+        font-size: 13px;
+
+    }
     ${props => props.hover && css`
         color: black;
     `}
@@ -88,6 +126,11 @@ const Duration = styled.div`
     font-size: 14px;
 
     color: #5f5f5f;
+
+    @media (max-width: 494px) {
+        font-size: 12px;
+
+    }
     ${props => props.hover && css`
         color: black;
     `}

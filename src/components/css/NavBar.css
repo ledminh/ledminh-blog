@@ -29,7 +29,7 @@ Need to import Awesome font here or some css file elsewhere of the project
 
     transition: width .5s;
 
-    z-index: 99999;
+    z-index: 1000;
 }
 
 .top-nav-bar.side-bar-out {
