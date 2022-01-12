@@ -1,21 +1,23 @@
 import './css/NavBar.css';
 
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 const NavBar = ({sideBarOut}) => {
     const [display, setDisplay] = useState(false);
 
     const toggleDisplay = () => setDisplay(!display);
 
+    const history = useHistory();
+
     return (
       <nav className={"top-nav-bar" + (sideBarOut? " side-bar-out": "")}>
         <div className="menu-title" onClick={toggleDisplay}>Menu</div>
         <section className={`main-menu ${display? "show" : "hidden"}`}>
             <ul>
-                <li>Home</li>
-                <li>Posts</li>
-                <li>About Me</li>
-                <li>Contact Me</li>
+                <li onClick={() => history.push("/")}>Home</li>
+                <li onClick={() => history.push("/blog")}>Blog</li>
+                <li>Contact</li>
             </ul>           
         </section>
         <section className={`social-media-menu ${display? "show" : "hidden"}`}>
