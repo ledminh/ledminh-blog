@@ -1,12 +1,12 @@
 import Wrapper from "../Wrapper";
-import ModalContent from "./ModalContent";
+import DialogContent from "./DialogContent";
 
 import useDialog from "../../../components/useDialog";
 
 
 const VirtualStudioPage = () => {
     
-    const {Dialog, openDialog} = useDialog(ModalContent, "Gallery");
+    const {Dialog, openDialog} = useDialog(DialogContent, "Gallery");
 
     return (
         <>
