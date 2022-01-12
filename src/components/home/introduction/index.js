@@ -1,23 +1,14 @@
-import { useState } from "react";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 
 import { Intro_Paragraph } from "./asset/constants";
 const Introduction = () => {
-    const [hover, setHover] = useState(false);
-    const [expanded, setExpanded] = useState(false);
+    
     return (
-        <Wrapper expanded={expanded}>
+        <Wrapper>
             {Intro_Paragraph.map(t => (<Line key={t}>{t}</Line>))}
-            <ReadMoreBar hover={hover}
-                        expanded={expanded}
-            />
-            <ReadMoreButton hover={hover}
-                            expanded={expanded}
-                onMouseOver={() => setHover(true)}
-                onMouseOut={() => setHover(false)}
-                onClick={() => setExpanded(!expanded)}
-                >{expanded? "... MINIMIZE ..." : "... READ MORE ..."}                
-                </ReadMoreButton>
+            <ReadMoreButton 
+                >... READ MORE ...                
+            </ReadMoreButton>
         </Wrapper>
     );
 }
@@ -35,10 +26,20 @@ const Wrapper = styled.div`
 
     transition: max-height .5s;
 
-    ${props => props.expanded && css`
-        max-height: 1200px;
-        padding-bottom: 30px;
-    `}
+    :after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4em;
+        z-index: 1;
+        pointer-event: none;
+        background-image: linear-gradient(to bottom, rgba(255,255,255, 0), rgba(255,255,255, 1) 90%);
+    }
+    
+
+    
 
     @media (max-width: 816px) {
         margin-top: 60px;      
@@ -53,48 +54,26 @@ const Line = styled.p`
     margin-bottom: 10px;
 `
 
-const ReadMoreBar = styled.div`
-    position: absolute;
-    bottom: 0px;
-    
-    width: calc(100% - 40px);
-    height: 30px;
-    mix-blend-mode: hard-light;
-    background: linear-gradient(transparent, #2f2f2f);
-    opacity: .9;
 
-    transition: background .5s;
 
-    ${props => props.hover && css`
-        background: linear-gradient(transparent, black);
-    `}
-
-    ${props => props.expanded && css`
-        background: none;
-        border-bottom: 1px solid black;
-    `}
-`
-
-const ReadMoreButton = styled.div`
+const ReadMoreButton = styled.button`
     position: absolute;
     bottom: 5px;
     left: calc(50% -  70px);
 
-    color: white;
     font-weight: bold;
 
     cursor: pointer;
+    
+    z-index: 2;
+   
+    background-color: #EE6C4D;
 
-    ${props => props.hover && css`
-        text-shadow: 0 0 5px black;
-    `}
+    :hover {
+        background-color: #bd543b;
+        color: white;
+    }
 
-    ${props => props.expanded && css`
-        color: #EE6C4D;
-    `}
+    
 
-    ${props => props.expanded && props.hover && css`
-        text-shadow: 0 0 2px #EE6C4D;
-
-    `}
 `

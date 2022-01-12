@@ -81,7 +81,7 @@ const Dialog = styled.div`
     text-align: center;
 
     transition: opacity .4s;
-
+    z-index: 10000;
     ${props => props.showed && css`
         display: block;
         opacity: .95;
