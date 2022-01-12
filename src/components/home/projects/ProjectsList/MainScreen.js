@@ -30,6 +30,10 @@ const Wrapper = styled.div`
 
 
     padding: 10px;
+
+    @media (max-width: 668px) {
+        grid-row: 2/3;
+    }
 `
 
 const Title = styled.div`

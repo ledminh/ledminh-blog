@@ -52,12 +52,15 @@ export default SkillsSet;
 
 const Wrapper = styled.div`
     width: 45%;
-    min-width: 300px;
     border: 1px solid black;
     border-radius: 15px;
     margin-bottom: 15px;
 
     overflow: hidden;
+
+    @media (max-width: 950px) {
+        width: 80%;
+    }
 
     
 
@@ -74,6 +77,10 @@ const Title = styled.div`
     text-align: center;
     font-weight: bold;
     font-size: 15px;
+
+    @media (max-width: 668px) {
+        font-size: 13px;
+    }
 
     ${props => props.hover && css`
         color: #EE6C4D;
@@ -105,7 +112,11 @@ const SkillTag = styled.span`
         color: white;
     }
 
+    text-align: center;
     
+    @media (max-width: 668px) {
+        font-size: 12px;
+    }
     ${props => props.active && css`
         :hover {
             background-color: #232323;

@@ -113,7 +113,7 @@ const Content = styled.div`
 
     
 
-    @media (max-width: 940px) {
+    @media (max-width: 950px) {
         justify-content: center;
 
     }
