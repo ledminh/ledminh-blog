@@ -111,7 +111,7 @@ const Content = styled.div`
     justify-content: space-between;
     align-content: space-between;
 
-    border-bottom: 1px solid black;
+    
 
     @media (max-width: 940px) {
         justify-content: center;
