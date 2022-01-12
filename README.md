@@ -8,4 +8,5 @@ Actually, the blog is an UI that can get data from three sources: local, my pers
 - User can also enter the address of any wordpress website that has CORS enabled and the blog wil load then display all of its content.
 
 My next plan is to make it become a real blog (by adding mongoDB database, admin panel, editor, etc..).
+
 You can visit the demo here: https://www.ledminh.dev
