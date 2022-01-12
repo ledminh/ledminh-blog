@@ -1,4 +1,3 @@
-import SectionTitle from "../components/SectionTitle";
 import SectionWrapper from "../components/SectionWrapper";
 
 import Item from "./Item";
@@ -10,7 +9,6 @@ const Academic = () => {
 
     return (
         <SectionWrapper>
-            <SectionTitle>Academic</SectionTitle>
             <Content>
                 {
                     AcademicData.map((d) => <Item key={d.title} 

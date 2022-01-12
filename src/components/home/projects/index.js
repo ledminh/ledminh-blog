@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import SectionTitle from "../components/SectionTitle";
 import SectionWrapper from "../components/SectionWrapper";
 
 import ProjectsList from "./ProjectsList";
@@ -12,7 +11,6 @@ const Projects = () => {
 
     return (
         <SectionWrapper>
-            <SectionTitle>Projects</SectionTitle>
             <Subtitle><span>My two proudest projects</span></Subtitle>
             <Content>
                 <ProjectsList />
@@ -40,6 +38,8 @@ const Subtitle = styled.div`
         background-color: gray;
         color: white;
         padding: 3px 20px;
+
+        text-align: center;
         
     }
 `

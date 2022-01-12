@@ -5,7 +5,6 @@ import SkillsSet from './SkillsSet';
 import { SkillsSet as SkillsSetArr } from './constants';
 import useData from './useData';
 
-import SectionTitle from '../components/SectionTitle';
 import SectionWrapper from '../components/SectionWrapper';
 
 
@@ -37,7 +36,6 @@ const Skills = () => {
 
     return (
         <SectionWrapper>
-            <SectionTitle>Skills</SectionTitle>
             <Content>
                 {SkillsSetArr.map(({title, skills}) => 
                                         (<SkillsSet key={title} 

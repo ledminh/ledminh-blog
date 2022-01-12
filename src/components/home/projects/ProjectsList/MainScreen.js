@@ -31,6 +31,11 @@ const Wrapper = styled.div`
 
     padding: 10px;
 
+    height: 285px;
+    overflow: scroll;
+
+    overflow-x: hidden;
+
     @media (max-width: 668px) {
         grid-row: 2/3;
     }
