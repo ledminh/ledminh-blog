@@ -5,6 +5,7 @@ import Academic from "./academic";
 import Projects from "./projects";
 import { useState } from "react";
 import SectionTitle from "./components/SectionTitle";
+import Resume from "./Resume";
 
 const Home = () => {
     const {
@@ -16,6 +17,7 @@ const Home = () => {
         <div className="home">
             <Header />
             <Introduction />
+            <Resume />
             <SectionTitle setSkills={setSkills} 
                             setAcademic={setAcademic}
                             setProjects={setProjects}

@@ -70,15 +70,17 @@ const Dialog = styled.div`
     left: ${props => props.left + "px;"}
 
     width: 250px;
-    
+
 
     border: 10px double black;
     border-radius: 15px;
     background-color: white;
+    text-align: center;
+
+
     padding: 5px;
     opacity: 0;
 
-    text-align: center;
 
     transition: opacity .4s;
     z-index: 10000;

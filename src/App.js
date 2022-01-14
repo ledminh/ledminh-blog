@@ -20,7 +20,6 @@ import Blog from './components/blog';
 
 
 
-
 function App() {
   const [sideBarOut, setSideBarOut] = useState(false);  
 

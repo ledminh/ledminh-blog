@@ -78,6 +78,8 @@ Need to import Awesome font here or some css file elsewhere of the project
     padding: 0px 30px;
     transition:  max-height .4s, opacity .4s;
 
+    margin-bottom: 10px;
+
 }
 
 .top-nav-bar .social-media-menu ul {
@@ -107,25 +109,26 @@ Need to import Awesome font here or some css file elsewhere of the project
     color: #55ACEE;
 }
 
-.top-nav-bar .social-media-menu .fa-google:hover {
-    color: #dd4b39;
+.top-nav-bar .social-media-menu .fa-linkedin:hover {
+    color: #0a66c2;
 }
 
-.top-nav-bar .social-media-menu .fa-instagram:hover {
-    color: #125688;
+.top-nav-bar .social-media-menu .fa-github:hover {
+    color: white;
 }
 
-.top-nav-bar .social-media-menu .fa-youtube:hover {
+.top-nav-bar .social-media-menu .fa-envelope:hover {
     color: #bb0000;
 }
-
+e
 
 .top-nav-bar .search-bar {
     margin-top: 10px;
+
     transition:  max-height .4s, opacity .4s;   
 }
 
-.top-nav-bar .search-bar input {
+.top-nav-bar .search-bar .gcse-searchbox-only {
     border: 2px solid rgb(179, 179, 179);
     border-radius: 20px;
     padding: 12px;
@@ -173,12 +176,14 @@ Need to import Awesome font here or some css file elsewhere of the project
 
     .top-nav-bar .social-media-menu {
         margin-top: 10px;
+
+        margin-bottom: 10px;
     }
 }
 
 @media screen and (min-width: 933px) {
     .top-nav-bar {
-        grid-template-columns: 1fr 1fr 1fr 200px;
+        grid-template-columns: 1fr 1fr 1fr 330px;
         grid-template-rows: 1fr 1fr;
     }
 
@@ -199,10 +204,11 @@ Need to import Awesome font here or some css file elsewhere of the project
         grid-column: 4/5;
         margin-top: 5px;
 
+        
     }
 
 
-    .top-nav-bar .search-bar input {
+    .top-nav-bar .search-bar .gcse-searchbox-only {
         border: 1px solid rgb(179, 179, 179);
         border-radius: 20px;
         padding: 6px;
@@ -211,7 +217,7 @@ Need to import Awesome font here or some css file elsewhere of the project
 
 @media screen and (min-width: 1110px) {
     .top-nav-bar {
-        grid-template-columns: auto 480px 345px 200px auto;
+        grid-template-columns: auto 360px 345px 320px auto;
         gap: 10px;
         grid-template-rows: 1fr;
      
