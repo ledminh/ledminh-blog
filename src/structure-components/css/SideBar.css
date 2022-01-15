@@ -4,8 +4,14 @@
 
     border-left: 1px solid rgb(170, 170, 170);
 
+    display: none;
+
 }
 
+
+.sidebar.side-bar-out {
+    display: block;
+}
 
 
 .sidebar .close-button {

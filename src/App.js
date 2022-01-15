@@ -10,13 +10,12 @@ import NavBar from './components/NavBar';
 
 import PageTitle from './components/PageTitle';
 
-import AboutMeBlock from './components/AboutMeBlock';
-
 import Home from './components/home';
 
 import Copyright from './components/Copyright';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Blog from './components/blog';
+import OldProjectsBlock from './components/OldProjectsBlock';
 
 
 
@@ -44,8 +43,8 @@ function App() {
             <Copyright />
           </Structure.Footer>
         </Structure.MainArea>
-        <Structure.SideBar setSideBarOut={setSideBarOut}>
-          <AboutMeBlock />  
+        <Structure.SideBar setSideBarOut={setSideBarOut} sideBarOut={sideBarOut}>
+          <OldProjectsBlock/>
         </Structure.SideBar>  
       </div>
     </Router>

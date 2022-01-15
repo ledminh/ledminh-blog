@@ -1,12 +1,12 @@
 import './css/SideBar.css';
 
 
-const SideBar = ({setSideBarOut, children}) => {
+const SideBar = ({setSideBarOut, sideBarOut, children}) => {
 
 
 
     return (
-        <div className="sidebar">
+        <div className={"sidebar" + (sideBarOut? " side-bar-out": "")}>
             <CloseButton setSideBarOut={setSideBarOut} />
             <div className="sidebar-content">           
                 {children}
