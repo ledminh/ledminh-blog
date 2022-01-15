@@ -18,8 +18,10 @@ import ErrorPage from "./ErrorPage";
 const DatesList = () => {
     const dataInitialized = useDataInitialized();
 
-    const {featureImage, data} = useDatesList(); 
-    const {datesList, dataReady, error} = data;
+    const {featureImage, data, error} = useDatesList(); 
+    const {datesList, dataReady } = data;
+
+   
 
     const {setDatesList} = useDatesListActions();
 

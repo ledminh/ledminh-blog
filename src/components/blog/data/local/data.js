@@ -1,3 +1,5 @@
+import blogIntroProfilePic from "./imgs/blog-intro-profile-pic.png";
+
 export const authors = [
     {
         id: "author-1234567",
@@ -83,6 +85,11 @@ export const authors = [
 
 export const tags = [
     {
+        id: "tag-00001",
+        name: "introduction"
+    },
+
+    {
         id: "tag-12987",
         name: "sky"
     },
@@ -129,6 +136,15 @@ export const tags = [
 ]
 
 export const categories = [
+    {
+        id: "cat-000001",
+        feature_image_url: blogIntroProfilePic,
+        title: "Introduction",
+        slug: "introduction",
+        meta_data:  {
+            cat_subtitle: "About this blog"
+        }
+    },
     {
         id: "cat-12345",
         feature_image_url: "https://loremflickr.com/800/600",
@@ -226,33 +242,15 @@ export const categories = [
 export const posts = [
     {
         id: "123456789",
-        title: "This is post 1",
-        feature_image_url: "https://picsum.photos/875/600",
-        categoryIDs: ["cat-12345", "cat-12346", "cat-123332"],
-        tagIDs: ["tag-12987", "tag-12982", "tag-12387"],
+        title: "Introduction",
+        feature_image_url: blogIntroProfilePic,
+        categoryIDs: ["cat-000001"],
+        tagIDs: ["tag-00001"],
         date_created: (new Date()).toLocaleDateString("en-US", {year: 'numeric', month: 'long', day: 'numeric'}),
-        comments: [
-            {
-                author: "Vu Nguyen",
-                content: "Non ut eiusmod labore non est irure cupidatat cupidatat. Quis sunt non nostrud tempor laboris ipsum exercitation ex consequat. Enim Lorem eu velit minim incididunt nisi anim nisi tempor. Velit aliquip aute commodo laborum ea non anim mollit in dolor culpa irure labore minim."
-            },
-            {
-                author: "Minh Vu",
-                content: "Ad non Lorem excepteur esse. Adipisicing minim reprehenderit eu et ipsum voluptate laborum ut Lorem esse proident dolore consectetur. Lorem anim culpa amet est voluptate eiusmod reprehenderit consectetur cupidatat in irure duis cupidatat."
-            },            
-            {
-                author: "Hitcher",
-                content: "Incididunt veniam adipisicing consectetur duis ullamco irure sint minim nostrud occaecat sit. Ex culpa officia minim amet aliquip veniam laborum proident et do. Anim qui voluptate pariatur tempor deserunt labore et magna. Ea in eiusmod tempor eu. Anim duis dolore exercitation aliquip Lorem aliqua officia. Dolor elit enim do tempor tempor nulla occaecat reprehenderit ipsum enim Lorem consequat. Voluptate cillum minim nulla Lorem tempor nisi cupidatat deserunt nostrud magna magna commodo."
-            },
-            {
-                author: "Lister",
-                content: "Sint est proident irure quis incididunt sit exercitation cupidatat ad. Deserunt deserunt culpa occaecat laborum anim est voluptate id sit. Enim fugiat esse eu nostrud culpa ex sit irure fugiat anim veniam consequat adipisicing."
-            }
-
-        ],
+        comments: [],
         authorID: "author-1234567",
-        excerpt: "Officia veniam eiusmod et ex est consectetur irure. Ad eu ipsum cillum ullamco anim proident elit nostrud officia. Consequat do eu qui duis eiusmod commodo id laborum quis minim dolor. Nisi in occaecat et occaecat magna cupidatat tempor sit cupidatat.",
-        content: "<p>Quis do consequat amet sunt non. Eu eiusmod reprehenderit ad dolore quis minim. Sit cupidatat cupidatat enim consectetur occaecat nulla voluptate consequat Lorem ad in commodo id. Velit veniam sint sint id commodo ullamco fugiat excepteur exercitation Lorem incididunt. Eu anim ullamco velit id aute adipisicing. Magna enim cillum labore ullamco dolor esse. Aute sit ad nisi nostrud anim culpa dolore laborum reprehenderit dolor occaecat est voluptate et.</p><p>Et consectetur eiusmod dolore aliqua voluptate aliquip ea ullamco dolore irure veniam id. Sunt eu dolore ea culpa id incididunt eiusmod. Consectetur veniam veniam esse magna exercitation excepteur ut voluptate ullamco eiusmod ullamco in. Ex eu nostrud qui ex deserunt tempor magna incididunt. Labore esse elit nisi veniam do eiusmod cupidatat enim excepteur voluptate pariatur. Excepteur laboris dolor id ea ad. Sit minim dolore magna duis sit irure duis consequat aliquip cupidatat ad esse.</p><p>Quis do consequat amet sunt non. Eu eiusmod reprehenderit ad dolore quis minim. Sit cupidatat cupidatat enim consectetur occaecat nulla voluptate consequat Lorem ad in commodo id. Velit veniam sint sint id commodo ullamco fugiat excepteur exercitation Lorem incididunt. Eu anim ullamco velit id aute adipisicing. Magna enim cillum labore ullamco dolor esse. Aute sit ad nisi nostrud anim culpa dolore laborum reprehenderit dolor occaecat est voluptate et.</p><p>Et consectetur eiusmod dolore aliqua voluptate aliquip ea ullamco dolore irure veniam id. Sunt eu dolore ea culpa id incididunt eiusmod. Consectetur veniam veniam esse magna exercitation excepteur ut voluptate ullamco eiusmod ullamco in. Ex eu nostrud qui ex deserunt tempor magna incididunt. Labore esse elit nisi veniam do eiusmod cupidatat enim excepteur voluptate pariatur. Excepteur laboris dolor id ea ad. Sit minim dolore magna duis sit irure duis consequat aliquip cupidatat ad esse.</p><p>Quis do consequat amet sunt non. Eu eiusmod reprehenderit ad dolore quis minim. Sit cupidatat cupidatat enim consectetur occaecat nulla voluptate consequat Lorem ad in commodo id. Velit veniam sint sint id commodo ullamco fugiat excepteur exercitation Lorem incididunt. Eu anim ullamco velit id aute adipisicing. Magna enim cillum labore ullamco dolor esse. Aute sit ad nisi nostrud anim culpa dolore laborum reprehenderit dolor occaecat est voluptate et.</p><p>Et consectetur eiusmod dolore aliqua voluptate aliquip ea ullamco dolore irure veniam id. Sunt eu dolore ea culpa id incididunt eiusmod. Consectetur veniam veniam esse magna exercitation excepteur ut voluptate ullamco eiusmod ullamco in. Ex eu nostrud qui ex deserunt tempor magna incididunt. Labore esse elit nisi veniam do eiusmod cupidatat enim excepteur voluptate pariatur. Excepteur laboris dolor id ea ad. Sit minim dolore magna duis sit irure duis consequat aliquip cupidatat ad esse post 1.</p>"
+        excerpt: "<p>This is the only \"real\" post on this blog. Click the button \"Continue Reading\" below to know more about it.",
+        content: "<p>This is the only \"real\" post on this blog. The others are lorem ipsum posts inserted here to fully demonstrate how the blog works.</p><p>As you can see right below the navigation bar, there is a tiny notation saying that the source is local and telling you to \"click here to change the source.\" If you click on that, you will see that there are 3 types of source: (1) Local, (2) <a href=\"https://www.ledminh.com\">https://www.ledminh.com</a>, and (3) Other wordpress site.</p><p>The local source is the file data.js that can be found in \"./src/components/blog/data/local/\" folder in the source code of this website. I hard coded it into the blog to test its functionalities. My plan is to move it to mongoDB in the future.</p><p>The website \"<a href=\"https://www.ledminh.com\">https://www.ledminh.com</a>\", is my blog about science in Vietnamese built on wordpress. When you choose this option, this blog will become an UI that loads data from ledminh blog and then displays them. I used wpapi to fetch data from the wordpress's REST API.</p><p>When you click on the third option, an input field will show up so that you can enter the address of any wordpress site. The blog then display the content from that website. However, there is one condition which is the wordpress site you enter must have CORS enable.</p><p>The blog is deeply integrated into my website. The reason was that in the planning stage, I decided the website ledminh.dev itself is a blog. However, as time went by, I like the blog component to be an independent app rather than just a part of this website. I still don't have time to restructure it but I definitely will. In the mean time, you can find its source code by following this path:&nbsp; \"./src/components/blog\".</p><p>The source code of the whole website (ledminh.dev) can be found at <a href=\"https://github.com/ledminh/ledminh-blog\">Github</a>.</p>"
     },
 
     {

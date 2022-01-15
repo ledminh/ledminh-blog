@@ -1,7 +1,15 @@
-export const CategoryImageURL ="https://cdn.searchenginejournal.com/wp-content/uploads/2020/07/should-you-noindex-category-archive-pages-5f16d5658b540-1520x800.png";
-export const TagsImageURL = "https://cdn5.vectorstock.com/i/1000x1000/28/19/set-blank-vintage-frames-gift-tags-labels-vector-13982819.jpg";
-export const DatesImageURL = "https://www.saratogian.com/wp-content/uploads/2021/11/calendar.jpg";
-export const AuthorListsImageURL = "https://s26162.pcdn.co/wp-content/uploads/2018/02/writing-group.jpg";
-export const AuthorPageImageURL = "https://collegeinfogeek.com/wp-content/uploads/2020/05/writing-apps-featured-document-on-computer.jpg";
+import categoriesImg from "./imgs/categories.png";
+import tagsImg from "./imgs/tags.png";
+import authorsImg from "./imgs/authors.png";
+import datesImg from "./imgs/dates.png";
+import authorProfileImg from "./imgs/author-profile.png";
+import errorImg from "./imgs/error.png";
 
-export const ErrorProfileImage = "https://thumbs.dreamstime.com/b/page-error-icon-isolated-black-background-simple-vector-logo-162367378.jpg"
+
+export const CategoryImageURL = categoriesImg;
+export const TagsImageURL = tagsImg;
+export const DatesImageURL = datesImg;
+export const AuthorListsImageURL = authorsImg;
+export const AuthorPageImageURL = authorProfileImg;
+
+export const ErrorProfileImage = errorImg;
